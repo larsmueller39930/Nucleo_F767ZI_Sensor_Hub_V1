@@ -1,0 +1,1503 @@
+Archive member included to satisfy reference by file (symbol)
+
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (Opamp_1_Start)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (Opamp_2_Start)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (ADC_SAR_Start)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+                              .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o) (ADC_SAR_ISR)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (AMux_High_Start)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (AMux_Low_Start)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (IDAC_Start)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+                              .\CortexM0\ARM_GCC_541\Debug\main.o (DieTemp_CountsTo_Celsius)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+                              .\CortexM0\ARM_GCC_541\Debug\currentSink.o (GPIO_VREF_Write)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+                              .\CortexM0\ARM_GCC_541\Debug\currentSink.o (GPIO_S0_Write)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+                              .\CortexM0\ARM_GCC_541\Debug\currentSink.o (GPIO_S1_Write)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+                              .\CortexM0\ARM_GCC_541\Debug\currentSink.o (GPIO_EN_Write)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (SPIS_Start)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+                              .\CortexM0\ARM_GCC_541\Debug\myspi.o (SPIS_SpiUartReadRxData)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+                              .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o) (SPIS_SpiInit)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                              .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o (CySysClkWriteImoFreq)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+                              .\CortexM0\ARM_GCC_541\Debug\currentSink.o (ISR_TurnOn_Sink_Start)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+                              .\CortexM0\ARM_GCC_541\Debug\currentSink.o (ISR_TurnOff_Sink_Start)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyBootAsmGnu.o)
+                              .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o) (CyDelayCycles)
+.\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+                              .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o) (SPIS_SPI_UART_ISR)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o) (__aeabi_uidiv)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o) (__aeabi_idiv)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+                              c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+                              .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o) (__aeabi_ldivmod)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o) (__aeabi_lmul)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+                              c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o) (__gnu_ldivmod_helper)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (__aeabi_fdiv)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (__aeabi_fmul)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixsfsi.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (__aeabi_f2iz)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+                              .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o (__aeabi_i2f)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o) (__clzsi2)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+                              c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o) (__divdi3)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+                              c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o) (__clzdi2)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+                              .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o (__errno)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+                              c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o (exit)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                              c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o) (_global_impure_ptr)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+                              c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o (__libc_init_array)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+                              .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o (memcpy)
+c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+                              c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o (memset)
+
+Allocating common symbols
+Common symbol       size              file
+
+SPI_Temp_Reg        0x4               .\CortexM0\ARM_GCC_541\Debug\myspi.o
+SPI_Status_Reg      0x1               .\CortexM0\ARM_GCC_541\Debug\myspi.o
+SPI_TXflag          0x1               .\CortexM0\ARM_GCC_541\Debug\myspi.o
+currentSourceState  0x1               .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+currentSinkToggleRequest
+                    0x1               .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ADC_SAR_countsPer10Volt
+                    0x8               .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ADC_SAR_offset      0x4               .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+spiTxBuffer         0x80              .\CortexM0\ARM_GCC_541\Debug\myspi.o
+spiRxBuffer         0x80              .\CortexM0\ARM_GCC_541\Debug\myspi.o
+SPI_RXflag          0x1               .\CortexM0\ARM_GCC_541\Debug\myspi.o
+
+Discarded input sections
+
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+ .data          0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .text          0x00000000       0x78 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .text.setHighCurrent
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .text.setLowCurrent
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .text.getCurrentSourceState
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.CYCONFIGCPY
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.CYCONFIGCPYCODE
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .data          0x00000000        0x4 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .text._exit    0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .text._sbrk    0x00000000       0x50 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .text.Opamp_1_Stop
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .text.Opamp_1_SetPower
+                0x00000000       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .text.Opamp_1_PumpControl
+                0x00000000       0x3c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .text.Opamp_2_Stop
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .text.Opamp_2_SetPower
+                0x00000000       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .text.Opamp_2_PumpControl
+                0x00000000       0x3c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_Stop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_SetChanMask
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_SetLowLimit
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_SetHighLimit
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_SetLimitMask
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_SetSatMask
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_SetOffset
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_SetGain
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_CountsTo_mVolts
+                0x00000000       0xc8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_CountsTo_uVolts
+                0x00000000       0xb8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text.ADC_SAR_CountsTo_Volts
+                0x00000000       0xa4 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .text.AMux_High_FastSelect
+                0x00000000       0x3c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .text.AMux_Low_FastSelect
+                0x00000000       0x3c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .text.IDAC_Stop
+                0x00000000       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .text.GPIO_VREF_SetDriveMode
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .text.GPIO_VREF_Read
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .text.GPIO_VREF_ReadDataReg
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .text.GPIO_VREF_SetInterruptMode
+                0x00000000       0x44 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .text.GPIO_VREF_ClearInterrupt
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .text.GPIO_S0_SetDriveMode
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .text.GPIO_S0_Read
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .text.GPIO_S0_ReadDataReg
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .text.GPIO_S0_SetInterruptMode
+                0x00000000       0x44 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .text.GPIO_S0_ClearInterrupt
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .text.GPIO_S1_SetDriveMode
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .text.GPIO_S1_Read
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .text.GPIO_S1_ReadDataReg
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .text.GPIO_S1_SetInterruptMode
+                0x00000000       0x44 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .text.GPIO_S1_ClearInterrupt
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .text.GPIO_EN_SetDriveMode
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .text.GPIO_EN_Read
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .text.GPIO_EN_ReadDataReg
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .text.GPIO_EN_SetInterruptMode
+                0x00000000       0x44 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .text.GPIO_EN_ClearInterrupt
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .text.SPIS_Stop
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .text.SPIS_SetRxFifoLevel
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .text.SPIS_SetTxFifoLevel
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .text.SPIS_SetCustomInterruptHandler
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .text.SPIS_ScbModeStop
+                0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .text.SPIS_I2CSlaveNackGeneration
+                0x00000000       0x54 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .text.SPIS_SpiUartGetTxBufferSize
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .text.SPIS_SpiUartDisableIntRx
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .text.SPIS_SpiUartDisableIntTx
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .text.SPIS_SpiStop
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .bss           0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysClkImoStart
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysClkImoStop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysClkWriteHfclkDirect
+                0x00000000       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysEnablePumpClock
+                0x00000000       0x50 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysClkGetSysclkSource
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysClkWriteSysclkDiv
+                0x00000000       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysLvdEnable
+                0x00000000       0x64 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysLvdDisable
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysLvdGetInterruptSource
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysLvdClearInterrupt
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysGetResetReason
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyDisableInts
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyEnableInts
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyIntSetSysVector
+                0x00000000       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyIntGetSysVector
+                0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyIntGetVector
+                0x00000000       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyIntGetPriority
+                0x00000000       0x58 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyIntGetState
+                0x00000000       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyIntSetPending
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyIntClearPending
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySoftwareReset
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyDelay  0x00000000       0x4c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyDelayFreq
+                0x00000000       0x84 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickStart
+                0x00000000       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickInit
+                0x00000000       0x5c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickEnable
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickStop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickEnableInterrupt
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickDisableInterrupt
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickSetReload
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickGetReload
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickGetValue
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickGetCountFlag
+                0x00000000       0x18 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickClear
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickSetCallback
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickGetCallback
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CySysTickServiceCallbacks
+                0x00000000       0x44 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text.CyGetUniqueId
+                0x00000000       0xc0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .text.ISR_TurnOn_Sink_StartEx
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .text.ISR_TurnOn_Sink_Stop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .text.ISR_TurnOn_Sink_GetVector
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .text.ISR_TurnOn_Sink_GetPriority
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .text.ISR_TurnOn_Sink_GetState
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .text.ISR_TurnOn_Sink_SetPending
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .text.ISR_TurnOff_Sink_StartEx
+                0x00000000       0x28 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .text.ISR_TurnOff_Sink_Stop
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .text.ISR_TurnOff_Sink_GetVector
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .text.ISR_TurnOff_Sink_GetPriority
+                0x00000000       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .text.ISR_TurnOff_Sink_GetState
+                0x00000000       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .text.ISR_TurnOff_Sink_SetPending
+                0x00000000       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyBootAsmGnu.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyBootAsmGnu.o)
+ .text          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+ .data          0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+ .bss           0x00000000        0x0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+ .text          0x00000000      0x114 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+ .text          0x00000000       0x48 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .text          0x00000000       0x58 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .text          0x00000000       0x38 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixsfsi.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixsfsi.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+ .text          0x00000000      0x1bc c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.extab     0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.exidx     0x00000000        0x8 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .text          0x00000000       0x18 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .text.exit     0x00000000       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .rodata._global_impure_ptr
+                0x00000000        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .text.memcpy   0x00000000       0x12 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ .text          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+ .data          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+ .bss           0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x00000000         0x00008000         xr
+ram              0x20000000         0x00001000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+START GROUP
+LOAD .\CortexM0\ARM_GCC_541\Debug\main.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\myspi.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+LOAD .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libm.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libc_nano.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libc_nano.a
+END GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+START GROUP
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libc.a
+LOAD c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libnosys.a
+END GROUP
+                0x00000000                CY_APPL_ORIGIN = 0x0
+                0x00000080                CY_FLASH_ROW_SIZE = 0x80
+                0x00000001                CY_APPL_NUM = 0x1
+                0x00000001                CY_APPL_MAX = 0x1
+                0x00000040                CY_METADATA_SIZE = 0x40
+                0x00000000                CY_APPL_LOADABLE = 0x0
+                0x00000000                CY_CHECKSUM_EXCLUDE_SIZE = ALIGN (0x0, CY_FLASH_ROW_SIZE)
+                0x00000000                CY_APP_FOR_STACK_AND_COPIER = 0x0
+                [!provide]                PROVIDE (__cy_heap_start, _end)
+                0x00000001                PROVIDE (__cy_region_num, ((__cy_regions_end - __cy_regions) / 0x10))
+                0x20001000                PROVIDE (__cy_stack, (ORIGIN (ram) + LENGTH (ram)))
+                [!provide]                PROVIDE (__cy_heap_end, (__cy_stack - 0x400))
+
+.cybootloader   0x00000000        0x0
+ *(.cybootloader)
+                0x00000000                appl1_start = CY_APPL_ORIGIN?CY_APPL_ORIGIN:ALIGN (CY_FLASH_ROW_SIZE)
+                0x00003f80                appl2_start = (appl1_start + ALIGN ((((LENGTH (rom) - appl1_start) - (0x2 * CY_FLASH_ROW_SIZE)) / 0x2), CY_FLASH_ROW_SIZE))
+                0x00000000                appl_start = (CY_APPL_NUM == 0x1)?appl1_start:appl2_start
+                0x00000001                cy_project_type_bootloader = (appl_start == 0x0)?0x1:0x0
+                0x00000000                cy_project_type_app_for_stack_and_copier = (CY_APP_FOR_STACK_AND_COPIER == 0x1)?0x1:0x0
+
+.text           0x00000000     0x23b8
+ CREATE_OBJECT_SYMBOLS
+                0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
+ *(.romvectors)
+ .romvectors    0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00000000                RomVectors
+                0x00000001                ASSERT ((. != __cy_interrupt_vector), No interrupt vector)
+                0x00000001                ASSERT (CY_APPL_ORIGIN?(SIZEOF (.cybootloader) <= CY_APPL_ORIGIN):0x1, Wrong image location)
+                0x00000010                PROVIDE (__cy_reset, Reset)
+ *(.text.Reset)
+ .text.Reset    0x00000010        0x8 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00000010                Reset
+                0x00000001                ASSERT ((. != __cy_reset), No reset code)
+ *(.psocinit)
+ .psocinit      0x00000018      0x200 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000094                cyfitter_cfg
+                0x00000218                . = MAX (., 0x100)
+ *(.text .text.* .gnu.linkonce.t.*)
+ .text          0x00000218       0x60 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .text.main     0x00000278       0xcc .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x00000278                main
+ .text.getSystemOffset
+                0x00000344       0x78 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+                0x00000344                getSystemOffset
+ .text.initializeDiodeMeasurement
+                0x000003bc       0x4c .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+                0x000003bc                initializeDiodeMeasurement
+ .text.convertVoltageToTemperature
+                0x00000408       0xac .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+                0x00000408                convertVoltageToTemperature
+ .text.getDiodeTemperature
+                0x000004b4       0xf0 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+                0x000004b4                getDiodeTemperature
+ .text.initializeCurrentSink
+                0x000005a4       0x18 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                0x000005a4                initializeCurrentSink
+ .text.turnOnSink
+                0x000005bc       0x40 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                0x000005bc                turnOnSink
+ .text.turnOffSink
+                0x000005fc       0x40 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                0x000005fc                turnOffSink
+ .text.setMultiplexerChan
+                0x0000063c       0x68 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                0x0000063c                setMultiplexerChan
+ .text.getISRState
+                0x000006a4       0x14 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                0x000006a4                getISRState
+ .text.resetISRState
+                0x000006b8       0x14 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                0x000006b8                resetISRState
+ .text.ISR_TurnOn_Sink_Interrupt_InterruptCallback
+                0x000006cc       0x18 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                0x000006cc                ISR_TurnOn_Sink_Interrupt_InterruptCallback
+ .text.ISR_TurnOff_Sink_Interrupt_InterruptCallback
+                0x000006e4       0x18 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                0x000006e4                ISR_TurnOff_Sink_Interrupt_InterruptCallback
+ .text.SPIS_SPI_UART_ISR_ExitCallback
+                0x000006fc       0xfc .\CortexM0\ARM_GCC_541\Debug\myspi.o
+                0x000006fc                SPIS_SPI_UART_ISR_ExitCallback
+ .text.initializeSPIInterface
+                0x000007f8       0x3c .\CortexM0\ARM_GCC_541\Debug\myspi.o
+                0x000007f8                initializeSPIInterface
+ .text.setSPITempReg
+                0x00000834       0x54 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+                0x00000834                setSPITempReg
+ .text.CYMEMZERO
+                0x00000888       0x20 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.cfg_write_bytes32
+                0x000008a8       0x84 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.AnalogSetDefault
+                0x0000092c       0x4c .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .text.SetAnalogRoutingPumps
+                0x00000978       0x40 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000978                SetAnalogRoutingPumps
+ .text.AMux_High_Set
+                0x000009b8       0x2c .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000009b8                AMux_High_Set
+ .text.AMux_High_Unset
+                0x000009e4       0x2c .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x000009e4                AMux_High_Unset
+ .text.AMux_Low_Set
+                0x00000a10       0x2c .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000a10                AMux_Low_Set
+ .text.AMux_Low_Unset
+                0x00000a3c       0x2c .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                0x00000a3c                AMux_Low_Unset
+ .text.IntDefaultHandler
+                0x00000a68       0x14 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00000a68                IntDefaultHandler
+ .text.Start_c  0x00000a7c       0x98 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00000a7c                Start_c
+ .text.initialize_psoc
+                0x00000b14       0x64 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00000b14                initialize_psoc
+ .text.Opamp_1_Init
+                0x00000b78       0x34 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+                0x00000b78                Opamp_1_Init
+ .text.Opamp_1_Enable
+                0x00000bac       0x28 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+                0x00000bac                Opamp_1_Enable
+ .text.Opamp_1_Start
+                0x00000bd4       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+                0x00000bd4                Opamp_1_Start
+ .text.Opamp_2_Init
+                0x00000bf8       0x34 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+                0x00000bf8                Opamp_2_Init
+ .text.Opamp_2_Enable
+                0x00000c2c       0x28 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+                0x00000c2c                Opamp_2_Enable
+ .text.Opamp_2_Start
+                0x00000c54       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+                0x00000c54                Opamp_2_Start
+ .text.ADC_SAR_Start
+                0x00000c78       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x00000c78                ADC_SAR_Start
+ .text.ADC_SAR_Init
+                0x00000c9c      0x260 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x00000c9c                ADC_SAR_Init
+ .text.ADC_SAR_Enable
+                0x00000efc       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x00000efc                ADC_SAR_Enable
+ .text.ADC_SAR_StartConvert
+                0x00000f28       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x00000f28                ADC_SAR_StartConvert
+ .text.ADC_SAR_StopConvert
+                0x00000f44       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x00000f44                ADC_SAR_StopConvert
+ .text.ADC_SAR_IsEndConversion
+                0x00000f64       0x7c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x00000f64                ADC_SAR_IsEndConversion
+ .text.ADC_SAR_GetResult16
+                0x00000fe0       0x4c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x00000fe0                ADC_SAR_GetResult16
+ .text.ADC_SAR_EnableInjection
+                0x0000102c       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x0000102c                ADC_SAR_EnableInjection
+ .text.ADC_SAR_ISR
+                0x00001048       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+                0x00001048                ADC_SAR_ISR
+ .text.AMux_High_Start
+                0x00001068       0x3c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+                0x00001068                AMux_High_Start
+ .text.AMux_High_Select
+                0x000010a4       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+                0x000010a4                AMux_High_Select
+ .text.AMux_Low_Start
+                0x000010d4       0x3c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+                0x000010d4                AMux_Low_Start
+ .text.AMux_Low_Select
+                0x00001110       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+                0x00001110                AMux_Low_Select
+ .text.IDAC_Init
+                0x00001140       0x84 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+                0x00001140                IDAC_Init
+ .text.IDAC_Enable
+                0x000011c4       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+                0x000011c4                IDAC_Enable
+ .text.IDAC_Start
+                0x0000120c       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+                0x0000120c                IDAC_Start
+ .text.IDAC_SetValue
+                0x00001230       0x44 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+                0x00001230                IDAC_SetValue
+ .text.DieTemp_CountsTo_Celsius
+                0x00001274       0xa8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+                0x00001274                DieTemp_CountsTo_Celsius
+ .text.GPIO_VREF_Write
+                0x0000131c       0x50 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+                0x0000131c                GPIO_VREF_Write
+ .text.GPIO_S0_Write
+                0x0000136c       0x50 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+                0x0000136c                GPIO_S0_Write
+ .text.GPIO_S1_Write
+                0x000013bc       0x50 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+                0x000013bc                GPIO_S1_Write
+ .text.GPIO_EN_Write
+                0x0000140c       0x50 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+                0x0000140c                GPIO_EN_Write
+ .text.SPIS_Init
+                0x0000145c       0x10 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+                0x0000145c                SPIS_Init
+ .text.SPIS_Enable
+                0x0000146c       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+                0x0000146c                SPIS_Enable
+ .text.SPIS_Start
+                0x00001490       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+                0x00001490                SPIS_Start
+ .text.SPIS_ScbEnableIntr
+                0x000014b4       0x10 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .text.SPIS_ScbModePostEnable
+                0x000014c4       0x10 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .text.SPIS_SpiUartReadRxData
+                0x000014d4       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+                0x000014d4                SPIS_SpiUartReadRxData
+ .text.SPIS_SpiUartGetRxBufferSize
+                0x000014f4       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+                0x000014f4                SPIS_SpiUartGetRxBufferSize
+ .text.SPIS_SpiUartClearRxBuffer
+                0x00001514       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+                0x00001514                SPIS_SpiUartClearRxBuffer
+ .text.SPIS_SpiUartWriteTxData
+                0x00001540       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+                0x00001540                SPIS_SpiUartWriteTxData
+ .text.SPIS_SpiUartPutArray
+                0x0000156c       0x34 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+                0x0000156c                SPIS_SpiUartPutArray
+ .text.SPIS_SpiUartClearTxBuffer
+                0x000015a0       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+                0x000015a0                SPIS_SpiUartClearTxBuffer
+ .text.SPIS_SpiInit
+                0x000015cc       0xb4 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+                0x000015cc                SPIS_SpiInit
+ .text.SPIS_SpiPostEnable
+                0x00001680       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+                0x00001680                SPIS_SpiPostEnable
+ .text.CySysClkWriteImoFreq
+                0x0000169c      0x1e4 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                0x0000169c                CySysClkWriteImoFreq
+ .text.CyIntSetVector
+                0x00001880       0x4c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                0x00001880                CyIntSetVector
+ .text.CyIntSetPriority
+                0x000018cc       0xa8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                0x000018cc                CyIntSetPriority
+ .text.CyIntEnable
+                0x00001974       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                0x00001974                CyIntEnable
+ .text.CyIntDisable
+                0x000019a0       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                0x000019a0                CyIntDisable
+ .text.CyHalt   0x000019cc       0x18 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                0x000019cc                CyHalt
+ .text.CyDelayUs
+                0x000019e4       0x28 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                0x000019e4                CyDelayUs
+ .text.ISR_TurnOn_Sink_Start
+                0x00001a0c       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+                0x00001a0c                ISR_TurnOn_Sink_Start
+ .text.ISR_TurnOn_Sink_Interrupt
+                0x00001a30       0x10 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+                0x00001a30                ISR_TurnOn_Sink_Interrupt
+ .text.ISR_TurnOn_Sink_SetVector
+                0x00001a40       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+                0x00001a40                ISR_TurnOn_Sink_SetVector
+ .text.ISR_TurnOn_Sink_SetPriority
+                0x00001a5c       0x50 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+                0x00001a5c                ISR_TurnOn_Sink_SetPriority
+ .text.ISR_TurnOn_Sink_Enable
+                0x00001aac       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+                0x00001aac                ISR_TurnOn_Sink_Enable
+ .text.ISR_TurnOn_Sink_Disable
+                0x00001ac0       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+                0x00001ac0                ISR_TurnOn_Sink_Disable
+ .text.ISR_TurnOn_Sink_ClearPending
+                0x00001ad4       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+                0x00001ad4                ISR_TurnOn_Sink_ClearPending
+ .text.ISR_TurnOff_Sink_Start
+                0x00001ae8       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+                0x00001ae8                ISR_TurnOff_Sink_Start
+ .text.ISR_TurnOff_Sink_Interrupt
+                0x00001b0c       0x10 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+                0x00001b0c                ISR_TurnOff_Sink_Interrupt
+ .text.ISR_TurnOff_Sink_SetVector
+                0x00001b1c       0x1c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+                0x00001b1c                ISR_TurnOff_Sink_SetVector
+ .text.ISR_TurnOff_Sink_SetPriority
+                0x00001b38       0x50 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+                0x00001b38                ISR_TurnOff_Sink_SetPriority
+ .text.ISR_TurnOff_Sink_Enable
+                0x00001b88       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+                0x00001b88                ISR_TurnOff_Sink_Enable
+ .text.ISR_TurnOff_Sink_Disable
+                0x00001b9c       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+                0x00001b9c                ISR_TurnOff_Sink_Disable
+ .text.ISR_TurnOff_Sink_ClearPending
+                0x00001bb0       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+                0x00001bb0                ISR_TurnOff_Sink_ClearPending
+ *fill*         0x00001bc4        0x4 
+ .text          0x00001bc8       0x24 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyBootAsmGnu.o)
+                0x00001bc8                CyDelayCycles
+                0x00001bdc                CyEnterCriticalSection
+                0x00001be4                CyExitCriticalSection
+ .text.SPIS_SPI_UART_ISR
+                0x00001bec       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+                0x00001bec                SPIS_SPI_UART_ISR
+ .text          0x00001c0c      0x1d4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+                0x00001c0c                __divsi3
+                0x00001c0c                __aeabi_idiv
+                0x00001dd8                __aeabi_idivmod
+ .text          0x00001de0        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+                0x00001de0                __aeabi_idiv0
+                0x00001de0                __aeabi_ldiv0
+ .text          0x00001de4      0x234 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+                0x00001de4                __aeabi_fdiv
+ .text          0x00002018      0x228 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+                0x00002018                __aeabi_fmul
+ .text          0x00002240       0x44 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixsfsi.o)
+                0x00002240                __aeabi_f2iz
+ .text          0x00002284       0x90 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+                0x00002284                __aeabi_i2f
+ .text          0x00002314       0x3c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+                0x00002314                __clzsi2
+ .text.__errno  0x00002350        0xc c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+                0x00002350                __errno
+ .text.__libc_init_array
+                0x0000235c       0x4c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+                0x0000235c                __libc_init_array
+ .text.memset   0x000023a8       0x10 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+                0x000023a8                memset
+ *(.plt)
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x000023b8        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x000023b8        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x000023b8        0x0 linker stubs
+ *(.bootloader)
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+ *(.gcc_except_table)
+
+.v4_bx          0x000023b8        0x0
+ .v4_bx         0x000023b8        0x0 linker stubs
+
+.iplt           0x000023b8        0x0
+ .iplt          0x000023b8        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x000023b8        0x4
+ *(.eh_frame)
+ .eh_frame      0x000023b8        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .eh_frame      0x000023b8        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+                [!provide]                PROVIDE (__exidx_start, .)
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x000023bc                __exidx_end = .
+
+.rodata         0x000023bc      0x19c
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata        0x000023bc       0x64 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .rodata        0x00002420        0xa .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ *fill*         0x0000242a        0x2 
+ .rodata        0x0000242c       0x2e .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                0x0000242c                cyImoFreqMhz2Reg
+ *fill*         0x0000245a        0x2 
+ .rodata        0x0000245c       0x80 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .rodata        0x000024dc       0x40 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .rodata.str1.1
+                0x0000251c        0x2 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                0x00002520                . = ALIGN (0x4)
+ *fill*         0x0000251e        0x2 
+ *(.init)
+ .init          0x00002520        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+                0x00002520                _init
+ .init          0x00002524        0x8 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+                0x0000252c                . = ALIGN (0x4)
+                0x0000252c                __preinit_array_start = .
+ *(.preinit_array)
+                0x0000252c                __preinit_array_end = .
+                0x0000252c                . = ALIGN (0x4)
+                0x0000252c                __init_array_start = .
+ *(SORT(.init_array.*))
+ *(.init_array)
+ .init_array    0x0000252c        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .init_array    0x00002530        0x4 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x00002534                __init_array_end = .
+                0x00002534                . = ALIGN (0x4)
+ *(.fini)
+ .fini          0x00002534        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+                0x00002534                _fini
+ .fini          0x00002538        0x8 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+                0x00002540                . = ALIGN (0x4)
+                0x00002540                __fini_array_start = .
+ *(.fini_array)
+ .fini_array    0x00002540        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ *(SORT(.fini_array.*))
+                0x00002544                __fini_array_end = .
+                0x00002544                . = ALIGN (0x4)
+ *crtbegin.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o) .ctors)
+ *(SORT(.ctors.*))
+ *crtend.o(.ctors)
+                0x00002544                . = ALIGN (0x4)
+ *crtbegin.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o) .dtors)
+ *(SORT(.dtors.*))
+ *crtend.o(.dtors)
+                0x00002544                . = ALIGN (0x4)
+                0x00002544                __cy_regions = .
+                0x00002544        0x4 LONG 0x2558 __cy_region_init_ram
+                0x00002548        0x4 LONG 0x200000c8 __cy_region_start_data
+                0x0000254c        0x4 LONG 0x80 __cy_region_init_size_ram
+                0x00002550        0x4 LONG 0x160 __cy_region_zero_size_ram
+                0x00002554                __cy_regions_end = .
+                0x00002558                . = ALIGN (0x8)
+ *fill*         0x00002554        0x4 
+                0x00002558                _etext = .
+
+.cy_checksum_exclude
+                0x00002558        0x0
+ *(.cy_checksum_exclude)
+
+.ramvectors     0x20000000       0xc0
+                0x20000000                __cy_region_start_ram = .
+ *(.ramvectors)
+ .ramvectors    0x20000000       0xc0 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                0x20000000                CyRamVectors
+
+.noinit         0x200000c0        0x4
+ *(.noinit)
+ .noinit        0x200000c0        0x4 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+
+.data           0x200000c8       0x80 load address 0x00002558
+                0x200000c8                __cy_region_start_data = .
+ *(.jcr)
+ .jcr           0x200000c8        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .jcr           0x200000c8        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ *(.got.plt)
+ *(.got)
+ *(.shdata)
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x200000cc        0x1 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .data          0x200000cd        0x1 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ *fill*         0x200000ce        0x2 
+ .data          0x200000d0       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                0x200000d0                cydelayFreqHz
+                0x200000d4                cydelayFreqKhz
+                0x200000d8                cydelayFreqMhz
+                0x200000dc                cydelay32kMs
+                0x200000e0                CySysClkPumpConfig
+ .data.impure_data
+                0x200000e4       0x60 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x20000144        0x4 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+                0x20000144                _impure_ptr
+                0x20000148                . = ALIGN (0x8)
+ *(.ram)
+                0x20000148                _edata = .
+
+.igot.plt       0x20000148        0x0 load address 0x000025d8
+ .igot.plt      0x20000148        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+
+.bss            0x20000148      0x160 load address 0x000025d8
+                0x20000148                PROVIDE (__bss_start__, .)
+ *(.shbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x20000148       0x1c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .bss           0x20000164        0x5 .\CortexM0\ARM_GCC_541\Debug\main.o
+                0x20000164                calib_temperature
+                0x20000168                mode
+ *fill*         0x20000169        0x1 
+ .bss           0x2000016a        0x2 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+                0x2000016a                ADCOffset
+ .bss           0x2000016c        0x8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+                0x2000016c                Opamp_1_initVar
+ .bss           0x20000174        0x8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+                0x20000174                Opamp_2_initVar
+ .bss           0x2000017c        0x1 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x2000017c                ADC_SAR_initVar
+ *fill*         0x2000017d        0x3 
+ .bss           0x20000180        0x4 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+                0x20000180                IDAC_initVar
+ .bss           0x20000184        0x8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+                0x20000184                SPIS_initVar
+                0x20000186                SPIS_IntrTxMask
+                0x20000188                SPIS_customIntrHandler
+ *(COMMON)
+ COMMON         0x2000018c        0x2 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                0x2000018c                currentSourceState
+                0x2000018d                currentSinkToggleRequest
+ *fill*         0x2000018e        0x2 
+ COMMON         0x20000190      0x109 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+                0x20000190                SPI_Temp_Reg
+                0x20000194                SPI_Status_Reg
+                0x20000195                SPI_TXflag
+                0x20000198                spiTxBuffer
+                0x20000218                spiRxBuffer
+                0x20000298                SPI_RXflag
+ *fill*         0x20000299        0x3 
+ COMMON         0x2000029c        0xc .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                0x2000029c                ADC_SAR_countsPer10Volt
+                0x200002a4                ADC_SAR_offset
+                0x200002a8                . = ALIGN (0x8)
+ *(.ram.b)
+                0x200002a8                _end = .
+                0x200002a8                __end = .
+                0x200002a8                PROVIDE (end, .)
+                0x200002a8                PROVIDE (__bss_end__, .)
+                0x00002558                __cy_region_init_ram = LOADADDR (.data)
+                0x00000080                __cy_region_init_size_ram = (_edata - ADDR (.data))
+                0x00000160                __cy_region_zero_size_ram = (_end - _edata)
+
+.heap           0x200002a8       0x80 load address 0x000025d8
+                0x200002a8                . = _end
+                0x20000328                . = (. + 0x80)
+ *fill*         0x200002a8       0x80 
+                0x20000328                __cy_heap_limit = .
+
+.stack          0x20000c00      0x400
+                0x20000c00                __cy_stack_limit = .
+                0x20001000                . = (. + 0x400)
+ *fill*         0x20000c00      0x400 
+                0x00000001                ASSERT ((__cy_stack_limit >= __cy_heap_limit), region RAM overflowed with stack)
+                0x00000000                cy_checksum_exclude_size = (CY_APPL_LOADABLE == 0x1)?SIZEOF (.cy_checksum_exclude):0x0
+                0x00000001                ASSERT ((cy_checksum_exclude_size <= CY_CHECKSUM_EXCLUDE_SIZE), CY_BOOT: Section .cy_checksum_exclude size exceedes specified limit.)
+                0x00007fc0                cyloadermeta_start = (cy_project_type_bootloader || cy_project_type_app_for_stack_and_copier)?(LENGTH (rom) - CY_METADATA_SIZE):0xf0000000
+
+.cyloadermeta
+ *(.cyloadermeta)
+                0x00007fc0                cyloadablemeta_start = cy_project_type_app_for_stack_and_copier?((LENGTH (rom) - CY_FLASH_ROW_SIZE) - CY_METADATA_SIZE):((LENGTH (rom) - (CY_FLASH_ROW_SIZE * (CY_APPL_NUM - 0x1))) - CY_METADATA_SIZE)
+
+.cyloadablemeta
+ *(.cyloadablemeta)
+
+.cyflashprotect
+                0x90400000       0x20
+ *(.cyflashprotect)
+ .cyflashprotect
+                0x90400000       0x20 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+                0x90400000                cy_meta_flashprotect
+
+.cymeta         0x90500000        0xc
+ *(.cymeta)
+ .cymeta        0x90500000        0xc .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+                0x90500000                cy_metadata
+
+.cychipprotect  0x90600000        0x1
+ *(.cychipprotect)
+ .cychipprotect
+                0x90600000        0x1 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+                0x90600000                cy_meta_chipprotect
+
+.rel.dyn        0x000025d8        0x0 load address 0x90600004
+ .rel.iplt      0x000025d8        0x0 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x8d0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_aranges
+                0x00000020       0x38 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .debug_aranges
+                0x00000058       0x70 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .debug_aranges
+                0x000000c8       0x30 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .debug_aranges
+                0x000000f8       0x78 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_aranges
+                0x00000170       0x18 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_aranges
+                0x00000188       0x48 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_aranges
+                0x000001d0       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .debug_aranges
+                0x00000218       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .debug_aranges
+                0x00000260       0xb0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .debug_aranges
+                0x00000310       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .debug_aranges
+                0x00000330       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .debug_aranges
+                0x00000360       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .debug_aranges
+                0x00000390       0x40 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .debug_aranges
+                0x000003d0       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .debug_aranges
+                0x000003f0       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .debug_aranges
+                0x00000438       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .debug_aranges
+                0x00000480       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .debug_aranges
+                0x000004c8       0x48 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .debug_aranges
+                0x00000510       0x70 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .debug_aranges
+                0x00000580       0x60 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .debug_aranges
+                0x000005e0       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .debug_aranges
+                0x00000610      0x180 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .debug_aranges
+                0x00000790       0x80 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .debug_aranges
+                0x00000810       0x80 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .debug_aranges
+                0x00000890       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyBootAsmGnu.o)
+ .debug_aranges
+                0x000008b0       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000     0x3724
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x13e .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_info    0x0000013e      0x24b .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .debug_info    0x00000389      0x1b4 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .debug_info    0x0000053d      0x1fc .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .debug_info    0x00000739      0x42b .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_info    0x00000b64       0xf8 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_info    0x00000c5c      0x312 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_info    0x00000f6e      0x166 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .debug_info    0x000010d4      0x166 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .debug_info    0x0000123a      0x4ce .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .debug_info    0x00001708       0xcc .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .debug_info    0x000017d4      0x10a .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .debug_info    0x000018de      0x10a .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .debug_info    0x000019e8      0x1a5 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .debug_info    0x00001b8d      0x12e .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .debug_info    0x00001cbb      0x19a .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .debug_info    0x00001e55      0x19a .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .debug_info    0x00001fef      0x19a .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .debug_info    0x00002189      0x19a .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .debug_info    0x00002323      0x21a .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .debug_info    0x0000253d      0x218 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .debug_info    0x00002755      0x103 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .debug_info    0x00002858      0x8e0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .debug_info    0x00003138      0x24d .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .debug_info    0x00003385      0x24d .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .debug_info    0x000035d2       0x94 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyBootAsmGnu.o)
+ .debug_info    0x00003666       0xbe .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+
+.debug_abbrev   0x00000000     0x1623
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0x7e .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_abbrev  0x0000007e       0xb2 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .debug_abbrev  0x00000130       0xe9 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .debug_abbrev  0x00000219       0xc0 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .debug_abbrev  0x000002d9      0x1b3 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_abbrev  0x0000048c       0x5d .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_abbrev  0x000004e9      0x1c8 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_abbrev  0x000006b1       0xc6 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .debug_abbrev  0x00000777       0xc6 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .debug_abbrev  0x0000083d      0x163 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .debug_abbrev  0x000009a0       0x65 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .debug_abbrev  0x00000a05       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .debug_abbrev  0x00000a74       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .debug_abbrev  0x00000ae3       0x9f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .debug_abbrev  0x00000b82       0x76 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .debug_abbrev  0x00000bf8       0xaa .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .debug_abbrev  0x00000ca2       0xaa .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .debug_abbrev  0x00000d4c       0xaa .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .debug_abbrev  0x00000df6       0xaa .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .debug_abbrev  0x00000ea0       0xdd .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .debug_abbrev  0x00000f7d      0x140 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .debug_abbrev  0x000010bd       0x97 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .debug_abbrev  0x00001154      0x1a7 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .debug_abbrev  0x000012fb      0x152 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .debug_abbrev  0x0000144d      0x152 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .debug_abbrev  0x0000159f       0x14 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyBootAsmGnu.o)
+ .debug_abbrev  0x000015b3       0x70 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+
+.debug_line     0x00000000     0x1d9e
+ *(.debug_line)
+ .debug_line    0x00000000       0x7e .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_line    0x0000007e       0xff .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .debug_line    0x0000017d      0x148 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .debug_line    0x000002c5       0x9c .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .debug_line    0x00000361      0x208 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_line    0x00000569      0x141 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .debug_line    0x000006aa      0x1cf .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_line    0x00000879       0xc4 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .debug_line    0x0000093d       0xc4 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .debug_line    0x00000a01      0x2c6 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .debug_line    0x00000cc7       0x66 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .debug_line    0x00000d2d       0x9e .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .debug_line    0x00000dcb       0x9d .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .debug_line    0x00000e68       0xb7 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .debug_line    0x00000f1f       0x6c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .debug_line    0x00000f8b       0xc1 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .debug_line    0x0000104c       0xbf .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .debug_line    0x0000110b       0xbf .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .debug_line    0x000011ca       0xbf .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .debug_line    0x00001289      0x13b .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .debug_line    0x000013c4      0x123 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .debug_line    0x000014e7       0xaa .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .debug_line    0x00001591      0x47b .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .debug_line    0x00001a0c      0x15d .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .debug_line    0x00001b69      0x14e .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .debug_line    0x00001cb7       0x69 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyBootAsmGnu.o)
+ .debug_line    0x00001d20       0x7e .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+
+.debug_frame    0x00000000     0x1bdc
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x34 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_frame   0x00000034       0x90 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .debug_frame   0x000000c4      0x148 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .debug_frame   0x0000020c       0x74 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .debug_frame   0x00000280      0x188 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_frame   0x00000408       0xc8 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_frame   0x000004d0       0xc0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .debug_frame   0x00000590       0xc0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .debug_frame   0x00000650      0x264 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .debug_frame   0x000008b4       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .debug_frame   0x000008e4       0x70 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .debug_frame   0x00000954       0x70 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .debug_frame   0x000009c4       0xbc .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .debug_frame   0x00000a80       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .debug_frame   0x00000ab0       0xc8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .debug_frame   0x00000b78       0xc8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .debug_frame   0x00000c40       0xc8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .debug_frame   0x00000d08       0xc8 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .debug_frame   0x00000dd0      0x150 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .debug_frame   0x00000f20      0x128 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .debug_frame   0x00001048       0x64 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .debug_frame   0x000010ac      0x588 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .debug_frame   0x00001634      0x190 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .debug_frame   0x000017c4      0x190 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .debug_frame   0x00001954       0x2c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+ .debug_frame   0x00001980       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .debug_frame   0x000019a0       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+ .debug_frame   0x000019c0       0x34 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .debug_frame   0x000019f4       0x30 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .debug_frame   0x00001a24       0x3c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .debug_frame   0x00001a60       0x38 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .debug_frame   0x00001a98       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixsfsi.o)
+ .debug_frame   0x00001ab8       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+ .debug_frame   0x00001ae4       0x3c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .debug_frame   0x00001b20       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x00001b40       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .debug_frame   0x00001b68       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .debug_frame   0x00001b94       0x28 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x00001bbc       0x20 c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+
+.debug_str      0x00000000     0x1a35
+ *(.debug_str)
+ .debug_str     0x00000000      0x1be .\CortexM0\ARM_GCC_541\Debug\main.o
+                                0x20a (size before relaxing)
+ .debug_str     0x000001be       0xec .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+                                0x2a3 (size before relaxing)
+ .debug_str     0x000002aa      0x120 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+                                0x2be (size before relaxing)
+ .debug_str     0x000003ca       0x8e .\CortexM0\ARM_GCC_541\Debug\myspi.o
+                                0x263 (size before relaxing)
+ .debug_str     0x00000458      0x16a .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+                                0x32d (size before relaxing)
+ .debug_str     0x000005c2       0x63 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+                                0x1cc (size before relaxing)
+ .debug_str     0x00000625      0x119 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+                                0x2d2 (size before relaxing)
+ .debug_str     0x0000073e       0xaf .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+                                0x22c (size before relaxing)
+ .debug_str     0x000007ed       0xa3 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+                                0x22c (size before relaxing)
+ .debug_str     0x00000890      0x255 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+                                0x423 (size before relaxing)
+ .debug_str     0x00000ae5       0x3d .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+                                0x1c9 (size before relaxing)
+ .debug_str     0x00000b22       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+                                0x1ec (size before relaxing)
+ .debug_str     0x00000b91       0x6a .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+                                0x1e7 (size before relaxing)
+ .debug_str     0x00000bfb       0x8d .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+                                0x22a (size before relaxing)
+ .debug_str     0x00000c88       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+                                0x20b (size before relaxing)
+ .debug_str     0x00000cf7       0xc7 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+                                0x256 (size before relaxing)
+ .debug_str     0x00000dbe       0x95 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+                                0x248 (size before relaxing)
+ .debug_str     0x00000e53       0x95 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+                                0x248 (size before relaxing)
+ .debug_str     0x00000ee8       0x95 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+                                0x248 (size before relaxing)
+ .debug_str     0x00000f7d      0x13c .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+                                0x2d5 (size before relaxing)
+ .debug_str     0x000010b9      0x135 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+                                0x2d2 (size before relaxing)
+ .debug_str     0x000011ee       0x4f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+                                0x1f8 (size before relaxing)
+ .debug_str     0x0000123d      0x4ba .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+                                0x67f (size before relaxing)
+ .debug_str     0x000016f7      0x181 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+                                0x34d (size before relaxing)
+ .debug_str     0x00001878      0x180 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+                                0x35b (size before relaxing)
+ .debug_str     0x000019f8       0x3d .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+                                0x1e0 (size before relaxing)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_ranges   0x00000000      0x708
+ *(.debug_ranges)
+ .debug_ranges  0x00000000       0x10 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .debug_ranges  0x00000010       0x28 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .debug_ranges  0x00000038       0x60 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .debug_ranges  0x00000098       0x20 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .debug_ranges  0x000000b8       0x68 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_ranges  0x00000120       0x38 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .debug_ranges  0x00000158       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .debug_ranges  0x00000190       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .debug_ranges  0x000001c8       0xa0 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .debug_ranges  0x00000268       0x10 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .debug_ranges  0x00000278       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .debug_ranges  0x00000298       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .debug_ranges  0x000002b8       0x30 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .debug_ranges  0x000002e8       0x10 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .debug_ranges  0x000002f8       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .debug_ranges  0x00000330       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .debug_ranges  0x00000368       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .debug_ranges  0x000003a0       0x38 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .debug_ranges  0x000003d8       0x60 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .debug_ranges  0x00000438       0x50 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .debug_ranges  0x00000488       0x20 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .debug_ranges  0x000004a8      0x170 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .debug_ranges  0x00000618       0x70 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .debug_ranges  0x00000688       0x70 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .debug_ranges  0x000006f8       0x10 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+
+.comment        0x00000000       0x6e
+ .comment       0x00000000       0x6e .\CortexM0\ARM_GCC_541\Debug\main.o
+                                 0x6f (size before relaxing)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .comment       0x0000006e       0x6f .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+.ARM.attributes
+                0x00000000       0x28
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x1e c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crti.o
+ .ARM.attributes
+                0x0000001e       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtbegin.o
+ .ARM.attributes
+                0x0000004a       0x1b c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.attributes
+                0x00000065       0x31 .\CortexM0\ARM_GCC_541\Debug\main.o
+ .ARM.attributes
+                0x00000096       0x31 .\CortexM0\ARM_GCC_541\Debug\SingleDiode.o
+ .ARM.attributes
+                0x000000c7       0x31 .\CortexM0\ARM_GCC_541\Debug\currentSink.o
+ .ARM.attributes
+                0x000000f8       0x31 .\CortexM0\ARM_GCC_541\Debug\myspi.o
+ .ARM.attributes
+                0x00000129       0x31 .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .ARM.attributes
+                0x0000015a       0x31 .\CortexM0\ARM_GCC_541\Debug\cymetadata.o
+ .ARM.attributes
+                0x0000018b       0x31 .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o
+ .ARM.attributes
+                0x000001bc       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_1.o)
+ .ARM.attributes
+                0x000001ed       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(Opamp_2.o)
+ .ARM.attributes
+                0x0000021e       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR.o)
+ .ARM.attributes
+                0x0000024f       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ADC_SAR_INT.o)
+ .ARM.attributes
+                0x00000280       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_High.o)
+ .ARM.attributes
+                0x000002b1       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(AMux_Low.o)
+ .ARM.attributes
+                0x000002e2       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(IDAC.o)
+ .ARM.attributes
+                0x00000313       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(DieTemp.o)
+ .ARM.attributes
+                0x00000344       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_VREF.o)
+ .ARM.attributes
+                0x00000375       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S0.o)
+ .ARM.attributes
+                0x000003a6       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_S1.o)
+ .ARM.attributes
+                0x000003d7       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(GPIO_EN.o)
+ .ARM.attributes
+                0x00000408       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS.o)
+ .ARM.attributes
+                0x00000439       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART.o)
+ .ARM.attributes
+                0x0000046a       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI.o)
+ .ARM.attributes
+                0x0000049b       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyLib.o)
+ .ARM.attributes
+                0x000004cc       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOn_Sink.o)
+ .ARM.attributes
+                0x000004fd       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(ISR_TurnOff_Sink.o)
+ .ARM.attributes
+                0x0000052e       0x21 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(CyBootAsmGnu.o)
+ .ARM.attributes
+                0x0000054f       0x31 .\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.a(SPIS_SPI_UART_INT.o)
+ .ARM.attributes
+                0x00000580       0x1e c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x0000059e       0x1e c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divsi3.o)
+ .ARM.attributes
+                0x000005bc       0x1e c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x000005da       0x1e c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_aeabi_ldivmod.o)
+ .ARM.attributes
+                0x000005f8       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_muldi3.o)
+ .ARM.attributes
+                0x00000624       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(bpabi.o)
+ .ARM.attributes
+                0x00000650       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(divsf3.o)
+ .ARM.attributes
+                0x0000067c       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(mulsf3.o)
+ .ARM.attributes
+                0x000006a8       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(fixsfsi.o)
+ .ARM.attributes
+                0x000006d4       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(floatsisf.o)
+ .ARM.attributes
+                0x00000700       0x1e c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzsi2.o)
+ .ARM.attributes
+                0x0000071e       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_divdi3.o)
+ .ARM.attributes
+                0x0000074a       0x1e c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m\libgcc.a(_clzdi2.o)
+ .ARM.attributes
+                0x00000768       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-errno.o)
+ .ARM.attributes
+                0x00000794       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-exit.o)
+ .ARM.attributes
+                0x000007c0       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x000007ec       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-init.o)
+ .ARM.attributes
+                0x00000818       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .ARM.attributes
+                0x00000844       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv6-m\libg_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x00000870       0x2c c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtend.o
+ .ARM.attributes
+                0x0000089c       0x1e c:/program files (x86)/cypress/psoc creator/4.2/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/armv6-m/crtn.o
+
+/DISCARD/
+ *(.note.GNU-stack)
+OUTPUT(C:\Users\Lars\Documents\PSoC Creator\Workspace01\P4_SingleDiode.cydsn\CortexM0\ARM_GCC_541\Debug\P4_SingleDiode.elf elf32-littlearm)

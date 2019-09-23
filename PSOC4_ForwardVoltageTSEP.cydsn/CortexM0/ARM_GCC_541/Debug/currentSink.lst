@@ -1,0 +1,1518 @@
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"currentSink.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	currentSinkToggleRequest,1,1
+  20              		.comm	currentSourceState,1,1
+  21              		.section	.text.initializeCurrentSink,"ax",%progbits
+  22              		.align	2
+  23              		.global	initializeCurrentSink
+  24              		.code	16
+  25              		.thumb_func
+  26              		.type	initializeCurrentSink, %function
+  27              	initializeCurrentSink:
+  28              	.LFB32:
+  29              		.file 1 "currentSink.c"
+   1:currentSink.c **** /*******************************************************************************
+   2:currentSink.c **** * File Name: currenSink.c
+   3:currentSink.c **** * Version 1.0
+   4:currentSink.c **** *
+   5:currentSink.c **** * Description:
+   6:currentSink.c **** *
+   7:currentSink.c **** * Note: none
+   8:currentSink.c **** *
+   9:currentSink.c **** ********************************************************************************/
+  10:currentSink.c **** #include "currentSink.h"
+  11:currentSink.c **** 
+  12:currentSink.c **** extern volatile int8 SPI_Status_Reg;
+  13:currentSink.c **** volatile uint8 currentSinkToggleRequest;
+  14:currentSink.c **** uint8 currentSourceState;
+  15:currentSink.c **** 
+  16:currentSink.c **** /********************************************************************************
+  17:currentSink.c **** *   Function Definitions
+  18:currentSink.c **** ********************************************************************************/
+  19:currentSink.c **** 
+  20:currentSink.c **** 
+  21:currentSink.c **** /********************************************************************************** 
+  22:currentSink.c **** * Function Name: initializeCurrentSink
+  23:currentSink.c **** ***********************************************************************************
+  24:currentSink.c **** *
+  25:currentSink.c **** * Summary:
+  26:currentSink.c **** *  Initialize the current sink IDAC and external interrupts
+  27:currentSink.c **** 
+  28:currentSink.c **** * Parameters: none 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 2
+
+
+  29:currentSink.c **** *
+  30:currentSink.c **** * Return: none
+  31:currentSink.c **** * 
+  32:currentSink.c **** *************************************************************************************/
+  33:currentSink.c **** void initializeCurrentSink(void)
+  34:currentSink.c **** {
+  30              		.loc 1 34 0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 1, uses_anonymous_args = 0
+  34 0000 80B5     		push	{r7, lr}
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 7, -8
+  37              		.cfi_offset 14, -4
+  38 0002 00AF     		add	r7, sp, #0
+  39              		.cfi_def_cfa_register 7
+  35:currentSink.c ****     IDAC_Start();
+  40              		.loc 1 35 0
+  41 0004 FFF7FEFF 		bl	IDAC_Start
+  36:currentSink.c ****    // Pin_Toggle_Sink_SetInterruptMode(Pin_Toggle_Sink_0_INTR,Pin_Toggle_Sink_INTR_RISING);
+  37:currentSink.c ****     ISR_TurnOn_Sink_Start(); 
+  42              		.loc 1 37 0
+  43 0008 FFF7FEFF 		bl	ISR_TurnOn_Sink_Start
+  38:currentSink.c ****    //     Pin_Toggle_Sink_SetInterruptMode(Pin_Toggle_Sink_0_INTR,Pin_Toggle_Sink_INTR_RISING);
+  39:currentSink.c ****     ISR_TurnOff_Sink_Start();     
+  44              		.loc 1 39 0
+  45 000c FFF7FEFF 		bl	ISR_TurnOff_Sink_Start
+  40:currentSink.c **** }
+  46              		.loc 1 40 0
+  47 0010 C046     		nop
+  48 0012 BD46     		mov	sp, r7
+  49              		@ sp needed
+  50 0014 80BD     		pop	{r7, pc}
+  51              		.cfi_endproc
+  52              	.LFE32:
+  53              		.size	initializeCurrentSink, .-initializeCurrentSink
+  54 0016 C046     		.section	.text.setHighCurrent,"ax",%progbits
+  55              		.align	2
+  56              		.global	setHighCurrent
+  57              		.code	16
+  58              		.thumb_func
+  59              		.type	setHighCurrent, %function
+  60              	setHighCurrent:
+  61              	.LFB33:
+  41:currentSink.c **** 
+  42:currentSink.c **** /********************************************************************************** 
+  43:currentSink.c **** * Function Name: setHighCurrent
+  44:currentSink.c **** ***********************************************************************************
+  45:currentSink.c **** *
+  46:currentSink.c **** * Summary: Set the IDAC value to drive a high current (IDAC value = 255)
+  47:currentSink.c **** * 
+  48:currentSink.c **** 
+  49:currentSink.c **** * Parameters: none 
+  50:currentSink.c **** *
+  51:currentSink.c **** * Return: none
+  52:currentSink.c **** * 
+  53:currentSink.c **** *************************************************************************************/
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 3
+
+
+  54:currentSink.c **** void setHighCurrent(void)
+  55:currentSink.c **** { 
+  62              		.loc 1 55 0
+  63              		.cfi_startproc
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 1, uses_anonymous_args = 0
+  66 0000 80B5     		push	{r7, lr}
+  67              		.cfi_def_cfa_offset 8
+  68              		.cfi_offset 7, -8
+  69              		.cfi_offset 14, -4
+  70 0002 00AF     		add	r7, sp, #0
+  71              		.cfi_def_cfa_register 7
+  56:currentSink.c ****     if(GPIO_EN_Read() == GPIO_WRITE_LOW && GPIO_VREF_Read() == GPIO_WRITE_HIGH) //Check if the Mult
+  72              		.loc 1 56 0
+  73 0004 FFF7FEFF 		bl	GPIO_EN_Read
+  74 0008 031E     		subs	r3, r0, #0
+  75 000a 07D1     		bne	.L4
+  76              		.loc 1 56 0 is_stmt 0 discriminator 1
+  77 000c FFF7FEFF 		bl	GPIO_VREF_Read
+  78 0010 0300     		movs	r3, r0
+  79 0012 012B     		cmp	r3, #1
+  80 0014 02D1     		bne	.L4
+  57:currentSink.c ****     {
+  58:currentSink.c ****     IDAC_SetValue(IDAC_HIGH_CURRENT);   //Set the current to 100mA 
+  81              		.loc 1 58 0 is_stmt 1
+  82 0016 FF20     		movs	r0, #255
+  83 0018 FFF7FEFF 		bl	IDAC_SetValue
+  84              	.L4:
+  59:currentSink.c ****     }   
+  60:currentSink.c **** }
+  85              		.loc 1 60 0
+  86 001c C046     		nop
+  87 001e BD46     		mov	sp, r7
+  88              		@ sp needed
+  89 0020 80BD     		pop	{r7, pc}
+  90              		.cfi_endproc
+  91              	.LFE33:
+  92              		.size	setHighCurrent, .-setHighCurrent
+  93 0022 C046     		.section	.text.setLowCurrent,"ax",%progbits
+  94              		.align	2
+  95              		.global	setLowCurrent
+  96              		.code	16
+  97              		.thumb_func
+  98              		.type	setLowCurrent, %function
+  99              	setLowCurrent:
+ 100              	.LFB34:
+  61:currentSink.c **** 
+  62:currentSink.c **** /********************************************************************************** 
+  63:currentSink.c **** * Function Name: setHighCurrent
+  64:currentSink.c **** ***********************************************************************************
+  65:currentSink.c **** *
+  66:currentSink.c **** * Summary: Set the IDAC value to drive a low current (IDAC value = 0)
+  67:currentSink.c **** * 
+  68:currentSink.c **** 
+  69:currentSink.c **** * Parameters: none 
+  70:currentSink.c **** *
+  71:currentSink.c **** * Return: none
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 4
+
+
+  72:currentSink.c **** * 
+  73:currentSink.c **** *************************************************************************************/
+  74:currentSink.c **** void setLowCurrent(void)
+  75:currentSink.c **** { 
+ 101              		.loc 1 75 0
+ 102              		.cfi_startproc
+ 103              		@ args = 0, pretend = 0, frame = 0
+ 104              		@ frame_needed = 1, uses_anonymous_args = 0
+ 105 0000 80B5     		push	{r7, lr}
+ 106              		.cfi_def_cfa_offset 8
+ 107              		.cfi_offset 7, -8
+ 108              		.cfi_offset 14, -4
+ 109 0002 00AF     		add	r7, sp, #0
+ 110              		.cfi_def_cfa_register 7
+  76:currentSink.c ****     if(GPIO_EN_Read() == GPIO_WRITE_LOW && GPIO_VREF_Read() == GPIO_WRITE_HIGH) //Check if the Mult
+ 111              		.loc 1 76 0
+ 112 0004 FFF7FEFF 		bl	GPIO_EN_Read
+ 113 0008 031E     		subs	r3, r0, #0
+ 114 000a 07D1     		bne	.L7
+ 115              		.loc 1 76 0 is_stmt 0 discriminator 1
+ 116 000c FFF7FEFF 		bl	GPIO_VREF_Read
+ 117 0010 0300     		movs	r3, r0
+ 118 0012 012B     		cmp	r3, #1
+ 119 0014 02D1     		bne	.L7
+  77:currentSink.c ****     {   
+  78:currentSink.c ****     IDAC_SetValue(IDAC_LOW_CURRENT);   //Set the current to 50mA   
+ 120              		.loc 1 78 0 is_stmt 1
+ 121 0016 0020     		movs	r0, #0
+ 122 0018 FFF7FEFF 		bl	IDAC_SetValue
+ 123              	.L7:
+  79:currentSink.c ****     } 
+  80:currentSink.c **** }
+ 124              		.loc 1 80 0
+ 125 001c C046     		nop
+ 126 001e BD46     		mov	sp, r7
+ 127              		@ sp needed
+ 128 0020 80BD     		pop	{r7, pc}
+ 129              		.cfi_endproc
+ 130              	.LFE34:
+ 131              		.size	setLowCurrent, .-setLowCurrent
+ 132 0022 C046     		.section	.text.turnOnSink,"ax",%progbits
+ 133              		.align	2
+ 134              		.global	turnOnSink
+ 135              		.code	16
+ 136              		.thumb_func
+ 137              		.type	turnOnSink, %function
+ 138              	turnOnSink:
+ 139              	.LFB35:
+  81:currentSink.c **** 
+  82:currentSink.c **** /********************************************************************************** 
+  83:currentSink.c **** * Function Name: turnOnSink
+  84:currentSink.c **** ***********************************************************************************
+  85:currentSink.c **** *
+  86:currentSink.c **** * Summary: Turn on the current by setting the corresponding GPIO and IDAC value
+  87:currentSink.c **** * 
+  88:currentSink.c **** 
+  89:currentSink.c **** * Parameters: none 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 5
+
+
+  90:currentSink.c **** *
+  91:currentSink.c **** * Return: none
+  92:currentSink.c **** * 
+  93:currentSink.c **** *************************************************************************************/
+  94:currentSink.c **** void turnOnSink(void)
+  95:currentSink.c **** {   
+ 140              		.loc 1 95 0
+ 141              		.cfi_startproc
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 1, uses_anonymous_args = 0
+ 144 0000 80B5     		push	{r7, lr}
+ 145              		.cfi_def_cfa_offset 8
+ 146              		.cfi_offset 7, -8
+ 147              		.cfi_offset 14, -4
+ 148 0002 00AF     		add	r7, sp, #0
+ 149              		.cfi_def_cfa_register 7
+  96:currentSink.c ****     GPIO_EN_Write(GPIO_WRITE_LOW);
+ 150              		.loc 1 96 0
+ 151 0004 0020     		movs	r0, #0
+ 152 0006 FFF7FEFF 		bl	GPIO_EN_Write
+  97:currentSink.c ****     CyDelayUs(30); //Wait 30us for switching time
+ 153              		.loc 1 97 0
+ 154 000a 1E20     		movs	r0, #30
+ 155 000c FFF7FEFF 		bl	CyDelayUs
+  98:currentSink.c ****     GPIO_VREF_Write(GPIO_WRITE_HIGH);  
+ 156              		.loc 1 98 0
+ 157 0010 0120     		movs	r0, #1
+ 158 0012 FFF7FEFF 		bl	GPIO_VREF_Write
+  99:currentSink.c ****     IDAC_SetValue(IDAC_HIGH_CURRENT);
+ 159              		.loc 1 99 0
+ 160 0016 FF20     		movs	r0, #255
+ 161 0018 FFF7FEFF 		bl	IDAC_SetValue
+ 100:currentSink.c ****     __SPI_SET_STATUS_BIT(STATUS_CURRENT_SOURCE_ON);
+ 162              		.loc 1 100 0
+ 163 001c 064B     		ldr	r3, .L9
+ 164 001e 1B78     		ldrb	r3, [r3]
+ 165 0020 5BB2     		sxtb	r3, r3
+ 166 0022 0222     		movs	r2, #2
+ 167 0024 1343     		orrs	r3, r2
+ 168 0026 5AB2     		sxtb	r2, r3
+ 169 0028 034B     		ldr	r3, .L9
+ 170 002a 1A70     		strb	r2, [r3]
+ 101:currentSink.c ****     currentSourceState = 1;
+ 171              		.loc 1 101 0
+ 172 002c 034B     		ldr	r3, .L9+4
+ 173 002e 0122     		movs	r2, #1
+ 174 0030 1A70     		strb	r2, [r3]
+ 102:currentSink.c **** }
+ 175              		.loc 1 102 0
+ 176 0032 C046     		nop
+ 177 0034 BD46     		mov	sp, r7
+ 178              		@ sp needed
+ 179 0036 80BD     		pop	{r7, pc}
+ 180              	.L10:
+ 181              		.align	2
+ 182              	.L9:
+ 183 0038 00000000 		.word	SPI_Status_Reg
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 6
+
+
+ 184 003c 00000000 		.word	currentSourceState
+ 185              		.cfi_endproc
+ 186              	.LFE35:
+ 187              		.size	turnOnSink, .-turnOnSink
+ 188              		.section	.text.turnOffSink,"ax",%progbits
+ 189              		.align	2
+ 190              		.global	turnOffSink
+ 191              		.code	16
+ 192              		.thumb_func
+ 193              		.type	turnOffSink, %function
+ 194              	turnOffSink:
+ 195              	.LFB36:
+ 103:currentSink.c **** 
+ 104:currentSink.c **** /********************************************************************************** 
+ 105:currentSink.c **** * Function Name: turnOffSink
+ 106:currentSink.c **** ***********************************************************************************
+ 107:currentSink.c **** *
+ 108:currentSink.c **** * Summary: Turn pff the current by resetting the corresponding GPIO and IDAC value
+ 109:currentSink.c **** * 
+ 110:currentSink.c **** 
+ 111:currentSink.c **** * Parameters: none 
+ 112:currentSink.c **** *
+ 113:currentSink.c **** * Return: none
+ 114:currentSink.c **** * 
+ 115:currentSink.c **** *************************************************************************************/
+ 116:currentSink.c **** void turnOffSink(void)
+ 117:currentSink.c **** { 
+ 196              		.loc 1 117 0
+ 197              		.cfi_startproc
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 1, uses_anonymous_args = 0
+ 200 0000 80B5     		push	{r7, lr}
+ 201              		.cfi_def_cfa_offset 8
+ 202              		.cfi_offset 7, -8
+ 203              		.cfi_offset 14, -4
+ 204 0002 00AF     		add	r7, sp, #0
+ 205              		.cfi_def_cfa_register 7
+ 118:currentSink.c ****    GPIO_VREF_Write(GPIO_WRITE_LOW); 
+ 206              		.loc 1 118 0
+ 207 0004 0020     		movs	r0, #0
+ 208 0006 FFF7FEFF 		bl	GPIO_VREF_Write
+ 119:currentSink.c ****    IDAC_SetValue(IDAC_LOW_CURRENT);   
+ 209              		.loc 1 119 0
+ 210 000a 0020     		movs	r0, #0
+ 211 000c FFF7FEFF 		bl	IDAC_SetValue
+ 120:currentSink.c ****    CyDelayUs(30); //Wait 30us for switching time
+ 212              		.loc 1 120 0
+ 213 0010 1E20     		movs	r0, #30
+ 214 0012 FFF7FEFF 		bl	CyDelayUs
+ 121:currentSink.c ****    GPIO_EN_Write(GPIO_WRITE_HIGH); 
+ 215              		.loc 1 121 0
+ 216 0016 0120     		movs	r0, #1
+ 217 0018 FFF7FEFF 		bl	GPIO_EN_Write
+ 122:currentSink.c ****    __SPI_CLEAR_STATUS_BIT(STATUS_CURRENT_SOURCE_ON);
+ 218              		.loc 1 122 0
+ 219 001c 064B     		ldr	r3, .L12
+ 220 001e 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 7
+
+
+ 221 0020 5BB2     		sxtb	r3, r3
+ 222 0022 0222     		movs	r2, #2
+ 223 0024 9343     		bics	r3, r2
+ 224 0026 5AB2     		sxtb	r2, r3
+ 225 0028 034B     		ldr	r3, .L12
+ 226 002a 1A70     		strb	r2, [r3]
+ 123:currentSink.c ****    currentSourceState = 0;
+ 227              		.loc 1 123 0
+ 228 002c 034B     		ldr	r3, .L12+4
+ 229 002e 0022     		movs	r2, #0
+ 230 0030 1A70     		strb	r2, [r3]
+ 124:currentSink.c **** }
+ 231              		.loc 1 124 0
+ 232 0032 C046     		nop
+ 233 0034 BD46     		mov	sp, r7
+ 234              		@ sp needed
+ 235 0036 80BD     		pop	{r7, pc}
+ 236              	.L13:
+ 237              		.align	2
+ 238              	.L12:
+ 239 0038 00000000 		.word	SPI_Status_Reg
+ 240 003c 00000000 		.word	currentSourceState
+ 241              		.cfi_endproc
+ 242              	.LFE36:
+ 243              		.size	turnOffSink, .-turnOffSink
+ 244              		.section	.text.setMultiplexerChan,"ax",%progbits
+ 245              		.align	2
+ 246              		.global	setMultiplexerChan
+ 247              		.code	16
+ 248              		.thumb_func
+ 249              		.type	setMultiplexerChan, %function
+ 250              	setMultiplexerChan:
+ 251              	.LFB37:
+ 125:currentSink.c **** 
+ 126:currentSink.c **** /********************************************************************************** 
+ 127:currentSink.c **** * Function Name: setMultiplexerChan
+ 128:currentSink.c **** ***********************************************************************************
+ 129:currentSink.c **** *
+ 130:currentSink.c **** * Summary: Set the GPIOs to set the multiplexer to drive a specific transistor for TSEP measurement
+ 131:currentSink.c **** * 
+ 132:currentSink.c **** * Parameters: chan channel that will be set active
+ 133:currentSink.c **** *           CHANNEL_1: SIC-Transistor 1 
+ 134:currentSink.c **** *           CHANNEL_2: SIC-Transistor 2
+ 135:currentSink.c **** *           CHANNEL_3: SIC-Transistor 3
+ 136:currentSink.c **** *           CHANNEL_4: SIC-Transistor 4
+ 137:currentSink.c **** *
+ 138:currentSink.c **** * Return: none
+ 139:currentSink.c **** * 
+ 140:currentSink.c **** *************************************************************************************/
+ 141:currentSink.c **** void setMultiplexerChan(uint8 chan)
+ 142:currentSink.c **** {
+ 252              		.loc 1 142 0
+ 253              		.cfi_startproc
+ 254              		@ args = 0, pretend = 0, frame = 8
+ 255              		@ frame_needed = 1, uses_anonymous_args = 0
+ 256 0000 80B5     		push	{r7, lr}
+ 257              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 8
+
+
+ 258              		.cfi_offset 7, -8
+ 259              		.cfi_offset 14, -4
+ 260 0002 82B0     		sub	sp, sp, #8
+ 261              		.cfi_def_cfa_offset 16
+ 262 0004 00AF     		add	r7, sp, #0
+ 263              		.cfi_def_cfa_register 7
+ 264 0006 0200     		movs	r2, r0
+ 265 0008 FB1D     		adds	r3, r7, #7
+ 266 000a 1A70     		strb	r2, [r3]
+ 143:currentSink.c ****     
+ 144:currentSink.c ****     switch(chan)
+ 267              		.loc 1 144 0
+ 268 000c FB1D     		adds	r3, r7, #7
+ 269 000e 1B78     		ldrb	r3, [r3]
+ 270 0010 012B     		cmp	r3, #1
+ 271 0012 0FD0     		beq	.L16
+ 272 0014 02DC     		bgt	.L17
+ 273 0016 002B     		cmp	r3, #0
+ 274 0018 05D0     		beq	.L18
+ 145:currentSink.c ****     {
+ 146:currentSink.c ****     case MULTIPLEXER_CHAN1: 
+ 147:currentSink.c ****         GPIO_S0_Write(GPIO_WRITE_LOW);
+ 148:currentSink.c ****         GPIO_S1_Write(GPIO_WRITE_LOW);
+ 149:currentSink.c ****         break;
+ 150:currentSink.c ****     case MULTIPLEXER_CHAN2: 
+ 151:currentSink.c ****         GPIO_S0_Write(GPIO_WRITE_HIGH);
+ 152:currentSink.c ****         GPIO_S1_Write(GPIO_WRITE_LOW);
+ 153:currentSink.c ****         break;
+ 154:currentSink.c ****     case MULTIPLEXER_CHAN3: 
+ 155:currentSink.c ****         GPIO_S0_Write(GPIO_WRITE_LOW);
+ 156:currentSink.c ****         GPIO_S1_Write(GPIO_WRITE_HIGH);
+ 157:currentSink.c ****         break;
+ 158:currentSink.c ****     case MULTIPLEXER_CHAN4: 
+ 159:currentSink.c ****         GPIO_S0_Write(GPIO_WRITE_HIGH);
+ 160:currentSink.c ****         GPIO_S1_Write(GPIO_WRITE_HIGH);
+ 161:currentSink.c ****         break;
+ 162:currentSink.c ****     default: 
+ 163:currentSink.c ****         //No valid Channel
+ 164:currentSink.c ****         break;
+ 275              		.loc 1 164 0
+ 276 001a 20E0     		b	.L21
+ 277              	.L17:
+ 144:currentSink.c ****     {
+ 278              		.loc 1 144 0
+ 279 001c 022B     		cmp	r3, #2
+ 280 001e 10D0     		beq	.L19
+ 281 0020 032B     		cmp	r3, #3
+ 282 0022 15D0     		beq	.L20
+ 283              		.loc 1 164 0
+ 284 0024 1BE0     		b	.L21
+ 285              	.L18:
+ 147:currentSink.c ****         GPIO_S1_Write(GPIO_WRITE_LOW);
+ 286              		.loc 1 147 0
+ 287 0026 0020     		movs	r0, #0
+ 288 0028 FFF7FEFF 		bl	GPIO_S0_Write
+ 148:currentSink.c ****         break;
+ 289              		.loc 1 148 0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 9
+
+
+ 290 002c 0020     		movs	r0, #0
+ 291 002e FFF7FEFF 		bl	GPIO_S1_Write
+ 149:currentSink.c ****     case MULTIPLEXER_CHAN2: 
+ 292              		.loc 1 149 0
+ 293 0032 14E0     		b	.L21
+ 294              	.L16:
+ 151:currentSink.c ****         GPIO_S1_Write(GPIO_WRITE_LOW);
+ 295              		.loc 1 151 0
+ 296 0034 0120     		movs	r0, #1
+ 297 0036 FFF7FEFF 		bl	GPIO_S0_Write
+ 152:currentSink.c ****         break;
+ 298              		.loc 1 152 0
+ 299 003a 0020     		movs	r0, #0
+ 300 003c FFF7FEFF 		bl	GPIO_S1_Write
+ 153:currentSink.c ****     case MULTIPLEXER_CHAN3: 
+ 301              		.loc 1 153 0
+ 302 0040 0DE0     		b	.L21
+ 303              	.L19:
+ 155:currentSink.c ****         GPIO_S1_Write(GPIO_WRITE_HIGH);
+ 304              		.loc 1 155 0
+ 305 0042 0020     		movs	r0, #0
+ 306 0044 FFF7FEFF 		bl	GPIO_S0_Write
+ 156:currentSink.c ****         break;
+ 307              		.loc 1 156 0
+ 308 0048 0120     		movs	r0, #1
+ 309 004a FFF7FEFF 		bl	GPIO_S1_Write
+ 157:currentSink.c ****     case MULTIPLEXER_CHAN4: 
+ 310              		.loc 1 157 0
+ 311 004e 06E0     		b	.L21
+ 312              	.L20:
+ 159:currentSink.c ****         GPIO_S1_Write(GPIO_WRITE_HIGH);
+ 313              		.loc 1 159 0
+ 314 0050 0120     		movs	r0, #1
+ 315 0052 FFF7FEFF 		bl	GPIO_S0_Write
+ 160:currentSink.c ****         break;
+ 316              		.loc 1 160 0
+ 317 0056 0120     		movs	r0, #1
+ 318 0058 FFF7FEFF 		bl	GPIO_S1_Write
+ 161:currentSink.c ****     default: 
+ 319              		.loc 1 161 0
+ 320 005c C046     		nop
+ 321              	.L21:
+ 165:currentSink.c ****     }
+ 166:currentSink.c **** }
+ 322              		.loc 1 166 0
+ 323 005e C046     		nop
+ 324 0060 BD46     		mov	sp, r7
+ 325 0062 02B0     		add	sp, sp, #8
+ 326              		@ sp needed
+ 327 0064 80BD     		pop	{r7, pc}
+ 328              		.cfi_endproc
+ 329              	.LFE37:
+ 330              		.size	setMultiplexerChan, .-setMultiplexerChan
+ 331 0066 C046     		.section	.text.getCurrentSourceState,"ax",%progbits
+ 332              		.align	2
+ 333              		.global	getCurrentSourceState
+ 334              		.code	16
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 10
+
+
+ 335              		.thumb_func
+ 336              		.type	getCurrentSourceState, %function
+ 337              	getCurrentSourceState:
+ 338              	.LFB38:
+ 167:currentSink.c **** 
+ 168:currentSink.c **** /********************************************************************************** 
+ 169:currentSink.c **** * Function Name: getCurrentSourceState
+ 170:currentSink.c **** ***********************************************************************************
+ 171:currentSink.c **** *
+ 172:currentSink.c **** * Summary: Returns if the current source is turned on or of
+ 173:currentSink.c **** * 
+ 174:currentSink.c **** * Parameters: None
+ 175:currentSink.c **** *
+ 176:currentSink.c **** * Return: The state of the current source
+ 177:currentSink.c **** *           CURRENT_SINK_STATE_ON      current sink on
+ 178:currentSink.c **** *           CURRENT_SINK_STATE_OFF     current sink off
+ 179:currentSink.c **** * 
+ 180:currentSink.c **** *************************************************************************************/
+ 181:currentSink.c **** uint8 getCurrentSourceState(void)
+ 182:currentSink.c **** {
+ 339              		.loc 1 182 0
+ 340              		.cfi_startproc
+ 341              		@ args = 0, pretend = 0, frame = 0
+ 342              		@ frame_needed = 1, uses_anonymous_args = 0
+ 343 0000 80B5     		push	{r7, lr}
+ 344              		.cfi_def_cfa_offset 8
+ 345              		.cfi_offset 7, -8
+ 346              		.cfi_offset 14, -4
+ 347 0002 00AF     		add	r7, sp, #0
+ 348              		.cfi_def_cfa_register 7
+ 183:currentSink.c ****     return currentSourceState;
+ 349              		.loc 1 183 0
+ 350 0004 024B     		ldr	r3, .L24
+ 351 0006 1B78     		ldrb	r3, [r3]
+ 184:currentSink.c **** }
+ 352              		.loc 1 184 0
+ 353 0008 1800     		movs	r0, r3
+ 354 000a BD46     		mov	sp, r7
+ 355              		@ sp needed
+ 356 000c 80BD     		pop	{r7, pc}
+ 357              	.L25:
+ 358 000e C046     		.align	2
+ 359              	.L24:
+ 360 0010 00000000 		.word	currentSourceState
+ 361              		.cfi_endproc
+ 362              	.LFE38:
+ 363              		.size	getCurrentSourceState, .-getCurrentSourceState
+ 364              		.section	.text.getISRState,"ax",%progbits
+ 365              		.align	2
+ 366              		.global	getISRState
+ 367              		.code	16
+ 368              		.thumb_func
+ 369              		.type	getISRState, %function
+ 370              	getISRState:
+ 371              	.LFB39:
+ 185:currentSink.c **** 
+ 186:currentSink.c **** /********************************************************************************
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 11
+
+
+ 187:currentSink.c **** * Handling of the Interrupts to turn on and off the current sink for measurement 
+ 188:currentSink.c **** * of the forward voltage using an external adc
+ 189:currentSink.c **** ********************************************************************************/
+ 190:currentSink.c **** 
+ 191:currentSink.c **** 
+ 192:currentSink.c **** /********************************************************************************** 
+ 193:currentSink.c **** * Function Name: getISRState
+ 194:currentSink.c **** ***********************************************************************************
+ 195:currentSink.c **** *
+ 196:currentSink.c **** * Summary: Returns if a turn on or turn off request is currently active
+ 197:currentSink.c **** * 
+ 198:currentSink.c **** * Parameters: None
+ 199:currentSink.c **** *
+ 200:currentSink.c **** * Return: The ISR request type 
+ 201:currentSink.c **** *           0U                              no request
+ 202:currentSink.c **** *           CURRENT_SINK_TURNON_PENDING     turn on request
+ 203:currentSink.c **** *           CURRENT_SINK_TURNOFF_PENDING    turn off request
+ 204:currentSink.c **** 
+ 205:currentSink.c **** *************************************************************************************/
+ 206:currentSink.c **** uint8 getISRState(void)
+ 207:currentSink.c **** {
+ 372              		.loc 1 207 0
+ 373              		.cfi_startproc
+ 374              		@ args = 0, pretend = 0, frame = 0
+ 375              		@ frame_needed = 1, uses_anonymous_args = 0
+ 376 0000 80B5     		push	{r7, lr}
+ 377              		.cfi_def_cfa_offset 8
+ 378              		.cfi_offset 7, -8
+ 379              		.cfi_offset 14, -4
+ 380 0002 00AF     		add	r7, sp, #0
+ 381              		.cfi_def_cfa_register 7
+ 208:currentSink.c ****     return currentSinkToggleRequest;
+ 382              		.loc 1 208 0
+ 383 0004 024B     		ldr	r3, .L28
+ 384 0006 1B78     		ldrb	r3, [r3]
+ 385 0008 DBB2     		uxtb	r3, r3
+ 209:currentSink.c **** }
+ 386              		.loc 1 209 0
+ 387 000a 1800     		movs	r0, r3
+ 388 000c BD46     		mov	sp, r7
+ 389              		@ sp needed
+ 390 000e 80BD     		pop	{r7, pc}
+ 391              	.L29:
+ 392              		.align	2
+ 393              	.L28:
+ 394 0010 00000000 		.word	currentSinkToggleRequest
+ 395              		.cfi_endproc
+ 396              	.LFE39:
+ 397              		.size	getISRState, .-getISRState
+ 398              		.section	.text.resetISRState,"ax",%progbits
+ 399              		.align	2
+ 400              		.global	resetISRState
+ 401              		.code	16
+ 402              		.thumb_func
+ 403              		.type	resetISRState, %function
+ 404              	resetISRState:
+ 405              	.LFB40:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 12
+
+
+ 210:currentSink.c **** 
+ 211:currentSink.c **** /********************************************************************************** 
+ 212:currentSink.c **** * Function Name: resetISRState
+ 213:currentSink.c **** ***********************************************************************************
+ 214:currentSink.c **** *
+ 215:currentSink.c **** * Summary: Resets the request state after processing of interrupt
+ 216:currentSink.c **** * 
+ 217:currentSink.c **** * Parameters: None
+ 218:currentSink.c **** *
+ 219:currentSink.c **** * Return: None
+ 220:currentSink.c **** *
+ 221:currentSink.c **** *************************************************************************************/
+ 222:currentSink.c **** void resetISRState(void)
+ 223:currentSink.c **** {
+ 406              		.loc 1 223 0
+ 407              		.cfi_startproc
+ 408              		@ args = 0, pretend = 0, frame = 0
+ 409              		@ frame_needed = 1, uses_anonymous_args = 0
+ 410 0000 80B5     		push	{r7, lr}
+ 411              		.cfi_def_cfa_offset 8
+ 412              		.cfi_offset 7, -8
+ 413              		.cfi_offset 14, -4
+ 414 0002 00AF     		add	r7, sp, #0
+ 415              		.cfi_def_cfa_register 7
+ 224:currentSink.c ****     currentSinkToggleRequest = 0;
+ 416              		.loc 1 224 0
+ 417 0004 024B     		ldr	r3, .L31
+ 418 0006 0022     		movs	r2, #0
+ 419 0008 1A70     		strb	r2, [r3]
+ 225:currentSink.c **** }
+ 420              		.loc 1 225 0
+ 421 000a C046     		nop
+ 422 000c BD46     		mov	sp, r7
+ 423              		@ sp needed
+ 424 000e 80BD     		pop	{r7, pc}
+ 425              	.L32:
+ 426              		.align	2
+ 427              	.L31:
+ 428 0010 00000000 		.word	currentSinkToggleRequest
+ 429              		.cfi_endproc
+ 430              	.LFE40:
+ 431              		.size	resetISRState, .-resetISRState
+ 432              		.section	.text.ISR_TurnOn_Sink_Interrupt_InterruptCallback,"ax",%progbits
+ 433              		.align	2
+ 434              		.global	ISR_TurnOn_Sink_Interrupt_InterruptCallback
+ 435              		.code	16
+ 436              		.thumb_func
+ 437              		.type	ISR_TurnOn_Sink_Interrupt_InterruptCallback, %function
+ 438              	ISR_TurnOn_Sink_Interrupt_InterruptCallback:
+ 439              	.LFB41:
+ 226:currentSink.c **** 
+ 227:currentSink.c **** /********************************************************************************** 
+ 228:currentSink.c **** * Function Name: ISR_TurnOff_Sink_Interrupt_InterruptCallback
+ 229:currentSink.c **** ***********************************************************************************
+ 230:currentSink.c **** *
+ 231:currentSink.c **** * Summary: Callback that sets the request to pending turned on
+ 232:currentSink.c **** * 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 13
+
+
+ 233:currentSink.c **** * Parameters: None
+ 234:currentSink.c **** *
+ 235:currentSink.c **** * Return: None
+ 236:currentSink.c **** *
+ 237:currentSink.c **** *************************************************************************************/
+ 238:currentSink.c **** void ISR_TurnOn_Sink_Interrupt_InterruptCallback(void)
+ 239:currentSink.c **** {
+ 440              		.loc 1 239 0
+ 441              		.cfi_startproc
+ 442              		@ args = 0, pretend = 0, frame = 0
+ 443              		@ frame_needed = 1, uses_anonymous_args = 0
+ 444 0000 80B5     		push	{r7, lr}
+ 445              		.cfi_def_cfa_offset 8
+ 446              		.cfi_offset 7, -8
+ 447              		.cfi_offset 14, -4
+ 448 0002 00AF     		add	r7, sp, #0
+ 449              		.cfi_def_cfa_register 7
+ 240:currentSink.c ****     currentSinkToggleRequest = CURRENT_SINK_TURNON_PENDING;
+ 450              		.loc 1 240 0
+ 451 0004 034B     		ldr	r3, .L34
+ 452 0006 0122     		movs	r2, #1
+ 453 0008 1A70     		strb	r2, [r3]
+ 241:currentSink.c ****     ISR_TurnOn_Sink_ClearPending();
+ 454              		.loc 1 241 0
+ 455 000a FFF7FEFF 		bl	ISR_TurnOn_Sink_ClearPending
+ 242:currentSink.c **** }
+ 456              		.loc 1 242 0
+ 457 000e C046     		nop
+ 458 0010 BD46     		mov	sp, r7
+ 459              		@ sp needed
+ 460 0012 80BD     		pop	{r7, pc}
+ 461              	.L35:
+ 462              		.align	2
+ 463              	.L34:
+ 464 0014 00000000 		.word	currentSinkToggleRequest
+ 465              		.cfi_endproc
+ 466              	.LFE41:
+ 467              		.size	ISR_TurnOn_Sink_Interrupt_InterruptCallback, .-ISR_TurnOn_Sink_Interrupt_InterruptCallback
+ 468              		.section	.text.ISR_TurnOff_Sink_Interrupt_InterruptCallback,"ax",%progbits
+ 469              		.align	2
+ 470              		.global	ISR_TurnOff_Sink_Interrupt_InterruptCallback
+ 471              		.code	16
+ 472              		.thumb_func
+ 473              		.type	ISR_TurnOff_Sink_Interrupt_InterruptCallback, %function
+ 474              	ISR_TurnOff_Sink_Interrupt_InterruptCallback:
+ 475              	.LFB42:
+ 243:currentSink.c **** 
+ 244:currentSink.c **** /********************************************************************************** 
+ 245:currentSink.c **** * Function Name: ISR_TurnOff_Sink_Interrupt_InterruptCallback
+ 246:currentSink.c **** ***********************************************************************************
+ 247:currentSink.c **** *
+ 248:currentSink.c **** * Summary: Callback that sets the request to pending turned off
+ 249:currentSink.c **** * 
+ 250:currentSink.c **** * Parameters: None
+ 251:currentSink.c **** *
+ 252:currentSink.c **** * Return: None
+ 253:currentSink.c **** *
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 14
+
+
+ 254:currentSink.c **** *************************************************************************************/
+ 255:currentSink.c **** void ISR_TurnOff_Sink_Interrupt_InterruptCallback(void)
+ 256:currentSink.c **** {
+ 476              		.loc 1 256 0
+ 477              		.cfi_startproc
+ 478              		@ args = 0, pretend = 0, frame = 0
+ 479              		@ frame_needed = 1, uses_anonymous_args = 0
+ 480 0000 80B5     		push	{r7, lr}
+ 481              		.cfi_def_cfa_offset 8
+ 482              		.cfi_offset 7, -8
+ 483              		.cfi_offset 14, -4
+ 484 0002 00AF     		add	r7, sp, #0
+ 485              		.cfi_def_cfa_register 7
+ 257:currentSink.c ****     currentSinkToggleRequest = CURRENT_SINK_TURNOFF_PENDING;
+ 486              		.loc 1 257 0
+ 487 0004 034B     		ldr	r3, .L37
+ 488 0006 0222     		movs	r2, #2
+ 489 0008 1A70     		strb	r2, [r3]
+ 258:currentSink.c ****     ISR_TurnOff_Sink_ClearPending();    
+ 490              		.loc 1 258 0
+ 491 000a FFF7FEFF 		bl	ISR_TurnOff_Sink_ClearPending
+ 259:currentSink.c **** }
+ 492              		.loc 1 259 0
+ 493 000e C046     		nop
+ 494 0010 BD46     		mov	sp, r7
+ 495              		@ sp needed
+ 496 0012 80BD     		pop	{r7, pc}
+ 497              	.L38:
+ 498              		.align	2
+ 499              	.L37:
+ 500 0014 00000000 		.word	currentSinkToggleRequest
+ 501              		.cfi_endproc
+ 502              	.LFE42:
+ 503              		.size	ISR_TurnOff_Sink_Interrupt_InterruptCallback, .-ISR_TurnOff_Sink_Interrupt_InterruptCallback
+ 504              		.text
+ 505              	.Letext0:
+ 506              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 507              		.section	.debug_info,"",%progbits
+ 508              	.Ldebug_info0:
+ 509 0000 B0010000 		.4byte	0x1b0
+ 510 0004 0400     		.2byte	0x4
+ 511 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 512 000a 04       		.byte	0x4
+ 513 000b 01       		.uleb128 0x1
+ 514 000c 7F000000 		.4byte	.LASF29
+ 515 0010 0C       		.byte	0xc
+ 516 0011 6A010000 		.4byte	.LASF30
+ 517 0015 78020000 		.4byte	.LASF31
+ 518 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 519 001d 00000000 		.4byte	0
+ 520 0021 00000000 		.4byte	.Ldebug_line0
+ 521 0025 02       		.uleb128 0x2
+ 522 0026 01       		.byte	0x1
+ 523 0027 06       		.byte	0x6
+ 524 0028 40020000 		.4byte	.LASF0
+ 525 002c 02       		.uleb128 0x2
+ 526 002d 01       		.byte	0x1
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 15
+
+
+ 527 002e 08       		.byte	0x8
+ 528 002f 40000000 		.4byte	.LASF1
+ 529 0033 02       		.uleb128 0x2
+ 530 0034 02       		.byte	0x2
+ 531 0035 05       		.byte	0x5
+ 532 0036 F2010000 		.4byte	.LASF2
+ 533 003a 02       		.uleb128 0x2
+ 534 003b 02       		.byte	0x2
+ 535 003c 07       		.byte	0x7
+ 536 003d 60000000 		.4byte	.LASF3
+ 537 0041 02       		.uleb128 0x2
+ 538 0042 04       		.byte	0x4
+ 539 0043 05       		.byte	0x5
+ 540 0044 2B020000 		.4byte	.LASF4
+ 541 0048 02       		.uleb128 0x2
+ 542 0049 04       		.byte	0x4
+ 543 004a 07       		.byte	0x7
+ 544 004b 4E000000 		.4byte	.LASF5
+ 545 004f 02       		.uleb128 0x2
+ 546 0050 08       		.byte	0x8
+ 547 0051 05       		.byte	0x5
+ 548 0052 D0010000 		.4byte	.LASF6
+ 549 0056 02       		.uleb128 0x2
+ 550 0057 08       		.byte	0x8
+ 551 0058 07       		.byte	0x7
+ 552 0059 90010000 		.4byte	.LASF7
+ 553 005d 03       		.uleb128 0x3
+ 554 005e 04       		.byte	0x4
+ 555 005f 05       		.byte	0x5
+ 556 0060 696E7400 		.ascii	"int\000"
+ 557 0064 02       		.uleb128 0x2
+ 558 0065 04       		.byte	0x4
+ 559 0066 07       		.byte	0x7
+ 560 0067 78010000 		.4byte	.LASF8
+ 561 006b 04       		.uleb128 0x4
+ 562 006c 25020000 		.4byte	.LASF9
+ 563 0070 02       		.byte	0x2
+ 564 0071 E401     		.2byte	0x1e4
+ 565 0073 2C000000 		.4byte	0x2c
+ 566 0077 04       		.uleb128 0x4
+ 567 0078 65010000 		.4byte	.LASF10
+ 568 007c 02       		.byte	0x2
+ 569 007d E701     		.2byte	0x1e7
+ 570 007f 25000000 		.4byte	0x25
+ 571 0083 02       		.uleb128 0x2
+ 572 0084 04       		.byte	0x4
+ 573 0085 04       		.byte	0x4
+ 574 0086 3A000000 		.4byte	.LASF11
+ 575 008a 02       		.uleb128 0x2
+ 576 008b 08       		.byte	0x8
+ 577 008c 04       		.byte	0x4
+ 578 008d 48010000 		.4byte	.LASF12
+ 579 0091 02       		.uleb128 0x2
+ 580 0092 01       		.byte	0x1
+ 581 0093 08       		.byte	0x8
+ 582 0094 DE010000 		.4byte	.LASF13
+ 583 0098 05       		.uleb128 0x5
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 16
+
+
+ 584 0099 6B000000 		.4byte	0x6b
+ 585 009d 02       		.uleb128 0x2
+ 586 009e 08       		.byte	0x8
+ 587 009f 04       		.byte	0x4
+ 588 00a0 34020000 		.4byte	.LASF14
+ 589 00a4 02       		.uleb128 0x2
+ 590 00a5 04       		.byte	0x4
+ 591 00a6 07       		.byte	0x7
+ 592 00a7 C7010000 		.4byte	.LASF15
+ 593 00ab 06       		.uleb128 0x6
+ 594 00ac 4F010000 		.4byte	.LASF16
+ 595 00b0 01       		.byte	0x1
+ 596 00b1 21       		.byte	0x21
+ 597 00b2 00000000 		.4byte	.LFB32
+ 598 00b6 16000000 		.4byte	.LFE32-.LFB32
+ 599 00ba 01       		.uleb128 0x1
+ 600 00bb 9C       		.byte	0x9c
+ 601 00bc 06       		.uleb128 0x6
+ 602 00bd E3010000 		.4byte	.LASF17
+ 603 00c1 01       		.byte	0x1
+ 604 00c2 36       		.byte	0x36
+ 605 00c3 00000000 		.4byte	.LFB33
+ 606 00c7 22000000 		.4byte	.LFE33-.LFB33
+ 607 00cb 01       		.uleb128 0x1
+ 608 00cc 9C       		.byte	0x9c
+ 609 00cd 06       		.uleb128 0x6
+ 610 00ce 0D010000 		.4byte	.LASF18
+ 611 00d2 01       		.byte	0x1
+ 612 00d3 4A       		.byte	0x4a
+ 613 00d4 00000000 		.4byte	.LFB34
+ 614 00d8 22000000 		.4byte	.LFE34-.LFB34
+ 615 00dc 01       		.uleb128 0x1
+ 616 00dd 9C       		.byte	0x9c
+ 617 00de 06       		.uleb128 0x6
+ 618 00df 85010000 		.4byte	.LASF19
+ 619 00e3 01       		.byte	0x1
+ 620 00e4 5E       		.byte	0x5e
+ 621 00e5 00000000 		.4byte	.LFB35
+ 622 00e9 40000000 		.4byte	.LFE35-.LFB35
+ 623 00ed 01       		.uleb128 0x1
+ 624 00ee 9C       		.byte	0x9c
+ 625 00ef 06       		.uleb128 0x6
+ 626 00f0 BB010000 		.4byte	.LASF20
+ 627 00f4 01       		.byte	0x1
+ 628 00f5 74       		.byte	0x74
+ 629 00f6 00000000 		.4byte	.LFB36
+ 630 00fa 40000000 		.4byte	.LFE36-.LFB36
+ 631 00fe 01       		.uleb128 0x1
+ 632 00ff 9C       		.byte	0x9c
+ 633 0100 07       		.uleb128 0x7
+ 634 0101 0E000000 		.4byte	.LASF32
+ 635 0105 01       		.byte	0x1
+ 636 0106 8D       		.byte	0x8d
+ 637 0107 00000000 		.4byte	.LFB37
+ 638 010b 66000000 		.4byte	.LFE37-.LFB37
+ 639 010f 01       		.uleb128 0x1
+ 640 0110 9C       		.byte	0x9c
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 17
+
+
+ 641 0111 24010000 		.4byte	0x124
+ 642 0115 08       		.uleb128 0x8
+ 643 0116 B6010000 		.4byte	.LASF33
+ 644 011a 01       		.byte	0x1
+ 645 011b 8D       		.byte	0x8d
+ 646 011c 6B000000 		.4byte	0x6b
+ 647 0120 02       		.uleb128 0x2
+ 648 0121 91       		.byte	0x91
+ 649 0122 77       		.sleb128 -9
+ 650 0123 00       		.byte	0
+ 651 0124 09       		.uleb128 0x9
+ 652 0125 FC010000 		.4byte	.LASF21
+ 653 0129 01       		.byte	0x1
+ 654 012a B5       		.byte	0xb5
+ 655 012b 6B000000 		.4byte	0x6b
+ 656 012f 00000000 		.4byte	.LFB38
+ 657 0133 14000000 		.4byte	.LFE38-.LFB38
+ 658 0137 01       		.uleb128 0x1
+ 659 0138 9C       		.byte	0x9c
+ 660 0139 09       		.uleb128 0x9
+ 661 013a 73000000 		.4byte	.LASF22
+ 662 013e 01       		.byte	0x1
+ 663 013f CE       		.byte	0xce
+ 664 0140 6B000000 		.4byte	0x6b
+ 665 0144 00000000 		.4byte	.LFB39
+ 666 0148 14000000 		.4byte	.LFE39-.LFB39
+ 667 014c 01       		.uleb128 0x1
+ 668 014d 9C       		.byte	0x9c
+ 669 014e 0A       		.uleb128 0xa
+ 670 014f 00000000 		.4byte	.LASF23
+ 671 0153 01       		.byte	0x1
+ 672 0154 DE       		.byte	0xde
+ 673 0155 00000000 		.4byte	.LFB40
+ 674 0159 14000000 		.4byte	.LFE40-.LFB40
+ 675 015d 01       		.uleb128 0x1
+ 676 015e 9C       		.byte	0x9c
+ 677 015f 06       		.uleb128 0x6
+ 678 0160 4C020000 		.4byte	.LASF24
+ 679 0164 01       		.byte	0x1
+ 680 0165 EE       		.byte	0xee
+ 681 0166 00000000 		.4byte	.LFB41
+ 682 016a 18000000 		.4byte	.LFE41-.LFB41
+ 683 016e 01       		.uleb128 0x1
+ 684 016f 9C       		.byte	0x9c
+ 685 0170 06       		.uleb128 0x6
+ 686 0171 1B010000 		.4byte	.LASF25
+ 687 0175 01       		.byte	0x1
+ 688 0176 FF       		.byte	0xff
+ 689 0177 00000000 		.4byte	.LFB42
+ 690 017b 18000000 		.4byte	.LFE42-.LFB42
+ 691 017f 01       		.uleb128 0x1
+ 692 0180 9C       		.byte	0x9c
+ 693 0181 0B       		.uleb128 0xb
+ 694 0182 A7010000 		.4byte	.LASF26
+ 695 0186 01       		.byte	0x1
+ 696 0187 0C       		.byte	0xc
+ 697 0188 8C010000 		.4byte	0x18c
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 18
+
+
+ 698 018c 05       		.uleb128 0x5
+ 699 018d 77000000 		.4byte	0x77
+ 700 0191 0C       		.uleb128 0xc
+ 701 0192 21000000 		.4byte	.LASF27
+ 702 0196 01       		.byte	0x1
+ 703 0197 0D       		.byte	0xd
+ 704 0198 98000000 		.4byte	0x98
+ 705 019c 05       		.uleb128 0x5
+ 706 019d 03       		.byte	0x3
+ 707 019e 00000000 		.4byte	currentSinkToggleRequest
+ 708 01a2 0C       		.uleb128 0xc
+ 709 01a3 12020000 		.4byte	.LASF28
+ 710 01a7 01       		.byte	0x1
+ 711 01a8 0E       		.byte	0xe
+ 712 01a9 6B000000 		.4byte	0x6b
+ 713 01ad 05       		.uleb128 0x5
+ 714 01ae 03       		.byte	0x3
+ 715 01af 00000000 		.4byte	currentSourceState
+ 716 01b3 00       		.byte	0
+ 717              		.section	.debug_abbrev,"",%progbits
+ 718              	.Ldebug_abbrev0:
+ 719 0000 01       		.uleb128 0x1
+ 720 0001 11       		.uleb128 0x11
+ 721 0002 01       		.byte	0x1
+ 722 0003 25       		.uleb128 0x25
+ 723 0004 0E       		.uleb128 0xe
+ 724 0005 13       		.uleb128 0x13
+ 725 0006 0B       		.uleb128 0xb
+ 726 0007 03       		.uleb128 0x3
+ 727 0008 0E       		.uleb128 0xe
+ 728 0009 1B       		.uleb128 0x1b
+ 729 000a 0E       		.uleb128 0xe
+ 730 000b 55       		.uleb128 0x55
+ 731 000c 17       		.uleb128 0x17
+ 732 000d 11       		.uleb128 0x11
+ 733 000e 01       		.uleb128 0x1
+ 734 000f 10       		.uleb128 0x10
+ 735 0010 17       		.uleb128 0x17
+ 736 0011 00       		.byte	0
+ 737 0012 00       		.byte	0
+ 738 0013 02       		.uleb128 0x2
+ 739 0014 24       		.uleb128 0x24
+ 740 0015 00       		.byte	0
+ 741 0016 0B       		.uleb128 0xb
+ 742 0017 0B       		.uleb128 0xb
+ 743 0018 3E       		.uleb128 0x3e
+ 744 0019 0B       		.uleb128 0xb
+ 745 001a 03       		.uleb128 0x3
+ 746 001b 0E       		.uleb128 0xe
+ 747 001c 00       		.byte	0
+ 748 001d 00       		.byte	0
+ 749 001e 03       		.uleb128 0x3
+ 750 001f 24       		.uleb128 0x24
+ 751 0020 00       		.byte	0
+ 752 0021 0B       		.uleb128 0xb
+ 753 0022 0B       		.uleb128 0xb
+ 754 0023 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 19
+
+
+ 755 0024 0B       		.uleb128 0xb
+ 756 0025 03       		.uleb128 0x3
+ 757 0026 08       		.uleb128 0x8
+ 758 0027 00       		.byte	0
+ 759 0028 00       		.byte	0
+ 760 0029 04       		.uleb128 0x4
+ 761 002a 16       		.uleb128 0x16
+ 762 002b 00       		.byte	0
+ 763 002c 03       		.uleb128 0x3
+ 764 002d 0E       		.uleb128 0xe
+ 765 002e 3A       		.uleb128 0x3a
+ 766 002f 0B       		.uleb128 0xb
+ 767 0030 3B       		.uleb128 0x3b
+ 768 0031 05       		.uleb128 0x5
+ 769 0032 49       		.uleb128 0x49
+ 770 0033 13       		.uleb128 0x13
+ 771 0034 00       		.byte	0
+ 772 0035 00       		.byte	0
+ 773 0036 05       		.uleb128 0x5
+ 774 0037 35       		.uleb128 0x35
+ 775 0038 00       		.byte	0
+ 776 0039 49       		.uleb128 0x49
+ 777 003a 13       		.uleb128 0x13
+ 778 003b 00       		.byte	0
+ 779 003c 00       		.byte	0
+ 780 003d 06       		.uleb128 0x6
+ 781 003e 2E       		.uleb128 0x2e
+ 782 003f 00       		.byte	0
+ 783 0040 3F       		.uleb128 0x3f
+ 784 0041 19       		.uleb128 0x19
+ 785 0042 03       		.uleb128 0x3
+ 786 0043 0E       		.uleb128 0xe
+ 787 0044 3A       		.uleb128 0x3a
+ 788 0045 0B       		.uleb128 0xb
+ 789 0046 3B       		.uleb128 0x3b
+ 790 0047 0B       		.uleb128 0xb
+ 791 0048 27       		.uleb128 0x27
+ 792 0049 19       		.uleb128 0x19
+ 793 004a 11       		.uleb128 0x11
+ 794 004b 01       		.uleb128 0x1
+ 795 004c 12       		.uleb128 0x12
+ 796 004d 06       		.uleb128 0x6
+ 797 004e 40       		.uleb128 0x40
+ 798 004f 18       		.uleb128 0x18
+ 799 0050 9642     		.uleb128 0x2116
+ 800 0052 19       		.uleb128 0x19
+ 801 0053 00       		.byte	0
+ 802 0054 00       		.byte	0
+ 803 0055 07       		.uleb128 0x7
+ 804 0056 2E       		.uleb128 0x2e
+ 805 0057 01       		.byte	0x1
+ 806 0058 3F       		.uleb128 0x3f
+ 807 0059 19       		.uleb128 0x19
+ 808 005a 03       		.uleb128 0x3
+ 809 005b 0E       		.uleb128 0xe
+ 810 005c 3A       		.uleb128 0x3a
+ 811 005d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 20
+
+
+ 812 005e 3B       		.uleb128 0x3b
+ 813 005f 0B       		.uleb128 0xb
+ 814 0060 27       		.uleb128 0x27
+ 815 0061 19       		.uleb128 0x19
+ 816 0062 11       		.uleb128 0x11
+ 817 0063 01       		.uleb128 0x1
+ 818 0064 12       		.uleb128 0x12
+ 819 0065 06       		.uleb128 0x6
+ 820 0066 40       		.uleb128 0x40
+ 821 0067 18       		.uleb128 0x18
+ 822 0068 9642     		.uleb128 0x2116
+ 823 006a 19       		.uleb128 0x19
+ 824 006b 01       		.uleb128 0x1
+ 825 006c 13       		.uleb128 0x13
+ 826 006d 00       		.byte	0
+ 827 006e 00       		.byte	0
+ 828 006f 08       		.uleb128 0x8
+ 829 0070 05       		.uleb128 0x5
+ 830 0071 00       		.byte	0
+ 831 0072 03       		.uleb128 0x3
+ 832 0073 0E       		.uleb128 0xe
+ 833 0074 3A       		.uleb128 0x3a
+ 834 0075 0B       		.uleb128 0xb
+ 835 0076 3B       		.uleb128 0x3b
+ 836 0077 0B       		.uleb128 0xb
+ 837 0078 49       		.uleb128 0x49
+ 838 0079 13       		.uleb128 0x13
+ 839 007a 02       		.uleb128 0x2
+ 840 007b 18       		.uleb128 0x18
+ 841 007c 00       		.byte	0
+ 842 007d 00       		.byte	0
+ 843 007e 09       		.uleb128 0x9
+ 844 007f 2E       		.uleb128 0x2e
+ 845 0080 00       		.byte	0
+ 846 0081 3F       		.uleb128 0x3f
+ 847 0082 19       		.uleb128 0x19
+ 848 0083 03       		.uleb128 0x3
+ 849 0084 0E       		.uleb128 0xe
+ 850 0085 3A       		.uleb128 0x3a
+ 851 0086 0B       		.uleb128 0xb
+ 852 0087 3B       		.uleb128 0x3b
+ 853 0088 0B       		.uleb128 0xb
+ 854 0089 27       		.uleb128 0x27
+ 855 008a 19       		.uleb128 0x19
+ 856 008b 49       		.uleb128 0x49
+ 857 008c 13       		.uleb128 0x13
+ 858 008d 11       		.uleb128 0x11
+ 859 008e 01       		.uleb128 0x1
+ 860 008f 12       		.uleb128 0x12
+ 861 0090 06       		.uleb128 0x6
+ 862 0091 40       		.uleb128 0x40
+ 863 0092 18       		.uleb128 0x18
+ 864 0093 9742     		.uleb128 0x2117
+ 865 0095 19       		.uleb128 0x19
+ 866 0096 00       		.byte	0
+ 867 0097 00       		.byte	0
+ 868 0098 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 21
+
+
+ 869 0099 2E       		.uleb128 0x2e
+ 870 009a 00       		.byte	0
+ 871 009b 3F       		.uleb128 0x3f
+ 872 009c 19       		.uleb128 0x19
+ 873 009d 03       		.uleb128 0x3
+ 874 009e 0E       		.uleb128 0xe
+ 875 009f 3A       		.uleb128 0x3a
+ 876 00a0 0B       		.uleb128 0xb
+ 877 00a1 3B       		.uleb128 0x3b
+ 878 00a2 0B       		.uleb128 0xb
+ 879 00a3 27       		.uleb128 0x27
+ 880 00a4 19       		.uleb128 0x19
+ 881 00a5 11       		.uleb128 0x11
+ 882 00a6 01       		.uleb128 0x1
+ 883 00a7 12       		.uleb128 0x12
+ 884 00a8 06       		.uleb128 0x6
+ 885 00a9 40       		.uleb128 0x40
+ 886 00aa 18       		.uleb128 0x18
+ 887 00ab 9742     		.uleb128 0x2117
+ 888 00ad 19       		.uleb128 0x19
+ 889 00ae 00       		.byte	0
+ 890 00af 00       		.byte	0
+ 891 00b0 0B       		.uleb128 0xb
+ 892 00b1 34       		.uleb128 0x34
+ 893 00b2 00       		.byte	0
+ 894 00b3 03       		.uleb128 0x3
+ 895 00b4 0E       		.uleb128 0xe
+ 896 00b5 3A       		.uleb128 0x3a
+ 897 00b6 0B       		.uleb128 0xb
+ 898 00b7 3B       		.uleb128 0x3b
+ 899 00b8 0B       		.uleb128 0xb
+ 900 00b9 49       		.uleb128 0x49
+ 901 00ba 13       		.uleb128 0x13
+ 902 00bb 3F       		.uleb128 0x3f
+ 903 00bc 19       		.uleb128 0x19
+ 904 00bd 3C       		.uleb128 0x3c
+ 905 00be 19       		.uleb128 0x19
+ 906 00bf 00       		.byte	0
+ 907 00c0 00       		.byte	0
+ 908 00c1 0C       		.uleb128 0xc
+ 909 00c2 34       		.uleb128 0x34
+ 910 00c3 00       		.byte	0
+ 911 00c4 03       		.uleb128 0x3
+ 912 00c5 0E       		.uleb128 0xe
+ 913 00c6 3A       		.uleb128 0x3a
+ 914 00c7 0B       		.uleb128 0xb
+ 915 00c8 3B       		.uleb128 0x3b
+ 916 00c9 0B       		.uleb128 0xb
+ 917 00ca 49       		.uleb128 0x49
+ 918 00cb 13       		.uleb128 0x13
+ 919 00cc 3F       		.uleb128 0x3f
+ 920 00cd 19       		.uleb128 0x19
+ 921 00ce 02       		.uleb128 0x2
+ 922 00cf 18       		.uleb128 0x18
+ 923 00d0 00       		.byte	0
+ 924 00d1 00       		.byte	0
+ 925 00d2 00       		.byte	0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 22
+
+
+ 926              		.section	.debug_aranges,"",%progbits
+ 927 0000 6C000000 		.4byte	0x6c
+ 928 0004 0200     		.2byte	0x2
+ 929 0006 00000000 		.4byte	.Ldebug_info0
+ 930 000a 04       		.byte	0x4
+ 931 000b 00       		.byte	0
+ 932 000c 0000     		.2byte	0
+ 933 000e 0000     		.2byte	0
+ 934 0010 00000000 		.4byte	.LFB32
+ 935 0014 16000000 		.4byte	.LFE32-.LFB32
+ 936 0018 00000000 		.4byte	.LFB33
+ 937 001c 22000000 		.4byte	.LFE33-.LFB33
+ 938 0020 00000000 		.4byte	.LFB34
+ 939 0024 22000000 		.4byte	.LFE34-.LFB34
+ 940 0028 00000000 		.4byte	.LFB35
+ 941 002c 40000000 		.4byte	.LFE35-.LFB35
+ 942 0030 00000000 		.4byte	.LFB36
+ 943 0034 40000000 		.4byte	.LFE36-.LFB36
+ 944 0038 00000000 		.4byte	.LFB37
+ 945 003c 66000000 		.4byte	.LFE37-.LFB37
+ 946 0040 00000000 		.4byte	.LFB38
+ 947 0044 14000000 		.4byte	.LFE38-.LFB38
+ 948 0048 00000000 		.4byte	.LFB39
+ 949 004c 14000000 		.4byte	.LFE39-.LFB39
+ 950 0050 00000000 		.4byte	.LFB40
+ 951 0054 14000000 		.4byte	.LFE40-.LFB40
+ 952 0058 00000000 		.4byte	.LFB41
+ 953 005c 18000000 		.4byte	.LFE41-.LFB41
+ 954 0060 00000000 		.4byte	.LFB42
+ 955 0064 18000000 		.4byte	.LFE42-.LFB42
+ 956 0068 00000000 		.4byte	0
+ 957 006c 00000000 		.4byte	0
+ 958              		.section	.debug_ranges,"",%progbits
+ 959              	.Ldebug_ranges0:
+ 960 0000 00000000 		.4byte	.LFB32
+ 961 0004 16000000 		.4byte	.LFE32
+ 962 0008 00000000 		.4byte	.LFB33
+ 963 000c 22000000 		.4byte	.LFE33
+ 964 0010 00000000 		.4byte	.LFB34
+ 965 0014 22000000 		.4byte	.LFE34
+ 966 0018 00000000 		.4byte	.LFB35
+ 967 001c 40000000 		.4byte	.LFE35
+ 968 0020 00000000 		.4byte	.LFB36
+ 969 0024 40000000 		.4byte	.LFE36
+ 970 0028 00000000 		.4byte	.LFB37
+ 971 002c 66000000 		.4byte	.LFE37
+ 972 0030 00000000 		.4byte	.LFB38
+ 973 0034 14000000 		.4byte	.LFE38
+ 974 0038 00000000 		.4byte	.LFB39
+ 975 003c 14000000 		.4byte	.LFE39
+ 976 0040 00000000 		.4byte	.LFB40
+ 977 0044 14000000 		.4byte	.LFE40
+ 978 0048 00000000 		.4byte	.LFB41
+ 979 004c 18000000 		.4byte	.LFE41
+ 980 0050 00000000 		.4byte	.LFB42
+ 981 0054 18000000 		.4byte	.LFE42
+ 982 0058 00000000 		.4byte	0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 23
+
+
+ 983 005c 00000000 		.4byte	0
+ 984              		.section	.debug_line,"",%progbits
+ 985              	.Ldebug_line0:
+ 986 0000 47010000 		.section	.debug_str,"MS",%progbits,1
+ 986      02004800 
+ 986      00000201 
+ 986      FB0E0D00 
+ 986      01010101 
+ 987              	.LASF23:
+ 988 0000 72657365 		.ascii	"resetISRState\000"
+ 988      74495352 
+ 988      53746174 
+ 988      6500
+ 989              	.LASF32:
+ 990 000e 7365744D 		.ascii	"setMultiplexerChan\000"
+ 990      756C7469 
+ 990      706C6578 
+ 990      65724368 
+ 990      616E00
+ 991              	.LASF27:
+ 992 0021 63757272 		.ascii	"currentSinkToggleRequest\000"
+ 992      656E7453 
+ 992      696E6B54 
+ 992      6F67676C 
+ 992      65526571 
+ 993              	.LASF11:
+ 994 003a 666C6F61 		.ascii	"float\000"
+ 994      7400
+ 995              	.LASF1:
+ 996 0040 756E7369 		.ascii	"unsigned char\000"
+ 996      676E6564 
+ 996      20636861 
+ 996      7200
+ 997              	.LASF5:
+ 998 004e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 998      20756E73 
+ 998      69676E65 
+ 998      6420696E 
+ 998      7400
+ 999              	.LASF3:
+ 1000 0060 73686F72 		.ascii	"short unsigned int\000"
+ 1000      7420756E 
+ 1000      7369676E 
+ 1000      65642069 
+ 1000      6E7400
+ 1001              	.LASF22:
+ 1002 0073 67657449 		.ascii	"getISRState\000"
+ 1002      53525374 
+ 1002      61746500 
+ 1003              	.LASF29:
+ 1004 007f 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1004      43313120 
+ 1004      352E342E 
+ 1004      31203230 
+ 1004      31363036 
+ 1005 00b2 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1005      20726576 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 24
+
+
+ 1005      6973696F 
+ 1005      6E203233 
+ 1005      37373135 
+ 1006 00e5 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1006      66756E63 
+ 1006      74696F6E 
+ 1006      2D736563 
+ 1006      74696F6E 
+ 1007              	.LASF18:
+ 1008 010d 7365744C 		.ascii	"setLowCurrent\000"
+ 1008      6F774375 
+ 1008      7272656E 
+ 1008      7400
+ 1009              	.LASF25:
+ 1010 011b 4953525F 		.ascii	"ISR_TurnOff_Sink_Interrupt_InterruptCallback\000"
+ 1010      5475726E 
+ 1010      4F66665F 
+ 1010      53696E6B 
+ 1010      5F496E74 
+ 1011              	.LASF12:
+ 1012 0148 646F7562 		.ascii	"double\000"
+ 1012      6C6500
+ 1013              	.LASF16:
+ 1014 014f 696E6974 		.ascii	"initializeCurrentSink\000"
+ 1014      69616C69 
+ 1014      7A654375 
+ 1014      7272656E 
+ 1014      7453696E 
+ 1015              	.LASF10:
+ 1016 0165 696E7438 		.ascii	"int8\000"
+ 1016      00
+ 1017              	.LASF30:
+ 1018 016a 63757272 		.ascii	"currentSink.c\000"
+ 1018      656E7453 
+ 1018      696E6B2E 
+ 1018      6300
+ 1019              	.LASF8:
+ 1020 0178 756E7369 		.ascii	"unsigned int\000"
+ 1020      676E6564 
+ 1020      20696E74 
+ 1020      00
+ 1021              	.LASF19:
+ 1022 0185 7475726E 		.ascii	"turnOnSink\000"
+ 1022      4F6E5369 
+ 1022      6E6B00
+ 1023              	.LASF7:
+ 1024 0190 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1024      206C6F6E 
+ 1024      6720756E 
+ 1024      7369676E 
+ 1024      65642069 
+ 1025              	.LASF26:
+ 1026 01a7 5350495F 		.ascii	"SPI_Status_Reg\000"
+ 1026      53746174 
+ 1026      75735F52 
+ 1026      656700
+ 1027              	.LASF33:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 25
+
+
+ 1028 01b6 6368616E 		.ascii	"chan\000"
+ 1028      00
+ 1029              	.LASF20:
+ 1030 01bb 7475726E 		.ascii	"turnOffSink\000"
+ 1030      4F666653 
+ 1030      696E6B00 
+ 1031              	.LASF15:
+ 1032 01c7 73697A65 		.ascii	"sizetype\000"
+ 1032      74797065 
+ 1032      00
+ 1033              	.LASF6:
+ 1034 01d0 6C6F6E67 		.ascii	"long long int\000"
+ 1034      206C6F6E 
+ 1034      6720696E 
+ 1034      7400
+ 1035              	.LASF13:
+ 1036 01de 63686172 		.ascii	"char\000"
+ 1036      00
+ 1037              	.LASF17:
+ 1038 01e3 73657448 		.ascii	"setHighCurrent\000"
+ 1038      69676843 
+ 1038      75727265 
+ 1038      6E7400
+ 1039              	.LASF2:
+ 1040 01f2 73686F72 		.ascii	"short int\000"
+ 1040      7420696E 
+ 1040      7400
+ 1041              	.LASF21:
+ 1042 01fc 67657443 		.ascii	"getCurrentSourceState\000"
+ 1042      75727265 
+ 1042      6E74536F 
+ 1042      75726365 
+ 1042      53746174 
+ 1043              	.LASF28:
+ 1044 0212 63757272 		.ascii	"currentSourceState\000"
+ 1044      656E7453 
+ 1044      6F757263 
+ 1044      65537461 
+ 1044      746500
+ 1045              	.LASF9:
+ 1046 0225 75696E74 		.ascii	"uint8\000"
+ 1046      3800
+ 1047              	.LASF4:
+ 1048 022b 6C6F6E67 		.ascii	"long int\000"
+ 1048      20696E74 
+ 1048      00
+ 1049              	.LASF14:
+ 1050 0234 6C6F6E67 		.ascii	"long double\000"
+ 1050      20646F75 
+ 1050      626C6500 
+ 1051              	.LASF0:
+ 1052 0240 7369676E 		.ascii	"signed char\000"
+ 1052      65642063 
+ 1052      68617200 
+ 1053              	.LASF24:
+ 1054 024c 4953525F 		.ascii	"ISR_TurnOn_Sink_Interrupt_InterruptCallback\000"
+ 1054      5475726E 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZkTSS.s 			page 26
+
+
+ 1054      4F6E5F53 
+ 1054      696E6B5F 
+ 1054      496E7465 
+ 1055              	.LASF31:
+ 1056 0278 433A5C55 		.ascii	"C:\\Users\\Lars\\Documents\\PSoC Creator\\Workspace"
+ 1056      73657273 
+ 1056      5C4C6172 
+ 1056      735C446F 
+ 1056      63756D65 
+ 1057 02a6 30315C50 		.ascii	"01\\PSOC4_ForwardVoltageTSEP.cydsn\000"
+ 1057      534F4334 
+ 1057      5F466F72 
+ 1057      77617264 
+ 1057      566F6C74 
+ 1058              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

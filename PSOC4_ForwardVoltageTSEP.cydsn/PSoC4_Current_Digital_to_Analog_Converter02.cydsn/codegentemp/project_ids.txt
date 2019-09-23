@@ -1,0 +1,8 @@
+C:\Users\Lars\Documents\PSoC Creator\Workspace01\P4_SingleDiode.cydsn\P4_SingleDiode.cyprj|fc9fa617-a5ea-4010-a0ba-fd1704e28ae2
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|d9cf4019-7c41-459c-84a0-32b2ebdc0c49
+C:\Users\Lars\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|b63217bb-92b9-403d-9aeb-ac62a4b395f1
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|7e09cb2c-229e-48c8-acd8-a5333455ef1d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|d356267d-2e76-47bc-848a-1fee07754399
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|6c5e9232-09fd-4ad0-be9f-726aacfe651c
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|de179b5e-6da2-4eaa-abea-8325d4de01d6
+C:\Users\Lars\Documents\PSoC Creator\Workspace01\P4_SingleDiode.cydsn\PSoC4_Current_Digital_to_Analog_Converter02.cydsn\PSoC4_Current_Digital_to_Analog_Converter02.cyprj|df498fa2-ada6-4164-b309-3ddaf26468af

@@ -1,0 +1,14 @@
+sensor.c:49:13:Sensor_initRegList	16	static
+sensor.c:135:21:Sensor_initSensor	24	static
+sensor.c:203:21:Sensor_readTempData	24	static
+sensor.c:302:21:Sensor_tempConversion	40	static
+sensor.c:362:21:Sensor_readSensorID	24	static
+sensor.c:398:21:Sensor_readSensorState	16	static
+sensor.c:494:21:Sensor_setSensorCalibration	24	static
+sensor.c:548:21:Sensor_setTimeStamp	24	static
+sensor.c:571:17:Sensor_getTimeData	48	static
+sensor.c:582:8:Sensor_getTempData	16	static
+sensor.c:594:10:Sensor_getRegData	24	static
+sensor.c:614:6:Sensor_incrementCycleCnt	16	static
+sensor.c:631:21:Sensor_putDummyData	24	static
+sensor.c:672:6:HAL_TIM_PeriodElapsedCallback	16	static

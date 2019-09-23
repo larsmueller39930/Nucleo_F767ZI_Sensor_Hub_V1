@@ -1,0 +1,71 @@
+/*******************************************************************************
+* File Name: ISR_TurnOff_Sink.h
+* Version 1.70
+*
+*  Description:
+*   Provides the function definitions for the Interrupt Controller.
+*
+*
+********************************************************************************
+* Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+* You may use this file only in accordance with the license, terms, conditions, 
+* disclaimers, and limitations in the end user license agreement accompanying 
+* the software package with which this file was provided.
+*******************************************************************************/
+#if !defined(CY_ISR_ISR_TurnOff_Sink_H)
+#define CY_ISR_ISR_TurnOff_Sink_H
+
+
+#include <cytypes.h>
+#include <cyfitter.h>
+
+/* Interrupt Controller API. */
+void ISR_TurnOff_Sink_Start(void);
+void ISR_TurnOff_Sink_StartEx(cyisraddress address);
+void ISR_TurnOff_Sink_Stop(void);
+
+CY_ISR_PROTO(ISR_TurnOff_Sink_Interrupt);
+
+void ISR_TurnOff_Sink_SetVector(cyisraddress address);
+cyisraddress ISR_TurnOff_Sink_GetVector(void);
+
+void ISR_TurnOff_Sink_SetPriority(uint8 priority);
+uint8 ISR_TurnOff_Sink_GetPriority(void);
+
+void ISR_TurnOff_Sink_Enable(void);
+uint8 ISR_TurnOff_Sink_GetState(void);
+void ISR_TurnOff_Sink_Disable(void);
+
+void ISR_TurnOff_Sink_SetPending(void);
+void ISR_TurnOff_Sink_ClearPending(void);
+
+
+/* Interrupt Controller Constants */
+
+/* Address of the INTC.VECT[x] register that contains the Address of the ISR_TurnOff_Sink ISR. */
+#define ISR_TurnOff_Sink_INTC_VECTOR            ((reg32 *) ISR_TurnOff_Sink__INTC_VECT)
+
+/* Address of the ISR_TurnOff_Sink ISR priority. */
+#define ISR_TurnOff_Sink_INTC_PRIOR             ((reg32 *) ISR_TurnOff_Sink__INTC_PRIOR_REG)
+
+/* Priority of the ISR_TurnOff_Sink interrupt. */
+#define ISR_TurnOff_Sink_INTC_PRIOR_NUMBER      ISR_TurnOff_Sink__INTC_PRIOR_NUM
+
+/* Address of the INTC.SET_EN[x] byte to bit enable ISR_TurnOff_Sink interrupt. */
+#define ISR_TurnOff_Sink_INTC_SET_EN            ((reg32 *) ISR_TurnOff_Sink__INTC_SET_EN_REG)
+
+/* Address of the INTC.CLR_EN[x] register to bit clear the ISR_TurnOff_Sink interrupt. */
+#define ISR_TurnOff_Sink_INTC_CLR_EN            ((reg32 *) ISR_TurnOff_Sink__INTC_CLR_EN_REG)
+
+/* Address of the INTC.SET_PD[x] register to set the ISR_TurnOff_Sink interrupt state to pending. */
+#define ISR_TurnOff_Sink_INTC_SET_PD            ((reg32 *) ISR_TurnOff_Sink__INTC_SET_PD_REG)
+
+/* Address of the INTC.CLR_PD[x] register to clear the ISR_TurnOff_Sink interrupt. */
+#define ISR_TurnOff_Sink_INTC_CLR_PD            ((reg32 *) ISR_TurnOff_Sink__INTC_CLR_PD_REG)
+
+
+
+#endif /* CY_ISR_ISR_TurnOff_Sink_H */
+
+
+/* [] END OF FILE */

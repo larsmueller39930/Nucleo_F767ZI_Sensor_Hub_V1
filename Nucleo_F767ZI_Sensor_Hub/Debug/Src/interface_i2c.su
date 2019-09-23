@@ -1,0 +1,7 @@
+interface_i2c.c:53:13:I2C_initBuffer	24	static
+interface_i2c.c:79:6:I2C_initInterface	16	static
+interface_i2c.c:128:6:I2C_sendData	24	static
+interface_i2c.c:142:6:I2C_receiveData	24	static
+interface_i2c.c:154:6:I2C_flushData	24	static
+interface_i2c.c:178:21:I2C_getState	16	static
+interface_i2c.c:186:6:HAL_I2C_ErrorCallback	16	static

@@ -1,0 +1,1929 @@
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"ISR_TurnOff_Sink.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.ISR_TurnOff_Sink_Start,"ax",%progbits
+  20              		.align	2
+  21              		.global	ISR_TurnOff_Sink_Start
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	ISR_TurnOff_Sink_Start, %function
+  25              	ISR_TurnOff_Sink_Start:
+  26              	.LFB32:
+  27              		.file 1 "Generated_Source\\PSoC4\\ISR_TurnOff_Sink.c"
+   1:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * File Name: ISR_TurnOff_Sink.c  
+   3:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Version 1.70
+   4:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+   5:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  Description:
+   6:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   API for controlling the state of an interrupt.
+   7:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+   8:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+   9:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  Note:
+  10:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+  11:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  18:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  19:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** #include <CyLib.h>
+  21:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** #include <ISR_TurnOff_Sink.h>
+  22:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** #include "cyapicallbacks.h"
+  23:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  24:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** #if !defined(ISR_TurnOff_Sink__REMOVED) /* Check for removal by optimization */
+  25:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  26:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+  27:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  Place your includes, defines and code here 
+  28:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************/
+  29:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /* `#START ISR_TurnOff_Sink_intc` */
+  30:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 2
+
+
+  31:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /* `#END` */
+  32:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  33:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
+  34:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  35:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /* Declared in startup, used to set unused interrupts to. */
+  36:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** CY_ISR_PROTO(IntDefaultHandler);
+  37:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  38:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  39:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+  40:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_Start
+  41:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+  42:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+  43:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+  44:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  45:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  46:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  47:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  interrupt controller.
+  48:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+  49:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:  
+  50:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+  51:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+  52:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+  53:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+  54:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+  55:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+  56:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** void ISR_TurnOff_Sink_Start(void)
+  57:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+  28              		.loc 1 57 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 80B5     		push	{r7, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  58:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* For all we know the interrupt is active. */
+  59:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_Disable();
+  38              		.loc 1 59 0
+  39 0004 FFF7FEFF 		bl	ISR_TurnOff_Sink_Disable
+  60:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  61:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Set the ISR to point to the ISR_TurnOff_Sink Interrupt. */
+  62:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_SetVector(&ISR_TurnOff_Sink_Interrupt);
+  40              		.loc 1 62 0
+  41 0008 054B     		ldr	r3, .L2
+  42 000a 1800     		movs	r0, r3
+  43 000c FFF7FEFF 		bl	ISR_TurnOff_Sink_SetVector
+  63:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  64:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Set the priority. */
+  65:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_SetPriority((uint8)ISR_TurnOff_Sink_INTC_PRIOR_NUMBER);
+  44              		.loc 1 65 0
+  45 0010 0320     		movs	r0, #3
+  46 0012 FFF7FEFF 		bl	ISR_TurnOff_Sink_SetPriority
+  66:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  67:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Enable it. */
+  68:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_Enable();
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 3
+
+
+  47              		.loc 1 68 0
+  48 0016 FFF7FEFF 		bl	ISR_TurnOff_Sink_Enable
+  69:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+  49              		.loc 1 69 0
+  50 001a C046     		nop
+  51 001c BD46     		mov	sp, r7
+  52              		@ sp needed
+  53 001e 80BD     		pop	{r7, pc}
+  54              	.L3:
+  55              		.align	2
+  56              	.L2:
+  57 0020 00000000 		.word	ISR_TurnOff_Sink_Interrupt
+  58              		.cfi_endproc
+  59              	.LFE32:
+  60              		.size	ISR_TurnOff_Sink_Start, .-ISR_TurnOff_Sink_Start
+  61              		.section	.text.ISR_TurnOff_Sink_StartEx,"ax",%progbits
+  62              		.align	2
+  63              		.global	ISR_TurnOff_Sink_StartEx
+  64              		.code	16
+  65              		.thumb_func
+  66              		.type	ISR_TurnOff_Sink_StartEx, %function
+  67              	ISR_TurnOff_Sink_StartEx:
+  68              	.LFB33:
+  70:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  71:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+  72:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+  73:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_StartEx
+  74:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+  75:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+  76:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+  77:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+  78:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+  79:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+  80:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  the interrupt to the interrupt controller.
+  81:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  
+  82:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+  83:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  used to provide consistent definition across compilers:
+  84:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  
+  85:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *  Function definition example:
+  86:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   CY_ISR(MyISR)
+  87:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   {
+  88:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   }
+  89:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Function prototype example:
+  90:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   CY_ISR_PROTO(MyISR);
+  91:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+  92:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:  
+  93:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  94:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+  95:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+  96:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+  97:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+  98:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+  99:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** void ISR_TurnOff_Sink_StartEx(cyisraddress address)
+ 100:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+  69              		.loc 1 100 0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 4
+
+
+  72              		@ frame_needed = 1, uses_anonymous_args = 0
+  73 0000 80B5     		push	{r7, lr}
+  74              		.cfi_def_cfa_offset 8
+  75              		.cfi_offset 7, -8
+  76              		.cfi_offset 14, -4
+  77 0002 82B0     		sub	sp, sp, #8
+  78              		.cfi_def_cfa_offset 16
+  79 0004 00AF     		add	r7, sp, #0
+  80              		.cfi_def_cfa_register 7
+  81 0006 7860     		str	r0, [r7, #4]
+ 101:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* For all we know the interrupt is active. */
+ 102:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_Disable();
+  82              		.loc 1 102 0
+  83 0008 FFF7FEFF 		bl	ISR_TurnOff_Sink_Disable
+ 103:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 104:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Set the ISR to point to the ISR_TurnOff_Sink Interrupt. */
+ 105:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_SetVector(address);
+  84              		.loc 1 105 0
+  85 000c 7B68     		ldr	r3, [r7, #4]
+  86 000e 1800     		movs	r0, r3
+  87 0010 FFF7FEFF 		bl	ISR_TurnOff_Sink_SetVector
+ 106:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 107:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Set the priority. */
+ 108:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_SetPriority((uint8)ISR_TurnOff_Sink_INTC_PRIOR_NUMBER);
+  88              		.loc 1 108 0
+  89 0014 0320     		movs	r0, #3
+  90 0016 FFF7FEFF 		bl	ISR_TurnOff_Sink_SetPriority
+ 109:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 110:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Enable it. */
+ 111:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_Enable();
+  91              		.loc 1 111 0
+  92 001a FFF7FEFF 		bl	ISR_TurnOff_Sink_Enable
+ 112:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+  93              		.loc 1 112 0
+  94 001e C046     		nop
+  95 0020 BD46     		mov	sp, r7
+  96 0022 02B0     		add	sp, sp, #8
+  97              		@ sp needed
+  98 0024 80BD     		pop	{r7, pc}
+  99              		.cfi_endproc
+ 100              	.LFE33:
+ 101              		.size	ISR_TurnOff_Sink_StartEx, .-ISR_TurnOff_Sink_StartEx
+ 102 0026 C046     		.section	.text.ISR_TurnOff_Sink_Stop,"ax",%progbits
+ 103              		.align	2
+ 104              		.global	ISR_TurnOff_Sink_Stop
+ 105              		.code	16
+ 106              		.thumb_func
+ 107              		.type	ISR_TurnOff_Sink_Stop, %function
+ 108              	ISR_TurnOff_Sink_Stop:
+ 109              	.LFB34:
+ 113:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 114:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 115:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 116:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_Stop
+ 117:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 118:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 119:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 5
+
+
+ 120:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Disables and removes the interrupt.
+ 121:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 122:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:  
+ 123:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 124:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 125:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 126:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 127:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 128:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 129:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** void ISR_TurnOff_Sink_Stop(void)
+ 130:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 110              		.loc 1 130 0
+ 111              		.cfi_startproc
+ 112              		@ args = 0, pretend = 0, frame = 0
+ 113              		@ frame_needed = 1, uses_anonymous_args = 0
+ 114 0000 80B5     		push	{r7, lr}
+ 115              		.cfi_def_cfa_offset 8
+ 116              		.cfi_offset 7, -8
+ 117              		.cfi_offset 14, -4
+ 118 0002 00AF     		add	r7, sp, #0
+ 119              		.cfi_def_cfa_register 7
+ 131:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Disable this interrupt. */
+ 132:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_Disable();
+ 120              		.loc 1 132 0
+ 121 0004 FFF7FEFF 		bl	ISR_TurnOff_Sink_Disable
+ 133:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 134:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Set the ISR to point to the passive one. */
+ 135:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     ISR_TurnOff_Sink_SetVector(&IntDefaultHandler);
+ 122              		.loc 1 135 0
+ 123 0008 034B     		ldr	r3, .L6
+ 124 000a 1800     		movs	r0, r3
+ 125 000c FFF7FEFF 		bl	ISR_TurnOff_Sink_SetVector
+ 136:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 126              		.loc 1 136 0
+ 127 0010 C046     		nop
+ 128 0012 BD46     		mov	sp, r7
+ 129              		@ sp needed
+ 130 0014 80BD     		pop	{r7, pc}
+ 131              	.L7:
+ 132 0016 C046     		.align	2
+ 133              	.L6:
+ 134 0018 00000000 		.word	IntDefaultHandler
+ 135              		.cfi_endproc
+ 136              	.LFE34:
+ 137              		.size	ISR_TurnOff_Sink_Stop, .-ISR_TurnOff_Sink_Stop
+ 138              		.section	.text.ISR_TurnOff_Sink_Interrupt,"ax",%progbits
+ 139              		.align	2
+ 140              		.global	ISR_TurnOff_Sink_Interrupt
+ 141              		.code	16
+ 142              		.thumb_func
+ 143              		.type	ISR_TurnOff_Sink_Interrupt, %function
+ 144              	ISR_TurnOff_Sink_Interrupt:
+ 145              	.LFB35:
+ 137:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 138:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 139:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 140:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_Interrupt
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 6
+
+
+ 141:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 142:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 143:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 144:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   The default Interrupt Service Routine for ISR_TurnOff_Sink.
+ 145:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 146:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Add custom code between the START and END comments to keep the next version
+ 147:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   of this file from over-writing your code.
+ 148:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 149:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Note You may use either the default ISR by using this API, or you may define
+ 150:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   your own separate ISR through ISR_StartEx().
+ 151:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 152:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:  
+ 153:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 154:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 155:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 156:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 157:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 158:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 159:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** CY_ISR(ISR_TurnOff_Sink_Interrupt)
+ 160:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 146              		.loc 1 160 0
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 1, uses_anonymous_args = 0
+ 150 0000 80B5     		push	{r7, lr}
+ 151              		.cfi_def_cfa_offset 8
+ 152              		.cfi_offset 7, -8
+ 153              		.cfi_offset 14, -4
+ 154 0002 00AF     		add	r7, sp, #0
+ 155              		.cfi_def_cfa_register 7
+ 161:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     #ifdef ISR_TurnOff_Sink_INTERRUPT_INTERRUPT_CALLBACK
+ 162:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****         ISR_TurnOff_Sink_Interrupt_InterruptCallback();
+ 156              		.loc 1 162 0
+ 157 0004 FFF7FEFF 		bl	ISR_TurnOff_Sink_Interrupt_InterruptCallback
+ 163:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     #endif /* ISR_TurnOff_Sink_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 164:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 165:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /*  Place your Interrupt code here. */
+ 166:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* `#START ISR_TurnOff_Sink_Interrupt` */
+ 167:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 168:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* `#END` */
+ 169:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 158              		.loc 1 169 0
+ 159 0008 C046     		nop
+ 160 000a BD46     		mov	sp, r7
+ 161              		@ sp needed
+ 162 000c 80BD     		pop	{r7, pc}
+ 163              		.cfi_endproc
+ 164              	.LFE35:
+ 165              		.size	ISR_TurnOff_Sink_Interrupt, .-ISR_TurnOff_Sink_Interrupt
+ 166 000e C046     		.section	.text.ISR_TurnOff_Sink_SetVector,"ax",%progbits
+ 167              		.align	2
+ 168              		.global	ISR_TurnOff_Sink_SetVector
+ 169              		.code	16
+ 170              		.thumb_func
+ 171              		.type	ISR_TurnOff_Sink_SetVector, %function
+ 172              	ISR_TurnOff_Sink_SetVector:
+ 173              	.LFB36:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 7
+
+
+ 170:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 171:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 172:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 173:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_SetVector
+ 174:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 175:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 176:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 177:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Change the ISR vector for the Interrupt. Note calling ISR_TurnOff_Sink_Start
+ 178:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   will override any effect this method would have had. To set the vector 
+ 179:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   before the component has been started use ISR_TurnOff_Sink_StartEx instead.
+ 180:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * 
+ 181:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 182:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   used to provide consistent definition across compilers:
+ 183:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 184:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Function definition example:
+ 185:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   CY_ISR(MyISR)
+ 186:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   {
+ 187:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   }
+ 188:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 189:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Function prototype example:
+ 190:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *     CY_ISR_PROTO(MyISR);
+ 191:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 192:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:
+ 193:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 194:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 195:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 196:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 197:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 198:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 199:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** void ISR_TurnOff_Sink_SetVector(cyisraddress address)
+ 200:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 174              		.loc 1 200 0
+ 175              		.cfi_startproc
+ 176              		@ args = 0, pretend = 0, frame = 8
+ 177              		@ frame_needed = 1, uses_anonymous_args = 0
+ 178 0000 80B5     		push	{r7, lr}
+ 179              		.cfi_def_cfa_offset 8
+ 180              		.cfi_offset 7, -8
+ 181              		.cfi_offset 14, -4
+ 182 0002 82B0     		sub	sp, sp, #8
+ 183              		.cfi_def_cfa_offset 16
+ 184 0004 00AF     		add	r7, sp, #0
+ 185              		.cfi_def_cfa_register 7
+ 186 0006 7860     		str	r0, [r7, #4]
+ 201:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     CyRamVectors[CYINT_IRQ_BASE + ISR_TurnOff_Sink__INTC_NUMBER] = address;
+ 187              		.loc 1 201 0
+ 188 0008 034B     		ldr	r3, .L10
+ 189 000a 7A68     		ldr	r2, [r7, #4]
+ 190 000c 1A64     		str	r2, [r3, #64]
+ 202:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 191              		.loc 1 202 0
+ 192 000e C046     		nop
+ 193 0010 BD46     		mov	sp, r7
+ 194 0012 02B0     		add	sp, sp, #8
+ 195              		@ sp needed
+ 196 0014 80BD     		pop	{r7, pc}
+ 197              	.L11:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 8
+
+
+ 198 0016 C046     		.align	2
+ 199              	.L10:
+ 200 0018 00000000 		.word	CyRamVectors
+ 201              		.cfi_endproc
+ 202              	.LFE36:
+ 203              		.size	ISR_TurnOff_Sink_SetVector, .-ISR_TurnOff_Sink_SetVector
+ 204              		.section	.text.ISR_TurnOff_Sink_GetVector,"ax",%progbits
+ 205              		.align	2
+ 206              		.global	ISR_TurnOff_Sink_GetVector
+ 207              		.code	16
+ 208              		.thumb_func
+ 209              		.type	ISR_TurnOff_Sink_GetVector, %function
+ 210              	ISR_TurnOff_Sink_GetVector:
+ 211              	.LFB37:
+ 203:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 204:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 205:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 206:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_GetVector
+ 207:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 208:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 209:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 210:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 211:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 212:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:
+ 213:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 214:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 215:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 216:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Address of the ISR in the interrupt vector table.
+ 217:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 218:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 219:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** cyisraddress ISR_TurnOff_Sink_GetVector(void)
+ 220:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 212              		.loc 1 220 0
+ 213              		.cfi_startproc
+ 214              		@ args = 0, pretend = 0, frame = 0
+ 215              		@ frame_needed = 1, uses_anonymous_args = 0
+ 216 0000 80B5     		push	{r7, lr}
+ 217              		.cfi_def_cfa_offset 8
+ 218              		.cfi_offset 7, -8
+ 219              		.cfi_offset 14, -4
+ 220 0002 00AF     		add	r7, sp, #0
+ 221              		.cfi_def_cfa_register 7
+ 221:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     return CyRamVectors[CYINT_IRQ_BASE + ISR_TurnOff_Sink__INTC_NUMBER];
+ 222              		.loc 1 221 0
+ 223 0004 024B     		ldr	r3, .L14
+ 224 0006 1B6C     		ldr	r3, [r3, #64]
+ 222:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 225              		.loc 1 222 0
+ 226 0008 1800     		movs	r0, r3
+ 227 000a BD46     		mov	sp, r7
+ 228              		@ sp needed
+ 229 000c 80BD     		pop	{r7, pc}
+ 230              	.L15:
+ 231 000e C046     		.align	2
+ 232              	.L14:
+ 233 0010 00000000 		.word	CyRamVectors
+ 234              		.cfi_endproc
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 9
+
+
+ 235              	.LFE37:
+ 236              		.size	ISR_TurnOff_Sink_GetVector, .-ISR_TurnOff_Sink_GetVector
+ 237              		.section	.text.ISR_TurnOff_Sink_SetPriority,"ax",%progbits
+ 238              		.align	2
+ 239              		.global	ISR_TurnOff_Sink_SetPriority
+ 240              		.code	16
+ 241              		.thumb_func
+ 242              		.type	ISR_TurnOff_Sink_SetPriority, %function
+ 243              	ISR_TurnOff_Sink_SetPriority:
+ 244              	.LFB38:
+ 223:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 224:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 225:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 226:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_SetPriority
+ 227:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 228:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 229:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 230:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Sets the Priority of the Interrupt. 
+ 231:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 232:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Note calling ISR_TurnOff_Sink_Start or ISR_TurnOff_Sink_StartEx will 
+ 233:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   override any effect this API would have had. This API should only be called
+ 234:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   after ISR_TurnOff_Sink_Start or ISR_TurnOff_Sink_StartEx has been called. 
+ 235:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 236:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Interrupt Editor.
+ 237:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 238:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 239:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 240:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:
+ 241:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 242:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 243:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *             PSoC 4: Priority is from 0 to 3.
+ 244:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 245:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 246:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 247:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 248:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 249:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** void ISR_TurnOff_Sink_SetPriority(uint8 priority)
+ 250:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 245              		.loc 1 250 0
+ 246              		.cfi_startproc
+ 247              		@ args = 0, pretend = 0, frame = 16
+ 248              		@ frame_needed = 1, uses_anonymous_args = 0
+ 249 0000 90B5     		push	{r4, r7, lr}
+ 250              		.cfi_def_cfa_offset 12
+ 251              		.cfi_offset 4, -12
+ 252              		.cfi_offset 7, -8
+ 253              		.cfi_offset 14, -4
+ 254 0002 85B0     		sub	sp, sp, #20
+ 255              		.cfi_def_cfa_offset 32
+ 256 0004 00AF     		add	r7, sp, #0
+ 257              		.cfi_def_cfa_register 7
+ 258 0006 0200     		movs	r2, r0
+ 259 0008 FB1D     		adds	r3, r7, #7
+ 260 000a 1A70     		strb	r2, [r3]
+ 251:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 	uint8 interruptState;
+ 252:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     uint32 priorityOffset = ((ISR_TurnOff_Sink__INTC_NUMBER % 4u) * 8u) + 6u;
+ 261              		.loc 1 252 0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 10
+
+
+ 262 000c 0623     		movs	r3, #6
+ 263 000e FB60     		str	r3, [r7, #12]
+ 253:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     
+ 254:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 	interruptState = CyEnterCriticalSection();
+ 264              		.loc 1 254 0
+ 265 0010 0B23     		movs	r3, #11
+ 266 0012 FC18     		adds	r4, r7, r3
+ 267 0014 FFF7FEFF 		bl	CyEnterCriticalSection
+ 268 0018 0300     		movs	r3, r0
+ 269 001a 2370     		strb	r3, [r4]
+ 255:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     *ISR_TurnOff_Sink_INTC_PRIOR = (*ISR_TurnOff_Sink_INTC_PRIOR & (uint32)(~ISR_TurnOff_Sink__INTC
+ 270              		.loc 1 255 0
+ 271 001c 0B4B     		ldr	r3, .L17
+ 272 001e 0B4A     		ldr	r2, .L17
+ 273 0020 1268     		ldr	r2, [r2]
+ 274 0022 C021     		movs	r1, #192
+ 275 0024 8A43     		bics	r2, r1
+ 276 0026 1100     		movs	r1, r2
+ 256:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****                                     ((uint32)priority << priorityOffset);
+ 277              		.loc 1 256 0
+ 278 0028 FA1D     		adds	r2, r7, #7
+ 279 002a 1078     		ldrb	r0, [r2]
+ 280 002c FA68     		ldr	r2, [r7, #12]
+ 281 002e 9040     		lsls	r0, r0, r2
+ 282 0030 0200     		movs	r2, r0
+ 255:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     *ISR_TurnOff_Sink_INTC_PRIOR = (*ISR_TurnOff_Sink_INTC_PRIOR & (uint32)(~ISR_TurnOff_Sink__INTC
+ 283              		.loc 1 255 0
+ 284 0032 0A43     		orrs	r2, r1
+ 285 0034 1A60     		str	r2, [r3]
+ 257:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 	CyExitCriticalSection(interruptState);
+ 286              		.loc 1 257 0
+ 287 0036 0B23     		movs	r3, #11
+ 288 0038 FB18     		adds	r3, r7, r3
+ 289 003a 1B78     		ldrb	r3, [r3]
+ 290 003c 1800     		movs	r0, r3
+ 291 003e FFF7FEFF 		bl	CyExitCriticalSection
+ 258:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 292              		.loc 1 258 0
+ 293 0042 C046     		nop
+ 294 0044 BD46     		mov	sp, r7
+ 295 0046 05B0     		add	sp, sp, #20
+ 296              		@ sp needed
+ 297 0048 90BD     		pop	{r4, r7, pc}
+ 298              	.L18:
+ 299 004a C046     		.align	2
+ 300              	.L17:
+ 301 004c 00E400E0 		.word	-536812544
+ 302              		.cfi_endproc
+ 303              	.LFE38:
+ 304              		.size	ISR_TurnOff_Sink_SetPriority, .-ISR_TurnOff_Sink_SetPriority
+ 305              		.section	.text.ISR_TurnOff_Sink_GetPriority,"ax",%progbits
+ 306              		.align	2
+ 307              		.global	ISR_TurnOff_Sink_GetPriority
+ 308              		.code	16
+ 309              		.thumb_func
+ 310              		.type	ISR_TurnOff_Sink_GetPriority, %function
+ 311              	ISR_TurnOff_Sink_GetPriority:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 11
+
+
+ 312              	.LFB39:
+ 259:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 260:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 261:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 262:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_GetPriority
+ 263:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 264:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 265:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 266:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Gets the Priority of the Interrupt.
+ 267:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 268:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:
+ 269:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 270:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 271:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 272:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Priority of the interrupt, 0 being the highest priority
+ 273:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 274:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *    PSoC 4: Priority is from 0 to 3.
+ 275:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 276:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 277:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** uint8 ISR_TurnOff_Sink_GetPriority(void)
+ 278:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 313              		.loc 1 278 0
+ 314              		.cfi_startproc
+ 315              		@ args = 0, pretend = 0, frame = 8
+ 316              		@ frame_needed = 1, uses_anonymous_args = 0
+ 317 0000 80B5     		push	{r7, lr}
+ 318              		.cfi_def_cfa_offset 8
+ 319              		.cfi_offset 7, -8
+ 320              		.cfi_offset 14, -4
+ 321 0002 82B0     		sub	sp, sp, #8
+ 322              		.cfi_def_cfa_offset 16
+ 323 0004 00AF     		add	r7, sp, #0
+ 324              		.cfi_def_cfa_register 7
+ 279:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     uint32 priority;
+ 280:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 	uint32 priorityOffset = ((ISR_TurnOff_Sink__INTC_NUMBER % 4u) * 8u) + 6u;
+ 325              		.loc 1 280 0
+ 326 0006 0623     		movs	r3, #6
+ 327 0008 7B60     		str	r3, [r7, #4]
+ 281:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 282:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     priority = (*ISR_TurnOff_Sink_INTC_PRIOR & ISR_TurnOff_Sink__INTC_PRIOR_MASK) >> priorityOffset
+ 328              		.loc 1 282 0
+ 329 000a 074B     		ldr	r3, .L21
+ 330 000c 1B68     		ldr	r3, [r3]
+ 331 000e C022     		movs	r2, #192
+ 332 0010 1A40     		ands	r2, r3
+ 333 0012 7B68     		ldr	r3, [r7, #4]
+ 334 0014 DA40     		lsrs	r2, r2, r3
+ 335 0016 1300     		movs	r3, r2
+ 336 0018 3B60     		str	r3, [r7]
+ 283:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 284:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     return (uint8)priority;
+ 337              		.loc 1 284 0
+ 338 001a 3B68     		ldr	r3, [r7]
+ 339 001c DBB2     		uxtb	r3, r3
+ 285:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 340              		.loc 1 285 0
+ 341 001e 1800     		movs	r0, r3
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 12
+
+
+ 342 0020 BD46     		mov	sp, r7
+ 343 0022 02B0     		add	sp, sp, #8
+ 344              		@ sp needed
+ 345 0024 80BD     		pop	{r7, pc}
+ 346              	.L22:
+ 347 0026 C046     		.align	2
+ 348              	.L21:
+ 349 0028 00E400E0 		.word	-536812544
+ 350              		.cfi_endproc
+ 351              	.LFE39:
+ 352              		.size	ISR_TurnOff_Sink_GetPriority, .-ISR_TurnOff_Sink_GetPriority
+ 353              		.section	.text.ISR_TurnOff_Sink_Enable,"ax",%progbits
+ 354              		.align	2
+ 355              		.global	ISR_TurnOff_Sink_Enable
+ 356              		.code	16
+ 357              		.thumb_func
+ 358              		.type	ISR_TurnOff_Sink_Enable, %function
+ 359              	ISR_TurnOff_Sink_Enable:
+ 360              	.LFB40:
+ 286:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 287:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 288:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 289:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_Enable
+ 290:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 291:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 292:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 293:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ 294:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 295:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   function, which sets the vector and the priority, has been called.
+ 296:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 297:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:
+ 298:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 299:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 300:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 301:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 302:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 303:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 304:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** void ISR_TurnOff_Sink_Enable(void)
+ 305:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 361              		.loc 1 305 0
+ 362              		.cfi_startproc
+ 363              		@ args = 0, pretend = 0, frame = 0
+ 364              		@ frame_needed = 1, uses_anonymous_args = 0
+ 365 0000 80B5     		push	{r7, lr}
+ 366              		.cfi_def_cfa_offset 8
+ 367              		.cfi_offset 7, -8
+ 368              		.cfi_offset 14, -4
+ 369 0002 00AF     		add	r7, sp, #0
+ 370              		.cfi_def_cfa_register 7
+ 306:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Enable the general interrupt. */
+ 307:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     *ISR_TurnOff_Sink_INTC_SET_EN = ISR_TurnOff_Sink__INTC_MASK;
+ 371              		.loc 1 307 0
+ 372 0004 024B     		ldr	r3, .L24
+ 373 0006 0122     		movs	r2, #1
+ 374 0008 1A60     		str	r2, [r3]
+ 308:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 375              		.loc 1 308 0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 13
+
+
+ 376 000a C046     		nop
+ 377 000c BD46     		mov	sp, r7
+ 378              		@ sp needed
+ 379 000e 80BD     		pop	{r7, pc}
+ 380              	.L25:
+ 381              		.align	2
+ 382              	.L24:
+ 383 0010 00E100E0 		.word	-536813312
+ 384              		.cfi_endproc
+ 385              	.LFE40:
+ 386              		.size	ISR_TurnOff_Sink_Enable, .-ISR_TurnOff_Sink_Enable
+ 387              		.section	.text.ISR_TurnOff_Sink_GetState,"ax",%progbits
+ 388              		.align	2
+ 389              		.global	ISR_TurnOff_Sink_GetState
+ 390              		.code	16
+ 391              		.thumb_func
+ 392              		.type	ISR_TurnOff_Sink_GetState, %function
+ 393              	ISR_TurnOff_Sink_GetState:
+ 394              	.LFB41:
+ 309:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 310:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 311:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 312:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_GetState
+ 313:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 314:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 315:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 316:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 317:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 318:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:
+ 319:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 320:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 321:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 322:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   1 if enabled, 0 if disabled.
+ 323:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 324:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 325:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** uint8 ISR_TurnOff_Sink_GetState(void)
+ 326:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 395              		.loc 1 326 0
+ 396              		.cfi_startproc
+ 397              		@ args = 0, pretend = 0, frame = 0
+ 398              		@ frame_needed = 1, uses_anonymous_args = 0
+ 399 0000 80B5     		push	{r7, lr}
+ 400              		.cfi_def_cfa_offset 8
+ 401              		.cfi_offset 7, -8
+ 402              		.cfi_offset 14, -4
+ 403 0002 00AF     		add	r7, sp, #0
+ 404              		.cfi_def_cfa_register 7
+ 327:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Get the state of the general interrupt. */
+ 328:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     return ((*ISR_TurnOff_Sink_INTC_SET_EN & (uint32)ISR_TurnOff_Sink__INTC_MASK) != 0u) ? 1u:0u;
+ 405              		.loc 1 328 0
+ 406 0004 044B     		ldr	r3, .L28
+ 407 0006 1B68     		ldr	r3, [r3]
+ 408 0008 DBB2     		uxtb	r3, r3
+ 409 000a 0122     		movs	r2, #1
+ 410 000c 1340     		ands	r3, r2
+ 411 000e DBB2     		uxtb	r3, r3
+ 329:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 14
+
+
+ 412              		.loc 1 329 0
+ 413 0010 1800     		movs	r0, r3
+ 414 0012 BD46     		mov	sp, r7
+ 415              		@ sp needed
+ 416 0014 80BD     		pop	{r7, pc}
+ 417              	.L29:
+ 418 0016 C046     		.align	2
+ 419              	.L28:
+ 420 0018 00E100E0 		.word	-536813312
+ 421              		.cfi_endproc
+ 422              	.LFE41:
+ 423              		.size	ISR_TurnOff_Sink_GetState, .-ISR_TurnOff_Sink_GetState
+ 424              		.section	.text.ISR_TurnOff_Sink_Disable,"ax",%progbits
+ 425              		.align	2
+ 426              		.global	ISR_TurnOff_Sink_Disable
+ 427              		.code	16
+ 428              		.thumb_func
+ 429              		.type	ISR_TurnOff_Sink_Disable, %function
+ 430              	ISR_TurnOff_Sink_Disable:
+ 431              	.LFB42:
+ 330:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 331:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 332:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 333:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_Disable
+ 334:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 335:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 336:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 337:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Disables the Interrupt in the interrupt controller.
+ 338:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 339:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:
+ 340:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 341:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 342:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 343:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 344:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 345:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 346:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** void ISR_TurnOff_Sink_Disable(void)
+ 347:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 432              		.loc 1 347 0
+ 433              		.cfi_startproc
+ 434              		@ args = 0, pretend = 0, frame = 0
+ 435              		@ frame_needed = 1, uses_anonymous_args = 0
+ 436 0000 80B5     		push	{r7, lr}
+ 437              		.cfi_def_cfa_offset 8
+ 438              		.cfi_offset 7, -8
+ 439              		.cfi_offset 14, -4
+ 440 0002 00AF     		add	r7, sp, #0
+ 441              		.cfi_def_cfa_register 7
+ 348:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     /* Disable the general interrupt. */
+ 349:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     *ISR_TurnOff_Sink_INTC_CLR_EN = ISR_TurnOff_Sink__INTC_MASK;
+ 442              		.loc 1 349 0
+ 443 0004 024B     		ldr	r3, .L31
+ 444 0006 0122     		movs	r2, #1
+ 445 0008 1A60     		str	r2, [r3]
+ 350:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 446              		.loc 1 350 0
+ 447 000a C046     		nop
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 15
+
+
+ 448 000c BD46     		mov	sp, r7
+ 449              		@ sp needed
+ 450 000e 80BD     		pop	{r7, pc}
+ 451              	.L32:
+ 452              		.align	2
+ 453              	.L31:
+ 454 0010 80E100E0 		.word	-536813184
+ 455              		.cfi_endproc
+ 456              	.LFE42:
+ 457              		.size	ISR_TurnOff_Sink_Disable, .-ISR_TurnOff_Sink_Disable
+ 458              		.section	.text.ISR_TurnOff_Sink_SetPending,"ax",%progbits
+ 459              		.align	2
+ 460              		.global	ISR_TurnOff_Sink_SetPending
+ 461              		.code	16
+ 462              		.thumb_func
+ 463              		.type	ISR_TurnOff_Sink_SetPending, %function
+ 464              	ISR_TurnOff_Sink_SetPending:
+ 465              	.LFB43:
+ 351:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 352:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 353:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 354:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_SetPending
+ 355:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 356:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 357:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 358:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 359:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   generating the interrupt.
+ 360:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 361:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:
+ 362:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 363:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 364:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 365:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 366:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 367:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Side Effects:
+ 368:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 369:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 370:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   interrupts).
+ 371:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 372:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 373:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** void ISR_TurnOff_Sink_SetPending(void)
+ 374:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 466              		.loc 1 374 0
+ 467              		.cfi_startproc
+ 468              		@ args = 0, pretend = 0, frame = 0
+ 469              		@ frame_needed = 1, uses_anonymous_args = 0
+ 470 0000 80B5     		push	{r7, lr}
+ 471              		.cfi_def_cfa_offset 8
+ 472              		.cfi_offset 7, -8
+ 473              		.cfi_offset 14, -4
+ 474 0002 00AF     		add	r7, sp, #0
+ 475              		.cfi_def_cfa_register 7
+ 375:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     *ISR_TurnOff_Sink_INTC_SET_PD = ISR_TurnOff_Sink__INTC_MASK;
+ 476              		.loc 1 375 0
+ 477 0004 024B     		ldr	r3, .L34
+ 478 0006 0122     		movs	r2, #1
+ 479 0008 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 16
+
+
+ 376:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 480              		.loc 1 376 0
+ 481 000a C046     		nop
+ 482 000c BD46     		mov	sp, r7
+ 483              		@ sp needed
+ 484 000e 80BD     		pop	{r7, pc}
+ 485              	.L35:
+ 486              		.align	2
+ 487              	.L34:
+ 488 0010 00E200E0 		.word	-536813056
+ 489              		.cfi_endproc
+ 490              	.LFE43:
+ 491              		.size	ISR_TurnOff_Sink_SetPending, .-ISR_TurnOff_Sink_SetPending
+ 492              		.section	.text.ISR_TurnOff_Sink_ClearPending,"ax",%progbits
+ 493              		.align	2
+ 494              		.global	ISR_TurnOff_Sink_ClearPending
+ 495              		.code	16
+ 496              		.thumb_func
+ 497              		.type	ISR_TurnOff_Sink_ClearPending, %function
+ 498              	ISR_TurnOff_Sink_ClearPending:
+ 499              	.LFB44:
+ 377:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 378:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** 
+ 379:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** /*******************************************************************************
+ 380:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Function Name: ISR_TurnOff_Sink_ClearPending
+ 381:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** ********************************************************************************
+ 382:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 383:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Summary:
+ 384:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Clears a pending interrupt in the interrupt controller.
+ 385:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 386:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 387:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 388:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 389:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 390:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 391:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Parameters:
+ 392:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 393:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 394:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** * Return:
+ 395:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *   None
+ 396:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *
+ 397:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** *******************************************************************************/
+ 398:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** void ISR_TurnOff_Sink_ClearPending(void)
+ 399:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** {
+ 500              		.loc 1 399 0
+ 501              		.cfi_startproc
+ 502              		@ args = 0, pretend = 0, frame = 0
+ 503              		@ frame_needed = 1, uses_anonymous_args = 0
+ 504 0000 80B5     		push	{r7, lr}
+ 505              		.cfi_def_cfa_offset 8
+ 506              		.cfi_offset 7, -8
+ 507              		.cfi_offset 14, -4
+ 508 0002 00AF     		add	r7, sp, #0
+ 509              		.cfi_def_cfa_register 7
+ 400:Generated_Source\PSoC4/ISR_TurnOff_Sink.c ****     *ISR_TurnOff_Sink_INTC_CLR_PD = ISR_TurnOff_Sink__INTC_MASK;
+ 510              		.loc 1 400 0
+ 511 0004 024B     		ldr	r3, .L37
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 17
+
+
+ 512 0006 0122     		movs	r2, #1
+ 513 0008 1A60     		str	r2, [r3]
+ 401:Generated_Source\PSoC4/ISR_TurnOff_Sink.c **** }
+ 514              		.loc 1 401 0
+ 515 000a C046     		nop
+ 516 000c BD46     		mov	sp, r7
+ 517              		@ sp needed
+ 518 000e 80BD     		pop	{r7, pc}
+ 519              	.L38:
+ 520              		.align	2
+ 521              	.L37:
+ 522 0010 80E200E0 		.word	-536812928
+ 523              		.cfi_endproc
+ 524              	.LFE44:
+ 525              		.size	ISR_TurnOff_Sink_ClearPending, .-ISR_TurnOff_Sink_ClearPending
+ 526              		.text
+ 527              	.Letext0:
+ 528              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 529              		.section	.debug_info,"",%progbits
+ 530              	.Ldebug_info0:
+ 531 0000 49020000 		.4byte	0x249
+ 532 0004 0400     		.2byte	0x4
+ 533 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 534 000a 04       		.byte	0x4
+ 535 000b 01       		.uleb128 0x1
+ 536 000c D4000000 		.4byte	.LASF34
+ 537 0010 0C       		.byte	0xc
+ 538 0011 3B030000 		.4byte	.LASF35
+ 539 0015 D0020000 		.4byte	.LASF36
+ 540 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 541 001d 00000000 		.4byte	0
+ 542 0021 00000000 		.4byte	.Ldebug_line0
+ 543 0025 02       		.uleb128 0x2
+ 544 0026 01       		.byte	0x1
+ 545 0027 06       		.byte	0x6
+ 546 0028 C4020000 		.4byte	.LASF0
+ 547 002c 02       		.uleb128 0x2
+ 548 002d 01       		.byte	0x1
+ 549 002e 08       		.byte	0x8
+ 550 002f 6D000000 		.4byte	.LASF1
+ 551 0033 02       		.uleb128 0x2
+ 552 0034 02       		.byte	0x2
+ 553 0035 05       		.byte	0x5
+ 554 0036 3F000000 		.4byte	.LASF2
+ 555 003a 02       		.uleb128 0x2
+ 556 003b 02       		.byte	0x2
+ 557 003c 07       		.byte	0x7
+ 558 003d 2C000000 		.4byte	.LASF3
+ 559 0041 02       		.uleb128 0x2
+ 560 0042 04       		.byte	0x4
+ 561 0043 05       		.byte	0x5
+ 562 0044 96020000 		.4byte	.LASF4
+ 563 0048 02       		.uleb128 0x2
+ 564 0049 04       		.byte	0x4
+ 565 004a 07       		.byte	0x7
+ 566 004b 8A000000 		.4byte	.LASF5
+ 567 004f 02       		.uleb128 0x2
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 18
+
+
+ 568 0050 08       		.byte	0x8
+ 569 0051 05       		.byte	0x5
+ 570 0052 1D020000 		.4byte	.LASF6
+ 571 0056 02       		.uleb128 0x2
+ 572 0057 08       		.byte	0x8
+ 573 0058 07       		.byte	0x7
+ 574 0059 D6010000 		.4byte	.LASF7
+ 575 005d 03       		.uleb128 0x3
+ 576 005e 04       		.byte	0x4
+ 577 005f 05       		.byte	0x5
+ 578 0060 696E7400 		.ascii	"int\000"
+ 579 0064 02       		.uleb128 0x2
+ 580 0065 04       		.byte	0x4
+ 581 0066 07       		.byte	0x7
+ 582 0067 A6010000 		.4byte	.LASF8
+ 583 006b 04       		.uleb128 0x4
+ 584 006c 4D020000 		.4byte	.LASF9
+ 585 0070 02       		.byte	0x2
+ 586 0071 E401     		.2byte	0x1e4
+ 587 0073 2C000000 		.4byte	0x2c
+ 588 0077 04       		.uleb128 0x4
+ 589 0078 88010000 		.4byte	.LASF10
+ 590 007c 02       		.byte	0x2
+ 591 007d E601     		.2byte	0x1e6
+ 592 007f 48000000 		.4byte	0x48
+ 593 0083 02       		.uleb128 0x2
+ 594 0084 04       		.byte	0x4
+ 595 0085 04       		.byte	0x4
+ 596 0086 67000000 		.4byte	.LASF11
+ 597 008a 02       		.uleb128 0x2
+ 598 008b 08       		.byte	0x8
+ 599 008c 04       		.byte	0x4
+ 600 008d 6B010000 		.4byte	.LASF12
+ 601 0091 02       		.uleb128 0x2
+ 602 0092 01       		.byte	0x1
+ 603 0093 08       		.byte	0x8
+ 604 0094 2B020000 		.4byte	.LASF13
+ 605 0098 04       		.uleb128 0x4
+ 606 0099 00000000 		.4byte	.LASF14
+ 607 009d 02       		.byte	0x2
+ 608 009e 9002     		.2byte	0x290
+ 609 00a0 A4000000 		.4byte	0xa4
+ 610 00a4 05       		.uleb128 0x5
+ 611 00a5 77000000 		.4byte	0x77
+ 612 00a9 04       		.uleb128 0x4
+ 613 00aa ED010000 		.4byte	.LASF15
+ 614 00ae 02       		.byte	0x2
+ 615 00af A002     		.2byte	0x2a0
+ 616 00b1 B5000000 		.4byte	0xb5
+ 617 00b5 06       		.uleb128 0x6
+ 618 00b6 04       		.byte	0x4
+ 619 00b7 BB000000 		.4byte	0xbb
+ 620 00bb 07       		.uleb128 0x7
+ 621 00bc 02       		.uleb128 0x2
+ 622 00bd 08       		.byte	0x8
+ 623 00be 04       		.byte	0x4
+ 624 00bf 9F020000 		.4byte	.LASF16
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 19
+
+
+ 625 00c3 02       		.uleb128 0x2
+ 626 00c4 04       		.byte	0x4
+ 627 00c5 07       		.byte	0x7
+ 628 00c6 14020000 		.4byte	.LASF17
+ 629 00ca 08       		.uleb128 0x8
+ 630 00cb 8F010000 		.4byte	.LASF18
+ 631 00cf 01       		.byte	0x1
+ 632 00d0 38       		.byte	0x38
+ 633 00d1 00000000 		.4byte	.LFB32
+ 634 00d5 24000000 		.4byte	.LFE32-.LFB32
+ 635 00d9 01       		.uleb128 0x1
+ 636 00da 9C       		.byte	0x9c
+ 637 00db 09       		.uleb128 0x9
+ 638 00dc AB020000 		.4byte	.LASF21
+ 639 00e0 01       		.byte	0x1
+ 640 00e1 63       		.byte	0x63
+ 641 00e2 00000000 		.4byte	.LFB33
+ 642 00e6 26000000 		.4byte	.LFE33-.LFB33
+ 643 00ea 01       		.uleb128 0x1
+ 644 00eb 9C       		.byte	0x9c
+ 645 00ec FF000000 		.4byte	0xff
+ 646 00f0 0A       		.uleb128 0xa
+ 647 00f1 CE010000 		.4byte	.LASF23
+ 648 00f5 01       		.byte	0x1
+ 649 00f6 63       		.byte	0x63
+ 650 00f7 A9000000 		.4byte	0xa9
+ 651 00fb 02       		.uleb128 0x2
+ 652 00fc 91       		.byte	0x91
+ 653 00fd 74       		.sleb128 -12
+ 654 00fe 00       		.byte	0
+ 655 00ff 08       		.uleb128 0x8
+ 656 0100 72010000 		.4byte	.LASF19
+ 657 0104 01       		.byte	0x1
+ 658 0105 81       		.byte	0x81
+ 659 0106 00000000 		.4byte	.LFB34
+ 660 010a 1C000000 		.4byte	.LFE34-.LFB34
+ 661 010e 01       		.uleb128 0x1
+ 662 010f 9C       		.byte	0x9c
+ 663 0110 08       		.uleb128 0x8
+ 664 0111 9C000000 		.4byte	.LASF20
+ 665 0115 01       		.byte	0x1
+ 666 0116 9F       		.byte	0x9f
+ 667 0117 00000000 		.4byte	.LFB35
+ 668 011b 0E000000 		.4byte	.LFE35-.LFB35
+ 669 011f 01       		.uleb128 0x1
+ 670 0120 9C       		.byte	0x9c
+ 671 0121 0B       		.uleb128 0xb
+ 672 0122 20030000 		.4byte	.LASF22
+ 673 0126 01       		.byte	0x1
+ 674 0127 C7       		.byte	0xc7
+ 675 0128 00000000 		.4byte	.LFB36
+ 676 012c 1C000000 		.4byte	.LFE36-.LFB36
+ 677 0130 01       		.uleb128 0x1
+ 678 0131 9C       		.byte	0x9c
+ 679 0132 45010000 		.4byte	0x145
+ 680 0136 0A       		.uleb128 0xa
+ 681 0137 CE010000 		.4byte	.LASF23
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 20
+
+
+ 682 013b 01       		.byte	0x1
+ 683 013c C7       		.byte	0xc7
+ 684 013d A9000000 		.4byte	0xa9
+ 685 0141 02       		.uleb128 0x2
+ 686 0142 91       		.byte	0x91
+ 687 0143 74       		.sleb128 -12
+ 688 0144 00       		.byte	0
+ 689 0145 0C       		.uleb128 0xc
+ 690 0146 B3010000 		.4byte	.LASF29
+ 691 014a 01       		.byte	0x1
+ 692 014b DB       		.byte	0xdb
+ 693 014c A9000000 		.4byte	0xa9
+ 694 0150 00000000 		.4byte	.LFB37
+ 695 0154 14000000 		.4byte	.LFE37-.LFB37
+ 696 0158 01       		.uleb128 0x1
+ 697 0159 9C       		.byte	0x9c
+ 698 015a 09       		.uleb128 0x9
+ 699 015b 30020000 		.4byte	.LASF24
+ 700 015f 01       		.byte	0x1
+ 701 0160 F9       		.byte	0xf9
+ 702 0161 00000000 		.4byte	.LFB38
+ 703 0165 50000000 		.4byte	.LFE38-.LFB38
+ 704 0169 01       		.uleb128 0x1
+ 705 016a 9C       		.byte	0x9c
+ 706 016b 9A010000 		.4byte	0x19a
+ 707 016f 0A       		.uleb128 0xa
+ 708 0170 62010000 		.4byte	.LASF25
+ 709 0174 01       		.byte	0x1
+ 710 0175 F9       		.byte	0xf9
+ 711 0176 6B000000 		.4byte	0x6b
+ 712 017a 02       		.uleb128 0x2
+ 713 017b 91       		.byte	0x91
+ 714 017c 67       		.sleb128 -25
+ 715 017d 0D       		.uleb128 0xd
+ 716 017e 7B000000 		.4byte	.LASF26
+ 717 0182 01       		.byte	0x1
+ 718 0183 FB       		.byte	0xfb
+ 719 0184 6B000000 		.4byte	0x6b
+ 720 0188 02       		.uleb128 0x2
+ 721 0189 91       		.byte	0x91
+ 722 018a 6B       		.sleb128 -21
+ 723 018b 0D       		.uleb128 0xd
+ 724 018c 87020000 		.4byte	.LASF27
+ 725 0190 01       		.byte	0x1
+ 726 0191 FC       		.byte	0xfc
+ 727 0192 77000000 		.4byte	0x77
+ 728 0196 02       		.uleb128 0x2
+ 729 0197 91       		.byte	0x91
+ 730 0198 6C       		.sleb128 -20
+ 731 0199 00       		.byte	0
+ 732 019a 0E       		.uleb128 0xe
+ 733 019b B7000000 		.4byte	.LASF37
+ 734 019f 01       		.byte	0x1
+ 735 01a0 1501     		.2byte	0x115
+ 736 01a2 6B000000 		.4byte	0x6b
+ 737 01a6 00000000 		.4byte	.LFB39
+ 738 01aa 2C000000 		.4byte	.LFE39-.LFB39
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 21
+
+
+ 739 01ae 01       		.uleb128 0x1
+ 740 01af 9C       		.byte	0x9c
+ 741 01b0 D3010000 		.4byte	0x1d3
+ 742 01b4 0F       		.uleb128 0xf
+ 743 01b5 62010000 		.4byte	.LASF25
+ 744 01b9 01       		.byte	0x1
+ 745 01ba 1701     		.2byte	0x117
+ 746 01bc 77000000 		.4byte	0x77
+ 747 01c0 02       		.uleb128 0x2
+ 748 01c1 91       		.byte	0x91
+ 749 01c2 70       		.sleb128 -16
+ 750 01c3 0F       		.uleb128 0xf
+ 751 01c4 87020000 		.4byte	.LASF27
+ 752 01c8 01       		.byte	0x1
+ 753 01c9 1801     		.2byte	0x118
+ 754 01cb 77000000 		.4byte	0x77
+ 755 01cf 02       		.uleb128 0x2
+ 756 01d0 91       		.byte	0x91
+ 757 01d1 74       		.sleb128 -12
+ 758 01d2 00       		.byte	0
+ 759 01d3 10       		.uleb128 0x10
+ 760 01d4 53020000 		.4byte	.LASF28
+ 761 01d8 01       		.byte	0x1
+ 762 01d9 3001     		.2byte	0x130
+ 763 01db 00000000 		.4byte	.LFB40
+ 764 01df 14000000 		.4byte	.LFE40-.LFB40
+ 765 01e3 01       		.uleb128 0x1
+ 766 01e4 9C       		.byte	0x9c
+ 767 01e5 11       		.uleb128 0x11
+ 768 01e6 FA010000 		.4byte	.LASF30
+ 769 01ea 01       		.byte	0x1
+ 770 01eb 4501     		.2byte	0x145
+ 771 01ed 6B000000 		.4byte	0x6b
+ 772 01f1 00000000 		.4byte	.LFB41
+ 773 01f5 1C000000 		.4byte	.LFE41-.LFB41
+ 774 01f9 01       		.uleb128 0x1
+ 775 01fa 9C       		.byte	0x9c
+ 776 01fb 10       		.uleb128 0x10
+ 777 01fc 06000000 		.4byte	.LASF31
+ 778 0200 01       		.byte	0x1
+ 779 0201 5A01     		.2byte	0x15a
+ 780 0203 00000000 		.4byte	.LFB42
+ 781 0207 14000000 		.4byte	.LFE42-.LFB42
+ 782 020b 01       		.uleb128 0x1
+ 783 020c 9C       		.byte	0x9c
+ 784 020d 10       		.uleb128 0x10
+ 785 020e 6B020000 		.4byte	.LASF32
+ 786 0212 01       		.byte	0x1
+ 787 0213 7501     		.2byte	0x175
+ 788 0215 00000000 		.4byte	.LFB43
+ 789 0219 14000000 		.4byte	.LFE43-.LFB43
+ 790 021d 01       		.uleb128 0x1
+ 791 021e 9C       		.byte	0x9c
+ 792 021f 10       		.uleb128 0x10
+ 793 0220 49000000 		.4byte	.LASF33
+ 794 0224 01       		.byte	0x1
+ 795 0225 8E01     		.2byte	0x18e
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 22
+
+
+ 796 0227 00000000 		.4byte	.LFB44
+ 797 022b 14000000 		.4byte	.LFE44-.LFB44
+ 798 022f 01       		.uleb128 0x1
+ 799 0230 9C       		.byte	0x9c
+ 800 0231 12       		.uleb128 0x12
+ 801 0232 A9000000 		.4byte	0xa9
+ 802 0236 41020000 		.4byte	0x241
+ 803 023a 13       		.uleb128 0x13
+ 804 023b C3000000 		.4byte	0xc3
+ 805 023f 2F       		.byte	0x2f
+ 806 0240 00       		.byte	0
+ 807 0241 14       		.uleb128 0x14
+ 808 0242 1F000000 		.4byte	.LASF38
+ 809 0246 01       		.byte	0x1
+ 810 0247 21       		.byte	0x21
+ 811 0248 31020000 		.4byte	0x231
+ 812 024c 00       		.byte	0
+ 813              		.section	.debug_abbrev,"",%progbits
+ 814              	.Ldebug_abbrev0:
+ 815 0000 01       		.uleb128 0x1
+ 816 0001 11       		.uleb128 0x11
+ 817 0002 01       		.byte	0x1
+ 818 0003 25       		.uleb128 0x25
+ 819 0004 0E       		.uleb128 0xe
+ 820 0005 13       		.uleb128 0x13
+ 821 0006 0B       		.uleb128 0xb
+ 822 0007 03       		.uleb128 0x3
+ 823 0008 0E       		.uleb128 0xe
+ 824 0009 1B       		.uleb128 0x1b
+ 825 000a 0E       		.uleb128 0xe
+ 826 000b 55       		.uleb128 0x55
+ 827 000c 17       		.uleb128 0x17
+ 828 000d 11       		.uleb128 0x11
+ 829 000e 01       		.uleb128 0x1
+ 830 000f 10       		.uleb128 0x10
+ 831 0010 17       		.uleb128 0x17
+ 832 0011 00       		.byte	0
+ 833 0012 00       		.byte	0
+ 834 0013 02       		.uleb128 0x2
+ 835 0014 24       		.uleb128 0x24
+ 836 0015 00       		.byte	0
+ 837 0016 0B       		.uleb128 0xb
+ 838 0017 0B       		.uleb128 0xb
+ 839 0018 3E       		.uleb128 0x3e
+ 840 0019 0B       		.uleb128 0xb
+ 841 001a 03       		.uleb128 0x3
+ 842 001b 0E       		.uleb128 0xe
+ 843 001c 00       		.byte	0
+ 844 001d 00       		.byte	0
+ 845 001e 03       		.uleb128 0x3
+ 846 001f 24       		.uleb128 0x24
+ 847 0020 00       		.byte	0
+ 848 0021 0B       		.uleb128 0xb
+ 849 0022 0B       		.uleb128 0xb
+ 850 0023 3E       		.uleb128 0x3e
+ 851 0024 0B       		.uleb128 0xb
+ 852 0025 03       		.uleb128 0x3
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 23
+
+
+ 853 0026 08       		.uleb128 0x8
+ 854 0027 00       		.byte	0
+ 855 0028 00       		.byte	0
+ 856 0029 04       		.uleb128 0x4
+ 857 002a 16       		.uleb128 0x16
+ 858 002b 00       		.byte	0
+ 859 002c 03       		.uleb128 0x3
+ 860 002d 0E       		.uleb128 0xe
+ 861 002e 3A       		.uleb128 0x3a
+ 862 002f 0B       		.uleb128 0xb
+ 863 0030 3B       		.uleb128 0x3b
+ 864 0031 05       		.uleb128 0x5
+ 865 0032 49       		.uleb128 0x49
+ 866 0033 13       		.uleb128 0x13
+ 867 0034 00       		.byte	0
+ 868 0035 00       		.byte	0
+ 869 0036 05       		.uleb128 0x5
+ 870 0037 35       		.uleb128 0x35
+ 871 0038 00       		.byte	0
+ 872 0039 49       		.uleb128 0x49
+ 873 003a 13       		.uleb128 0x13
+ 874 003b 00       		.byte	0
+ 875 003c 00       		.byte	0
+ 876 003d 06       		.uleb128 0x6
+ 877 003e 0F       		.uleb128 0xf
+ 878 003f 00       		.byte	0
+ 879 0040 0B       		.uleb128 0xb
+ 880 0041 0B       		.uleb128 0xb
+ 881 0042 49       		.uleb128 0x49
+ 882 0043 13       		.uleb128 0x13
+ 883 0044 00       		.byte	0
+ 884 0045 00       		.byte	0
+ 885 0046 07       		.uleb128 0x7
+ 886 0047 15       		.uleb128 0x15
+ 887 0048 00       		.byte	0
+ 888 0049 27       		.uleb128 0x27
+ 889 004a 19       		.uleb128 0x19
+ 890 004b 00       		.byte	0
+ 891 004c 00       		.byte	0
+ 892 004d 08       		.uleb128 0x8
+ 893 004e 2E       		.uleb128 0x2e
+ 894 004f 00       		.byte	0
+ 895 0050 3F       		.uleb128 0x3f
+ 896 0051 19       		.uleb128 0x19
+ 897 0052 03       		.uleb128 0x3
+ 898 0053 0E       		.uleb128 0xe
+ 899 0054 3A       		.uleb128 0x3a
+ 900 0055 0B       		.uleb128 0xb
+ 901 0056 3B       		.uleb128 0x3b
+ 902 0057 0B       		.uleb128 0xb
+ 903 0058 27       		.uleb128 0x27
+ 904 0059 19       		.uleb128 0x19
+ 905 005a 11       		.uleb128 0x11
+ 906 005b 01       		.uleb128 0x1
+ 907 005c 12       		.uleb128 0x12
+ 908 005d 06       		.uleb128 0x6
+ 909 005e 40       		.uleb128 0x40
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 24
+
+
+ 910 005f 18       		.uleb128 0x18
+ 911 0060 9642     		.uleb128 0x2116
+ 912 0062 19       		.uleb128 0x19
+ 913 0063 00       		.byte	0
+ 914 0064 00       		.byte	0
+ 915 0065 09       		.uleb128 0x9
+ 916 0066 2E       		.uleb128 0x2e
+ 917 0067 01       		.byte	0x1
+ 918 0068 3F       		.uleb128 0x3f
+ 919 0069 19       		.uleb128 0x19
+ 920 006a 03       		.uleb128 0x3
+ 921 006b 0E       		.uleb128 0xe
+ 922 006c 3A       		.uleb128 0x3a
+ 923 006d 0B       		.uleb128 0xb
+ 924 006e 3B       		.uleb128 0x3b
+ 925 006f 0B       		.uleb128 0xb
+ 926 0070 27       		.uleb128 0x27
+ 927 0071 19       		.uleb128 0x19
+ 928 0072 11       		.uleb128 0x11
+ 929 0073 01       		.uleb128 0x1
+ 930 0074 12       		.uleb128 0x12
+ 931 0075 06       		.uleb128 0x6
+ 932 0076 40       		.uleb128 0x40
+ 933 0077 18       		.uleb128 0x18
+ 934 0078 9642     		.uleb128 0x2116
+ 935 007a 19       		.uleb128 0x19
+ 936 007b 01       		.uleb128 0x1
+ 937 007c 13       		.uleb128 0x13
+ 938 007d 00       		.byte	0
+ 939 007e 00       		.byte	0
+ 940 007f 0A       		.uleb128 0xa
+ 941 0080 05       		.uleb128 0x5
+ 942 0081 00       		.byte	0
+ 943 0082 03       		.uleb128 0x3
+ 944 0083 0E       		.uleb128 0xe
+ 945 0084 3A       		.uleb128 0x3a
+ 946 0085 0B       		.uleb128 0xb
+ 947 0086 3B       		.uleb128 0x3b
+ 948 0087 0B       		.uleb128 0xb
+ 949 0088 49       		.uleb128 0x49
+ 950 0089 13       		.uleb128 0x13
+ 951 008a 02       		.uleb128 0x2
+ 952 008b 18       		.uleb128 0x18
+ 953 008c 00       		.byte	0
+ 954 008d 00       		.byte	0
+ 955 008e 0B       		.uleb128 0xb
+ 956 008f 2E       		.uleb128 0x2e
+ 957 0090 01       		.byte	0x1
+ 958 0091 3F       		.uleb128 0x3f
+ 959 0092 19       		.uleb128 0x19
+ 960 0093 03       		.uleb128 0x3
+ 961 0094 0E       		.uleb128 0xe
+ 962 0095 3A       		.uleb128 0x3a
+ 963 0096 0B       		.uleb128 0xb
+ 964 0097 3B       		.uleb128 0x3b
+ 965 0098 0B       		.uleb128 0xb
+ 966 0099 27       		.uleb128 0x27
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 25
+
+
+ 967 009a 19       		.uleb128 0x19
+ 968 009b 11       		.uleb128 0x11
+ 969 009c 01       		.uleb128 0x1
+ 970 009d 12       		.uleb128 0x12
+ 971 009e 06       		.uleb128 0x6
+ 972 009f 40       		.uleb128 0x40
+ 973 00a0 18       		.uleb128 0x18
+ 974 00a1 9742     		.uleb128 0x2117
+ 975 00a3 19       		.uleb128 0x19
+ 976 00a4 01       		.uleb128 0x1
+ 977 00a5 13       		.uleb128 0x13
+ 978 00a6 00       		.byte	0
+ 979 00a7 00       		.byte	0
+ 980 00a8 0C       		.uleb128 0xc
+ 981 00a9 2E       		.uleb128 0x2e
+ 982 00aa 00       		.byte	0
+ 983 00ab 3F       		.uleb128 0x3f
+ 984 00ac 19       		.uleb128 0x19
+ 985 00ad 03       		.uleb128 0x3
+ 986 00ae 0E       		.uleb128 0xe
+ 987 00af 3A       		.uleb128 0x3a
+ 988 00b0 0B       		.uleb128 0xb
+ 989 00b1 3B       		.uleb128 0x3b
+ 990 00b2 0B       		.uleb128 0xb
+ 991 00b3 27       		.uleb128 0x27
+ 992 00b4 19       		.uleb128 0x19
+ 993 00b5 49       		.uleb128 0x49
+ 994 00b6 13       		.uleb128 0x13
+ 995 00b7 11       		.uleb128 0x11
+ 996 00b8 01       		.uleb128 0x1
+ 997 00b9 12       		.uleb128 0x12
+ 998 00ba 06       		.uleb128 0x6
+ 999 00bb 40       		.uleb128 0x40
+ 1000 00bc 18       		.uleb128 0x18
+ 1001 00bd 9742     		.uleb128 0x2117
+ 1002 00bf 19       		.uleb128 0x19
+ 1003 00c0 00       		.byte	0
+ 1004 00c1 00       		.byte	0
+ 1005 00c2 0D       		.uleb128 0xd
+ 1006 00c3 34       		.uleb128 0x34
+ 1007 00c4 00       		.byte	0
+ 1008 00c5 03       		.uleb128 0x3
+ 1009 00c6 0E       		.uleb128 0xe
+ 1010 00c7 3A       		.uleb128 0x3a
+ 1011 00c8 0B       		.uleb128 0xb
+ 1012 00c9 3B       		.uleb128 0x3b
+ 1013 00ca 0B       		.uleb128 0xb
+ 1014 00cb 49       		.uleb128 0x49
+ 1015 00cc 13       		.uleb128 0x13
+ 1016 00cd 02       		.uleb128 0x2
+ 1017 00ce 18       		.uleb128 0x18
+ 1018 00cf 00       		.byte	0
+ 1019 00d0 00       		.byte	0
+ 1020 00d1 0E       		.uleb128 0xe
+ 1021 00d2 2E       		.uleb128 0x2e
+ 1022 00d3 01       		.byte	0x1
+ 1023 00d4 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 26
+
+
+ 1024 00d5 19       		.uleb128 0x19
+ 1025 00d6 03       		.uleb128 0x3
+ 1026 00d7 0E       		.uleb128 0xe
+ 1027 00d8 3A       		.uleb128 0x3a
+ 1028 00d9 0B       		.uleb128 0xb
+ 1029 00da 3B       		.uleb128 0x3b
+ 1030 00db 05       		.uleb128 0x5
+ 1031 00dc 27       		.uleb128 0x27
+ 1032 00dd 19       		.uleb128 0x19
+ 1033 00de 49       		.uleb128 0x49
+ 1034 00df 13       		.uleb128 0x13
+ 1035 00e0 11       		.uleb128 0x11
+ 1036 00e1 01       		.uleb128 0x1
+ 1037 00e2 12       		.uleb128 0x12
+ 1038 00e3 06       		.uleb128 0x6
+ 1039 00e4 40       		.uleb128 0x40
+ 1040 00e5 18       		.uleb128 0x18
+ 1041 00e6 9742     		.uleb128 0x2117
+ 1042 00e8 19       		.uleb128 0x19
+ 1043 00e9 01       		.uleb128 0x1
+ 1044 00ea 13       		.uleb128 0x13
+ 1045 00eb 00       		.byte	0
+ 1046 00ec 00       		.byte	0
+ 1047 00ed 0F       		.uleb128 0xf
+ 1048 00ee 34       		.uleb128 0x34
+ 1049 00ef 00       		.byte	0
+ 1050 00f0 03       		.uleb128 0x3
+ 1051 00f1 0E       		.uleb128 0xe
+ 1052 00f2 3A       		.uleb128 0x3a
+ 1053 00f3 0B       		.uleb128 0xb
+ 1054 00f4 3B       		.uleb128 0x3b
+ 1055 00f5 05       		.uleb128 0x5
+ 1056 00f6 49       		.uleb128 0x49
+ 1057 00f7 13       		.uleb128 0x13
+ 1058 00f8 02       		.uleb128 0x2
+ 1059 00f9 18       		.uleb128 0x18
+ 1060 00fa 00       		.byte	0
+ 1061 00fb 00       		.byte	0
+ 1062 00fc 10       		.uleb128 0x10
+ 1063 00fd 2E       		.uleb128 0x2e
+ 1064 00fe 00       		.byte	0
+ 1065 00ff 3F       		.uleb128 0x3f
+ 1066 0100 19       		.uleb128 0x19
+ 1067 0101 03       		.uleb128 0x3
+ 1068 0102 0E       		.uleb128 0xe
+ 1069 0103 3A       		.uleb128 0x3a
+ 1070 0104 0B       		.uleb128 0xb
+ 1071 0105 3B       		.uleb128 0x3b
+ 1072 0106 05       		.uleb128 0x5
+ 1073 0107 27       		.uleb128 0x27
+ 1074 0108 19       		.uleb128 0x19
+ 1075 0109 11       		.uleb128 0x11
+ 1076 010a 01       		.uleb128 0x1
+ 1077 010b 12       		.uleb128 0x12
+ 1078 010c 06       		.uleb128 0x6
+ 1079 010d 40       		.uleb128 0x40
+ 1080 010e 18       		.uleb128 0x18
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 27
+
+
+ 1081 010f 9742     		.uleb128 0x2117
+ 1082 0111 19       		.uleb128 0x19
+ 1083 0112 00       		.byte	0
+ 1084 0113 00       		.byte	0
+ 1085 0114 11       		.uleb128 0x11
+ 1086 0115 2E       		.uleb128 0x2e
+ 1087 0116 00       		.byte	0
+ 1088 0117 3F       		.uleb128 0x3f
+ 1089 0118 19       		.uleb128 0x19
+ 1090 0119 03       		.uleb128 0x3
+ 1091 011a 0E       		.uleb128 0xe
+ 1092 011b 3A       		.uleb128 0x3a
+ 1093 011c 0B       		.uleb128 0xb
+ 1094 011d 3B       		.uleb128 0x3b
+ 1095 011e 05       		.uleb128 0x5
+ 1096 011f 27       		.uleb128 0x27
+ 1097 0120 19       		.uleb128 0x19
+ 1098 0121 49       		.uleb128 0x49
+ 1099 0122 13       		.uleb128 0x13
+ 1100 0123 11       		.uleb128 0x11
+ 1101 0124 01       		.uleb128 0x1
+ 1102 0125 12       		.uleb128 0x12
+ 1103 0126 06       		.uleb128 0x6
+ 1104 0127 40       		.uleb128 0x40
+ 1105 0128 18       		.uleb128 0x18
+ 1106 0129 9742     		.uleb128 0x2117
+ 1107 012b 19       		.uleb128 0x19
+ 1108 012c 00       		.byte	0
+ 1109 012d 00       		.byte	0
+ 1110 012e 12       		.uleb128 0x12
+ 1111 012f 01       		.uleb128 0x1
+ 1112 0130 01       		.byte	0x1
+ 1113 0131 49       		.uleb128 0x49
+ 1114 0132 13       		.uleb128 0x13
+ 1115 0133 01       		.uleb128 0x1
+ 1116 0134 13       		.uleb128 0x13
+ 1117 0135 00       		.byte	0
+ 1118 0136 00       		.byte	0
+ 1119 0137 13       		.uleb128 0x13
+ 1120 0138 21       		.uleb128 0x21
+ 1121 0139 00       		.byte	0
+ 1122 013a 49       		.uleb128 0x49
+ 1123 013b 13       		.uleb128 0x13
+ 1124 013c 2F       		.uleb128 0x2f
+ 1125 013d 0B       		.uleb128 0xb
+ 1126 013e 00       		.byte	0
+ 1127 013f 00       		.byte	0
+ 1128 0140 14       		.uleb128 0x14
+ 1129 0141 34       		.uleb128 0x34
+ 1130 0142 00       		.byte	0
+ 1131 0143 03       		.uleb128 0x3
+ 1132 0144 0E       		.uleb128 0xe
+ 1133 0145 3A       		.uleb128 0x3a
+ 1134 0146 0B       		.uleb128 0xb
+ 1135 0147 3B       		.uleb128 0x3b
+ 1136 0148 0B       		.uleb128 0xb
+ 1137 0149 49       		.uleb128 0x49
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 28
+
+
+ 1138 014a 13       		.uleb128 0x13
+ 1139 014b 3F       		.uleb128 0x3f
+ 1140 014c 19       		.uleb128 0x19
+ 1141 014d 3C       		.uleb128 0x3c
+ 1142 014e 19       		.uleb128 0x19
+ 1143 014f 00       		.byte	0
+ 1144 0150 00       		.byte	0
+ 1145 0151 00       		.byte	0
+ 1146              		.section	.debug_aranges,"",%progbits
+ 1147 0000 7C000000 		.4byte	0x7c
+ 1148 0004 0200     		.2byte	0x2
+ 1149 0006 00000000 		.4byte	.Ldebug_info0
+ 1150 000a 04       		.byte	0x4
+ 1151 000b 00       		.byte	0
+ 1152 000c 0000     		.2byte	0
+ 1153 000e 0000     		.2byte	0
+ 1154 0010 00000000 		.4byte	.LFB32
+ 1155 0014 24000000 		.4byte	.LFE32-.LFB32
+ 1156 0018 00000000 		.4byte	.LFB33
+ 1157 001c 26000000 		.4byte	.LFE33-.LFB33
+ 1158 0020 00000000 		.4byte	.LFB34
+ 1159 0024 1C000000 		.4byte	.LFE34-.LFB34
+ 1160 0028 00000000 		.4byte	.LFB35
+ 1161 002c 0E000000 		.4byte	.LFE35-.LFB35
+ 1162 0030 00000000 		.4byte	.LFB36
+ 1163 0034 1C000000 		.4byte	.LFE36-.LFB36
+ 1164 0038 00000000 		.4byte	.LFB37
+ 1165 003c 14000000 		.4byte	.LFE37-.LFB37
+ 1166 0040 00000000 		.4byte	.LFB38
+ 1167 0044 50000000 		.4byte	.LFE38-.LFB38
+ 1168 0048 00000000 		.4byte	.LFB39
+ 1169 004c 2C000000 		.4byte	.LFE39-.LFB39
+ 1170 0050 00000000 		.4byte	.LFB40
+ 1171 0054 14000000 		.4byte	.LFE40-.LFB40
+ 1172 0058 00000000 		.4byte	.LFB41
+ 1173 005c 1C000000 		.4byte	.LFE41-.LFB41
+ 1174 0060 00000000 		.4byte	.LFB42
+ 1175 0064 14000000 		.4byte	.LFE42-.LFB42
+ 1176 0068 00000000 		.4byte	.LFB43
+ 1177 006c 14000000 		.4byte	.LFE43-.LFB43
+ 1178 0070 00000000 		.4byte	.LFB44
+ 1179 0074 14000000 		.4byte	.LFE44-.LFB44
+ 1180 0078 00000000 		.4byte	0
+ 1181 007c 00000000 		.4byte	0
+ 1182              		.section	.debug_ranges,"",%progbits
+ 1183              	.Ldebug_ranges0:
+ 1184 0000 00000000 		.4byte	.LFB32
+ 1185 0004 24000000 		.4byte	.LFE32
+ 1186 0008 00000000 		.4byte	.LFB33
+ 1187 000c 26000000 		.4byte	.LFE33
+ 1188 0010 00000000 		.4byte	.LFB34
+ 1189 0014 1C000000 		.4byte	.LFE34
+ 1190 0018 00000000 		.4byte	.LFB35
+ 1191 001c 0E000000 		.4byte	.LFE35
+ 1192 0020 00000000 		.4byte	.LFB36
+ 1193 0024 1C000000 		.4byte	.LFE36
+ 1194 0028 00000000 		.4byte	.LFB37
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 29
+
+
+ 1195 002c 14000000 		.4byte	.LFE37
+ 1196 0030 00000000 		.4byte	.LFB38
+ 1197 0034 50000000 		.4byte	.LFE38
+ 1198 0038 00000000 		.4byte	.LFB39
+ 1199 003c 2C000000 		.4byte	.LFE39
+ 1200 0040 00000000 		.4byte	.LFB40
+ 1201 0044 14000000 		.4byte	.LFE40
+ 1202 0048 00000000 		.4byte	.LFB41
+ 1203 004c 1C000000 		.4byte	.LFE41
+ 1204 0050 00000000 		.4byte	.LFB42
+ 1205 0054 14000000 		.4byte	.LFE42
+ 1206 0058 00000000 		.4byte	.LFB43
+ 1207 005c 14000000 		.4byte	.LFE43
+ 1208 0060 00000000 		.4byte	.LFB44
+ 1209 0064 14000000 		.4byte	.LFE44
+ 1210 0068 00000000 		.4byte	0
+ 1211 006c 00000000 		.4byte	0
+ 1212              		.section	.debug_line,"",%progbits
+ 1213              	.Ldebug_line0:
+ 1214 0000 4A010000 		.section	.debug_str,"MS",%progbits,1
+ 1214      02004D00 
+ 1214      00000201 
+ 1214      FB0E0D00 
+ 1214      01010101 
+ 1215              	.LASF14:
+ 1216 0000 72656733 		.ascii	"reg32\000"
+ 1216      3200
+ 1217              	.LASF31:
+ 1218 0006 4953525F 		.ascii	"ISR_TurnOff_Sink_Disable\000"
+ 1218      5475726E 
+ 1218      4F66665F 
+ 1218      53696E6B 
+ 1218      5F446973 
+ 1219              	.LASF38:
+ 1220 001f 43795261 		.ascii	"CyRamVectors\000"
+ 1220      6D566563 
+ 1220      746F7273 
+ 1220      00
+ 1221              	.LASF3:
+ 1222 002c 73686F72 		.ascii	"short unsigned int\000"
+ 1222      7420756E 
+ 1222      7369676E 
+ 1222      65642069 
+ 1222      6E7400
+ 1223              	.LASF2:
+ 1224 003f 73686F72 		.ascii	"short int\000"
+ 1224      7420696E 
+ 1224      7400
+ 1225              	.LASF33:
+ 1226 0049 4953525F 		.ascii	"ISR_TurnOff_Sink_ClearPending\000"
+ 1226      5475726E 
+ 1226      4F66665F 
+ 1226      53696E6B 
+ 1226      5F436C65 
+ 1227              	.LASF11:
+ 1228 0067 666C6F61 		.ascii	"float\000"
+ 1228      7400
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 30
+
+
+ 1229              	.LASF1:
+ 1230 006d 756E7369 		.ascii	"unsigned char\000"
+ 1230      676E6564 
+ 1230      20636861 
+ 1230      7200
+ 1231              	.LASF26:
+ 1232 007b 696E7465 		.ascii	"interruptState\000"
+ 1232      72727570 
+ 1232      74537461 
+ 1232      746500
+ 1233              	.LASF5:
+ 1234 008a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1234      20756E73 
+ 1234      69676E65 
+ 1234      6420696E 
+ 1234      7400
+ 1235              	.LASF20:
+ 1236 009c 4953525F 		.ascii	"ISR_TurnOff_Sink_Interrupt\000"
+ 1236      5475726E 
+ 1236      4F66665F 
+ 1236      53696E6B 
+ 1236      5F496E74 
+ 1237              	.LASF37:
+ 1238 00b7 4953525F 		.ascii	"ISR_TurnOff_Sink_GetPriority\000"
+ 1238      5475726E 
+ 1238      4F66665F 
+ 1238      53696E6B 
+ 1238      5F476574 
+ 1239              	.LASF34:
+ 1240 00d4 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1240      43313120 
+ 1240      352E342E 
+ 1240      31203230 
+ 1240      31363036 
+ 1241 0107 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1241      20726576 
+ 1241      6973696F 
+ 1241      6E203233 
+ 1241      37373135 
+ 1242 013a 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1242      66756E63 
+ 1242      74696F6E 
+ 1242      2D736563 
+ 1242      74696F6E 
+ 1243              	.LASF25:
+ 1244 0162 7072696F 		.ascii	"priority\000"
+ 1244      72697479 
+ 1244      00
+ 1245              	.LASF12:
+ 1246 016b 646F7562 		.ascii	"double\000"
+ 1246      6C6500
+ 1247              	.LASF19:
+ 1248 0172 4953525F 		.ascii	"ISR_TurnOff_Sink_Stop\000"
+ 1248      5475726E 
+ 1248      4F66665F 
+ 1248      53696E6B 
+ 1248      5F53746F 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 31
+
+
+ 1249              	.LASF10:
+ 1250 0188 75696E74 		.ascii	"uint32\000"
+ 1250      333200
+ 1251              	.LASF18:
+ 1252 018f 4953525F 		.ascii	"ISR_TurnOff_Sink_Start\000"
+ 1252      5475726E 
+ 1252      4F66665F 
+ 1252      53696E6B 
+ 1252      5F537461 
+ 1253              	.LASF8:
+ 1254 01a6 756E7369 		.ascii	"unsigned int\000"
+ 1254      676E6564 
+ 1254      20696E74 
+ 1254      00
+ 1255              	.LASF29:
+ 1256 01b3 4953525F 		.ascii	"ISR_TurnOff_Sink_GetVector\000"
+ 1256      5475726E 
+ 1256      4F66665F 
+ 1256      53696E6B 
+ 1256      5F476574 
+ 1257              	.LASF23:
+ 1258 01ce 61646472 		.ascii	"address\000"
+ 1258      65737300 
+ 1259              	.LASF7:
+ 1260 01d6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1260      206C6F6E 
+ 1260      6720756E 
+ 1260      7369676E 
+ 1260      65642069 
+ 1261              	.LASF15:
+ 1262 01ed 63796973 		.ascii	"cyisraddress\000"
+ 1262      72616464 
+ 1262      72657373 
+ 1262      00
+ 1263              	.LASF30:
+ 1264 01fa 4953525F 		.ascii	"ISR_TurnOff_Sink_GetState\000"
+ 1264      5475726E 
+ 1264      4F66665F 
+ 1264      53696E6B 
+ 1264      5F476574 
+ 1265              	.LASF17:
+ 1266 0214 73697A65 		.ascii	"sizetype\000"
+ 1266      74797065 
+ 1266      00
+ 1267              	.LASF6:
+ 1268 021d 6C6F6E67 		.ascii	"long long int\000"
+ 1268      206C6F6E 
+ 1268      6720696E 
+ 1268      7400
+ 1269              	.LASF13:
+ 1270 022b 63686172 		.ascii	"char\000"
+ 1270      00
+ 1271              	.LASF24:
+ 1272 0230 4953525F 		.ascii	"ISR_TurnOff_Sink_SetPriority\000"
+ 1272      5475726E 
+ 1272      4F66665F 
+ 1272      53696E6B 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 32
+
+
+ 1272      5F536574 
+ 1273              	.LASF9:
+ 1274 024d 75696E74 		.ascii	"uint8\000"
+ 1274      3800
+ 1275              	.LASF28:
+ 1276 0253 4953525F 		.ascii	"ISR_TurnOff_Sink_Enable\000"
+ 1276      5475726E 
+ 1276      4F66665F 
+ 1276      53696E6B 
+ 1276      5F456E61 
+ 1277              	.LASF32:
+ 1278 026b 4953525F 		.ascii	"ISR_TurnOff_Sink_SetPending\000"
+ 1278      5475726E 
+ 1278      4F66665F 
+ 1278      53696E6B 
+ 1278      5F536574 
+ 1279              	.LASF27:
+ 1280 0287 7072696F 		.ascii	"priorityOffset\000"
+ 1280      72697479 
+ 1280      4F666673 
+ 1280      657400
+ 1281              	.LASF4:
+ 1282 0296 6C6F6E67 		.ascii	"long int\000"
+ 1282      20696E74 
+ 1282      00
+ 1283              	.LASF16:
+ 1284 029f 6C6F6E67 		.ascii	"long double\000"
+ 1284      20646F75 
+ 1284      626C6500 
+ 1285              	.LASF21:
+ 1286 02ab 4953525F 		.ascii	"ISR_TurnOff_Sink_StartEx\000"
+ 1286      5475726E 
+ 1286      4F66665F 
+ 1286      53696E6B 
+ 1286      5F537461 
+ 1287              	.LASF0:
+ 1288 02c4 7369676E 		.ascii	"signed char\000"
+ 1288      65642063 
+ 1288      68617200 
+ 1289              	.LASF36:
+ 1290 02d0 433A5C55 		.ascii	"C:\\Users\\Lars\\Documents\\PSoC Creator\\Workspace"
+ 1290      73657273 
+ 1290      5C4C6172 
+ 1290      735C446F 
+ 1290      63756D65 
+ 1291 02fe 30315C50 		.ascii	"01\\PSOC4_ForwardVoltageTSEP.cydsn\000"
+ 1291      534F4334 
+ 1291      5F466F72 
+ 1291      77617264 
+ 1291      566F6C74 
+ 1292              	.LASF22:
+ 1293 0320 4953525F 		.ascii	"ISR_TurnOff_Sink_SetVector\000"
+ 1293      5475726E 
+ 1293      4F66665F 
+ 1293      53696E6B 
+ 1293      5F536574 
+ 1294              	.LASF35:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccGZDN8v.s 			page 33
+
+
+ 1295 033b 47656E65 		.ascii	"Generated_Source\\PSoC4\\ISR_TurnOff_Sink.c\000"
+ 1295      72617465 
+ 1295      645F536F 
+ 1295      75726365 
+ 1295      5C50536F 
+ 1296              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

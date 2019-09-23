@@ -1,0 +1,4 @@
+interface_adc.c:37:13:ADC_initBuffer	24	static
+interface_adc.c:58:6:ADC_initInterface	32	static
+interface_adc.c:115:6:ADC_singleConversion	32	static
+interface_adc.c:156:22:ADC_getState	16	static

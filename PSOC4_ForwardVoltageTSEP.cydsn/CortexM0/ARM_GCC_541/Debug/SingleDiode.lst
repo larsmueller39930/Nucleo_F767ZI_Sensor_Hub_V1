@@ -1,0 +1,1444 @@
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"SingleDiode.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	ADCOffset
+  20              		.bss
+  21              		.align	1
+  22              		.type	ADCOffset, %object
+  23              		.size	ADCOffset, 2
+  24              	ADCOffset:
+  25 0000 0000     		.space	2
+  26              		.section	.text.getSystemOffset,"ax",%progbits
+  27              		.align	2
+  28              		.global	getSystemOffset
+  29              		.code	16
+  30              		.thumb_func
+  31              		.type	getSystemOffset, %function
+  32              	getSystemOffset:
+  33              	.LFB32:
+  34              		.file 1 "SingleDiode.c"
+   1:SingleDiode.c **** /*******************************************************************************
+   2:SingleDiode.c **** * File Name: SingleDiode.c
+   3:SingleDiode.c **** * Version 1.0
+   4:SingleDiode.c **** *
+   5:SingleDiode.c **** * Description:
+   6:SingleDiode.c **** *  This file provides the API source code for single diode temperature measurement. 
+   7:SingleDiode.c **** *
+   8:SingleDiode.c **** * Note: none
+   9:SingleDiode.c **** *
+  10:SingleDiode.c **** ********************************************************************************
+  11:SingleDiode.c **** * Copyright 2008-2013, Cypress Semiconductor Corporation.  All rights reserved.
+  12:SingleDiode.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:SingleDiode.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:SingleDiode.c **** * the software package with which this file was provided.
+  15:SingleDiode.c **** ********************************************************************************/
+  16:SingleDiode.c **** 
+  17:SingleDiode.c **** /* Include all generated header files  */
+  18:SingleDiode.c **** #include <device.h>  
+  19:SingleDiode.c ****  /* Included for using logarithm function */
+  20:SingleDiode.c **** #include <math.h>   
+  21:SingleDiode.c ****  /* Included the single diode header file */
+  22:SingleDiode.c **** #include <SingleDiode.h>
+  23:SingleDiode.c **** 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 2
+
+
+  24:SingleDiode.c **** /* Opamps and ADC offset at delta Vbe measurement */
+  25:SingleDiode.c **** volatile int16 ADCOffset = 0; 
+  26:SingleDiode.c **** extern volatile int32 SPI_Temp_Reg;
+  27:SingleDiode.c **** extern volatile int8 SPI_Status_Reg;
+  28:SingleDiode.c **** 
+  29:SingleDiode.c **** /********************************************************************************** 
+  30:SingleDiode.c **** * Function Name: GetSystemOffset
+  31:SingleDiode.c **** ***********************************************************************************
+  32:SingleDiode.c **** *
+  33:SingleDiode.c **** * Summary:
+  34:SingleDiode.c **** *  Get the total offset caused by opamps and ADC 
+  35:SingleDiode.c **** * Parameters:  
+  36:SingleDiode.c **** * number: the averaging number for noise reduction
+  37:SingleDiode.c **** *
+  38:SingleDiode.c **** * Return: 
+  39:SingleDiode.c **** * offset caused by both ADC and opamps are returned in this fucntion as: "Adc_offset"
+  40:SingleDiode.c **** *************************************************************************************/
+  41:SingleDiode.c **** 
+  42:SingleDiode.c **** int32 getSystemOffset(int8 number)
+  43:SingleDiode.c **** {
+  35              		.loc 1 43 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 16
+  38              		@ frame_needed = 1, uses_anonymous_args = 0
+  39 0000 80B5     		push	{r7, lr}
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 84B0     		sub	sp, sp, #16
+  44              		.cfi_def_cfa_offset 24
+  45 0004 00AF     		add	r7, sp, #0
+  46              		.cfi_def_cfa_register 7
+  47 0006 0200     		movs	r2, r0
+  48 0008 FB1D     		adds	r3, r7, #7
+  49 000a 1A70     		strb	r2, [r3]
+  44:SingleDiode.c **** 	uint8 loop = 0;	
+  50              		.loc 1 44 0
+  51 000c 0F23     		movs	r3, #15
+  52 000e FB18     		adds	r3, r7, r3
+  53 0010 0022     		movs	r2, #0
+  54 0012 1A70     		strb	r2, [r3]
+  45:SingleDiode.c **** 	int32 Offset = 0;
+  55              		.loc 1 45 0
+  56 0014 0023     		movs	r3, #0
+  57 0016 BB60     		str	r3, [r7, #8]
+  46:SingleDiode.c **** 	 /*Set the ADC multiplexer to short OAMPS to get ADC + Amplifier Offset */
+  47:SingleDiode.c **** 	//AMux_High_Select(AMUX_HIGH_OFFSET);	
+  48:SingleDiode.c **** 	//AMux_Low_Select (AMUX_LOW_OFFSET); 
+  49:SingleDiode.c ****     
+  50:SingleDiode.c **** 	/*add some delay to makes sure the last conversion is complete*/
+  51:SingleDiode.c **** 	CyDelayUs(30); 
+  58              		.loc 1 51 0
+  59 0018 1E20     		movs	r0, #30
+  60 001a FFF7FEFF 		bl	CyDelayUs
+  52:SingleDiode.c **** 	/*Clear the bit for that last reading that was started before you turned off the ADC*/
+  53:SingleDiode.c **** 	ADC_SAR_SAR_INTR_REG = ADC_SAR_EOS_MASK; 
+  61              		.loc 1 53 0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 3
+
+
+  62 001e 154B     		ldr	r3, .L5
+  63 0020 0122     		movs	r2, #1
+  64 0022 1A60     		str	r2, [r3]
+  54:SingleDiode.c **** 
+  55:SingleDiode.c **** 	for(loop = 0; loop < number; loop++)
+  65              		.loc 1 55 0
+  66 0024 0F23     		movs	r3, #15
+  67 0026 FB18     		adds	r3, r7, r3
+  68 0028 0022     		movs	r2, #0
+  69 002a 1A70     		strb	r2, [r3]
+  70 002c 15E0     		b	.L2
+  71              	.L3:
+  56:SingleDiode.c ****     {    
+  57:SingleDiode.c ****         ADC_SAR_StartConvert();
+  72              		.loc 1 57 0 discriminator 3
+  73 002e FFF7FEFF 		bl	ADC_SAR_StartConvert
+  58:SingleDiode.c ****         ADC_SAR_IsEndConversion(ADC_SAR_WAIT_FOR_RESULT);
+  74              		.loc 1 58 0 discriminator 3
+  75 0032 0220     		movs	r0, #2
+  76 0034 FFF7FEFF 		bl	ADC_SAR_IsEndConversion
+  59:SingleDiode.c ****         Offset = Offset +  ADC_SAR_GetResult16(0); 
+  77              		.loc 1 59 0 discriminator 3
+  78 0038 0020     		movs	r0, #0
+  79 003a FFF7FEFF 		bl	ADC_SAR_GetResult16
+  80 003e 0300     		movs	r3, r0
+  81 0040 1A00     		movs	r2, r3
+  82 0042 BB68     		ldr	r3, [r7, #8]
+  83 0044 9B18     		adds	r3, r3, r2
+  84 0046 BB60     		str	r3, [r7, #8]
+  60:SingleDiode.c **** 		ADC_SAR_StopConvert();
+  85              		.loc 1 60 0 discriminator 3
+  86 0048 FFF7FEFF 		bl	ADC_SAR_StopConvert
+  55:SingleDiode.c ****     {    
+  87              		.loc 1 55 0 discriminator 3
+  88 004c 0F23     		movs	r3, #15
+  89 004e FB18     		adds	r3, r7, r3
+  90 0050 1A78     		ldrb	r2, [r3]
+  91 0052 0F23     		movs	r3, #15
+  92 0054 FB18     		adds	r3, r7, r3
+  93 0056 0132     		adds	r2, r2, #1
+  94 0058 1A70     		strb	r2, [r3]
+  95              	.L2:
+  55:SingleDiode.c ****     {    
+  96              		.loc 1 55 0 is_stmt 0 discriminator 1
+  97 005a 0F23     		movs	r3, #15
+  98 005c FB18     		adds	r3, r7, r3
+  99 005e 1A78     		ldrb	r2, [r3]
+ 100 0060 FB1D     		adds	r3, r7, #7
+ 101 0062 1B78     		ldrb	r3, [r3]
+ 102 0064 5BB2     		sxtb	r3, r3
+ 103 0066 9A42     		cmp	r2, r3
+ 104 0068 E1DB     		blt	.L3
+  61:SingleDiode.c ****     } 
+  62:SingleDiode.c **** 	
+  63:SingleDiode.c **** 	return (Offset);
+ 105              		.loc 1 63 0 is_stmt 1
+ 106 006a BB68     		ldr	r3, [r7, #8]
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 4
+
+
+  64:SingleDiode.c **** }
+ 107              		.loc 1 64 0
+ 108 006c 1800     		movs	r0, r3
+ 109 006e BD46     		mov	sp, r7
+ 110 0070 04B0     		add	sp, sp, #16
+ 111              		@ sp needed
+ 112 0072 80BD     		pop	{r7, pc}
+ 113              	.L6:
+ 114              		.align	2
+ 115              	.L5:
+ 116 0074 10021A40 		.word	1075446288
+ 117              		.cfi_endproc
+ 118              	.LFE32:
+ 119              		.size	getSystemOffset, .-getSystemOffset
+ 120              		.section	.text.initializeDiodeMeasurement,"ax",%progbits
+ 121              		.align	2
+ 122              		.global	initializeDiodeMeasurement
+ 123              		.code	16
+ 124              		.thumb_func
+ 125              		.type	initializeDiodeMeasurement, %function
+ 126              	initializeDiodeMeasurement:
+ 127              	.LFB33:
+  65:SingleDiode.c **** 
+  66:SingleDiode.c **** 
+  67:SingleDiode.c **** 
+  68:SingleDiode.c **** 
+  69:SingleDiode.c **** /*************************************************************************************** 
+  70:SingleDiode.c **** * Function Name: InitializeDiodeMeasurement
+  71:SingleDiode.c **** ****************************************************************************************
+  72:SingleDiode.c **** *
+  73:SingleDiode.c **** * Summary:
+  74:SingleDiode.c **** *  Initializes the components required for temperature measurement and also
+  75:SingleDiode.c **** *  and finds the system offset  
+  76:SingleDiode.c **** *
+  77:SingleDiode.c **** * Parameters:  
+  78:SingleDiode.c **** *  None
+  79:SingleDiode.c **** *
+  80:SingleDiode.c **** * Return: 
+  81:SingleDiode.c **** *  None
+  82:SingleDiode.c **** *
+  83:SingleDiode.c **** *
+  84:SingleDiode.c **** ******************************************************************************************/
+  85:SingleDiode.c **** void  initializeDiodeMeasurement()
+  86:SingleDiode.c **** {
+ 128              		.loc 1 86 0
+ 129              		.cfi_startproc
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 1, uses_anonymous_args = 0
+ 132 0000 80B5     		push	{r7, lr}
+ 133              		.cfi_def_cfa_offset 8
+ 134              		.cfi_offset 7, -8
+ 135              		.cfi_offset 14, -4
+ 136 0002 00AF     		add	r7, sp, #0
+ 137              		.cfi_def_cfa_register 7
+  87:SingleDiode.c ****     /* Start the components */
+  88:SingleDiode.c ****     ADC_SAR_Start();
+ 138              		.loc 1 88 0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 5
+
+
+ 139 0004 FFF7FEFF 		bl	ADC_SAR_Start
+  89:SingleDiode.c ****     IDAC_Start();
+ 140              		.loc 1 89 0
+ 141 0008 FFF7FEFF 		bl	IDAC_Start
+  90:SingleDiode.c **** 	Opamp_1_Start();
+ 142              		.loc 1 90 0
+ 143 000c FFF7FEFF 		bl	Opamp_1_Start
+  91:SingleDiode.c **** 	Opamp_2_Start();
+ 144              		.loc 1 91 0
+ 145 0010 FFF7FEFF 		bl	Opamp_2_Start
+  92:SingleDiode.c **** 	AMux_High_Start();
+ 146              		.loc 1 92 0
+ 147 0014 FFF7FEFF 		bl	AMux_High_Start
+  93:SingleDiode.c ****     AMux_Low_Start(); 
+ 148              		.loc 1 93 0
+ 149 0018 FFF7FEFF 		bl	AMux_Low_Start
+  94:SingleDiode.c ****     SPIS_Start();
+ 150              		.loc 1 94 0
+ 151 001c FFF7FEFF 		bl	SPIS_Start
+  95:SingleDiode.c **** 	
+  96:SingleDiode.c **** 	/* Initial IDAC Calibration */
+  97:SingleDiode.c ****     ADCOffset = getSystemOffset(NUM_OF_SAMPLES_CALIB);
+ 152              		.loc 1 97 0
+ 153 0020 4020     		movs	r0, #64
+ 154 0022 FFF7FEFF 		bl	getSystemOffset
+ 155 0026 0300     		movs	r3, r0
+ 156 0028 1AB2     		sxth	r2, r3
+ 157 002a 064B     		ldr	r3, .L8
+ 158 002c 1A80     		strh	r2, [r3]
+  98:SingleDiode.c ****    __SPI_SET_STATUS_BIT(STATUS_CALIBRATION_DONE);
+ 159              		.loc 1 98 0
+ 160 002e 064B     		ldr	r3, .L8+4
+ 161 0030 1B78     		ldrb	r3, [r3]
+ 162 0032 5BB2     		sxtb	r3, r3
+ 163 0034 0422     		movs	r2, #4
+ 164 0036 1343     		orrs	r3, r2
+ 165 0038 5AB2     		sxtb	r2, r3
+ 166 003a 034B     		ldr	r3, .L8+4
+ 167 003c 1A70     		strb	r2, [r3]
+  99:SingleDiode.c ****     
+ 100:SingleDiode.c **** }
+ 168              		.loc 1 100 0
+ 169 003e C046     		nop
+ 170 0040 BD46     		mov	sp, r7
+ 171              		@ sp needed
+ 172 0042 80BD     		pop	{r7, pc}
+ 173              	.L9:
+ 174              		.align	2
+ 175              	.L8:
+ 176 0044 00000000 		.word	ADCOffset
+ 177 0048 00000000 		.word	SPI_Status_Reg
+ 178              		.cfi_endproc
+ 179              	.LFE33:
+ 180              		.size	initializeDiodeMeasurement, .-initializeDiodeMeasurement
+ 181              		.global	__aeabi_f2iz
+ 182              		.global	__aeabi_fmul
+ 183              		.section	.text.convertVoltageToTemperature,"ax",%progbits
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 6
+
+
+ 184              		.align	2
+ 185              		.global	convertVoltageToTemperature
+ 186              		.code	16
+ 187              		.thumb_func
+ 188              		.type	convertVoltageToTemperature, %function
+ 189              	convertVoltageToTemperature:
+ 190              	.LFB34:
+ 101:SingleDiode.c **** 
+ 102:SingleDiode.c **** 
+ 103:SingleDiode.c **** /******************************************************************************************* 
+ 104:SingleDiode.c **** * Function Name: convertVoltageToTemperature
+ 105:SingleDiode.c **** ********************************************************************************************
+ 106:SingleDiode.c **** *
+ 107:SingleDiode.c **** * Summary:
+ 108:SingleDiode.c **** *  Converts the voltage measured with the ADC to a corresponding temperature with a lookuptable
+ 109:SingleDiode.c **** *
+ 110:SingleDiode.c **** * Parameters:  
+ 111:SingleDiode.c **** *  float - voltage 
+ 112:SingleDiode.c **** *
+ 113:SingleDiode.c **** * Return: 
+ 114:SingleDiode.c **** *  float - diode temperature
+ 115:SingleDiode.c **** *
+ 116:SingleDiode.c **** *********************************************************************************************/
+ 117:SingleDiode.c **** float convertVoltageToTemperature(float32 voltage)
+ 118:SingleDiode.c **** {
+ 191              		.loc 1 118 0
+ 192              		.cfi_startproc
+ 193              		@ args = 0, pretend = 0, frame = 16
+ 194              		@ frame_needed = 1, uses_anonymous_args = 0
+ 195 0000 90B5     		push	{r4, r7, lr}
+ 196              		.cfi_def_cfa_offset 12
+ 197              		.cfi_offset 4, -12
+ 198              		.cfi_offset 7, -8
+ 199              		.cfi_offset 14, -4
+ 200 0002 85B0     		sub	sp, sp, #20
+ 201              		.cfi_def_cfa_offset 32
+ 202 0004 00AF     		add	r7, sp, #0
+ 203              		.cfi_def_cfa_register 7
+ 204 0006 7860     		str	r0, [r7, #4]
+ 119:SingleDiode.c ****     //TODO: LookupTable Calibrationa
+ 120:SingleDiode.c ****     //TODO: Set the SPI_Temp_Reg
+ 121:SingleDiode.c ****     
+ 122:SingleDiode.c ****     /*store the integer part of the diode temperature*/
+ 123:SingleDiode.c **** 	uint16 intr; 
+ 124:SingleDiode.c ****     uint8 intrHigh;
+ 125:SingleDiode.c ****     uint8 intrLow;
+ 126:SingleDiode.c **** 	/*store the fractional part of the diode temperature*/
+ 127:SingleDiode.c **** 	uint16 frac; 
+ 128:SingleDiode.c ****     uint8 fracHigh;
+ 129:SingleDiode.c ****     uint8 fracLow;
+ 130:SingleDiode.c ****     
+ 131:SingleDiode.c ****     intr = (int16)voltage;
+ 205              		.loc 1 131 0
+ 206 0008 7868     		ldr	r0, [r7, #4]
+ 207 000a FFF7FEFF 		bl	__aeabi_f2iz
+ 208 000e 0300     		movs	r3, r0
+ 209 0010 1AB2     		sxth	r2, r3
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 7
+
+
+ 210 0012 0E23     		movs	r3, #14
+ 211 0014 FB18     		adds	r3, r7, r3
+ 212 0016 1A80     		strh	r2, [r3]
+ 132:SingleDiode.c **** 	frac = (int16)(voltage*1000)-intr*1000;
+ 213              		.loc 1 132 0
+ 214 0018 2249     		ldr	r1, .L12
+ 215 001a 7868     		ldr	r0, [r7, #4]
+ 216 001c FFF7FEFF 		bl	__aeabi_fmul
+ 217 0020 031C     		adds	r3, r0, #0
+ 218 0022 181C     		adds	r0, r3, #0
+ 219 0024 FFF7FEFF 		bl	__aeabi_f2iz
+ 220 0028 0300     		movs	r3, r0
+ 221 002a 1BB2     		sxth	r3, r3
+ 222 002c 99B2     		uxth	r1, r3
+ 223 002e 0E23     		movs	r3, #14
+ 224 0030 FB18     		adds	r3, r7, r3
+ 225 0032 1B88     		ldrh	r3, [r3]
+ 226 0034 1C4A     		ldr	r2, .L12+4
+ 227 0036 5343     		muls	r3, r2
+ 228 0038 9AB2     		uxth	r2, r3
+ 229 003a 0C23     		movs	r3, #12
+ 230 003c FB18     		adds	r3, r7, r3
+ 231 003e 8A18     		adds	r2, r1, r2
+ 232 0040 1A80     		strh	r2, [r3]
+ 133:SingleDiode.c ****     
+ 134:SingleDiode.c ****     intrHigh = ((intr & (0xFF << 8)) >> 8);
+ 233              		.loc 1 134 0
+ 234 0042 0E23     		movs	r3, #14
+ 235 0044 FB18     		adds	r3, r7, r3
+ 236 0046 1B88     		ldrh	r3, [r3]
+ 237 0048 1B0A     		lsrs	r3, r3, #8
+ 238 004a 9AB2     		uxth	r2, r3
+ 239 004c 0B23     		movs	r3, #11
+ 240 004e FB18     		adds	r3, r7, r3
+ 241 0050 1A70     		strb	r2, [r3]
+ 135:SingleDiode.c ****     intrLow = (intr & 0xFF);
+ 242              		.loc 1 135 0
+ 243 0052 0A23     		movs	r3, #10
+ 244 0054 FB18     		adds	r3, r7, r3
+ 245 0056 0E22     		movs	r2, #14
+ 246 0058 BA18     		adds	r2, r7, r2
+ 247 005a 1288     		ldrh	r2, [r2]
+ 248 005c 1A70     		strb	r2, [r3]
+ 136:SingleDiode.c ****     fracHigh = ((frac & (0xFF << 8)) >> 8);
+ 249              		.loc 1 136 0
+ 250 005e 0C23     		movs	r3, #12
+ 251 0060 FB18     		adds	r3, r7, r3
+ 252 0062 1B88     		ldrh	r3, [r3]
+ 253 0064 1B0A     		lsrs	r3, r3, #8
+ 254 0066 9AB2     		uxth	r2, r3
+ 255 0068 0923     		movs	r3, #9
+ 256 006a FB18     		adds	r3, r7, r3
+ 257 006c 1A70     		strb	r2, [r3]
+ 137:SingleDiode.c ****     fracLow = (frac & 0xFF);
+ 258              		.loc 1 137 0
+ 259 006e 0823     		movs	r3, #8
+ 260 0070 FB18     		adds	r3, r7, r3
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 8
+
+
+ 261 0072 0C22     		movs	r2, #12
+ 262 0074 BA18     		adds	r2, r7, r2
+ 263 0076 1288     		ldrh	r2, [r2]
+ 264 0078 1A70     		strb	r2, [r3]
+ 138:SingleDiode.c ****     
+ 139:SingleDiode.c ****     setSPITempReg(intrHigh, intrLow, fracHigh, fracLow);
+ 265              		.loc 1 139 0
+ 266 007a 0823     		movs	r3, #8
+ 267 007c FB18     		adds	r3, r7, r3
+ 268 007e 1C78     		ldrb	r4, [r3]
+ 269 0080 0923     		movs	r3, #9
+ 270 0082 FB18     		adds	r3, r7, r3
+ 271 0084 1A78     		ldrb	r2, [r3]
+ 272 0086 0A23     		movs	r3, #10
+ 273 0088 FB18     		adds	r3, r7, r3
+ 274 008a 1978     		ldrb	r1, [r3]
+ 275 008c 0B23     		movs	r3, #11
+ 276 008e FB18     		adds	r3, r7, r3
+ 277 0090 1878     		ldrb	r0, [r3]
+ 278 0092 2300     		movs	r3, r4
+ 279 0094 FFF7FEFF 		bl	setSPITempReg
+ 140:SingleDiode.c ****     
+ 141:SingleDiode.c ****     return voltage; //No Conversion so far
+ 280              		.loc 1 141 0
+ 281 0098 7B68     		ldr	r3, [r7, #4]
+ 142:SingleDiode.c **** }
+ 282              		.loc 1 142 0
+ 283 009a 181C     		adds	r0, r3, #0
+ 284 009c BD46     		mov	sp, r7
+ 285 009e 05B0     		add	sp, sp, #20
+ 286              		@ sp needed
+ 287 00a0 90BD     		pop	{r4, r7, pc}
+ 288              	.L13:
+ 289 00a2 C046     		.align	2
+ 290              	.L12:
+ 291 00a4 00007A44 		.word	1148846080
+ 292 00a8 18FCFFFF 		.word	-1000
+ 293              		.cfi_endproc
+ 294              	.LFE34:
+ 295              		.size	convertVoltageToTemperature, .-convertVoltageToTemperature
+ 296              		.global	__aeabi_i2f
+ 297              		.global	__aeabi_fdiv
+ 298              		.section	.text.getDiodeTemperature,"ax",%progbits
+ 299              		.align	2
+ 300              		.global	getDiodeTemperature
+ 301              		.code	16
+ 302              		.thumb_func
+ 303              		.type	getDiodeTemperature, %function
+ 304              	getDiodeTemperature:
+ 305              	.LFB35:
+ 143:SingleDiode.c **** 
+ 144:SingleDiode.c **** 
+ 145:SingleDiode.c **** 
+ 146:SingleDiode.c **** 
+ 147:SingleDiode.c **** /******************************************************************************************* 
+ 148:SingleDiode.c **** * Function Name: GetDiodeTemperature
+ 149:SingleDiode.c **** ********************************************************************************************
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 9
+
+
+ 150:SingleDiode.c **** *
+ 151:SingleDiode.c **** * Summary:
+ 152:SingleDiode.c **** *  Returns the temperature of the transistor diode and the Vbe voltage measured
+ 153:SingleDiode.c **** *
+ 154:SingleDiode.c **** * Parameters:  
+ 155:SingleDiode.c **** *  None
+ 156:SingleDiode.c **** *
+ 157:SingleDiode.c **** * Return: 
+ 158:SingleDiode.c **** *  float - diode temperature
+ 159:SingleDiode.c **** *
+ 160:SingleDiode.c **** *********************************************************************************************/
+ 161:SingleDiode.c **** float getDiodeTemperature(uint8 chan)
+ 162:SingleDiode.c **** {
+ 306              		.loc 1 162 0
+ 307              		.cfi_startproc
+ 308              		@ args = 0, pretend = 0, frame = 24
+ 309              		@ frame_needed = 1, uses_anonymous_args = 0
+ 310 0000 80B5     		push	{r7, lr}
+ 311              		.cfi_def_cfa_offset 8
+ 312              		.cfi_offset 7, -8
+ 313              		.cfi_offset 14, -4
+ 314 0002 86B0     		sub	sp, sp, #24
+ 315              		.cfi_def_cfa_offset 32
+ 316 0004 00AF     		add	r7, sp, #0
+ 317              		.cfi_def_cfa_register 7
+ 318 0006 0200     		movs	r2, r0
+ 319 0008 FB1D     		adds	r3, r7, #7
+ 320 000a 1A70     		strb	r2, [r3]
+ 163:SingleDiode.c ****     uint8 loop;
+ 164:SingleDiode.c ****     int32 Vf_SUM = 0;
+ 321              		.loc 1 164 0
+ 322 000c 0023     		movs	r3, #0
+ 323 000e 3B61     		str	r3, [r7, #16]
+ 165:SingleDiode.c ****     float32 Vf_Single;
+ 166:SingleDiode.c ****     float32 diode_temperature;
+ 167:SingleDiode.c **** 
+ 168:SingleDiode.c ****   
+ 169:SingleDiode.c ****     /*Set the ADC multiplexer to measure Voltage over Body Diode*/
+ 170:SingleDiode.c ****     AMux_High_Select (AMUX_HIGH_DIODE);
+ 324              		.loc 1 170 0
+ 325 0010 0120     		movs	r0, #1
+ 326 0012 FFF7FEFF 		bl	AMux_High_Select
+ 171:SingleDiode.c ****     AMux_Low_Select (AMUX_LOW_DIODE);
+ 327              		.loc 1 171 0
+ 328 0016 0120     		movs	r0, #1
+ 329 0018 FFF7FEFF 		bl	AMux_Low_Select
+ 172:SingleDiode.c ****     
+ 173:SingleDiode.c ****     /*Set the current multiplexer to measure Mosfet 1 of DUT*/
+ 174:SingleDiode.c **** 	setMultiplexerChan(chan);
+ 330              		.loc 1 174 0
+ 331 001c FB1D     		adds	r3, r7, #7
+ 332 001e 1B78     		ldrb	r3, [r3]
+ 333 0020 1800     		movs	r0, r3
+ 334 0022 FFF7FEFF 		bl	setMultiplexerChan
+ 175:SingleDiode.c ****     turnOnSink();
+ 335              		.loc 1 175 0
+ 336 0026 FFF7FEFF 		bl	turnOnSink
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 10
+
+
+ 176:SingleDiode.c ****     __SPI_SET_STATUS_BIT(STATUS_CURRENT_SOURCE_ON);
+ 337              		.loc 1 176 0
+ 338 002a 2E4B     		ldr	r3, .L18
+ 339 002c 1B78     		ldrb	r3, [r3]
+ 340 002e 5BB2     		sxtb	r3, r3
+ 341 0030 0222     		movs	r2, #2
+ 342 0032 1343     		orrs	r3, r2
+ 343 0034 5AB2     		sxtb	r2, r3
+ 344 0036 2B4B     		ldr	r3, .L18
+ 345 0038 1A70     		strb	r2, [r3]
+ 177:SingleDiode.c **** 	/*add some delay to makes sure the diode voltage is stable*/
+ 178:SingleDiode.c **** 	CyDelayUs(100); 
+ 346              		.loc 1 178 0
+ 347 003a 6420     		movs	r0, #100
+ 348 003c FFF7FEFF 		bl	CyDelayUs
+ 179:SingleDiode.c **** 	/*Clear the bit for that last reading that was started before you turned off the ADC*/
+ 180:SingleDiode.c **** 	ADC_SAR_SAR_INTR_REG = ADC_SAR_EOS_MASK; 
+ 349              		.loc 1 180 0
+ 350 0040 294B     		ldr	r3, .L18+4
+ 351 0042 0122     		movs	r2, #1
+ 352 0044 1A60     		str	r2, [r3]
+ 181:SingleDiode.c **** 
+ 182:SingleDiode.c **** 	/* Measure delta Vbe at I2. Software loop to reduce noise in measurement */
+ 183:SingleDiode.c ****     for(loop = 0; loop < NUM_OF_SAMPLES_VF; loop++)
+ 353              		.loc 1 183 0
+ 354 0046 1723     		movs	r3, #23
+ 355 0048 FB18     		adds	r3, r7, r3
+ 356 004a 0022     		movs	r2, #0
+ 357 004c 1A70     		strb	r2, [r3]
+ 358 004e 15E0     		b	.L15
+ 359              	.L16:
+ 184:SingleDiode.c ****     {
+ 185:SingleDiode.c ****         ADC_SAR_StartConvert();
+ 360              		.loc 1 185 0 discriminator 3
+ 361 0050 FFF7FEFF 		bl	ADC_SAR_StartConvert
+ 186:SingleDiode.c ****         ADC_SAR_IsEndConversion(ADC_SAR_WAIT_FOR_RESULT); 
+ 362              		.loc 1 186 0 discriminator 3
+ 363 0054 0220     		movs	r0, #2
+ 364 0056 FFF7FEFF 		bl	ADC_SAR_IsEndConversion
+ 187:SingleDiode.c ****         Vf_SUM = Vf_SUM +  ADC_SAR_GetResult16(0);
+ 365              		.loc 1 187 0 discriminator 3
+ 366 005a 0020     		movs	r0, #0
+ 367 005c FFF7FEFF 		bl	ADC_SAR_GetResult16
+ 368 0060 0300     		movs	r3, r0
+ 369 0062 1A00     		movs	r2, r3
+ 370 0064 3B69     		ldr	r3, [r7, #16]
+ 371 0066 9B18     		adds	r3, r3, r2
+ 372 0068 3B61     		str	r3, [r7, #16]
+ 188:SingleDiode.c **** 		ADC_SAR_StopConvert();
+ 373              		.loc 1 188 0 discriminator 3
+ 374 006a FFF7FEFF 		bl	ADC_SAR_StopConvert
+ 183:SingleDiode.c ****     {
+ 375              		.loc 1 183 0 discriminator 3
+ 376 006e 1723     		movs	r3, #23
+ 377 0070 FB18     		adds	r3, r7, r3
+ 378 0072 1A78     		ldrb	r2, [r3]
+ 379 0074 1723     		movs	r3, #23
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 11
+
+
+ 380 0076 FB18     		adds	r3, r7, r3
+ 381 0078 0132     		adds	r2, r2, #1
+ 382 007a 1A70     		strb	r2, [r3]
+ 383              	.L15:
+ 183:SingleDiode.c ****     {
+ 384              		.loc 1 183 0 is_stmt 0 discriminator 1
+ 385 007c 1723     		movs	r3, #23
+ 386 007e FB18     		adds	r3, r7, r3
+ 387 0080 1B78     		ldrb	r3, [r3]
+ 388 0082 3F2B     		cmp	r3, #63
+ 389 0084 E4D9     		bls	.L16
+ 189:SingleDiode.c **** 	}
+ 190:SingleDiode.c **** 	/*Get the delta Vbe after offset calibration*/
+ 191:SingleDiode.c **** 	Vf_SUM = Vf_SUM  - ADCOffset;
+ 390              		.loc 1 191 0 is_stmt 1
+ 391 0086 194B     		ldr	r3, .L18+8
+ 392 0088 1B88     		ldrh	r3, [r3]
+ 393 008a 1BB2     		sxth	r3, r3
+ 394 008c 1A00     		movs	r2, r3
+ 395 008e 3B69     		ldr	r3, [r7, #16]
+ 396 0090 9B1A     		subs	r3, r3, r2
+ 397 0092 3B61     		str	r3, [r7, #16]
+ 192:SingleDiode.c **** 
+ 193:SingleDiode.c **** 	turnOffSink();
+ 398              		.loc 1 193 0
+ 399 0094 FFF7FEFF 		bl	turnOffSink
+ 194:SingleDiode.c ****     __SPI_CLEAR_STATUS_BIT(STATUS_CURRENT_SOURCE_ON);
+ 400              		.loc 1 194 0
+ 401 0098 124B     		ldr	r3, .L18
+ 402 009a 1B78     		ldrb	r3, [r3]
+ 403 009c 5BB2     		sxtb	r3, r3
+ 404 009e 0222     		movs	r2, #2
+ 405 00a0 9343     		bics	r3, r2
+ 406 00a2 5AB2     		sxtb	r2, r3
+ 407 00a4 0F4B     		ldr	r3, .L18
+ 408 00a6 1A70     		strb	r2, [r3]
+ 195:SingleDiode.c ****     
+ 196:SingleDiode.c **** 	/* Take the different in Vbe and average it per the software loop cycles above */
+ 197:SingleDiode.c ****     Vf_Single = ((float32)(Vf_SUM)) / ((float32)(NUM_OF_SAMPLES_VF));
+ 409              		.loc 1 197 0
+ 410 00a8 3869     		ldr	r0, [r7, #16]
+ 411 00aa FFF7FEFF 		bl	__aeabi_i2f
+ 412 00ae 031C     		adds	r3, r0, #0
+ 413 00b0 8521     		movs	r1, #133
+ 414 00b2 C905     		lsls	r1, r1, #23
+ 415 00b4 181C     		adds	r0, r3, #0
+ 416 00b6 FFF7FEFF 		bl	__aeabi_fdiv
+ 417 00ba 031C     		adds	r3, r0, #0
+ 418 00bc FB60     		str	r3, [r7, #12]
+ 198:SingleDiode.c **** 	
+ 199:SingleDiode.c **** 	/* Temperature in degree Centigrade */
+ 200:SingleDiode.c **** 	diode_temperature = convertVoltageToTemperature(Vf_Single);
+ 419              		.loc 1 200 0
+ 420 00be FB68     		ldr	r3, [r7, #12]
+ 421 00c0 181C     		adds	r0, r3, #0
+ 422 00c2 FFF7FEFF 		bl	convertVoltageToTemperature
+ 423 00c6 031C     		adds	r3, r0, #0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 12
+
+
+ 424 00c8 BB60     		str	r3, [r7, #8]
+ 201:SingleDiode.c ****     __SPI_SET_STATUS_BIT(STATUS_CONVERSION_DONE);
+ 425              		.loc 1 201 0
+ 426 00ca 064B     		ldr	r3, .L18
+ 427 00cc 1B78     		ldrb	r3, [r3]
+ 428 00ce 5BB2     		sxtb	r3, r3
+ 429 00d0 0122     		movs	r2, #1
+ 430 00d2 1343     		orrs	r3, r2
+ 431 00d4 5AB2     		sxtb	r2, r3
+ 432 00d6 034B     		ldr	r3, .L18
+ 433 00d8 1A70     		strb	r2, [r3]
+ 202:SingleDiode.c **** 	return(diode_temperature);
+ 434              		.loc 1 202 0
+ 435 00da BB68     		ldr	r3, [r7, #8]
+ 203:SingleDiode.c **** }
+ 436              		.loc 1 203 0
+ 437 00dc 181C     		adds	r0, r3, #0
+ 438 00de BD46     		mov	sp, r7
+ 439 00e0 06B0     		add	sp, sp, #24
+ 440              		@ sp needed
+ 441 00e2 80BD     		pop	{r7, pc}
+ 442              	.L19:
+ 443              		.align	2
+ 444              	.L18:
+ 445 00e4 00000000 		.word	SPI_Status_Reg
+ 446 00e8 10021A40 		.word	1075446288
+ 447 00ec 00000000 		.word	ADCOffset
+ 448              		.cfi_endproc
+ 449              	.LFE35:
+ 450              		.size	getDiodeTemperature, .-getDiodeTemperature
+ 451              		.text
+ 452              	.Letext0:
+ 453              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 454              		.section	.debug_info,"",%progbits
+ 455              	.Ldebug_info0:
+ 456 0000 47020000 		.4byte	0x247
+ 457 0004 0400     		.2byte	0x4
+ 458 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 459 000a 04       		.byte	0x4
+ 460 000b 01       		.uleb128 0x1
+ 461 000c F4000000 		.4byte	.LASF41
+ 462 0010 0C       		.byte	0xc
+ 463 0011 90010000 		.4byte	.LASF42
+ 464 0015 51000000 		.4byte	.LASF43
+ 465 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 466 001d 00000000 		.4byte	0
+ 467 0021 00000000 		.4byte	.Ldebug_line0
+ 468 0025 02       		.uleb128 0x2
+ 469 0026 01       		.byte	0x1
+ 470 0027 06       		.byte	0x6
+ 471 0028 89020000 		.4byte	.LASF0
+ 472 002c 02       		.uleb128 0x2
+ 473 002d 01       		.byte	0x1
+ 474 002e 08       		.byte	0x8
+ 475 002f 82010000 		.4byte	.LASF1
+ 476 0033 02       		.uleb128 0x2
+ 477 0034 02       		.byte	0x2
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 13
+
+
+ 478 0035 05       		.byte	0x5
+ 479 0036 54020000 		.4byte	.LASF2
+ 480 003a 02       		.uleb128 0x2
+ 481 003b 02       		.byte	0x2
+ 482 003c 07       		.byte	0x7
+ 483 003d 3E000000 		.4byte	.LASF3
+ 484 0041 02       		.uleb128 0x2
+ 485 0042 04       		.byte	0x4
+ 486 0043 05       		.byte	0x5
+ 487 0044 35000000 		.4byte	.LASF4
+ 488 0048 02       		.uleb128 0x2
+ 489 0049 04       		.byte	0x4
+ 490 004a 07       		.byte	0x7
+ 491 004b D4000000 		.4byte	.LASF5
+ 492 004f 02       		.uleb128 0x2
+ 493 0050 08       		.byte	0x8
+ 494 0051 05       		.byte	0x5
+ 495 0052 39020000 		.4byte	.LASF6
+ 496 0056 02       		.uleb128 0x2
+ 497 0057 08       		.byte	0x8
+ 498 0058 07       		.byte	0x7
+ 499 0059 E4010000 		.4byte	.LASF7
+ 500 005d 03       		.uleb128 0x3
+ 501 005e 04       		.byte	0x4
+ 502 005f 05       		.byte	0x5
+ 503 0060 696E7400 		.ascii	"int\000"
+ 504 0064 02       		.uleb128 0x2
+ 505 0065 04       		.byte	0x4
+ 506 0066 07       		.byte	0x7
+ 507 0067 D2010000 		.4byte	.LASF8
+ 508 006b 04       		.uleb128 0x4
+ 509 006c 5E020000 		.4byte	.LASF9
+ 510 0070 02       		.byte	0x2
+ 511 0071 E401     		.2byte	0x1e4
+ 512 0073 2C000000 		.4byte	0x2c
+ 513 0077 04       		.uleb128 0x4
+ 514 0078 A5010000 		.4byte	.LASF10
+ 515 007c 02       		.byte	0x2
+ 516 007d E501     		.2byte	0x1e5
+ 517 007f 3A000000 		.4byte	0x3a
+ 518 0083 04       		.uleb128 0x4
+ 519 0084 B1010000 		.4byte	.LASF11
+ 520 0088 02       		.byte	0x2
+ 521 0089 E601     		.2byte	0x1e6
+ 522 008b 48000000 		.4byte	0x48
+ 523 008f 04       		.uleb128 0x4
+ 524 0090 AC010000 		.4byte	.LASF12
+ 525 0094 02       		.byte	0x2
+ 526 0095 E701     		.2byte	0x1e7
+ 527 0097 25000000 		.4byte	0x25
+ 528 009b 04       		.uleb128 0x4
+ 529 009c CE000000 		.4byte	.LASF13
+ 530 00a0 02       		.byte	0x2
+ 531 00a1 E801     		.2byte	0x1e8
+ 532 00a3 33000000 		.4byte	0x33
+ 533 00a7 04       		.uleb128 0x4
+ 534 00a8 E6000000 		.4byte	.LASF14
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 14
+
+
+ 535 00ac 02       		.byte	0x2
+ 536 00ad E901     		.2byte	0x1e9
+ 537 00af 41000000 		.4byte	0x41
+ 538 00b3 04       		.uleb128 0x4
+ 539 00b4 6B020000 		.4byte	.LASF15
+ 540 00b8 02       		.byte	0x2
+ 541 00b9 EA01     		.2byte	0x1ea
+ 542 00bb BF000000 		.4byte	0xbf
+ 543 00bf 02       		.uleb128 0x2
+ 544 00c0 04       		.byte	0x4
+ 545 00c1 04       		.byte	0x4
+ 546 00c2 97000000 		.4byte	.LASF16
+ 547 00c6 02       		.uleb128 0x2
+ 548 00c7 08       		.byte	0x8
+ 549 00c8 04       		.byte	0x4
+ 550 00c9 9E010000 		.4byte	.LASF17
+ 551 00cd 02       		.uleb128 0x2
+ 552 00ce 01       		.byte	0x1
+ 553 00cf 08       		.byte	0x8
+ 554 00d0 4F020000 		.4byte	.LASF18
+ 555 00d4 04       		.uleb128 0x4
+ 556 00d5 1B000000 		.4byte	.LASF19
+ 557 00d9 02       		.byte	0x2
+ 558 00da 9002     		.2byte	0x290
+ 559 00dc E0000000 		.4byte	0xe0
+ 560 00e0 05       		.uleb128 0x5
+ 561 00e1 83000000 		.4byte	0x83
+ 562 00e5 02       		.uleb128 0x2
+ 563 00e6 08       		.byte	0x8
+ 564 00e7 04       		.byte	0x4
+ 565 00e8 7D020000 		.4byte	.LASF20
+ 566 00ec 02       		.uleb128 0x2
+ 567 00ed 04       		.byte	0x4
+ 568 00ee 07       		.byte	0x7
+ 569 00ef 27020000 		.4byte	.LASF21
+ 570 00f3 06       		.uleb128 0x6
+ 571 00f4 BE000000 		.4byte	.LASF24
+ 572 00f8 01       		.byte	0x1
+ 573 00f9 2A       		.byte	0x2a
+ 574 00fa A7000000 		.4byte	0xa7
+ 575 00fe 00000000 		.4byte	.LFB32
+ 576 0102 78000000 		.4byte	.LFE32-.LFB32
+ 577 0106 01       		.uleb128 0x1
+ 578 0107 9C       		.byte	0x9c
+ 579 0108 37010000 		.4byte	0x137
+ 580 010c 07       		.uleb128 0x7
+ 581 010d 1B020000 		.4byte	.LASF26
+ 582 0111 01       		.byte	0x1
+ 583 0112 2A       		.byte	0x2a
+ 584 0113 8F000000 		.4byte	0x8f
+ 585 0117 02       		.uleb128 0x2
+ 586 0118 91       		.byte	0x91
+ 587 0119 6F       		.sleb128 -17
+ 588 011a 08       		.uleb128 0x8
+ 589 011b B9000000 		.4byte	.LASF22
+ 590 011f 01       		.byte	0x1
+ 591 0120 2C       		.byte	0x2c
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 15
+
+
+ 592 0121 6B000000 		.4byte	0x6b
+ 593 0125 02       		.uleb128 0x2
+ 594 0126 91       		.byte	0x91
+ 595 0127 77       		.sleb128 -9
+ 596 0128 08       		.uleb128 0x8
+ 597 0129 64020000 		.4byte	.LASF23
+ 598 012d 01       		.byte	0x1
+ 599 012e 2D       		.byte	0x2d
+ 600 012f A7000000 		.4byte	0xa7
+ 601 0133 02       		.uleb128 0x2
+ 602 0134 91       		.byte	0x91
+ 603 0135 70       		.sleb128 -16
+ 604 0136 00       		.byte	0
+ 605 0137 09       		.uleb128 0x9
+ 606 0138 00000000 		.4byte	.LASF44
+ 607 013c 01       		.byte	0x1
+ 608 013d 55       		.byte	0x55
+ 609 013e 00000000 		.4byte	.LFB33
+ 610 0142 4C000000 		.4byte	.LFE33-.LFB33
+ 611 0146 01       		.uleb128 0x1
+ 612 0147 9C       		.byte	0x9c
+ 613 0148 06       		.uleb128 0x6
+ 614 0149 9D000000 		.4byte	.LASF25
+ 615 014d 01       		.byte	0x1
+ 616 014e 75       		.byte	0x75
+ 617 014f BF000000 		.4byte	0xbf
+ 618 0153 00000000 		.4byte	.LFB34
+ 619 0157 AC000000 		.4byte	.LFE34-.LFB34
+ 620 015b 01       		.uleb128 0x1
+ 621 015c 9C       		.byte	0x9c
+ 622 015d C4010000 		.4byte	0x1c4
+ 623 0161 07       		.uleb128 0x7
+ 624 0162 EC000000 		.4byte	.LASF27
+ 625 0166 01       		.byte	0x1
+ 626 0167 75       		.byte	0x75
+ 627 0168 B3000000 		.4byte	0xb3
+ 628 016c 02       		.uleb128 0x2
+ 629 016d 91       		.byte	0x91
+ 630 016e 64       		.sleb128 -28
+ 631 016f 08       		.uleb128 0x8
+ 632 0170 9E020000 		.4byte	.LASF28
+ 633 0174 01       		.byte	0x1
+ 634 0175 7B       		.byte	0x7b
+ 635 0176 77000000 		.4byte	0x77
+ 636 017a 02       		.uleb128 0x2
+ 637 017b 91       		.byte	0x91
+ 638 017c 6E       		.sleb128 -18
+ 639 017d 08       		.uleb128 0x8
+ 640 017e 30020000 		.4byte	.LASF29
+ 641 0182 01       		.byte	0x1
+ 642 0183 7C       		.byte	0x7c
+ 643 0184 6B000000 		.4byte	0x6b
+ 644 0188 02       		.uleb128 0x2
+ 645 0189 91       		.byte	0x91
+ 646 018a 6B       		.sleb128 -21
+ 647 018b 08       		.uleb128 0x8
+ 648 018c CA010000 		.4byte	.LASF30
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 16
+
+
+ 649 0190 01       		.byte	0x1
+ 650 0191 7D       		.byte	0x7d
+ 651 0192 6B000000 		.4byte	0x6b
+ 652 0196 02       		.uleb128 0x2
+ 653 0197 91       		.byte	0x91
+ 654 0198 6A       		.sleb128 -22
+ 655 0199 08       		.uleb128 0x8
+ 656 019a DF010000 		.4byte	.LASF31
+ 657 019e 01       		.byte	0x1
+ 658 019f 7F       		.byte	0x7f
+ 659 01a0 77000000 		.4byte	0x77
+ 660 01a4 02       		.uleb128 0x2
+ 661 01a5 91       		.byte	0x91
+ 662 01a6 6C       		.sleb128 -20
+ 663 01a7 08       		.uleb128 0x8
+ 664 01a8 95020000 		.4byte	.LASF32
+ 665 01ac 01       		.byte	0x1
+ 666 01ad 80       		.byte	0x80
+ 667 01ae 6B000000 		.4byte	0x6b
+ 668 01b2 02       		.uleb128 0x2
+ 669 01b3 91       		.byte	0x91
+ 670 01b4 69       		.sleb128 -23
+ 671 01b5 08       		.uleb128 0x8
+ 672 01b6 47020000 		.4byte	.LASF33
+ 673 01ba 01       		.byte	0x1
+ 674 01bb 81       		.byte	0x81
+ 675 01bc 6B000000 		.4byte	0x6b
+ 676 01c0 02       		.uleb128 0x2
+ 677 01c1 91       		.byte	0x91
+ 678 01c2 68       		.sleb128 -24
+ 679 01c3 00       		.byte	0
+ 680 01c4 06       		.uleb128 0x6
+ 681 01c5 21000000 		.4byte	.LASF34
+ 682 01c9 01       		.byte	0x1
+ 683 01ca A1       		.byte	0xa1
+ 684 01cb BF000000 		.4byte	0xbf
+ 685 01cf 00000000 		.4byte	.LFB35
+ 686 01d3 F0000000 		.4byte	.LFE35-.LFB35
+ 687 01d7 01       		.uleb128 0x1
+ 688 01d8 9C       		.byte	0x9c
+ 689 01d9 24020000 		.4byte	0x224
+ 690 01dd 07       		.uleb128 0x7
+ 691 01de 22020000 		.4byte	.LASF35
+ 692 01e2 01       		.byte	0x1
+ 693 01e3 A1       		.byte	0xa1
+ 694 01e4 6B000000 		.4byte	0x6b
+ 695 01e8 02       		.uleb128 0x2
+ 696 01e9 91       		.byte	0x91
+ 697 01ea 67       		.sleb128 -25
+ 698 01eb 08       		.uleb128 0x8
+ 699 01ec B9000000 		.4byte	.LASF22
+ 700 01f0 01       		.byte	0x1
+ 701 01f1 A3       		.byte	0xa3
+ 702 01f2 6B000000 		.4byte	0x6b
+ 703 01f6 02       		.uleb128 0x2
+ 704 01f7 91       		.byte	0x91
+ 705 01f8 77       		.sleb128 -9
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 17
+
+
+ 706 01f9 08       		.uleb128 0x8
+ 707 01fa FB010000 		.4byte	.LASF36
+ 708 01fe 01       		.byte	0x1
+ 709 01ff A4       		.byte	0xa4
+ 710 0200 A7000000 		.4byte	0xa7
+ 711 0204 02       		.uleb128 0x2
+ 712 0205 91       		.byte	0x91
+ 713 0206 70       		.sleb128 -16
+ 714 0207 08       		.uleb128 0x8
+ 715 0208 73020000 		.4byte	.LASF37
+ 716 020c 01       		.byte	0x1
+ 717 020d A5       		.byte	0xa5
+ 718 020e B3000000 		.4byte	0xb3
+ 719 0212 02       		.uleb128 0x2
+ 720 0213 91       		.byte	0x91
+ 721 0214 6C       		.sleb128 -20
+ 722 0215 08       		.uleb128 0x8
+ 723 0216 B8010000 		.4byte	.LASF38
+ 724 021a 01       		.byte	0x1
+ 725 021b A6       		.byte	0xa6
+ 726 021c B3000000 		.4byte	0xb3
+ 727 0220 02       		.uleb128 0x2
+ 728 0221 91       		.byte	0x91
+ 729 0222 68       		.sleb128 -24
+ 730 0223 00       		.byte	0
+ 731 0224 0A       		.uleb128 0xa
+ 732 0225 11020000 		.4byte	.LASF39
+ 733 0229 01       		.byte	0x1
+ 734 022a 19       		.byte	0x19
+ 735 022b 35020000 		.4byte	0x235
+ 736 022f 05       		.uleb128 0x5
+ 737 0230 03       		.byte	0x3
+ 738 0231 00000000 		.4byte	ADCOffset
+ 739 0235 05       		.uleb128 0x5
+ 740 0236 9B000000 		.4byte	0x9b
+ 741 023a 0B       		.uleb128 0xb
+ 742 023b 02020000 		.4byte	.LASF40
+ 743 023f 01       		.byte	0x1
+ 744 0240 1B       		.byte	0x1b
+ 745 0241 45020000 		.4byte	0x245
+ 746 0245 05       		.uleb128 0x5
+ 747 0246 8F000000 		.4byte	0x8f
+ 748 024a 00       		.byte	0
+ 749              		.section	.debug_abbrev,"",%progbits
+ 750              	.Ldebug_abbrev0:
+ 751 0000 01       		.uleb128 0x1
+ 752 0001 11       		.uleb128 0x11
+ 753 0002 01       		.byte	0x1
+ 754 0003 25       		.uleb128 0x25
+ 755 0004 0E       		.uleb128 0xe
+ 756 0005 13       		.uleb128 0x13
+ 757 0006 0B       		.uleb128 0xb
+ 758 0007 03       		.uleb128 0x3
+ 759 0008 0E       		.uleb128 0xe
+ 760 0009 1B       		.uleb128 0x1b
+ 761 000a 0E       		.uleb128 0xe
+ 762 000b 55       		.uleb128 0x55
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 18
+
+
+ 763 000c 17       		.uleb128 0x17
+ 764 000d 11       		.uleb128 0x11
+ 765 000e 01       		.uleb128 0x1
+ 766 000f 10       		.uleb128 0x10
+ 767 0010 17       		.uleb128 0x17
+ 768 0011 00       		.byte	0
+ 769 0012 00       		.byte	0
+ 770 0013 02       		.uleb128 0x2
+ 771 0014 24       		.uleb128 0x24
+ 772 0015 00       		.byte	0
+ 773 0016 0B       		.uleb128 0xb
+ 774 0017 0B       		.uleb128 0xb
+ 775 0018 3E       		.uleb128 0x3e
+ 776 0019 0B       		.uleb128 0xb
+ 777 001a 03       		.uleb128 0x3
+ 778 001b 0E       		.uleb128 0xe
+ 779 001c 00       		.byte	0
+ 780 001d 00       		.byte	0
+ 781 001e 03       		.uleb128 0x3
+ 782 001f 24       		.uleb128 0x24
+ 783 0020 00       		.byte	0
+ 784 0021 0B       		.uleb128 0xb
+ 785 0022 0B       		.uleb128 0xb
+ 786 0023 3E       		.uleb128 0x3e
+ 787 0024 0B       		.uleb128 0xb
+ 788 0025 03       		.uleb128 0x3
+ 789 0026 08       		.uleb128 0x8
+ 790 0027 00       		.byte	0
+ 791 0028 00       		.byte	0
+ 792 0029 04       		.uleb128 0x4
+ 793 002a 16       		.uleb128 0x16
+ 794 002b 00       		.byte	0
+ 795 002c 03       		.uleb128 0x3
+ 796 002d 0E       		.uleb128 0xe
+ 797 002e 3A       		.uleb128 0x3a
+ 798 002f 0B       		.uleb128 0xb
+ 799 0030 3B       		.uleb128 0x3b
+ 800 0031 05       		.uleb128 0x5
+ 801 0032 49       		.uleb128 0x49
+ 802 0033 13       		.uleb128 0x13
+ 803 0034 00       		.byte	0
+ 804 0035 00       		.byte	0
+ 805 0036 05       		.uleb128 0x5
+ 806 0037 35       		.uleb128 0x35
+ 807 0038 00       		.byte	0
+ 808 0039 49       		.uleb128 0x49
+ 809 003a 13       		.uleb128 0x13
+ 810 003b 00       		.byte	0
+ 811 003c 00       		.byte	0
+ 812 003d 06       		.uleb128 0x6
+ 813 003e 2E       		.uleb128 0x2e
+ 814 003f 01       		.byte	0x1
+ 815 0040 3F       		.uleb128 0x3f
+ 816 0041 19       		.uleb128 0x19
+ 817 0042 03       		.uleb128 0x3
+ 818 0043 0E       		.uleb128 0xe
+ 819 0044 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 19
+
+
+ 820 0045 0B       		.uleb128 0xb
+ 821 0046 3B       		.uleb128 0x3b
+ 822 0047 0B       		.uleb128 0xb
+ 823 0048 27       		.uleb128 0x27
+ 824 0049 19       		.uleb128 0x19
+ 825 004a 49       		.uleb128 0x49
+ 826 004b 13       		.uleb128 0x13
+ 827 004c 11       		.uleb128 0x11
+ 828 004d 01       		.uleb128 0x1
+ 829 004e 12       		.uleb128 0x12
+ 830 004f 06       		.uleb128 0x6
+ 831 0050 40       		.uleb128 0x40
+ 832 0051 18       		.uleb128 0x18
+ 833 0052 9642     		.uleb128 0x2116
+ 834 0054 19       		.uleb128 0x19
+ 835 0055 01       		.uleb128 0x1
+ 836 0056 13       		.uleb128 0x13
+ 837 0057 00       		.byte	0
+ 838 0058 00       		.byte	0
+ 839 0059 07       		.uleb128 0x7
+ 840 005a 05       		.uleb128 0x5
+ 841 005b 00       		.byte	0
+ 842 005c 03       		.uleb128 0x3
+ 843 005d 0E       		.uleb128 0xe
+ 844 005e 3A       		.uleb128 0x3a
+ 845 005f 0B       		.uleb128 0xb
+ 846 0060 3B       		.uleb128 0x3b
+ 847 0061 0B       		.uleb128 0xb
+ 848 0062 49       		.uleb128 0x49
+ 849 0063 13       		.uleb128 0x13
+ 850 0064 02       		.uleb128 0x2
+ 851 0065 18       		.uleb128 0x18
+ 852 0066 00       		.byte	0
+ 853 0067 00       		.byte	0
+ 854 0068 08       		.uleb128 0x8
+ 855 0069 34       		.uleb128 0x34
+ 856 006a 00       		.byte	0
+ 857 006b 03       		.uleb128 0x3
+ 858 006c 0E       		.uleb128 0xe
+ 859 006d 3A       		.uleb128 0x3a
+ 860 006e 0B       		.uleb128 0xb
+ 861 006f 3B       		.uleb128 0x3b
+ 862 0070 0B       		.uleb128 0xb
+ 863 0071 49       		.uleb128 0x49
+ 864 0072 13       		.uleb128 0x13
+ 865 0073 02       		.uleb128 0x2
+ 866 0074 18       		.uleb128 0x18
+ 867 0075 00       		.byte	0
+ 868 0076 00       		.byte	0
+ 869 0077 09       		.uleb128 0x9
+ 870 0078 2E       		.uleb128 0x2e
+ 871 0079 00       		.byte	0
+ 872 007a 3F       		.uleb128 0x3f
+ 873 007b 19       		.uleb128 0x19
+ 874 007c 03       		.uleb128 0x3
+ 875 007d 0E       		.uleb128 0xe
+ 876 007e 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 20
+
+
+ 877 007f 0B       		.uleb128 0xb
+ 878 0080 3B       		.uleb128 0x3b
+ 879 0081 0B       		.uleb128 0xb
+ 880 0082 27       		.uleb128 0x27
+ 881 0083 19       		.uleb128 0x19
+ 882 0084 11       		.uleb128 0x11
+ 883 0085 01       		.uleb128 0x1
+ 884 0086 12       		.uleb128 0x12
+ 885 0087 06       		.uleb128 0x6
+ 886 0088 40       		.uleb128 0x40
+ 887 0089 18       		.uleb128 0x18
+ 888 008a 9642     		.uleb128 0x2116
+ 889 008c 19       		.uleb128 0x19
+ 890 008d 00       		.byte	0
+ 891 008e 00       		.byte	0
+ 892 008f 0A       		.uleb128 0xa
+ 893 0090 34       		.uleb128 0x34
+ 894 0091 00       		.byte	0
+ 895 0092 03       		.uleb128 0x3
+ 896 0093 0E       		.uleb128 0xe
+ 897 0094 3A       		.uleb128 0x3a
+ 898 0095 0B       		.uleb128 0xb
+ 899 0096 3B       		.uleb128 0x3b
+ 900 0097 0B       		.uleb128 0xb
+ 901 0098 49       		.uleb128 0x49
+ 902 0099 13       		.uleb128 0x13
+ 903 009a 3F       		.uleb128 0x3f
+ 904 009b 19       		.uleb128 0x19
+ 905 009c 02       		.uleb128 0x2
+ 906 009d 18       		.uleb128 0x18
+ 907 009e 00       		.byte	0
+ 908 009f 00       		.byte	0
+ 909 00a0 0B       		.uleb128 0xb
+ 910 00a1 34       		.uleb128 0x34
+ 911 00a2 00       		.byte	0
+ 912 00a3 03       		.uleb128 0x3
+ 913 00a4 0E       		.uleb128 0xe
+ 914 00a5 3A       		.uleb128 0x3a
+ 915 00a6 0B       		.uleb128 0xb
+ 916 00a7 3B       		.uleb128 0x3b
+ 917 00a8 0B       		.uleb128 0xb
+ 918 00a9 49       		.uleb128 0x49
+ 919 00aa 13       		.uleb128 0x13
+ 920 00ab 3F       		.uleb128 0x3f
+ 921 00ac 19       		.uleb128 0x19
+ 922 00ad 3C       		.uleb128 0x3c
+ 923 00ae 19       		.uleb128 0x19
+ 924 00af 00       		.byte	0
+ 925 00b0 00       		.byte	0
+ 926 00b1 00       		.byte	0
+ 927              		.section	.debug_aranges,"",%progbits
+ 928 0000 34000000 		.4byte	0x34
+ 929 0004 0200     		.2byte	0x2
+ 930 0006 00000000 		.4byte	.Ldebug_info0
+ 931 000a 04       		.byte	0x4
+ 932 000b 00       		.byte	0
+ 933 000c 0000     		.2byte	0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 21
+
+
+ 934 000e 0000     		.2byte	0
+ 935 0010 00000000 		.4byte	.LFB32
+ 936 0014 78000000 		.4byte	.LFE32-.LFB32
+ 937 0018 00000000 		.4byte	.LFB33
+ 938 001c 4C000000 		.4byte	.LFE33-.LFB33
+ 939 0020 00000000 		.4byte	.LFB34
+ 940 0024 AC000000 		.4byte	.LFE34-.LFB34
+ 941 0028 00000000 		.4byte	.LFB35
+ 942 002c F0000000 		.4byte	.LFE35-.LFB35
+ 943 0030 00000000 		.4byte	0
+ 944 0034 00000000 		.4byte	0
+ 945              		.section	.debug_ranges,"",%progbits
+ 946              	.Ldebug_ranges0:
+ 947 0000 00000000 		.4byte	.LFB32
+ 948 0004 78000000 		.4byte	.LFE32
+ 949 0008 00000000 		.4byte	.LFB33
+ 950 000c 4C000000 		.4byte	.LFE33
+ 951 0010 00000000 		.4byte	.LFB34
+ 952 0014 AC000000 		.4byte	.LFE34
+ 953 0018 00000000 		.4byte	.LFB35
+ 954 001c F0000000 		.4byte	.LFE35
+ 955 0020 00000000 		.4byte	0
+ 956 0024 00000000 		.4byte	0
+ 957              		.section	.debug_line,"",%progbits
+ 958              	.Ldebug_line0:
+ 959 0000 FB000000 		.section	.debug_str,"MS",%progbits,1
+ 959      02004800 
+ 959      00000201 
+ 959      FB0E0D00 
+ 959      01010101 
+ 960              	.LASF44:
+ 961 0000 696E6974 		.ascii	"initializeDiodeMeasurement\000"
+ 961      69616C69 
+ 961      7A654469 
+ 961      6F64654D 
+ 961      65617375 
+ 962              	.LASF19:
+ 963 001b 72656733 		.ascii	"reg32\000"
+ 963      3200
+ 964              	.LASF34:
+ 965 0021 67657444 		.ascii	"getDiodeTemperature\000"
+ 965      696F6465 
+ 965      54656D70 
+ 965      65726174 
+ 965      75726500 
+ 966              	.LASF4:
+ 967 0035 6C6F6E67 		.ascii	"long int\000"
+ 967      20696E74 
+ 967      00
+ 968              	.LASF3:
+ 969 003e 73686F72 		.ascii	"short unsigned int\000"
+ 969      7420756E 
+ 969      7369676E 
+ 969      65642069 
+ 969      6E7400
+ 970              	.LASF43:
+ 971 0051 433A5C55 		.ascii	"C:\\Users\\Lars\\Documents\\PSoC Creator\\Workspace"
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 22
+
+
+ 971      73657273 
+ 971      5C4C6172 
+ 971      735C446F 
+ 971      63756D65 
+ 972 007f 30315C50 		.ascii	"01\\P4_SingleDiode.cydsn\000"
+ 972      345F5369 
+ 972      6E676C65 
+ 972      44696F64 
+ 972      652E6379 
+ 973              	.LASF16:
+ 974 0097 666C6F61 		.ascii	"float\000"
+ 974      7400
+ 975              	.LASF25:
+ 976 009d 636F6E76 		.ascii	"convertVoltageToTemperature\000"
+ 976      65727456 
+ 976      6F6C7461 
+ 976      6765546F 
+ 976      54656D70 
+ 977              	.LASF22:
+ 978 00b9 6C6F6F70 		.ascii	"loop\000"
+ 978      00
+ 979              	.LASF24:
+ 980 00be 67657453 		.ascii	"getSystemOffset\000"
+ 980      79737465 
+ 980      6D4F6666 
+ 980      73657400 
+ 981              	.LASF13:
+ 982 00ce 696E7431 		.ascii	"int16\000"
+ 982      3600
+ 983              	.LASF5:
+ 984 00d4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 984      20756E73 
+ 984      69676E65 
+ 984      6420696E 
+ 984      7400
+ 985              	.LASF14:
+ 986 00e6 696E7433 		.ascii	"int32\000"
+ 986      3200
+ 987              	.LASF27:
+ 988 00ec 766F6C74 		.ascii	"voltage\000"
+ 988      61676500 
+ 989              	.LASF41:
+ 990 00f4 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 990      43313120 
+ 990      352E342E 
+ 990      31203230 
+ 990      31363036 
+ 991 0127 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 991      20726576 
+ 991      6973696F 
+ 991      6E203233 
+ 991      37373135 
+ 992 015a 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 992      66756E63 
+ 992      74696F6E 
+ 992      2D736563 
+ 992      74696F6E 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 23
+
+
+ 993              	.LASF1:
+ 994 0182 756E7369 		.ascii	"unsigned char\000"
+ 994      676E6564 
+ 994      20636861 
+ 994      7200
+ 995              	.LASF42:
+ 996 0190 53696E67 		.ascii	"SingleDiode.c\000"
+ 996      6C654469 
+ 996      6F64652E 
+ 996      6300
+ 997              	.LASF17:
+ 998 019e 646F7562 		.ascii	"double\000"
+ 998      6C6500
+ 999              	.LASF10:
+ 1000 01a5 75696E74 		.ascii	"uint16\000"
+ 1000      313600
+ 1001              	.LASF12:
+ 1002 01ac 696E7438 		.ascii	"int8\000"
+ 1002      00
+ 1003              	.LASF11:
+ 1004 01b1 75696E74 		.ascii	"uint32\000"
+ 1004      333200
+ 1005              	.LASF38:
+ 1006 01b8 64696F64 		.ascii	"diode_temperature\000"
+ 1006      655F7465 
+ 1006      6D706572 
+ 1006      61747572 
+ 1006      6500
+ 1007              	.LASF30:
+ 1008 01ca 696E7472 		.ascii	"intrLow\000"
+ 1008      4C6F7700 
+ 1009              	.LASF8:
+ 1010 01d2 756E7369 		.ascii	"unsigned int\000"
+ 1010      676E6564 
+ 1010      20696E74 
+ 1010      00
+ 1011              	.LASF31:
+ 1012 01df 66726163 		.ascii	"frac\000"
+ 1012      00
+ 1013              	.LASF7:
+ 1014 01e4 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1014      206C6F6E 
+ 1014      6720756E 
+ 1014      7369676E 
+ 1014      65642069 
+ 1015              	.LASF36:
+ 1016 01fb 56665F53 		.ascii	"Vf_SUM\000"
+ 1016      554D00
+ 1017              	.LASF40:
+ 1018 0202 5350495F 		.ascii	"SPI_Status_Reg\000"
+ 1018      53746174 
+ 1018      75735F52 
+ 1018      656700
+ 1019              	.LASF39:
+ 1020 0211 4144434F 		.ascii	"ADCOffset\000"
+ 1020      66667365 
+ 1020      7400
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 24
+
+
+ 1021              	.LASF26:
+ 1022 021b 6E756D62 		.ascii	"number\000"
+ 1022      657200
+ 1023              	.LASF35:
+ 1024 0222 6368616E 		.ascii	"chan\000"
+ 1024      00
+ 1025              	.LASF21:
+ 1026 0227 73697A65 		.ascii	"sizetype\000"
+ 1026      74797065 
+ 1026      00
+ 1027              	.LASF29:
+ 1028 0230 696E7472 		.ascii	"intrHigh\000"
+ 1028      48696768 
+ 1028      00
+ 1029              	.LASF6:
+ 1030 0239 6C6F6E67 		.ascii	"long long int\000"
+ 1030      206C6F6E 
+ 1030      6720696E 
+ 1030      7400
+ 1031              	.LASF33:
+ 1032 0247 66726163 		.ascii	"fracLow\000"
+ 1032      4C6F7700 
+ 1033              	.LASF18:
+ 1034 024f 63686172 		.ascii	"char\000"
+ 1034      00
+ 1035              	.LASF2:
+ 1036 0254 73686F72 		.ascii	"short int\000"
+ 1036      7420696E 
+ 1036      7400
+ 1037              	.LASF9:
+ 1038 025e 75696E74 		.ascii	"uint8\000"
+ 1038      3800
+ 1039              	.LASF23:
+ 1040 0264 4F666673 		.ascii	"Offset\000"
+ 1040      657400
+ 1041              	.LASF15:
+ 1042 026b 666C6F61 		.ascii	"float32\000"
+ 1042      74333200 
+ 1043              	.LASF37:
+ 1044 0273 56665F53 		.ascii	"Vf_Single\000"
+ 1044      696E676C 
+ 1044      6500
+ 1045              	.LASF20:
+ 1046 027d 6C6F6E67 		.ascii	"long double\000"
+ 1046      20646F75 
+ 1046      626C6500 
+ 1047              	.LASF0:
+ 1048 0289 7369676E 		.ascii	"signed char\000"
+ 1048      65642063 
+ 1048      68617200 
+ 1049              	.LASF32:
+ 1050 0295 66726163 		.ascii	"fracHigh\000"
+ 1050      48696768 
+ 1050      00
+ 1051              	.LASF28:
+ 1052 029e 696E7472 		.ascii	"intr\000"
+ 1052      00
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccXFD81U.s 			page 25
+
+
+ 1053              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

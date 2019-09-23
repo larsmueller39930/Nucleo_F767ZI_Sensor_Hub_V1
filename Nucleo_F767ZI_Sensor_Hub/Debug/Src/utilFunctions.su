@@ -1,0 +1,5 @@
+utilFunctions.c:21:6:turnOnCurrentSink	8	static
+utilFunctions.c:32:6:turnOffCurrentSink	8	static
+utilFunctions.c:44:6:setSystemTime	8	static
+utilFunctions.c:55:6:initDWT	4	static
+utilFunctions.c:68:6:delayUSDWT	24	static

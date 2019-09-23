@@ -1,0 +1,7 @@
+interface_spi.c:44:13:SPI_initBuffer	24	static
+interface_spi.c:72:6:SPI_initInterface	16	static
+interface_spi.c:112:6:SPI_sendData	16	static
+interface_spi.c:127:6:SPI_receiveData	16	static
+interface_spi.c:144:6:SPI_receiveSendData	24	static
+interface_spi.c:158:6:SPI_flushData	24	static
+interface_spi.c:182:21:SPI_getState	16	static

@@ -1,0 +1,21 @@
+(DELAYFILE
+ (SDFVERSION "IEEE 1497 4.0")
+ (DATE "2019-07-24T14:16:06Z")
+ (DESIGN "PSoC4_Current_Digital_to_Analog_Converter01")
+ (VENDOR "Cypress Semiconductor")
+ (PROGRAM "PSoC Creator")
+ (VERSION " 4.2")
+ (DIVIDER .)
+ (TIMESCALE 1 ns)
+ (CELL
+  (CELLTYPE "PSoC4_Current_Digital_to_Analog_Converter01")
+  (INSTANCE *)
+  (DELAY
+   (ABSOLUTE
+    (INTERCONNECT __ONE__.q Iout\(0\).pin_input (0.000:0.000:0.000))
+    (INTERCONNECT __ONE__.q \\IDAC8\:cy_psoc4_idac\\.en (0.000:0.000:0.000))
+    (INTERCONNECT SW2\(0\)_PAD SW2\(0\).pad_in (0.000:0.000:0.000))
+   )
+  )
+ )
+)

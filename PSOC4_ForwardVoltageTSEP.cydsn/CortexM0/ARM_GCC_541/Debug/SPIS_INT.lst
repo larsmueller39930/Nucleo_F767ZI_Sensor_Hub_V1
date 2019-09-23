@@ -1,0 +1,1146 @@
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"SPIS_INT.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.SPIS_TX_ISR,"ax",%progbits
+  20              		.align	2
+  21              		.global	SPIS_TX_ISR
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	SPIS_TX_ISR, %function
+  25              	SPIS_TX_ISR:
+  26              	.LFB32:
+  27              		.file 1 "Generated_Source\\PSoC4\\SPIS_INT.c"
+   1:Generated_Source\PSoC4/SPIS_INT.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/SPIS_INT.c **** * File Name: SPIS_INT.c
+   3:Generated_Source\PSoC4/SPIS_INT.c **** * Version 2.70
+   4:Generated_Source\PSoC4/SPIS_INT.c **** *
+   5:Generated_Source\PSoC4/SPIS_INT.c **** * Description:
+   6:Generated_Source\PSoC4/SPIS_INT.c **** *  This file provides all Interrupt Service Routine (ISR) for the SPI Slave
+   7:Generated_Source\PSoC4/SPIS_INT.c **** *  component.
+   8:Generated_Source\PSoC4/SPIS_INT.c **** *
+   9:Generated_Source\PSoC4/SPIS_INT.c **** * Note:
+  10:Generated_Source\PSoC4/SPIS_INT.c **** *  None.
+  11:Generated_Source\PSoC4/SPIS_INT.c **** *
+  12:Generated_Source\PSoC4/SPIS_INT.c **** ********************************************************************************
+  13:Generated_Source\PSoC4/SPIS_INT.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC4/SPIS_INT.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/SPIS_INT.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/SPIS_INT.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/SPIS_INT.c **** *******************************************************************************/
+  18:Generated_Source\PSoC4/SPIS_INT.c **** 
+  19:Generated_Source\PSoC4/SPIS_INT.c **** #include "SPIS_PVT.h"
+  20:Generated_Source\PSoC4/SPIS_INT.c **** #include "cyapicallbacks.h"
+  21:Generated_Source\PSoC4/SPIS_INT.c **** 
+  22:Generated_Source\PSoC4/SPIS_INT.c **** /* User code required at start of ISR */
+  23:Generated_Source\PSoC4/SPIS_INT.c **** /* `#START SPIS_ISR_START_DEF` */
+  24:Generated_Source\PSoC4/SPIS_INT.c **** 
+  25:Generated_Source\PSoC4/SPIS_INT.c **** /* `#END` */
+  26:Generated_Source\PSoC4/SPIS_INT.c **** 
+  27:Generated_Source\PSoC4/SPIS_INT.c **** 
+  28:Generated_Source\PSoC4/SPIS_INT.c **** /*******************************************************************************
+  29:Generated_Source\PSoC4/SPIS_INT.c **** * Function Name: SPIS_TX_ISR
+  30:Generated_Source\PSoC4/SPIS_INT.c **** *
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 2
+
+
+  31:Generated_Source\PSoC4/SPIS_INT.c **** * Summary:
+  32:Generated_Source\PSoC4/SPIS_INT.c **** *  Interrupt Service Routine for TX portion of the SPI Slave.
+  33:Generated_Source\PSoC4/SPIS_INT.c **** *
+  34:Generated_Source\PSoC4/SPIS_INT.c **** * Parameters:
+  35:Generated_Source\PSoC4/SPIS_INT.c **** *  None.
+  36:Generated_Source\PSoC4/SPIS_INT.c **** *
+  37:Generated_Source\PSoC4/SPIS_INT.c **** * Return:
+  38:Generated_Source\PSoC4/SPIS_INT.c **** *  None.
+  39:Generated_Source\PSoC4/SPIS_INT.c **** *
+  40:Generated_Source\PSoC4/SPIS_INT.c **** * Global variables:
+  41:Generated_Source\PSoC4/SPIS_INT.c **** *  SPIS_txBufferWrite - used for the account of the bytes which
+  42:Generated_Source\PSoC4/SPIS_INT.c **** *  have been written down in the TX software buffer.
+  43:Generated_Source\PSoC4/SPIS_INT.c **** *  SPIS_txBufferRead - used for the account of the bytes which
+  44:Generated_Source\PSoC4/SPIS_INT.c **** *  have been read from the TX software buffer, modified when exist data to
+  45:Generated_Source\PSoC4/SPIS_INT.c **** *  sending and FIFO Not Full.
+  46:Generated_Source\PSoC4/SPIS_INT.c **** *  SPIS_txBuffer[SPIS_TX_BUFFER_SIZE] - used to store
+  47:Generated_Source\PSoC4/SPIS_INT.c **** *  data to sending.
+  48:Generated_Source\PSoC4/SPIS_INT.c **** *  All described above Global variables are used when Software Buffer is used.
+  49:Generated_Source\PSoC4/SPIS_INT.c **** *
+  50:Generated_Source\PSoC4/SPIS_INT.c **** *******************************************************************************/
+  51:Generated_Source\PSoC4/SPIS_INT.c **** CY_ISR(SPIS_TX_ISR)
+  52:Generated_Source\PSoC4/SPIS_INT.c **** {
+  28              		.loc 1 52 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 80B5     		push	{r7, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 82B0     		sub	sp, sp, #8
+  37              		.cfi_def_cfa_offset 16
+  38 0004 00AF     		add	r7, sp, #0
+  39              		.cfi_def_cfa_register 7
+  53:Generated_Source\PSoC4/SPIS_INT.c **** 
+  54:Generated_Source\PSoC4/SPIS_INT.c ****     #if(SPIS_TX_SOFTWARE_BUF_ENABLED)
+  55:Generated_Source\PSoC4/SPIS_INT.c ****         uint8 tmpStatus;
+  56:Generated_Source\PSoC4/SPIS_INT.c ****     #endif /* (SPIS_TX_SOFTWARE_BUF_ENABLED) */
+  57:Generated_Source\PSoC4/SPIS_INT.c **** 
+  58:Generated_Source\PSoC4/SPIS_INT.c ****     #ifdef SPIS_TX_ISR_ENTRY_CALLBACK
+  59:Generated_Source\PSoC4/SPIS_INT.c ****         SPIS_TX_ISR_EntryCallback();
+  60:Generated_Source\PSoC4/SPIS_INT.c ****     #endif /* SPIS_TX_ISR_ENTRY_CALLBACK */
+  61:Generated_Source\PSoC4/SPIS_INT.c **** 
+  62:Generated_Source\PSoC4/SPIS_INT.c ****     /* User code required at start of ISR */
+  63:Generated_Source\PSoC4/SPIS_INT.c ****     /* `#START SPIS_ISR_TX_START` */
+  64:Generated_Source\PSoC4/SPIS_INT.c **** 
+  65:Generated_Source\PSoC4/SPIS_INT.c ****     /* `#END` */
+  66:Generated_Source\PSoC4/SPIS_INT.c **** 
+  67:Generated_Source\PSoC4/SPIS_INT.c ****     #if(SPIS_TX_SOFTWARE_BUF_ENABLED)
+  68:Generated_Source\PSoC4/SPIS_INT.c ****         /* Component interrupt service code */
+  69:Generated_Source\PSoC4/SPIS_INT.c **** 
+  70:Generated_Source\PSoC4/SPIS_INT.c ****         /* See if TX data buffer is not empty and there is space in TX FIFO */
+  71:Generated_Source\PSoC4/SPIS_INT.c ****         while(SPIS_txBufferRead != SPIS_txBufferWrite)
+  40              		.loc 1 71 0
+  41 0006 38E0     		b	.L2
+  42              	.L8:
+  72:Generated_Source\PSoC4/SPIS_INT.c ****         {
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 3
+
+
+  73:Generated_Source\PSoC4/SPIS_INT.c ****             tmpStatus = SPIS_GET_STATUS_TX(SPIS_swStatusTx);
+  43              		.loc 1 73 0
+  44 0008 2B4B     		ldr	r3, .L12
+  45 000a 1B78     		ldrb	r3, [r3]
+  46 000c D9B2     		uxtb	r1, r3
+  47 000e 2B4B     		ldr	r3, .L12+4
+  48 0010 1B78     		ldrb	r3, [r3]
+  49 0012 DBB2     		uxtb	r3, r3
+  50 0014 6122     		movs	r2, #97
+  51 0016 1340     		ands	r3, r2
+  52 0018 DAB2     		uxtb	r2, r3
+  53 001a FB1D     		adds	r3, r7, #7
+  54 001c 0A43     		orrs	r2, r1
+  55 001e 1A70     		strb	r2, [r3]
+  74:Generated_Source\PSoC4/SPIS_INT.c ****             SPIS_swStatusTx = tmpStatus;
+  56              		.loc 1 74 0
+  57 0020 264B     		ldr	r3, .L12+4
+  58 0022 FA1D     		adds	r2, r7, #7
+  59 0024 1278     		ldrb	r2, [r2]
+  60 0026 1A70     		strb	r2, [r3]
+  75:Generated_Source\PSoC4/SPIS_INT.c **** 
+  76:Generated_Source\PSoC4/SPIS_INT.c ****             if ((SPIS_swStatusTx & SPIS_STS_TX_FIFO_NOT_FULL) != 0u)
+  61              		.loc 1 76 0
+  62 0028 244B     		ldr	r3, .L12+4
+  63 002a 1B78     		ldrb	r3, [r3]
+  64 002c DBB2     		uxtb	r3, r3
+  65 002e 1A00     		movs	r2, r3
+  66 0030 0223     		movs	r3, #2
+  67 0032 1340     		ands	r3, r2
+  68 0034 2AD0     		beq	.L10
+  77:Generated_Source\PSoC4/SPIS_INT.c ****             {
+  78:Generated_Source\PSoC4/SPIS_INT.c ****                 if(SPIS_txBufferFull == 0u)
+  69              		.loc 1 78 0
+  70 0036 224B     		ldr	r3, .L12+8
+  71 0038 1B78     		ldrb	r3, [r3]
+  72 003a DBB2     		uxtb	r3, r3
+  73 003c 002B     		cmp	r3, #0
+  74 003e 10D1     		bne	.L4
+  79:Generated_Source\PSoC4/SPIS_INT.c ****                 {
+  80:Generated_Source\PSoC4/SPIS_INT.c ****                    SPIS_txBufferRead++;
+  75              		.loc 1 80 0
+  76 0040 204B     		ldr	r3, .L12+12
+  77 0042 1B78     		ldrb	r3, [r3]
+  78 0044 DBB2     		uxtb	r3, r3
+  79 0046 0133     		adds	r3, r3, #1
+  80 0048 DAB2     		uxtb	r2, r3
+  81 004a 1E4B     		ldr	r3, .L12+12
+  82 004c 1A70     		strb	r2, [r3]
+  81:Generated_Source\PSoC4/SPIS_INT.c **** 
+  82:Generated_Source\PSoC4/SPIS_INT.c ****                     if(SPIS_txBufferRead >= SPIS_TX_BUFFER_SIZE)
+  83              		.loc 1 82 0
+  84 004e 1D4B     		ldr	r3, .L12+12
+  85 0050 1B78     		ldrb	r3, [r3]
+  86 0052 DBB2     		uxtb	r3, r3
+  87 0054 5BB2     		sxtb	r3, r3
+  88 0056 002B     		cmp	r3, #0
+  89 0058 06DA     		bge	.L6
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 4
+
+
+  83:Generated_Source\PSoC4/SPIS_INT.c ****                     {
+  84:Generated_Source\PSoC4/SPIS_INT.c ****                         SPIS_txBufferRead = 0u;
+  90              		.loc 1 84 0
+  91 005a 1A4B     		ldr	r3, .L12+12
+  92 005c 0022     		movs	r2, #0
+  93 005e 1A70     		strb	r2, [r3]
+  94 0060 02E0     		b	.L6
+  95              	.L4:
+  85:Generated_Source\PSoC4/SPIS_INT.c ****                     }
+  86:Generated_Source\PSoC4/SPIS_INT.c ****                 }
+  87:Generated_Source\PSoC4/SPIS_INT.c ****                 else
+  88:Generated_Source\PSoC4/SPIS_INT.c ****                 {
+  89:Generated_Source\PSoC4/SPIS_INT.c ****                     SPIS_txBufferFull = 0u;
+  96              		.loc 1 89 0
+  97 0062 174B     		ldr	r3, .L12+8
+  98 0064 0022     		movs	r2, #0
+  99 0066 1A70     		strb	r2, [r3]
+ 100              	.L6:
+  90:Generated_Source\PSoC4/SPIS_INT.c ****                 }
+  91:Generated_Source\PSoC4/SPIS_INT.c **** 
+  92:Generated_Source\PSoC4/SPIS_INT.c ****                 /* Put data element into the TX FIFO */
+  93:Generated_Source\PSoC4/SPIS_INT.c ****                 CY_SET_REG8(SPIS_TXDATA_PTR, 
+ 101              		.loc 1 93 0
+ 102 0068 174A     		ldr	r2, .L12+16
+ 103 006a 164B     		ldr	r3, .L12+12
+ 104 006c 1B78     		ldrb	r3, [r3]
+ 105 006e DBB2     		uxtb	r3, r3
+ 106 0070 1900     		movs	r1, r3
+ 107 0072 164B     		ldr	r3, .L12+20
+ 108 0074 5B5C     		ldrb	r3, [r3, r1]
+ 109 0076 DBB2     		uxtb	r3, r3
+ 110 0078 1370     		strb	r3, [r2]
+ 111              	.L2:
+  71:Generated_Source\PSoC4/SPIS_INT.c ****         {
+ 112              		.loc 1 71 0
+ 113 007a 124B     		ldr	r3, .L12+12
+ 114 007c 1B78     		ldrb	r3, [r3]
+ 115 007e DAB2     		uxtb	r2, r3
+ 116 0080 134B     		ldr	r3, .L12+24
+ 117 0082 1B78     		ldrb	r3, [r3]
+ 118 0084 DBB2     		uxtb	r3, r3
+ 119 0086 9A42     		cmp	r2, r3
+ 120 0088 BED1     		bne	.L8
+ 121 008a 00E0     		b	.L7
+ 122              	.L10:
+  94:Generated_Source\PSoC4/SPIS_INT.c ****                                              SPIS_txBuffer[SPIS_txBufferRead]);
+  95:Generated_Source\PSoC4/SPIS_INT.c ****             }
+  96:Generated_Source\PSoC4/SPIS_INT.c ****             else
+  97:Generated_Source\PSoC4/SPIS_INT.c ****             {
+  98:Generated_Source\PSoC4/SPIS_INT.c ****                 break;
+ 123              		.loc 1 98 0
+ 124 008c C046     		nop
+ 125              	.L7:
+  99:Generated_Source\PSoC4/SPIS_INT.c ****             }
+ 100:Generated_Source\PSoC4/SPIS_INT.c ****         }
+ 101:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 102:Generated_Source\PSoC4/SPIS_INT.c ****         /* If Buffer is empty then disable TX FIFO status interrupt until there is data in the buff
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 5
+
+
+ 103:Generated_Source\PSoC4/SPIS_INT.c ****         if(SPIS_txBufferRead == SPIS_txBufferWrite)
+ 126              		.loc 1 103 0
+ 127 008e 0D4B     		ldr	r3, .L12+12
+ 128 0090 1B78     		ldrb	r3, [r3]
+ 129 0092 DAB2     		uxtb	r2, r3
+ 130 0094 0E4B     		ldr	r3, .L12+24
+ 131 0096 1B78     		ldrb	r3, [r3]
+ 132 0098 DBB2     		uxtb	r3, r3
+ 133 009a 9A42     		cmp	r2, r3
+ 134 009c 07D1     		bne	.L11
+ 104:Generated_Source\PSoC4/SPIS_INT.c ****         {
+ 105:Generated_Source\PSoC4/SPIS_INT.c ****             SPIS_TX_STATUS_MASK_REG &= ((uint8)~SPIS_STS_TX_FIFO_NOT_FULL);
+ 135              		.loc 1 105 0
+ 136 009e 0D4A     		ldr	r2, .L12+28
+ 137 00a0 0C4B     		ldr	r3, .L12+28
+ 138 00a2 1B78     		ldrb	r3, [r3]
+ 139 00a4 DBB2     		uxtb	r3, r3
+ 140 00a6 0221     		movs	r1, #2
+ 141 00a8 8B43     		bics	r3, r1
+ 142 00aa DBB2     		uxtb	r3, r3
+ 143 00ac 1370     		strb	r3, [r2]
+ 144              	.L11:
+ 106:Generated_Source\PSoC4/SPIS_INT.c ****         }
+ 107:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 108:Generated_Source\PSoC4/SPIS_INT.c ****     #endif /* SPIS_TX_SOFTWARE_BUF_ENABLED */
+ 109:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 110:Generated_Source\PSoC4/SPIS_INT.c ****     /* User code required at end of ISR (Optional) */
+ 111:Generated_Source\PSoC4/SPIS_INT.c ****     /* `#START SPIS_ISR_TX_END` */
+ 112:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 113:Generated_Source\PSoC4/SPIS_INT.c ****     /* `#END` */
+ 114:Generated_Source\PSoC4/SPIS_INT.c ****     
+ 115:Generated_Source\PSoC4/SPIS_INT.c ****     #ifdef SPIS_TX_ISR_EXIT_CALLBACK
+ 116:Generated_Source\PSoC4/SPIS_INT.c ****         SPIS_TX_ISR_ExitCallback();
+ 117:Generated_Source\PSoC4/SPIS_INT.c ****     #endif /* SPIS_TX_ISR_EXIT_CALLBACK */
+ 118:Generated_Source\PSoC4/SPIS_INT.c ****    }
+ 145              		.loc 1 118 0
+ 146 00ae C046     		nop
+ 147 00b0 BD46     		mov	sp, r7
+ 148 00b2 02B0     		add	sp, sp, #8
+ 149              		@ sp needed
+ 150 00b4 80BD     		pop	{r7, pc}
+ 151              	.L13:
+ 152 00b6 C046     		.align	2
+ 153              	.L12:
+ 154 00b8 60000F40 		.word	1074724960
+ 155 00bc 00000000 		.word	SPIS_swStatusTx
+ 156 00c0 00000000 		.word	SPIS_txBufferFull
+ 157 00c4 00000000 		.word	SPIS_txBufferRead
+ 158 00c8 41000F40 		.word	1074724929
+ 159 00cc 00000000 		.word	SPIS_txBuffer
+ 160 00d0 00000000 		.word	SPIS_txBufferWrite
+ 161 00d4 80000F40 		.word	1074724992
+ 162              		.cfi_endproc
+ 163              	.LFE32:
+ 164              		.size	SPIS_TX_ISR, .-SPIS_TX_ISR
+ 165              		.section	.text.SPIS_RX_ISR,"ax",%progbits
+ 166              		.align	2
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 6
+
+
+ 167              		.global	SPIS_RX_ISR
+ 168              		.code	16
+ 169              		.thumb_func
+ 170              		.type	SPIS_RX_ISR, %function
+ 171              	SPIS_RX_ISR:
+ 172              	.LFB33:
+ 119:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 120:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 121:Generated_Source\PSoC4/SPIS_INT.c **** /*******************************************************************************
+ 122:Generated_Source\PSoC4/SPIS_INT.c **** * Function Name: SPIS_RX_ISR
+ 123:Generated_Source\PSoC4/SPIS_INT.c **** *
+ 124:Generated_Source\PSoC4/SPIS_INT.c **** * Summary:
+ 125:Generated_Source\PSoC4/SPIS_INT.c **** *  Interrupt Service Routine for RX portion of the SPI Slave.
+ 126:Generated_Source\PSoC4/SPIS_INT.c **** *
+ 127:Generated_Source\PSoC4/SPIS_INT.c **** * Parameters:
+ 128:Generated_Source\PSoC4/SPIS_INT.c **** *  None.
+ 129:Generated_Source\PSoC4/SPIS_INT.c **** *
+ 130:Generated_Source\PSoC4/SPIS_INT.c **** * Return:
+ 131:Generated_Source\PSoC4/SPIS_INT.c **** *  None.
+ 132:Generated_Source\PSoC4/SPIS_INT.c **** *
+ 133:Generated_Source\PSoC4/SPIS_INT.c **** * Global variables:
+ 134:Generated_Source\PSoC4/SPIS_INT.c **** *  SPIS_rxBufferWrite - used for the account of the bytes which
+ 135:Generated_Source\PSoC4/SPIS_INT.c **** *  have been written down in the RX software buffer modified when FIFO contains
+ 136:Generated_Source\PSoC4/SPIS_INT.c **** *  new data.
+ 137:Generated_Source\PSoC4/SPIS_INT.c **** *  SPIS_rxBufferRead - used for the account of the bytes which
+ 138:Generated_Source\PSoC4/SPIS_INT.c **** *  have been read from the RX software buffer, modified when overflow occurred.
+ 139:Generated_Source\PSoC4/SPIS_INT.c **** *  SPIS_rxBuffer[SPIS_RX_BUFFER_SIZE] - used to store
+ 140:Generated_Source\PSoC4/SPIS_INT.c **** *  received data, modified when FIFO contains new data.
+ 141:Generated_Source\PSoC4/SPIS_INT.c **** *  All described above Global variables are used when Software Buffer is used.
+ 142:Generated_Source\PSoC4/SPIS_INT.c **** *
+ 143:Generated_Source\PSoC4/SPIS_INT.c **** *******************************************************************************/
+ 144:Generated_Source\PSoC4/SPIS_INT.c **** CY_ISR(SPIS_RX_ISR)
+ 145:Generated_Source\PSoC4/SPIS_INT.c **** {
+ 173              		.loc 1 145 0
+ 174              		.cfi_startproc
+ 175              		@ args = 0, pretend = 0, frame = 8
+ 176              		@ frame_needed = 1, uses_anonymous_args = 0
+ 177 0000 80B5     		push	{r7, lr}
+ 178              		.cfi_def_cfa_offset 8
+ 179              		.cfi_offset 7, -8
+ 180              		.cfi_offset 14, -4
+ 181 0002 82B0     		sub	sp, sp, #8
+ 182              		.cfi_def_cfa_offset 16
+ 183 0004 00AF     		add	r7, sp, #0
+ 184              		.cfi_def_cfa_register 7
+ 146:Generated_Source\PSoC4/SPIS_INT.c ****     #if(SPIS_RX_SOFTWARE_BUF_ENABLED)
+ 147:Generated_Source\PSoC4/SPIS_INT.c ****         uint8 tmpStatus;
+ 148:Generated_Source\PSoC4/SPIS_INT.c ****         uint8 rxData;
+ 149:Generated_Source\PSoC4/SPIS_INT.c ****     #endif /* (SPIS_TX_SOFTWARE_BUF_ENABLED) */
+ 150:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 151:Generated_Source\PSoC4/SPIS_INT.c ****     #ifdef SPIS_RX_ISR_ENTRY_CALLBACK
+ 152:Generated_Source\PSoC4/SPIS_INT.c ****         SPIS_RX_ISR_EntryCallback();
+ 153:Generated_Source\PSoC4/SPIS_INT.c ****     #endif /* SPIS_RX_ISR_ENTRY_CALLBACK */
+ 154:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 155:Generated_Source\PSoC4/SPIS_INT.c ****     /* User code required at start of ISR */
+ 156:Generated_Source\PSoC4/SPIS_INT.c ****     /* `#START SPIS_RX_ISR_START` */
+ 157:Generated_Source\PSoC4/SPIS_INT.c **** 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 7
+
+
+ 158:Generated_Source\PSoC4/SPIS_INT.c ****     /* `#END` */
+ 159:Generated_Source\PSoC4/SPIS_INT.c ****     
+ 160:Generated_Source\PSoC4/SPIS_INT.c ****     #if(SPIS_RX_SOFTWARE_BUF_ENABLED)
+ 161:Generated_Source\PSoC4/SPIS_INT.c ****         tmpStatus = SPIS_GET_STATUS_RX(SPIS_swStatusRx);
+ 185              		.loc 1 161 0
+ 186 0006 324B     		ldr	r3, .L20
+ 187 0008 1B78     		ldrb	r3, [r3]
+ 188 000a D9B2     		uxtb	r1, r3
+ 189 000c 314B     		ldr	r3, .L20+4
+ 190 000e 1B78     		ldrb	r3, [r3]
+ 191 0010 DBB2     		uxtb	r3, r3
+ 192 0012 6122     		movs	r2, #97
+ 193 0014 1340     		ands	r3, r2
+ 194 0016 DAB2     		uxtb	r2, r3
+ 195 0018 FB1D     		adds	r3, r7, #7
+ 196 001a 0A43     		orrs	r2, r1
+ 197 001c 1A70     		strb	r2, [r3]
+ 162:Generated_Source\PSoC4/SPIS_INT.c ****         SPIS_swStatusRx = tmpStatus;
+ 198              		.loc 1 162 0
+ 199 001e 2D4B     		ldr	r3, .L20+4
+ 200 0020 FA1D     		adds	r2, r7, #7
+ 201 0022 1278     		ldrb	r2, [r2]
+ 202 0024 1A70     		strb	r2, [r3]
+ 163:Generated_Source\PSoC4/SPIS_INT.c ****         /* See if RX data FIFO has some data and if it can be moved to the RX Buffer */
+ 164:Generated_Source\PSoC4/SPIS_INT.c ****         while((SPIS_swStatusRx & SPIS_STS_RX_FIFO_NOT_EMPTY) != 0u)
+ 203              		.loc 1 164 0
+ 204 0026 46E0     		b	.L15
+ 205              	.L19:
+ 165:Generated_Source\PSoC4/SPIS_INT.c ****         {
+ 166:Generated_Source\PSoC4/SPIS_INT.c ****             rxData = CY_GET_REG8(SPIS_RXDATA_PTR);
+ 206              		.loc 1 166 0
+ 207 0028 2B4A     		ldr	r2, .L20+8
+ 208 002a BB1D     		adds	r3, r7, #6
+ 209 002c 1278     		ldrb	r2, [r2]
+ 210 002e 1A70     		strb	r2, [r3]
+ 167:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 168:Generated_Source\PSoC4/SPIS_INT.c ****             /* Set next pointer. */
+ 169:Generated_Source\PSoC4/SPIS_INT.c ****             SPIS_rxBufferWrite++;
+ 211              		.loc 1 169 0
+ 212 0030 2A4B     		ldr	r3, .L20+12
+ 213 0032 1B78     		ldrb	r3, [r3]
+ 214 0034 DBB2     		uxtb	r3, r3
+ 215 0036 0133     		adds	r3, r3, #1
+ 216 0038 DAB2     		uxtb	r2, r3
+ 217 003a 284B     		ldr	r3, .L20+12
+ 218 003c 1A70     		strb	r2, [r3]
+ 170:Generated_Source\PSoC4/SPIS_INT.c ****             if(SPIS_rxBufferWrite >= SPIS_RX_BUFFER_SIZE)
+ 219              		.loc 1 170 0
+ 220 003e 274B     		ldr	r3, .L20+12
+ 221 0040 1B78     		ldrb	r3, [r3]
+ 222 0042 DBB2     		uxtb	r3, r3
+ 223 0044 5BB2     		sxtb	r3, r3
+ 224 0046 002B     		cmp	r3, #0
+ 225 0048 02DA     		bge	.L16
+ 171:Generated_Source\PSoC4/SPIS_INT.c ****             {
+ 172:Generated_Source\PSoC4/SPIS_INT.c ****                 SPIS_rxBufferWrite = 0u;
+ 226              		.loc 1 172 0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 8
+
+
+ 227 004a 244B     		ldr	r3, .L20+12
+ 228 004c 0022     		movs	r2, #0
+ 229 004e 1A70     		strb	r2, [r3]
+ 230              	.L16:
+ 173:Generated_Source\PSoC4/SPIS_INT.c ****             }
+ 174:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 175:Generated_Source\PSoC4/SPIS_INT.c ****             if(SPIS_rxBufferWrite == SPIS_rxBufferRead)
+ 231              		.loc 1 175 0
+ 232 0050 224B     		ldr	r3, .L20+12
+ 233 0052 1B78     		ldrb	r3, [r3]
+ 234 0054 DAB2     		uxtb	r2, r3
+ 235 0056 224B     		ldr	r3, .L20+16
+ 236 0058 1B78     		ldrb	r3, [r3]
+ 237 005a DBB2     		uxtb	r3, r3
+ 238 005c 9A42     		cmp	r2, r3
+ 239 005e 12D1     		bne	.L17
+ 176:Generated_Source\PSoC4/SPIS_INT.c ****             {
+ 177:Generated_Source\PSoC4/SPIS_INT.c ****                 SPIS_rxBufferRead++;
+ 240              		.loc 1 177 0
+ 241 0060 1F4B     		ldr	r3, .L20+16
+ 242 0062 1B78     		ldrb	r3, [r3]
+ 243 0064 DBB2     		uxtb	r3, r3
+ 244 0066 0133     		adds	r3, r3, #1
+ 245 0068 DAB2     		uxtb	r2, r3
+ 246 006a 1D4B     		ldr	r3, .L20+16
+ 247 006c 1A70     		strb	r2, [r3]
+ 178:Generated_Source\PSoC4/SPIS_INT.c ****                 if(SPIS_rxBufferRead >= SPIS_RX_BUFFER_SIZE)
+ 248              		.loc 1 178 0
+ 249 006e 1C4B     		ldr	r3, .L20+16
+ 250 0070 1B78     		ldrb	r3, [r3]
+ 251 0072 DBB2     		uxtb	r3, r3
+ 252 0074 5BB2     		sxtb	r3, r3
+ 253 0076 002B     		cmp	r3, #0
+ 254 0078 02DA     		bge	.L18
+ 179:Generated_Source\PSoC4/SPIS_INT.c ****                 {
+ 180:Generated_Source\PSoC4/SPIS_INT.c ****                     SPIS_rxBufferRead = 0u;
+ 255              		.loc 1 180 0
+ 256 007a 194B     		ldr	r3, .L20+16
+ 257 007c 0022     		movs	r2, #0
+ 258 007e 1A70     		strb	r2, [r3]
+ 259              	.L18:
+ 181:Generated_Source\PSoC4/SPIS_INT.c ****                 }
+ 182:Generated_Source\PSoC4/SPIS_INT.c ****                 SPIS_rxBufferFull = 1u;
+ 260              		.loc 1 182 0
+ 261 0080 184B     		ldr	r3, .L20+20
+ 262 0082 0122     		movs	r2, #1
+ 263 0084 1A70     		strb	r2, [r3]
+ 264              	.L17:
+ 183:Generated_Source\PSoC4/SPIS_INT.c ****             }
+ 184:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 185:Generated_Source\PSoC4/SPIS_INT.c ****             /* Move data from the FIFO to the Buffer */
+ 186:Generated_Source\PSoC4/SPIS_INT.c ****             SPIS_rxBuffer[SPIS_rxBufferWrite] = rxData;
+ 265              		.loc 1 186 0
+ 266 0086 154B     		ldr	r3, .L20+12
+ 267 0088 1B78     		ldrb	r3, [r3]
+ 268 008a DBB2     		uxtb	r3, r3
+ 269 008c 1900     		movs	r1, r3
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 9
+
+
+ 270 008e 164B     		ldr	r3, .L20+24
+ 271 0090 BA1D     		adds	r2, r7, #6
+ 272 0092 1278     		ldrb	r2, [r2]
+ 273 0094 5A54     		strb	r2, [r3, r1]
+ 187:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 188:Generated_Source\PSoC4/SPIS_INT.c ****             tmpStatus = SPIS_GET_STATUS_RX(SPIS_swStatusRx);
+ 274              		.loc 1 188 0
+ 275 0096 0E4B     		ldr	r3, .L20
+ 276 0098 1B78     		ldrb	r3, [r3]
+ 277 009a D9B2     		uxtb	r1, r3
+ 278 009c 0D4B     		ldr	r3, .L20+4
+ 279 009e 1B78     		ldrb	r3, [r3]
+ 280 00a0 DBB2     		uxtb	r3, r3
+ 281 00a2 6122     		movs	r2, #97
+ 282 00a4 1340     		ands	r3, r2
+ 283 00a6 DAB2     		uxtb	r2, r3
+ 284 00a8 FB1D     		adds	r3, r7, #7
+ 285 00aa 0A43     		orrs	r2, r1
+ 286 00ac 1A70     		strb	r2, [r3]
+ 189:Generated_Source\PSoC4/SPIS_INT.c ****             SPIS_swStatusRx = tmpStatus;
+ 287              		.loc 1 189 0
+ 288 00ae 094B     		ldr	r3, .L20+4
+ 289 00b0 FA1D     		adds	r2, r7, #7
+ 290 00b2 1278     		ldrb	r2, [r2]
+ 291 00b4 1A70     		strb	r2, [r3]
+ 292              	.L15:
+ 164:Generated_Source\PSoC4/SPIS_INT.c ****         {
+ 293              		.loc 1 164 0
+ 294 00b6 074B     		ldr	r3, .L20+4
+ 295 00b8 1B78     		ldrb	r3, [r3]
+ 296 00ba DBB2     		uxtb	r3, r3
+ 297 00bc 1A00     		movs	r2, r3
+ 298 00be 0823     		movs	r3, #8
+ 299 00c0 1340     		ands	r3, r2
+ 300 00c2 B1D1     		bne	.L19
+ 190:Generated_Source\PSoC4/SPIS_INT.c ****         }
+ 191:Generated_Source\PSoC4/SPIS_INT.c ****     #endif /* SPIS_RX_SOFTWARE_BUF_ENABLED */
+ 192:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 193:Generated_Source\PSoC4/SPIS_INT.c ****     /* User code required at end of ISR (Optional) */
+ 194:Generated_Source\PSoC4/SPIS_INT.c ****     /* `#START SPIS_RX_ISR_END` */
+ 195:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 196:Generated_Source\PSoC4/SPIS_INT.c ****     /* `#END` */
+ 197:Generated_Source\PSoC4/SPIS_INT.c **** 
+ 198:Generated_Source\PSoC4/SPIS_INT.c ****     #ifdef SPIS_RX_ISR_EXIT_CALLBACK
+ 199:Generated_Source\PSoC4/SPIS_INT.c ****         SPIS_RX_ISR_ExitCallback();
+ 301              		.loc 1 199 0
+ 302 00c4 FFF7FEFF 		bl	SPIS_RX_ISR_ExitCallback
+ 200:Generated_Source\PSoC4/SPIS_INT.c ****     #endif /* SPIS_RX_ISR_EXIT_CALLBACK */
+ 201:Generated_Source\PSoC4/SPIS_INT.c **** }
+ 303              		.loc 1 201 0
+ 304 00c8 C046     		nop
+ 305 00ca BD46     		mov	sp, r7
+ 306 00cc 02B0     		add	sp, sp, #8
+ 307              		@ sp needed
+ 308 00ce 80BD     		pop	{r7, pc}
+ 309              	.L21:
+ 310              		.align	2
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 10
+
+
+ 311              	.L20:
+ 312 00d0 63000F40 		.word	1074724963
+ 313 00d4 00000000 		.word	SPIS_swStatusRx
+ 314 00d8 51000F40 		.word	1074724945
+ 315 00dc 00000000 		.word	SPIS_rxBufferWrite
+ 316 00e0 00000000 		.word	SPIS_rxBufferRead
+ 317 00e4 00000000 		.word	SPIS_rxBufferFull
+ 318 00e8 00000000 		.word	SPIS_rxBuffer
+ 319              		.cfi_endproc
+ 320              	.LFE33:
+ 321              		.size	SPIS_RX_ISR, .-SPIS_RX_ISR
+ 322              		.text
+ 323              	.Letext0:
+ 324              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 325              		.file 3 "Generated_Source\\PSoC4\\SPIS_PVT.h"
+ 326              		.section	.debug_info,"",%progbits
+ 327              	.Ldebug_info0:
+ 328 0000 86010000 		.4byte	0x186
+ 329 0004 0400     		.2byte	0x4
+ 330 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 331 000a 04       		.byte	0x4
+ 332 000b 01       		.uleb128 0x1
+ 333 000c F0000000 		.4byte	.LASF30
+ 334 0010 0C       		.byte	0xc
+ 335 0011 EE010000 		.4byte	.LASF31
+ 336 0015 4C000000 		.4byte	.LASF32
+ 337 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 338 001d 00000000 		.4byte	0
+ 339 0021 00000000 		.4byte	.Ldebug_line0
+ 340 0025 02       		.uleb128 0x2
+ 341 0026 01       		.byte	0x1
+ 342 0027 06       		.byte	0x6
+ 343 0028 67020000 		.4byte	.LASF0
+ 344 002c 02       		.uleb128 0x2
+ 345 002d 01       		.byte	0x1
+ 346 002e 08       		.byte	0x8
+ 347 002f A0000000 		.4byte	.LASF1
+ 348 0033 02       		.uleb128 0x2
+ 349 0034 02       		.byte	0x2
+ 350 0035 05       		.byte	0x5
+ 351 0036 3E020000 		.4byte	.LASF2
+ 352 003a 02       		.uleb128 0x2
+ 353 003b 02       		.byte	0x2
+ 354 003c 07       		.byte	0x7
+ 355 003d 29000000 		.4byte	.LASF3
+ 356 0041 02       		.uleb128 0x2
+ 357 0042 04       		.byte	0x4
+ 358 0043 05       		.byte	0x5
+ 359 0044 48020000 		.4byte	.LASF4
+ 360 0048 02       		.uleb128 0x2
+ 361 0049 04       		.byte	0x4
+ 362 004a 07       		.byte	0x7
+ 363 004b C6000000 		.4byte	.LASF5
+ 364 004f 02       		.uleb128 0x2
+ 365 0050 08       		.byte	0x8
+ 366 0051 05       		.byte	0x5
+ 367 0052 2B020000 		.4byte	.LASF6
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 11
+
+
+ 368 0056 02       		.uleb128 0x2
+ 369 0057 08       		.byte	0x8
+ 370 0058 07       		.byte	0x7
+ 371 0059 C9010000 		.4byte	.LASF7
+ 372 005d 03       		.uleb128 0x3
+ 373 005e 04       		.byte	0x4
+ 374 005f 05       		.byte	0x5
+ 375 0060 696E7400 		.ascii	"int\000"
+ 376 0064 02       		.uleb128 0x2
+ 377 0065 04       		.byte	0x4
+ 378 0066 07       		.byte	0x7
+ 379 0067 BC010000 		.4byte	.LASF8
+ 380 006b 04       		.uleb128 0x4
+ 381 006c D8000000 		.4byte	.LASF12
+ 382 0070 02       		.byte	0x2
+ 383 0071 E401     		.2byte	0x1e4
+ 384 0073 2C000000 		.4byte	0x2c
+ 385 0077 02       		.uleb128 0x2
+ 386 0078 04       		.byte	0x4
+ 387 0079 04       		.byte	0x4
+ 388 007a 13000000 		.4byte	.LASF9
+ 389 007e 02       		.uleb128 0x2
+ 390 007f 08       		.byte	0x8
+ 391 0080 04       		.byte	0x4
+ 392 0081 85010000 		.4byte	.LASF10
+ 393 0085 02       		.uleb128 0x2
+ 394 0086 01       		.byte	0x1
+ 395 0087 08       		.byte	0x8
+ 396 0088 39020000 		.4byte	.LASF11
+ 397 008c 04       		.uleb128 0x4
+ 398 008d C1000000 		.4byte	.LASF13
+ 399 0091 02       		.byte	0x2
+ 400 0092 8E02     		.2byte	0x28e
+ 401 0094 98000000 		.4byte	0x98
+ 402 0098 05       		.uleb128 0x5
+ 403 0099 6B000000 		.4byte	0x6b
+ 404 009d 02       		.uleb128 0x2
+ 405 009e 08       		.byte	0x8
+ 406 009f 04       		.byte	0x4
+ 407 00a0 5B020000 		.4byte	.LASF14
+ 408 00a4 02       		.uleb128 0x2
+ 409 00a5 04       		.byte	0x4
+ 410 00a6 07       		.byte	0x7
+ 411 00a7 22020000 		.4byte	.LASF15
+ 412 00ab 06       		.uleb128 0x6
+ 413 00ac 9E010000 		.4byte	.LASF16
+ 414 00b0 01       		.byte	0x1
+ 415 00b1 33       		.byte	0x33
+ 416 00b2 00000000 		.4byte	.LFB32
+ 417 00b6 D8000000 		.4byte	.LFE32-.LFB32
+ 418 00ba 01       		.uleb128 0x1
+ 419 00bb 9C       		.byte	0x9c
+ 420 00bc CF000000 		.4byte	0xcf
+ 421 00c0 07       		.uleb128 0x7
+ 422 00c1 51020000 		.4byte	.LASF18
+ 423 00c5 01       		.byte	0x1
+ 424 00c6 37       		.byte	0x37
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 12
+
+
+ 425 00c7 6B000000 		.4byte	0x6b
+ 426 00cb 02       		.uleb128 0x2
+ 427 00cc 91       		.byte	0x91
+ 428 00cd 77       		.sleb128 -9
+ 429 00ce 00       		.byte	0
+ 430 00cf 08       		.uleb128 0x8
+ 431 00d0 73020000 		.4byte	.LASF17
+ 432 00d4 01       		.byte	0x1
+ 433 00d5 90       		.byte	0x90
+ 434 00d6 00000000 		.4byte	.LFB33
+ 435 00da EC000000 		.4byte	.LFE33-.LFB33
+ 436 00de 01       		.uleb128 0x1
+ 437 00df 9C       		.byte	0x9c
+ 438 00e0 01010000 		.4byte	0x101
+ 439 00e4 07       		.uleb128 0x7
+ 440 00e5 51020000 		.4byte	.LASF18
+ 441 00e9 01       		.byte	0x1
+ 442 00ea 93       		.byte	0x93
+ 443 00eb 6B000000 		.4byte	0x6b
+ 444 00ef 02       		.uleb128 0x2
+ 445 00f0 91       		.byte	0x91
+ 446 00f1 77       		.sleb128 -9
+ 447 00f2 07       		.uleb128 0x7
+ 448 00f3 7E010000 		.4byte	.LASF19
+ 449 00f7 01       		.byte	0x1
+ 450 00f8 94       		.byte	0x94
+ 451 00f9 6B000000 		.4byte	0x6b
+ 452 00fd 02       		.uleb128 0x2
+ 453 00fe 91       		.byte	0x91
+ 454 00ff 76       		.sleb128 -10
+ 455 0100 00       		.byte	0
+ 456 0101 09       		.uleb128 0x9
+ 457 0102 3C000000 		.4byte	.LASF20
+ 458 0106 03       		.byte	0x3
+ 459 0107 20       		.byte	0x20
+ 460 0108 98000000 		.4byte	0x98
+ 461 010c 09       		.uleb128 0x9
+ 462 010d 19000000 		.4byte	.LASF21
+ 463 0111 03       		.byte	0x3
+ 464 0112 21       		.byte	0x21
+ 465 0113 98000000 		.4byte	0x98
+ 466 0117 0A       		.uleb128 0xa
+ 467 0118 98000000 		.4byte	0x98
+ 468 011c 27010000 		.4byte	0x127
+ 469 0120 0B       		.uleb128 0xb
+ 470 0121 A4000000 		.4byte	0xa4
+ 471 0125 7F       		.byte	0x7f
+ 472 0126 00       		.byte	0
+ 473 0127 09       		.uleb128 0x9
+ 474 0128 E0010000 		.4byte	.LASF22
+ 475 012c 03       		.byte	0x3
+ 476 012d 25       		.byte	0x25
+ 477 012e 32010000 		.4byte	0x132
+ 478 0132 05       		.uleb128 0x5
+ 479 0133 17010000 		.4byte	0x117
+ 480 0137 09       		.uleb128 0x9
+ 481 0138 10020000 		.4byte	.LASF23
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 13
+
+
+ 482 013c 03       		.byte	0x3
+ 483 013d 26       		.byte	0x26
+ 484 013e 98000000 		.4byte	0x98
+ 485 0142 09       		.uleb128 0x9
+ 486 0143 AE000000 		.4byte	.LASF24
+ 487 0147 03       		.byte	0x3
+ 488 0148 27       		.byte	0x27
+ 489 0149 98000000 		.4byte	0x98
+ 490 014d 09       		.uleb128 0x9
+ 491 014e AA010000 		.4byte	.LASF25
+ 492 0152 03       		.byte	0x3
+ 493 0153 28       		.byte	0x28
+ 494 0154 98000000 		.4byte	0x98
+ 495 0158 09       		.uleb128 0x9
+ 496 0159 92000000 		.4byte	.LASF26
+ 497 015d 03       		.byte	0x3
+ 498 015e 2E       		.byte	0x2e
+ 499 015f 63010000 		.4byte	0x163
+ 500 0163 05       		.uleb128 0x5
+ 501 0164 17010000 		.4byte	0x117
+ 502 0168 09       		.uleb128 0x9
+ 503 0169 8C010000 		.4byte	.LASF27
+ 504 016d 03       		.byte	0x3
+ 505 016e 2F       		.byte	0x2f
+ 506 016f 98000000 		.4byte	0x98
+ 507 0173 09       		.uleb128 0x9
+ 508 0174 00000000 		.4byte	.LASF28
+ 509 0178 03       		.byte	0x3
+ 510 0179 30       		.byte	0x30
+ 511 017a 98000000 		.4byte	0x98
+ 512 017e 09       		.uleb128 0x9
+ 513 017f DE000000 		.4byte	.LASF29
+ 514 0183 03       		.byte	0x3
+ 515 0184 31       		.byte	0x31
+ 516 0185 98000000 		.4byte	0x98
+ 517 0189 00       		.byte	0
+ 518              		.section	.debug_abbrev,"",%progbits
+ 519              	.Ldebug_abbrev0:
+ 520 0000 01       		.uleb128 0x1
+ 521 0001 11       		.uleb128 0x11
+ 522 0002 01       		.byte	0x1
+ 523 0003 25       		.uleb128 0x25
+ 524 0004 0E       		.uleb128 0xe
+ 525 0005 13       		.uleb128 0x13
+ 526 0006 0B       		.uleb128 0xb
+ 527 0007 03       		.uleb128 0x3
+ 528 0008 0E       		.uleb128 0xe
+ 529 0009 1B       		.uleb128 0x1b
+ 530 000a 0E       		.uleb128 0xe
+ 531 000b 55       		.uleb128 0x55
+ 532 000c 17       		.uleb128 0x17
+ 533 000d 11       		.uleb128 0x11
+ 534 000e 01       		.uleb128 0x1
+ 535 000f 10       		.uleb128 0x10
+ 536 0010 17       		.uleb128 0x17
+ 537 0011 00       		.byte	0
+ 538 0012 00       		.byte	0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 14
+
+
+ 539 0013 02       		.uleb128 0x2
+ 540 0014 24       		.uleb128 0x24
+ 541 0015 00       		.byte	0
+ 542 0016 0B       		.uleb128 0xb
+ 543 0017 0B       		.uleb128 0xb
+ 544 0018 3E       		.uleb128 0x3e
+ 545 0019 0B       		.uleb128 0xb
+ 546 001a 03       		.uleb128 0x3
+ 547 001b 0E       		.uleb128 0xe
+ 548 001c 00       		.byte	0
+ 549 001d 00       		.byte	0
+ 550 001e 03       		.uleb128 0x3
+ 551 001f 24       		.uleb128 0x24
+ 552 0020 00       		.byte	0
+ 553 0021 0B       		.uleb128 0xb
+ 554 0022 0B       		.uleb128 0xb
+ 555 0023 3E       		.uleb128 0x3e
+ 556 0024 0B       		.uleb128 0xb
+ 557 0025 03       		.uleb128 0x3
+ 558 0026 08       		.uleb128 0x8
+ 559 0027 00       		.byte	0
+ 560 0028 00       		.byte	0
+ 561 0029 04       		.uleb128 0x4
+ 562 002a 16       		.uleb128 0x16
+ 563 002b 00       		.byte	0
+ 564 002c 03       		.uleb128 0x3
+ 565 002d 0E       		.uleb128 0xe
+ 566 002e 3A       		.uleb128 0x3a
+ 567 002f 0B       		.uleb128 0xb
+ 568 0030 3B       		.uleb128 0x3b
+ 569 0031 05       		.uleb128 0x5
+ 570 0032 49       		.uleb128 0x49
+ 571 0033 13       		.uleb128 0x13
+ 572 0034 00       		.byte	0
+ 573 0035 00       		.byte	0
+ 574 0036 05       		.uleb128 0x5
+ 575 0037 35       		.uleb128 0x35
+ 576 0038 00       		.byte	0
+ 577 0039 49       		.uleb128 0x49
+ 578 003a 13       		.uleb128 0x13
+ 579 003b 00       		.byte	0
+ 580 003c 00       		.byte	0
+ 581 003d 06       		.uleb128 0x6
+ 582 003e 2E       		.uleb128 0x2e
+ 583 003f 01       		.byte	0x1
+ 584 0040 3F       		.uleb128 0x3f
+ 585 0041 19       		.uleb128 0x19
+ 586 0042 03       		.uleb128 0x3
+ 587 0043 0E       		.uleb128 0xe
+ 588 0044 3A       		.uleb128 0x3a
+ 589 0045 0B       		.uleb128 0xb
+ 590 0046 3B       		.uleb128 0x3b
+ 591 0047 0B       		.uleb128 0xb
+ 592 0048 27       		.uleb128 0x27
+ 593 0049 19       		.uleb128 0x19
+ 594 004a 11       		.uleb128 0x11
+ 595 004b 01       		.uleb128 0x1
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 15
+
+
+ 596 004c 12       		.uleb128 0x12
+ 597 004d 06       		.uleb128 0x6
+ 598 004e 40       		.uleb128 0x40
+ 599 004f 18       		.uleb128 0x18
+ 600 0050 9742     		.uleb128 0x2117
+ 601 0052 19       		.uleb128 0x19
+ 602 0053 01       		.uleb128 0x1
+ 603 0054 13       		.uleb128 0x13
+ 604 0055 00       		.byte	0
+ 605 0056 00       		.byte	0
+ 606 0057 07       		.uleb128 0x7
+ 607 0058 34       		.uleb128 0x34
+ 608 0059 00       		.byte	0
+ 609 005a 03       		.uleb128 0x3
+ 610 005b 0E       		.uleb128 0xe
+ 611 005c 3A       		.uleb128 0x3a
+ 612 005d 0B       		.uleb128 0xb
+ 613 005e 3B       		.uleb128 0x3b
+ 614 005f 0B       		.uleb128 0xb
+ 615 0060 49       		.uleb128 0x49
+ 616 0061 13       		.uleb128 0x13
+ 617 0062 02       		.uleb128 0x2
+ 618 0063 18       		.uleb128 0x18
+ 619 0064 00       		.byte	0
+ 620 0065 00       		.byte	0
+ 621 0066 08       		.uleb128 0x8
+ 622 0067 2E       		.uleb128 0x2e
+ 623 0068 01       		.byte	0x1
+ 624 0069 3F       		.uleb128 0x3f
+ 625 006a 19       		.uleb128 0x19
+ 626 006b 03       		.uleb128 0x3
+ 627 006c 0E       		.uleb128 0xe
+ 628 006d 3A       		.uleb128 0x3a
+ 629 006e 0B       		.uleb128 0xb
+ 630 006f 3B       		.uleb128 0x3b
+ 631 0070 0B       		.uleb128 0xb
+ 632 0071 27       		.uleb128 0x27
+ 633 0072 19       		.uleb128 0x19
+ 634 0073 11       		.uleb128 0x11
+ 635 0074 01       		.uleb128 0x1
+ 636 0075 12       		.uleb128 0x12
+ 637 0076 06       		.uleb128 0x6
+ 638 0077 40       		.uleb128 0x40
+ 639 0078 18       		.uleb128 0x18
+ 640 0079 9642     		.uleb128 0x2116
+ 641 007b 19       		.uleb128 0x19
+ 642 007c 01       		.uleb128 0x1
+ 643 007d 13       		.uleb128 0x13
+ 644 007e 00       		.byte	0
+ 645 007f 00       		.byte	0
+ 646 0080 09       		.uleb128 0x9
+ 647 0081 34       		.uleb128 0x34
+ 648 0082 00       		.byte	0
+ 649 0083 03       		.uleb128 0x3
+ 650 0084 0E       		.uleb128 0xe
+ 651 0085 3A       		.uleb128 0x3a
+ 652 0086 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 16
+
+
+ 653 0087 3B       		.uleb128 0x3b
+ 654 0088 0B       		.uleb128 0xb
+ 655 0089 49       		.uleb128 0x49
+ 656 008a 13       		.uleb128 0x13
+ 657 008b 3F       		.uleb128 0x3f
+ 658 008c 19       		.uleb128 0x19
+ 659 008d 3C       		.uleb128 0x3c
+ 660 008e 19       		.uleb128 0x19
+ 661 008f 00       		.byte	0
+ 662 0090 00       		.byte	0
+ 663 0091 0A       		.uleb128 0xa
+ 664 0092 01       		.uleb128 0x1
+ 665 0093 01       		.byte	0x1
+ 666 0094 49       		.uleb128 0x49
+ 667 0095 13       		.uleb128 0x13
+ 668 0096 01       		.uleb128 0x1
+ 669 0097 13       		.uleb128 0x13
+ 670 0098 00       		.byte	0
+ 671 0099 00       		.byte	0
+ 672 009a 0B       		.uleb128 0xb
+ 673 009b 21       		.uleb128 0x21
+ 674 009c 00       		.byte	0
+ 675 009d 49       		.uleb128 0x49
+ 676 009e 13       		.uleb128 0x13
+ 677 009f 2F       		.uleb128 0x2f
+ 678 00a0 0B       		.uleb128 0xb
+ 679 00a1 00       		.byte	0
+ 680 00a2 00       		.byte	0
+ 681 00a3 00       		.byte	0
+ 682              		.section	.debug_aranges,"",%progbits
+ 683 0000 24000000 		.4byte	0x24
+ 684 0004 0200     		.2byte	0x2
+ 685 0006 00000000 		.4byte	.Ldebug_info0
+ 686 000a 04       		.byte	0x4
+ 687 000b 00       		.byte	0
+ 688 000c 0000     		.2byte	0
+ 689 000e 0000     		.2byte	0
+ 690 0010 00000000 		.4byte	.LFB32
+ 691 0014 D8000000 		.4byte	.LFE32-.LFB32
+ 692 0018 00000000 		.4byte	.LFB33
+ 693 001c EC000000 		.4byte	.LFE33-.LFB33
+ 694 0020 00000000 		.4byte	0
+ 695 0024 00000000 		.4byte	0
+ 696              		.section	.debug_ranges,"",%progbits
+ 697              	.Ldebug_ranges0:
+ 698 0000 00000000 		.4byte	.LFB32
+ 699 0004 D8000000 		.4byte	.LFE32
+ 700 0008 00000000 		.4byte	.LFB33
+ 701 000c EC000000 		.4byte	.LFE33
+ 702 0010 00000000 		.4byte	0
+ 703 0014 00000000 		.4byte	0
+ 704              		.section	.debug_line,"",%progbits
+ 705              	.Ldebug_line0:
+ 706 0000 A7000000 		.section	.debug_str,"MS",%progbits,1
+ 706      02005300 
+ 706      00000201 
+ 706      FB0E0D00 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 17
+
+
+ 706      01010101 
+ 707              	.LASF28:
+ 708 0000 53504953 		.ascii	"SPIS_txBufferWrite\000"
+ 708      5F747842 
+ 708      75666665 
+ 708      72577269 
+ 708      746500
+ 709              	.LASF9:
+ 710 0013 666C6F61 		.ascii	"float\000"
+ 710      7400
+ 711              	.LASF21:
+ 712 0019 53504953 		.ascii	"SPIS_swStatusRx\000"
+ 712      5F737753 
+ 712      74617475 
+ 712      73527800 
+ 713              	.LASF3:
+ 714 0029 73686F72 		.ascii	"short unsigned int\000"
+ 714      7420756E 
+ 714      7369676E 
+ 714      65642069 
+ 714      6E7400
+ 715              	.LASF20:
+ 716 003c 53504953 		.ascii	"SPIS_swStatusTx\000"
+ 716      5F737753 
+ 716      74617475 
+ 716      73547800 
+ 717              	.LASF32:
+ 718 004c 433A5C55 		.ascii	"C:\\Users\\Lars\\Documents\\PSoC Creator\\Workspace"
+ 718      73657273 
+ 718      5C4C6172 
+ 718      735C446F 
+ 718      63756D65 
+ 719 007a 30315C50 		.ascii	"01\\P4_SingleDiode.cydsn\000"
+ 719      345F5369 
+ 719      6E676C65 
+ 719      44696F64 
+ 719      652E6379 
+ 720              	.LASF26:
+ 721 0092 53504953 		.ascii	"SPIS_txBuffer\000"
+ 721      5F747842 
+ 721      75666665 
+ 721      7200
+ 722              	.LASF1:
+ 723 00a0 756E7369 		.ascii	"unsigned char\000"
+ 723      676E6564 
+ 723      20636861 
+ 723      7200
+ 724              	.LASF24:
+ 725 00ae 53504953 		.ascii	"SPIS_rxBufferWrite\000"
+ 725      5F727842 
+ 725      75666665 
+ 725      72577269 
+ 725      746500
+ 726              	.LASF13:
+ 727 00c1 72656738 		.ascii	"reg8\000"
+ 727      00
+ 728              	.LASF5:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 18
+
+
+ 729 00c6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 729      20756E73 
+ 729      69676E65 
+ 729      6420696E 
+ 729      7400
+ 730              	.LASF12:
+ 731 00d8 75696E74 		.ascii	"uint8\000"
+ 731      3800
+ 732              	.LASF29:
+ 733 00de 53504953 		.ascii	"SPIS_txBufferFull\000"
+ 733      5F747842 
+ 733      75666665 
+ 733      7246756C 
+ 733      6C00
+ 734              	.LASF30:
+ 735 00f0 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 735      43313120 
+ 735      352E342E 
+ 735      31203230 
+ 735      31363036 
+ 736 0123 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 736      20726576 
+ 736      6973696F 
+ 736      6E203233 
+ 736      37373135 
+ 737 0156 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 737      66756E63 
+ 737      74696F6E 
+ 737      2D736563 
+ 737      74696F6E 
+ 738              	.LASF19:
+ 739 017e 72784461 		.ascii	"rxData\000"
+ 739      746100
+ 740              	.LASF10:
+ 741 0185 646F7562 		.ascii	"double\000"
+ 741      6C6500
+ 742              	.LASF27:
+ 743 018c 53504953 		.ascii	"SPIS_txBufferRead\000"
+ 743      5F747842 
+ 743      75666665 
+ 743      72526561 
+ 743      6400
+ 744              	.LASF16:
+ 745 019e 53504953 		.ascii	"SPIS_TX_ISR\000"
+ 745      5F54585F 
+ 745      49535200 
+ 746              	.LASF25:
+ 747 01aa 53504953 		.ascii	"SPIS_rxBufferFull\000"
+ 747      5F727842 
+ 747      75666665 
+ 747      7246756C 
+ 747      6C00
+ 748              	.LASF8:
+ 749 01bc 756E7369 		.ascii	"unsigned int\000"
+ 749      676E6564 
+ 749      20696E74 
+ 749      00
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 19
+
+
+ 750              	.LASF7:
+ 751 01c9 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 751      206C6F6E 
+ 751      6720756E 
+ 751      7369676E 
+ 751      65642069 
+ 752              	.LASF22:
+ 753 01e0 53504953 		.ascii	"SPIS_rxBuffer\000"
+ 753      5F727842 
+ 753      75666665 
+ 753      7200
+ 754              	.LASF31:
+ 755 01ee 47656E65 		.ascii	"Generated_Source\\PSoC4\\SPIS_INT.c\000"
+ 755      72617465 
+ 755      645F536F 
+ 755      75726365 
+ 755      5C50536F 
+ 756              	.LASF23:
+ 757 0210 53504953 		.ascii	"SPIS_rxBufferRead\000"
+ 757      5F727842 
+ 757      75666665 
+ 757      72526561 
+ 757      6400
+ 758              	.LASF15:
+ 759 0222 73697A65 		.ascii	"sizetype\000"
+ 759      74797065 
+ 759      00
+ 760              	.LASF6:
+ 761 022b 6C6F6E67 		.ascii	"long long int\000"
+ 761      206C6F6E 
+ 761      6720696E 
+ 761      7400
+ 762              	.LASF11:
+ 763 0239 63686172 		.ascii	"char\000"
+ 763      00
+ 764              	.LASF2:
+ 765 023e 73686F72 		.ascii	"short int\000"
+ 765      7420696E 
+ 765      7400
+ 766              	.LASF4:
+ 767 0248 6C6F6E67 		.ascii	"long int\000"
+ 767      20696E74 
+ 767      00
+ 768              	.LASF18:
+ 769 0251 746D7053 		.ascii	"tmpStatus\000"
+ 769      74617475 
+ 769      7300
+ 770              	.LASF14:
+ 771 025b 6C6F6E67 		.ascii	"long double\000"
+ 771      20646F75 
+ 771      626C6500 
+ 772              	.LASF0:
+ 773 0267 7369676E 		.ascii	"signed char\000"
+ 773      65642063 
+ 773      68617200 
+ 774              	.LASF17:
+ 775 0273 53504953 		.ascii	"SPIS_RX_ISR\000"
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccirROwD.s 			page 20
+
+
+ 775      5F52585F 
+ 775      49535200 
+ 776              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

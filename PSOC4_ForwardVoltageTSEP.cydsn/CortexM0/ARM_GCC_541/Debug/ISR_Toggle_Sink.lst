@@ -1,0 +1,1936 @@
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"ISR_Toggle_Sink.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.ISR_Toggle_Sink_Start,"ax",%progbits
+  20              		.align	2
+  21              		.global	ISR_Toggle_Sink_Start
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	ISR_Toggle_Sink_Start, %function
+  25              	ISR_Toggle_Sink_Start:
+  26              	.LFB32:
+  27              		.file 1 "Generated_Source\\PSoC4\\ISR_Toggle_Sink.c"
+   1:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * File Name: ISR_Toggle_Sink.c  
+   3:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Version 1.70
+   4:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+   5:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  Description:
+   6:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   API for controlling the state of an interrupt.
+   7:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+   8:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+   9:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  Note:
+  10:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+  11:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  18:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  19:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** #include <CyLib.h>
+  21:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** #include <ISR_Toggle_Sink.h>
+  22:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** #include "cyapicallbacks.h"
+  23:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  24:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** #if !defined(ISR_Toggle_Sink__REMOVED) /* Check for removal by optimization */
+  25:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  26:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+  27:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  Place your includes, defines and code here 
+  28:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************/
+  29:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /* `#START ISR_Toggle_Sink_intc` */
+  30:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 2
+
+
+  31:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /* `#END` */
+  32:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  33:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
+  34:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  35:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /* Declared in startup, used to set unused interrupts to. */
+  36:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** CY_ISR_PROTO(IntDefaultHandler);
+  37:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  38:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  39:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+  40:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_Start
+  41:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+  42:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+  43:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+  44:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  Set up the interrupt and enable it. This function disables the interrupt, 
+  45:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  sets the default interrupt vector, sets the priority from the value in the
+  46:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  Design Wide Resources Interrupt Editor, then enables the interrupt to the 
+  47:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  interrupt controller.
+  48:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+  49:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:  
+  50:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+  51:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+  52:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+  53:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+  54:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+  55:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+  56:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** void ISR_Toggle_Sink_Start(void)
+  57:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+  28              		.loc 1 57 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 80B5     		push	{r7, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  58:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* For all we know the interrupt is active. */
+  59:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_Disable();
+  38              		.loc 1 59 0
+  39 0004 FFF7FEFF 		bl	ISR_Toggle_Sink_Disable
+  60:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  61:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Set the ISR to point to the ISR_Toggle_Sink Interrupt. */
+  62:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_SetVector(&ISR_Toggle_Sink_Interrupt);
+  40              		.loc 1 62 0
+  41 0008 054B     		ldr	r3, .L2
+  42 000a 1800     		movs	r0, r3
+  43 000c FFF7FEFF 		bl	ISR_Toggle_Sink_SetVector
+  63:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  64:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Set the priority. */
+  65:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_SetPriority((uint8)ISR_Toggle_Sink_INTC_PRIOR_NUMBER);
+  44              		.loc 1 65 0
+  45 0010 0320     		movs	r0, #3
+  46 0012 FFF7FEFF 		bl	ISR_Toggle_Sink_SetPriority
+  66:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  67:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Enable it. */
+  68:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_Enable();
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 3
+
+
+  47              		.loc 1 68 0
+  48 0016 FFF7FEFF 		bl	ISR_Toggle_Sink_Enable
+  69:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+  49              		.loc 1 69 0
+  50 001a C046     		nop
+  51 001c BD46     		mov	sp, r7
+  52              		@ sp needed
+  53 001e 80BD     		pop	{r7, pc}
+  54              	.L3:
+  55              		.align	2
+  56              	.L2:
+  57 0020 00000000 		.word	ISR_Toggle_Sink_Interrupt
+  58              		.cfi_endproc
+  59              	.LFE32:
+  60              		.size	ISR_Toggle_Sink_Start, .-ISR_Toggle_Sink_Start
+  61              		.section	.text.ISR_Toggle_Sink_StartEx,"ax",%progbits
+  62              		.align	2
+  63              		.global	ISR_Toggle_Sink_StartEx
+  64              		.code	16
+  65              		.thumb_func
+  66              		.type	ISR_Toggle_Sink_StartEx, %function
+  67              	ISR_Toggle_Sink_StartEx:
+  68              	.LFB33:
+  70:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  71:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+  72:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+  73:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_StartEx
+  74:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+  75:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+  76:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+  77:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
+  78:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  sets the interrupt vector based on the address passed in, sets the priority 
+  79:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  from the value in the Design Wide Resources Interrupt Editor, then enables 
+  80:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  the interrupt to the interrupt controller.
+  81:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  
+  82:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+  83:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  used to provide consistent definition across compilers:
+  84:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  
+  85:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *  Function definition example:
+  86:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   CY_ISR(MyISR)
+  87:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   {
+  88:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   }
+  89:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Function prototype example:
+  90:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   CY_ISR_PROTO(MyISR);
+  91:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+  92:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:  
+  93:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   address: Address of the ISR to set in the interrupt vector table.
+  94:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+  95:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+  96:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+  97:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+  98:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+  99:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** void ISR_Toggle_Sink_StartEx(cyisraddress address)
+ 100:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+  69              		.loc 1 100 0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 4
+
+
+  72              		@ frame_needed = 1, uses_anonymous_args = 0
+  73 0000 80B5     		push	{r7, lr}
+  74              		.cfi_def_cfa_offset 8
+  75              		.cfi_offset 7, -8
+  76              		.cfi_offset 14, -4
+  77 0002 82B0     		sub	sp, sp, #8
+  78              		.cfi_def_cfa_offset 16
+  79 0004 00AF     		add	r7, sp, #0
+  80              		.cfi_def_cfa_register 7
+  81 0006 7860     		str	r0, [r7, #4]
+ 101:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* For all we know the interrupt is active. */
+ 102:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_Disable();
+  82              		.loc 1 102 0
+  83 0008 FFF7FEFF 		bl	ISR_Toggle_Sink_Disable
+ 103:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 104:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Set the ISR to point to the ISR_Toggle_Sink Interrupt. */
+ 105:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_SetVector(address);
+  84              		.loc 1 105 0
+  85 000c 7B68     		ldr	r3, [r7, #4]
+  86 000e 1800     		movs	r0, r3
+  87 0010 FFF7FEFF 		bl	ISR_Toggle_Sink_SetVector
+ 106:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 107:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Set the priority. */
+ 108:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_SetPriority((uint8)ISR_Toggle_Sink_INTC_PRIOR_NUMBER);
+  88              		.loc 1 108 0
+  89 0014 0320     		movs	r0, #3
+  90 0016 FFF7FEFF 		bl	ISR_Toggle_Sink_SetPriority
+ 109:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 110:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Enable it. */
+ 111:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_Enable();
+  91              		.loc 1 111 0
+  92 001a FFF7FEFF 		bl	ISR_Toggle_Sink_Enable
+ 112:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+  93              		.loc 1 112 0
+  94 001e C046     		nop
+  95 0020 BD46     		mov	sp, r7
+  96 0022 02B0     		add	sp, sp, #8
+  97              		@ sp needed
+  98 0024 80BD     		pop	{r7, pc}
+  99              		.cfi_endproc
+ 100              	.LFE33:
+ 101              		.size	ISR_Toggle_Sink_StartEx, .-ISR_Toggle_Sink_StartEx
+ 102 0026 C046     		.section	.text.ISR_Toggle_Sink_Stop,"ax",%progbits
+ 103              		.align	2
+ 104              		.global	ISR_Toggle_Sink_Stop
+ 105              		.code	16
+ 106              		.thumb_func
+ 107              		.type	ISR_Toggle_Sink_Stop, %function
+ 108              	ISR_Toggle_Sink_Stop:
+ 109              	.LFB34:
+ 113:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 114:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 115:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 116:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_Stop
+ 117:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 118:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 119:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 5
+
+
+ 120:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Disables and removes the interrupt.
+ 121:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 122:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:  
+ 123:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 124:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 125:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 126:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 127:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 128:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 129:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** void ISR_Toggle_Sink_Stop(void)
+ 130:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 110              		.loc 1 130 0
+ 111              		.cfi_startproc
+ 112              		@ args = 0, pretend = 0, frame = 0
+ 113              		@ frame_needed = 1, uses_anonymous_args = 0
+ 114 0000 80B5     		push	{r7, lr}
+ 115              		.cfi_def_cfa_offset 8
+ 116              		.cfi_offset 7, -8
+ 117              		.cfi_offset 14, -4
+ 118 0002 00AF     		add	r7, sp, #0
+ 119              		.cfi_def_cfa_register 7
+ 131:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Disable this interrupt. */
+ 132:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_Disable();
+ 120              		.loc 1 132 0
+ 121 0004 FFF7FEFF 		bl	ISR_Toggle_Sink_Disable
+ 133:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 134:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Set the ISR to point to the passive one. */
+ 135:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     ISR_Toggle_Sink_SetVector(&IntDefaultHandler);
+ 122              		.loc 1 135 0
+ 123 0008 034B     		ldr	r3, .L6
+ 124 000a 1800     		movs	r0, r3
+ 125 000c FFF7FEFF 		bl	ISR_Toggle_Sink_SetVector
+ 136:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 126              		.loc 1 136 0
+ 127 0010 C046     		nop
+ 128 0012 BD46     		mov	sp, r7
+ 129              		@ sp needed
+ 130 0014 80BD     		pop	{r7, pc}
+ 131              	.L7:
+ 132 0016 C046     		.align	2
+ 133              	.L6:
+ 134 0018 00000000 		.word	IntDefaultHandler
+ 135              		.cfi_endproc
+ 136              	.LFE34:
+ 137              		.size	ISR_Toggle_Sink_Stop, .-ISR_Toggle_Sink_Stop
+ 138              		.section	.text.ISR_Toggle_Sink_Interrupt,"ax",%progbits
+ 139              		.align	2
+ 140              		.global	ISR_Toggle_Sink_Interrupt
+ 141              		.code	16
+ 142              		.thumb_func
+ 143              		.type	ISR_Toggle_Sink_Interrupt, %function
+ 144              	ISR_Toggle_Sink_Interrupt:
+ 145              	.LFB35:
+ 137:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 138:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 139:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 140:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_Interrupt
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 6
+
+
+ 141:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 142:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 143:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 144:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   The default Interrupt Service Routine for ISR_Toggle_Sink.
+ 145:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 146:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Add custom code between the START and END comments to keep the next version
+ 147:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   of this file from over-writing your code.
+ 148:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 149:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Note You may use either the default ISR by using this API, or you may define
+ 150:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   your own separate ISR through ISR_StartEx().
+ 151:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 152:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:  
+ 153:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 154:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 155:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 156:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 157:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 158:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 159:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** CY_ISR(ISR_Toggle_Sink_Interrupt)
+ 160:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 146              		.loc 1 160 0
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 1, uses_anonymous_args = 0
+ 150 0000 80B5     		push	{r7, lr}
+ 151              		.cfi_def_cfa_offset 8
+ 152              		.cfi_offset 7, -8
+ 153              		.cfi_offset 14, -4
+ 154 0002 00AF     		add	r7, sp, #0
+ 155              		.cfi_def_cfa_register 7
+ 161:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     #ifdef ISR_Toggle_Sink_INTERRUPT_INTERRUPT_CALLBACK
+ 162:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****         ISR_Toggle_Sink_Interrupt_InterruptCallback();
+ 156              		.loc 1 162 0
+ 157 0004 FFF7FEFF 		bl	ISR_Toggle_Sink_Interrupt_InterruptCallback
+ 163:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     #endif /* ISR_Toggle_Sink_INTERRUPT_INTERRUPT_CALLBACK */ 
+ 164:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 165:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /*  Place your Interrupt code here. */
+ 166:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* `#START ISR_Toggle_Sink_Interrupt` */
+ 167:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 168:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* `#END` */
+ 169:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 158              		.loc 1 169 0
+ 159 0008 C046     		nop
+ 160 000a BD46     		mov	sp, r7
+ 161              		@ sp needed
+ 162 000c 80BD     		pop	{r7, pc}
+ 163              		.cfi_endproc
+ 164              	.LFE35:
+ 165              		.size	ISR_Toggle_Sink_Interrupt, .-ISR_Toggle_Sink_Interrupt
+ 166 000e C046     		.section	.text.ISR_Toggle_Sink_SetVector,"ax",%progbits
+ 167              		.align	2
+ 168              		.global	ISR_Toggle_Sink_SetVector
+ 169              		.code	16
+ 170              		.thumb_func
+ 171              		.type	ISR_Toggle_Sink_SetVector, %function
+ 172              	ISR_Toggle_Sink_SetVector:
+ 173              	.LFB36:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 7
+
+
+ 170:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 171:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 172:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 173:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_SetVector
+ 174:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 175:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 176:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 177:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Change the ISR vector for the Interrupt. Note calling ISR_Toggle_Sink_Start
+ 178:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   will override any effect this method would have had. To set the vector 
+ 179:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   before the component has been started use ISR_Toggle_Sink_StartEx instead.
+ 180:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * 
+ 181:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
+ 182:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   used to provide consistent definition across compilers:
+ 183:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 184:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Function definition example:
+ 185:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   CY_ISR(MyISR)
+ 186:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   {
+ 187:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   }
+ 188:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 189:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Function prototype example:
+ 190:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *     CY_ISR_PROTO(MyISR);
+ 191:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 192:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:
+ 193:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   address: Address of the ISR to set in the interrupt vector table.
+ 194:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 195:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 196:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 197:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 198:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 199:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** void ISR_Toggle_Sink_SetVector(cyisraddress address)
+ 200:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 174              		.loc 1 200 0
+ 175              		.cfi_startproc
+ 176              		@ args = 0, pretend = 0, frame = 8
+ 177              		@ frame_needed = 1, uses_anonymous_args = 0
+ 178 0000 80B5     		push	{r7, lr}
+ 179              		.cfi_def_cfa_offset 8
+ 180              		.cfi_offset 7, -8
+ 181              		.cfi_offset 14, -4
+ 182 0002 82B0     		sub	sp, sp, #8
+ 183              		.cfi_def_cfa_offset 16
+ 184 0004 00AF     		add	r7, sp, #0
+ 185              		.cfi_def_cfa_register 7
+ 186 0006 7860     		str	r0, [r7, #4]
+ 201:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     CyRamVectors[CYINT_IRQ_BASE + ISR_Toggle_Sink__INTC_NUMBER] = address;
+ 187              		.loc 1 201 0
+ 188 0008 034B     		ldr	r3, .L10
+ 189 000a 7A68     		ldr	r2, [r7, #4]
+ 190 000c 9A64     		str	r2, [r3, #72]
+ 202:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 191              		.loc 1 202 0
+ 192 000e C046     		nop
+ 193 0010 BD46     		mov	sp, r7
+ 194 0012 02B0     		add	sp, sp, #8
+ 195              		@ sp needed
+ 196 0014 80BD     		pop	{r7, pc}
+ 197              	.L11:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 8
+
+
+ 198 0016 C046     		.align	2
+ 199              	.L10:
+ 200 0018 00000000 		.word	CyRamVectors
+ 201              		.cfi_endproc
+ 202              	.LFE36:
+ 203              		.size	ISR_Toggle_Sink_SetVector, .-ISR_Toggle_Sink_SetVector
+ 204              		.section	.text.ISR_Toggle_Sink_GetVector,"ax",%progbits
+ 205              		.align	2
+ 206              		.global	ISR_Toggle_Sink_GetVector
+ 207              		.code	16
+ 208              		.thumb_func
+ 209              		.type	ISR_Toggle_Sink_GetVector, %function
+ 210              	ISR_Toggle_Sink_GetVector:
+ 211              	.LFB37:
+ 203:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 204:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 205:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 206:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_GetVector
+ 207:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 208:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 209:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 210:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Gets the "address" of the current ISR vector for the Interrupt.
+ 211:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 212:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:
+ 213:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 214:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 215:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 216:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Address of the ISR in the interrupt vector table.
+ 217:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 218:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 219:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** cyisraddress ISR_Toggle_Sink_GetVector(void)
+ 220:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 212              		.loc 1 220 0
+ 213              		.cfi_startproc
+ 214              		@ args = 0, pretend = 0, frame = 0
+ 215              		@ frame_needed = 1, uses_anonymous_args = 0
+ 216 0000 80B5     		push	{r7, lr}
+ 217              		.cfi_def_cfa_offset 8
+ 218              		.cfi_offset 7, -8
+ 219              		.cfi_offset 14, -4
+ 220 0002 00AF     		add	r7, sp, #0
+ 221              		.cfi_def_cfa_register 7
+ 221:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     return CyRamVectors[CYINT_IRQ_BASE + ISR_Toggle_Sink__INTC_NUMBER];
+ 222              		.loc 1 221 0
+ 223 0004 024B     		ldr	r3, .L14
+ 224 0006 9B6C     		ldr	r3, [r3, #72]
+ 222:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 225              		.loc 1 222 0
+ 226 0008 1800     		movs	r0, r3
+ 227 000a BD46     		mov	sp, r7
+ 228              		@ sp needed
+ 229 000c 80BD     		pop	{r7, pc}
+ 230              	.L15:
+ 231 000e C046     		.align	2
+ 232              	.L14:
+ 233 0010 00000000 		.word	CyRamVectors
+ 234              		.cfi_endproc
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 9
+
+
+ 235              	.LFE37:
+ 236              		.size	ISR_Toggle_Sink_GetVector, .-ISR_Toggle_Sink_GetVector
+ 237              		.section	.text.ISR_Toggle_Sink_SetPriority,"ax",%progbits
+ 238              		.align	2
+ 239              		.global	ISR_Toggle_Sink_SetPriority
+ 240              		.code	16
+ 241              		.thumb_func
+ 242              		.type	ISR_Toggle_Sink_SetPriority, %function
+ 243              	ISR_Toggle_Sink_SetPriority:
+ 244              	.LFB38:
+ 223:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 224:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 225:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 226:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_SetPriority
+ 227:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 228:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 229:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 230:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Sets the Priority of the Interrupt. 
+ 231:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 232:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Note calling ISR_Toggle_Sink_Start or ISR_Toggle_Sink_StartEx will 
+ 233:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   override any effect this API would have had. This API should only be called
+ 234:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   after ISR_Toggle_Sink_Start or ISR_Toggle_Sink_StartEx has been called. 
+ 235:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   To set the initial priority for the component, use the Design-Wide Resources
+ 236:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Interrupt Editor.
+ 237:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 238:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
+ 239:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 240:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:
+ 241:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   priority: Priority of the interrupt, 0 being the highest priority
+ 242:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *             PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 243:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *             PSoC 4: Priority is from 0 to 3.
+ 244:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 245:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 246:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 247:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 248:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 249:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** void ISR_Toggle_Sink_SetPriority(uint8 priority)
+ 250:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 245              		.loc 1 250 0
+ 246              		.cfi_startproc
+ 247              		@ args = 0, pretend = 0, frame = 16
+ 248              		@ frame_needed = 1, uses_anonymous_args = 0
+ 249 0000 90B5     		push	{r4, r7, lr}
+ 250              		.cfi_def_cfa_offset 12
+ 251              		.cfi_offset 4, -12
+ 252              		.cfi_offset 7, -8
+ 253              		.cfi_offset 14, -4
+ 254 0002 85B0     		sub	sp, sp, #20
+ 255              		.cfi_def_cfa_offset 32
+ 256 0004 00AF     		add	r7, sp, #0
+ 257              		.cfi_def_cfa_register 7
+ 258 0006 0200     		movs	r2, r0
+ 259 0008 FB1D     		adds	r3, r7, #7
+ 260 000a 1A70     		strb	r2, [r3]
+ 251:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 	uint8 interruptState;
+ 252:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     uint32 priorityOffset = ((ISR_Toggle_Sink__INTC_NUMBER % 4u) * 8u) + 6u;
+ 261              		.loc 1 252 0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 10
+
+
+ 262 000c 1623     		movs	r3, #22
+ 263 000e FB60     		str	r3, [r7, #12]
+ 253:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     
+ 254:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 	interruptState = CyEnterCriticalSection();
+ 264              		.loc 1 254 0
+ 265 0010 0B23     		movs	r3, #11
+ 266 0012 FC18     		adds	r4, r7, r3
+ 267 0014 FFF7FEFF 		bl	CyEnterCriticalSection
+ 268 0018 0300     		movs	r3, r0
+ 269 001a 2370     		strb	r3, [r4]
+ 255:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     *ISR_Toggle_Sink_INTC_PRIOR = (*ISR_Toggle_Sink_INTC_PRIOR & (uint32)(~ISR_Toggle_Sink__INTC_PR
+ 270              		.loc 1 255 0
+ 271 001c 0A4B     		ldr	r3, .L17
+ 272 001e 0A4A     		ldr	r2, .L17
+ 273 0020 1268     		ldr	r2, [r2]
+ 274 0022 0A49     		ldr	r1, .L17+4
+ 275 0024 1140     		ands	r1, r2
+ 256:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****                                     ((uint32)priority << priorityOffset);
+ 276              		.loc 1 256 0
+ 277 0026 FA1D     		adds	r2, r7, #7
+ 278 0028 1078     		ldrb	r0, [r2]
+ 279 002a FA68     		ldr	r2, [r7, #12]
+ 280 002c 9040     		lsls	r0, r0, r2
+ 281 002e 0200     		movs	r2, r0
+ 255:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     *ISR_Toggle_Sink_INTC_PRIOR = (*ISR_Toggle_Sink_INTC_PRIOR & (uint32)(~ISR_Toggle_Sink__INTC_PR
+ 282              		.loc 1 255 0
+ 283 0030 0A43     		orrs	r2, r1
+ 284 0032 1A60     		str	r2, [r3]
+ 257:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 	CyExitCriticalSection(interruptState);
+ 285              		.loc 1 257 0
+ 286 0034 0B23     		movs	r3, #11
+ 287 0036 FB18     		adds	r3, r7, r3
+ 288 0038 1B78     		ldrb	r3, [r3]
+ 289 003a 1800     		movs	r0, r3
+ 290 003c FFF7FEFF 		bl	CyExitCriticalSection
+ 258:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 291              		.loc 1 258 0
+ 292 0040 C046     		nop
+ 293 0042 BD46     		mov	sp, r7
+ 294 0044 05B0     		add	sp, sp, #20
+ 295              		@ sp needed
+ 296 0046 90BD     		pop	{r4, r7, pc}
+ 297              	.L18:
+ 298              		.align	2
+ 299              	.L17:
+ 300 0048 00E400E0 		.word	-536812544
+ 301 004c FFFF3FFF 		.word	-12582913
+ 302              		.cfi_endproc
+ 303              	.LFE38:
+ 304              		.size	ISR_Toggle_Sink_SetPriority, .-ISR_Toggle_Sink_SetPriority
+ 305              		.section	.text.ISR_Toggle_Sink_GetPriority,"ax",%progbits
+ 306              		.align	2
+ 307              		.global	ISR_Toggle_Sink_GetPriority
+ 308              		.code	16
+ 309              		.thumb_func
+ 310              		.type	ISR_Toggle_Sink_GetPriority, %function
+ 311              	ISR_Toggle_Sink_GetPriority:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 11
+
+
+ 312              	.LFB39:
+ 259:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 260:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 261:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 262:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_GetPriority
+ 263:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 264:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 265:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 266:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Gets the Priority of the Interrupt.
+ 267:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 268:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:
+ 269:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 270:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 271:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 272:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Priority of the interrupt, 0 being the highest priority
+ 273:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *    PSoC 3 and PSoC 5LP: Priority is from 0 to 7.
+ 274:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *    PSoC 4: Priority is from 0 to 3.
+ 275:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 276:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 277:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** uint8 ISR_Toggle_Sink_GetPriority(void)
+ 278:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 313              		.loc 1 278 0
+ 314              		.cfi_startproc
+ 315              		@ args = 0, pretend = 0, frame = 8
+ 316              		@ frame_needed = 1, uses_anonymous_args = 0
+ 317 0000 80B5     		push	{r7, lr}
+ 318              		.cfi_def_cfa_offset 8
+ 319              		.cfi_offset 7, -8
+ 320              		.cfi_offset 14, -4
+ 321 0002 82B0     		sub	sp, sp, #8
+ 322              		.cfi_def_cfa_offset 16
+ 323 0004 00AF     		add	r7, sp, #0
+ 324              		.cfi_def_cfa_register 7
+ 279:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     uint32 priority;
+ 280:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 	uint32 priorityOffset = ((ISR_Toggle_Sink__INTC_NUMBER % 4u) * 8u) + 6u;
+ 325              		.loc 1 280 0
+ 326 0006 1623     		movs	r3, #22
+ 327 0008 7B60     		str	r3, [r7, #4]
+ 281:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 282:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     priority = (*ISR_Toggle_Sink_INTC_PRIOR & ISR_Toggle_Sink__INTC_PRIOR_MASK) >> priorityOffset;
+ 328              		.loc 1 282 0
+ 329 000a 074B     		ldr	r3, .L21
+ 330 000c 1A68     		ldr	r2, [r3]
+ 331 000e C023     		movs	r3, #192
+ 332 0010 1B04     		lsls	r3, r3, #16
+ 333 0012 1A40     		ands	r2, r3
+ 334 0014 7B68     		ldr	r3, [r7, #4]
+ 335 0016 DA40     		lsrs	r2, r2, r3
+ 336 0018 1300     		movs	r3, r2
+ 337 001a 3B60     		str	r3, [r7]
+ 283:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 284:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     return (uint8)priority;
+ 338              		.loc 1 284 0
+ 339 001c 3B68     		ldr	r3, [r7]
+ 340 001e DBB2     		uxtb	r3, r3
+ 285:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 341              		.loc 1 285 0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 12
+
+
+ 342 0020 1800     		movs	r0, r3
+ 343 0022 BD46     		mov	sp, r7
+ 344 0024 02B0     		add	sp, sp, #8
+ 345              		@ sp needed
+ 346 0026 80BD     		pop	{r7, pc}
+ 347              	.L22:
+ 348              		.align	2
+ 349              	.L21:
+ 350 0028 00E400E0 		.word	-536812544
+ 351              		.cfi_endproc
+ 352              	.LFE39:
+ 353              		.size	ISR_Toggle_Sink_GetPriority, .-ISR_Toggle_Sink_GetPriority
+ 354              		.section	.text.ISR_Toggle_Sink_Enable,"ax",%progbits
+ 355              		.align	2
+ 356              		.global	ISR_Toggle_Sink_Enable
+ 357              		.code	16
+ 358              		.thumb_func
+ 359              		.type	ISR_Toggle_Sink_Enable, %function
+ 360              	ISR_Toggle_Sink_Enable:
+ 361              	.LFB40:
+ 286:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 287:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 288:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 289:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_Enable
+ 290:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 291:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 292:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 293:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
+ 294:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
+ 295:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   function, which sets the vector and the priority, has been called.
+ 296:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 297:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:
+ 298:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 299:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 300:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 301:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 302:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 303:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 304:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** void ISR_Toggle_Sink_Enable(void)
+ 305:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 362              		.loc 1 305 0
+ 363              		.cfi_startproc
+ 364              		@ args = 0, pretend = 0, frame = 0
+ 365              		@ frame_needed = 1, uses_anonymous_args = 0
+ 366 0000 80B5     		push	{r7, lr}
+ 367              		.cfi_def_cfa_offset 8
+ 368              		.cfi_offset 7, -8
+ 369              		.cfi_offset 14, -4
+ 370 0002 00AF     		add	r7, sp, #0
+ 371              		.cfi_def_cfa_register 7
+ 306:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Enable the general interrupt. */
+ 307:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     *ISR_Toggle_Sink_INTC_SET_EN = ISR_Toggle_Sink__INTC_MASK;
+ 372              		.loc 1 307 0
+ 373 0004 024B     		ldr	r3, .L24
+ 374 0006 0422     		movs	r2, #4
+ 375 0008 1A60     		str	r2, [r3]
+ 308:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 13
+
+
+ 376              		.loc 1 308 0
+ 377 000a C046     		nop
+ 378 000c BD46     		mov	sp, r7
+ 379              		@ sp needed
+ 380 000e 80BD     		pop	{r7, pc}
+ 381              	.L25:
+ 382              		.align	2
+ 383              	.L24:
+ 384 0010 00E100E0 		.word	-536813312
+ 385              		.cfi_endproc
+ 386              	.LFE40:
+ 387              		.size	ISR_Toggle_Sink_Enable, .-ISR_Toggle_Sink_Enable
+ 388              		.section	.text.ISR_Toggle_Sink_GetState,"ax",%progbits
+ 389              		.align	2
+ 390              		.global	ISR_Toggle_Sink_GetState
+ 391              		.code	16
+ 392              		.thumb_func
+ 393              		.type	ISR_Toggle_Sink_GetState, %function
+ 394              	ISR_Toggle_Sink_GetState:
+ 395              	.LFB41:
+ 309:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 310:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 311:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 312:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_GetState
+ 313:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 314:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 315:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 316:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Gets the state (enabled, disabled) of the Interrupt.
+ 317:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 318:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:
+ 319:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 320:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 321:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 322:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   1 if enabled, 0 if disabled.
+ 323:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 324:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 325:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** uint8 ISR_Toggle_Sink_GetState(void)
+ 326:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 396              		.loc 1 326 0
+ 397              		.cfi_startproc
+ 398              		@ args = 0, pretend = 0, frame = 0
+ 399              		@ frame_needed = 1, uses_anonymous_args = 0
+ 400 0000 80B5     		push	{r7, lr}
+ 401              		.cfi_def_cfa_offset 8
+ 402              		.cfi_offset 7, -8
+ 403              		.cfi_offset 14, -4
+ 404 0002 00AF     		add	r7, sp, #0
+ 405              		.cfi_def_cfa_register 7
+ 327:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Get the state of the general interrupt. */
+ 328:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     return ((*ISR_Toggle_Sink_INTC_SET_EN & (uint32)ISR_Toggle_Sink__INTC_MASK) != 0u) ? 1u:0u;
+ 406              		.loc 1 328 0
+ 407 0004 054B     		ldr	r3, .L30
+ 408 0006 1B68     		ldr	r3, [r3]
+ 409 0008 0422     		movs	r2, #4
+ 410 000a 1340     		ands	r3, r2
+ 411 000c 01D0     		beq	.L27
+ 412              		.loc 1 328 0 is_stmt 0 discriminator 1
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 14
+
+
+ 413 000e 0123     		movs	r3, #1
+ 414 0010 00E0     		b	.L28
+ 415              	.L27:
+ 416              		.loc 1 328 0 discriminator 2
+ 417 0012 0023     		movs	r3, #0
+ 418              	.L28:
+ 329:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 419              		.loc 1 329 0 is_stmt 1 discriminator 4
+ 420 0014 1800     		movs	r0, r3
+ 421 0016 BD46     		mov	sp, r7
+ 422              		@ sp needed
+ 423 0018 80BD     		pop	{r7, pc}
+ 424              	.L31:
+ 425 001a C046     		.align	2
+ 426              	.L30:
+ 427 001c 00E100E0 		.word	-536813312
+ 428              		.cfi_endproc
+ 429              	.LFE41:
+ 430              		.size	ISR_Toggle_Sink_GetState, .-ISR_Toggle_Sink_GetState
+ 431              		.section	.text.ISR_Toggle_Sink_Disable,"ax",%progbits
+ 432              		.align	2
+ 433              		.global	ISR_Toggle_Sink_Disable
+ 434              		.code	16
+ 435              		.thumb_func
+ 436              		.type	ISR_Toggle_Sink_Disable, %function
+ 437              	ISR_Toggle_Sink_Disable:
+ 438              	.LFB42:
+ 330:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 331:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 332:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 333:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_Disable
+ 334:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 335:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 336:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 337:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Disables the Interrupt in the interrupt controller.
+ 338:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 339:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:
+ 340:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 341:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 342:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 343:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 344:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 345:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 346:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** void ISR_Toggle_Sink_Disable(void)
+ 347:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 439              		.loc 1 347 0
+ 440              		.cfi_startproc
+ 441              		@ args = 0, pretend = 0, frame = 0
+ 442              		@ frame_needed = 1, uses_anonymous_args = 0
+ 443 0000 80B5     		push	{r7, lr}
+ 444              		.cfi_def_cfa_offset 8
+ 445              		.cfi_offset 7, -8
+ 446              		.cfi_offset 14, -4
+ 447 0002 00AF     		add	r7, sp, #0
+ 448              		.cfi_def_cfa_register 7
+ 348:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     /* Disable the general interrupt. */
+ 349:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     *ISR_Toggle_Sink_INTC_CLR_EN = ISR_Toggle_Sink__INTC_MASK;
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 15
+
+
+ 449              		.loc 1 349 0
+ 450 0004 024B     		ldr	r3, .L33
+ 451 0006 0422     		movs	r2, #4
+ 452 0008 1A60     		str	r2, [r3]
+ 350:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 453              		.loc 1 350 0
+ 454 000a C046     		nop
+ 455 000c BD46     		mov	sp, r7
+ 456              		@ sp needed
+ 457 000e 80BD     		pop	{r7, pc}
+ 458              	.L34:
+ 459              		.align	2
+ 460              	.L33:
+ 461 0010 80E100E0 		.word	-536813184
+ 462              		.cfi_endproc
+ 463              	.LFE42:
+ 464              		.size	ISR_Toggle_Sink_Disable, .-ISR_Toggle_Sink_Disable
+ 465              		.section	.text.ISR_Toggle_Sink_SetPending,"ax",%progbits
+ 466              		.align	2
+ 467              		.global	ISR_Toggle_Sink_SetPending
+ 468              		.code	16
+ 469              		.thumb_func
+ 470              		.type	ISR_Toggle_Sink_SetPending, %function
+ 471              	ISR_Toggle_Sink_SetPending:
+ 472              	.LFB43:
+ 351:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 352:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 353:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 354:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_SetPending
+ 355:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 356:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 357:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 358:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Causes the Interrupt to enter the pending state, a software method of
+ 359:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   generating the interrupt.
+ 360:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 361:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:
+ 362:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 363:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 364:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 365:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 366:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 367:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Side Effects:
+ 368:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   If interrupts are enabled and the interrupt is set up properly, the ISR is
+ 369:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   entered (depending on the priority of this interrupt and other pending 
+ 370:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   interrupts).
+ 371:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 372:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 373:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** void ISR_Toggle_Sink_SetPending(void)
+ 374:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 473              		.loc 1 374 0
+ 474              		.cfi_startproc
+ 475              		@ args = 0, pretend = 0, frame = 0
+ 476              		@ frame_needed = 1, uses_anonymous_args = 0
+ 477 0000 80B5     		push	{r7, lr}
+ 478              		.cfi_def_cfa_offset 8
+ 479              		.cfi_offset 7, -8
+ 480              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 16
+
+
+ 481 0002 00AF     		add	r7, sp, #0
+ 482              		.cfi_def_cfa_register 7
+ 375:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     *ISR_Toggle_Sink_INTC_SET_PD = ISR_Toggle_Sink__INTC_MASK;
+ 483              		.loc 1 375 0
+ 484 0004 024B     		ldr	r3, .L36
+ 485 0006 0422     		movs	r2, #4
+ 486 0008 1A60     		str	r2, [r3]
+ 376:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 487              		.loc 1 376 0
+ 488 000a C046     		nop
+ 489 000c BD46     		mov	sp, r7
+ 490              		@ sp needed
+ 491 000e 80BD     		pop	{r7, pc}
+ 492              	.L37:
+ 493              		.align	2
+ 494              	.L36:
+ 495 0010 00E200E0 		.word	-536813056
+ 496              		.cfi_endproc
+ 497              	.LFE43:
+ 498              		.size	ISR_Toggle_Sink_SetPending, .-ISR_Toggle_Sink_SetPending
+ 499              		.section	.text.ISR_Toggle_Sink_ClearPending,"ax",%progbits
+ 500              		.align	2
+ 501              		.global	ISR_Toggle_Sink_ClearPending
+ 502              		.code	16
+ 503              		.thumb_func
+ 504              		.type	ISR_Toggle_Sink_ClearPending, %function
+ 505              	ISR_Toggle_Sink_ClearPending:
+ 506              	.LFB44:
+ 377:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 378:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** 
+ 379:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** /*******************************************************************************
+ 380:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Function Name: ISR_Toggle_Sink_ClearPending
+ 381:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** ********************************************************************************
+ 382:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 383:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Summary:
+ 384:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Clears a pending interrupt in the interrupt controller.
+ 385:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 386:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   Note Some interrupt sources are clear-on-read and require the block 
+ 387:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   interrupt/status register to be read/cleared with the appropriate block API 
+ 388:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   (GPIO, UART, and so on). Otherwise the ISR will continue to remain in 
+ 389:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   pending state even though the interrupt itself is cleared using this API.
+ 390:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 391:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Parameters:
+ 392:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 393:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 394:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** * Return:
+ 395:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *   None
+ 396:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *
+ 397:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** *******************************************************************************/
+ 398:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** void ISR_Toggle_Sink_ClearPending(void)
+ 399:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** {
+ 507              		.loc 1 399 0
+ 508              		.cfi_startproc
+ 509              		@ args = 0, pretend = 0, frame = 0
+ 510              		@ frame_needed = 1, uses_anonymous_args = 0
+ 511 0000 80B5     		push	{r7, lr}
+ 512              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 17
+
+
+ 513              		.cfi_offset 7, -8
+ 514              		.cfi_offset 14, -4
+ 515 0002 00AF     		add	r7, sp, #0
+ 516              		.cfi_def_cfa_register 7
+ 400:Generated_Source\PSoC4/ISR_Toggle_Sink.c ****     *ISR_Toggle_Sink_INTC_CLR_PD = ISR_Toggle_Sink__INTC_MASK;
+ 517              		.loc 1 400 0
+ 518 0004 024B     		ldr	r3, .L39
+ 519 0006 0422     		movs	r2, #4
+ 520 0008 1A60     		str	r2, [r3]
+ 401:Generated_Source\PSoC4/ISR_Toggle_Sink.c **** }
+ 521              		.loc 1 401 0
+ 522 000a C046     		nop
+ 523 000c BD46     		mov	sp, r7
+ 524              		@ sp needed
+ 525 000e 80BD     		pop	{r7, pc}
+ 526              	.L40:
+ 527              		.align	2
+ 528              	.L39:
+ 529 0010 80E200E0 		.word	-536812928
+ 530              		.cfi_endproc
+ 531              	.LFE44:
+ 532              		.size	ISR_Toggle_Sink_ClearPending, .-ISR_Toggle_Sink_ClearPending
+ 533              		.text
+ 534              	.Letext0:
+ 535              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 536              		.section	.debug_info,"",%progbits
+ 537              	.Ldebug_info0:
+ 538 0000 49020000 		.4byte	0x249
+ 539 0004 0400     		.2byte	0x4
+ 540 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 541 000a 04       		.byte	0x4
+ 542 000b 01       		.uleb128 0x1
+ 543 000c 73010000 		.4byte	.LASF34
+ 544 0010 0C       		.byte	0xc
+ 545 0011 89000000 		.4byte	.LASF35
+ 546 0015 43000000 		.4byte	.LASF36
+ 547 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 548 001d 00000000 		.4byte	0
+ 549 0021 00000000 		.4byte	.Ldebug_line0
+ 550 0025 02       		.uleb128 0x2
+ 551 0026 01       		.byte	0x1
+ 552 0027 06       		.byte	0x6
+ 553 0028 41030000 		.4byte	.LASF0
+ 554 002c 02       		.uleb128 0x2
+ 555 002d 01       		.byte	0x1
+ 556 002e 08       		.byte	0x8
+ 557 002f EC000000 		.4byte	.LASF1
+ 558 0033 02       		.uleb128 0x2
+ 559 0034 02       		.byte	0x2
+ 560 0035 05       		.byte	0x5
+ 561 0036 D9020000 		.4byte	.LASF2
+ 562 003a 02       		.uleb128 0x2
+ 563 003b 02       		.byte	0x2
+ 564 003c 07       		.byte	0x7
+ 565 003d 60010000 		.4byte	.LASF3
+ 566 0041 02       		.uleb128 0x2
+ 567 0042 04       		.byte	0x4
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 18
+
+
+ 568 0043 05       		.byte	0x5
+ 569 0044 2C030000 		.4byte	.LASF4
+ 570 0048 02       		.uleb128 0x2
+ 571 0049 04       		.byte	0x4
+ 572 004a 07       		.byte	0x7
+ 573 004b 36010000 		.4byte	.LASF5
+ 574 004f 02       		.uleb128 0x2
+ 575 0050 08       		.byte	0x8
+ 576 0051 05       		.byte	0x5
+ 577 0052 91020000 		.4byte	.LASF6
+ 578 0056 02       		.uleb128 0x2
+ 579 0057 08       		.byte	0x8
+ 580 0058 07       		.byte	0x7
+ 581 0059 49020000 		.4byte	.LASF7
+ 582 005d 03       		.uleb128 0x3
+ 583 005e 04       		.byte	0x4
+ 584 005f 05       		.byte	0x5
+ 585 0060 696E7400 		.ascii	"int\000"
+ 586 0064 02       		.uleb128 0x2
+ 587 0065 04       		.byte	0x4
+ 588 0066 07       		.byte	0x7
+ 589 0067 34020000 		.4byte	.LASF8
+ 590 006b 04       		.uleb128 0x4
+ 591 006c FD020000 		.4byte	.LASF9
+ 592 0070 02       		.byte	0x2
+ 593 0071 E401     		.2byte	0x1e4
+ 594 0073 2C000000 		.4byte	0x2c
+ 595 0077 04       		.uleb128 0x4
+ 596 0078 2D020000 		.4byte	.LASF10
+ 597 007c 02       		.byte	0x2
+ 598 007d E601     		.2byte	0x1e6
+ 599 007f 48000000 		.4byte	0x48
+ 600 0083 02       		.uleb128 0x2
+ 601 0084 04       		.byte	0x4
+ 602 0085 04       		.byte	0x4
+ 603 0086 C9000000 		.4byte	.LASF11
+ 604 008a 02       		.uleb128 0x2
+ 605 008b 08       		.byte	0x8
+ 606 008c 04       		.byte	0x4
+ 607 008d 26020000 		.4byte	.LASF12
+ 608 0091 02       		.uleb128 0x2
+ 609 0092 01       		.byte	0x1
+ 610 0093 08       		.byte	0x8
+ 611 0094 BB020000 		.4byte	.LASF13
+ 612 0098 04       		.uleb128 0x4
+ 613 0099 16000000 		.4byte	.LASF14
+ 614 009d 02       		.byte	0x2
+ 615 009e 9002     		.2byte	0x290
+ 616 00a0 A4000000 		.4byte	0xa4
+ 617 00a4 05       		.uleb128 0x5
+ 618 00a5 77000000 		.4byte	0x77
+ 619 00a9 04       		.uleb128 0x4
+ 620 00aa 7B020000 		.4byte	.LASF15
+ 621 00ae 02       		.byte	0x2
+ 622 00af A002     		.2byte	0x2a0
+ 623 00b1 B5000000 		.4byte	0xb5
+ 624 00b5 06       		.uleb128 0x6
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 19
+
+
+ 625 00b6 04       		.byte	0x4
+ 626 00b7 BB000000 		.4byte	0xbb
+ 627 00bb 07       		.uleb128 0x7
+ 628 00bc 02       		.uleb128 0x2
+ 629 00bd 08       		.byte	0x8
+ 630 00be 04       		.byte	0x4
+ 631 00bf 35030000 		.4byte	.LASF16
+ 632 00c3 02       		.uleb128 0x2
+ 633 00c4 04       		.byte	0x4
+ 634 00c5 07       		.byte	0x7
+ 635 00c6 88020000 		.4byte	.LASF17
+ 636 00ca 08       		.uleb128 0x8
+ 637 00cb 00000000 		.4byte	.LASF18
+ 638 00cf 01       		.byte	0x1
+ 639 00d0 38       		.byte	0x38
+ 640 00d1 00000000 		.4byte	.LFB32
+ 641 00d5 24000000 		.4byte	.LFE32-.LFB32
+ 642 00d9 01       		.uleb128 0x1
+ 643 00da 9C       		.byte	0x9c
+ 644 00db 09       		.uleb128 0x9
+ 645 00dc FA000000 		.4byte	.LASF21
+ 646 00e0 01       		.byte	0x1
+ 647 00e1 63       		.byte	0x63
+ 648 00e2 00000000 		.4byte	.LFB33
+ 649 00e6 26000000 		.4byte	.LFE33-.LFB33
+ 650 00ea 01       		.uleb128 0x1
+ 651 00eb 9C       		.byte	0x9c
+ 652 00ec FF000000 		.4byte	0xff
+ 653 00f0 0A       		.uleb128 0xa
+ 654 00f1 41020000 		.4byte	.LASF23
+ 655 00f5 01       		.byte	0x1
+ 656 00f6 63       		.byte	0x63
+ 657 00f7 A9000000 		.4byte	0xa9
+ 658 00fb 02       		.uleb128 0x2
+ 659 00fc 91       		.byte	0x91
+ 660 00fd 74       		.sleb128 -12
+ 661 00fe 00       		.byte	0
+ 662 00ff 08       		.uleb128 0x8
+ 663 0100 12010000 		.4byte	.LASF19
+ 664 0104 01       		.byte	0x1
+ 665 0105 81       		.byte	0x81
+ 666 0106 00000000 		.4byte	.LFB34
+ 667 010a 1C000000 		.4byte	.LFE34-.LFB34
+ 668 010e 01       		.uleb128 0x1
+ 669 010f 9C       		.byte	0x9c
+ 670 0110 08       		.uleb128 0x8
+ 671 0111 03030000 		.4byte	.LASF20
+ 672 0115 01       		.byte	0x1
+ 673 0116 9F       		.byte	0x9f
+ 674 0117 00000000 		.4byte	.LFB35
+ 675 011b 0E000000 		.4byte	.LFE35-.LFB35
+ 676 011f 01       		.uleb128 0x1
+ 677 0120 9C       		.byte	0x9c
+ 678 0121 0B       		.uleb128 0xb
+ 679 0122 29000000 		.4byte	.LASF22
+ 680 0126 01       		.byte	0x1
+ 681 0127 C7       		.byte	0xc7
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 20
+
+
+ 682 0128 00000000 		.4byte	.LFB36
+ 683 012c 1C000000 		.4byte	.LFE36-.LFB36
+ 684 0130 01       		.uleb128 0x1
+ 685 0131 9C       		.byte	0x9c
+ 686 0132 45010000 		.4byte	0x145
+ 687 0136 0A       		.uleb128 0xa
+ 688 0137 41020000 		.4byte	.LASF23
+ 689 013b 01       		.byte	0x1
+ 690 013c C7       		.byte	0xc7
+ 691 013d A9000000 		.4byte	0xa9
+ 692 0141 02       		.uleb128 0x2
+ 693 0142 91       		.byte	0x91
+ 694 0143 74       		.sleb128 -12
+ 695 0144 00       		.byte	0
+ 696 0145 0C       		.uleb128 0xc
+ 697 0146 E3020000 		.4byte	.LASF29
+ 698 014a 01       		.byte	0x1
+ 699 014b DB       		.byte	0xdb
+ 700 014c A9000000 		.4byte	0xa9
+ 701 0150 00000000 		.4byte	.LFB37
+ 702 0154 14000000 		.4byte	.LFE37-.LFB37
+ 703 0158 01       		.uleb128 0x1
+ 704 0159 9C       		.byte	0x9c
+ 705 015a 09       		.uleb128 0x9
+ 706 015b 9F020000 		.4byte	.LASF24
+ 707 015f 01       		.byte	0x1
+ 708 0160 F9       		.byte	0xf9
+ 709 0161 00000000 		.4byte	.LFB38
+ 710 0165 50000000 		.4byte	.LFE38-.LFB38
+ 711 0169 01       		.uleb128 0x1
+ 712 016a 9C       		.byte	0x9c
+ 713 016b 9A010000 		.4byte	0x19a
+ 714 016f 0A       		.uleb128 0xa
+ 715 0170 01020000 		.4byte	.LASF25
+ 716 0174 01       		.byte	0x1
+ 717 0175 F9       		.byte	0xf9
+ 718 0176 6B000000 		.4byte	0x6b
+ 719 017a 02       		.uleb128 0x2
+ 720 017b 91       		.byte	0x91
+ 721 017c 67       		.sleb128 -25
+ 722 017d 0D       		.uleb128 0xd
+ 723 017e 27010000 		.4byte	.LASF26
+ 724 0182 01       		.byte	0x1
+ 725 0183 FB       		.byte	0xfb
+ 726 0184 6B000000 		.4byte	0x6b
+ 727 0188 02       		.uleb128 0x2
+ 728 0189 91       		.byte	0x91
+ 729 018a 6B       		.sleb128 -21
+ 730 018b 0D       		.uleb128 0xd
+ 731 018c 1D030000 		.4byte	.LASF27
+ 732 0190 01       		.byte	0x1
+ 733 0191 FC       		.byte	0xfc
+ 734 0192 77000000 		.4byte	0x77
+ 735 0196 02       		.uleb128 0x2
+ 736 0197 91       		.byte	0x91
+ 737 0198 6C       		.sleb128 -20
+ 738 0199 00       		.byte	0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 21
+
+
+ 739 019a 0E       		.uleb128 0xe
+ 740 019b 0A020000 		.4byte	.LASF37
+ 741 019f 01       		.byte	0x1
+ 742 01a0 1501     		.2byte	0x115
+ 743 01a2 6B000000 		.4byte	0x6b
+ 744 01a6 00000000 		.4byte	.LFB39
+ 745 01aa 2C000000 		.4byte	.LFE39-.LFB39
+ 746 01ae 01       		.uleb128 0x1
+ 747 01af 9C       		.byte	0x9c
+ 748 01b0 D3010000 		.4byte	0x1d3
+ 749 01b4 0F       		.uleb128 0xf
+ 750 01b5 01020000 		.4byte	.LASF25
+ 751 01b9 01       		.byte	0x1
+ 752 01ba 1701     		.2byte	0x117
+ 753 01bc 77000000 		.4byte	0x77
+ 754 01c0 02       		.uleb128 0x2
+ 755 01c1 91       		.byte	0x91
+ 756 01c2 70       		.sleb128 -16
+ 757 01c3 0F       		.uleb128 0xf
+ 758 01c4 1D030000 		.4byte	.LASF27
+ 759 01c8 01       		.byte	0x1
+ 760 01c9 1801     		.2byte	0x118
+ 761 01cb 77000000 		.4byte	0x77
+ 762 01cf 02       		.uleb128 0x2
+ 763 01d0 91       		.byte	0x91
+ 764 01d1 74       		.sleb128 -12
+ 765 01d2 00       		.byte	0
+ 766 01d3 10       		.uleb128 0x10
+ 767 01d4 B2000000 		.4byte	.LASF28
+ 768 01d8 01       		.byte	0x1
+ 769 01d9 3001     		.2byte	0x130
+ 770 01db 00000000 		.4byte	.LFB40
+ 771 01df 14000000 		.4byte	.LFE40-.LFB40
+ 772 01e3 01       		.uleb128 0x1
+ 773 01e4 9C       		.byte	0x9c
+ 774 01e5 11       		.uleb128 0x11
+ 775 01e6 C0020000 		.4byte	.LASF30
+ 776 01ea 01       		.byte	0x1
+ 777 01eb 4501     		.2byte	0x145
+ 778 01ed 6B000000 		.4byte	0x6b
+ 779 01f1 00000000 		.4byte	.LFB41
+ 780 01f5 20000000 		.4byte	.LFE41-.LFB41
+ 781 01f9 01       		.uleb128 0x1
+ 782 01fa 9C       		.byte	0x9c
+ 783 01fb 10       		.uleb128 0x10
+ 784 01fc 48010000 		.4byte	.LASF31
+ 785 0200 01       		.byte	0x1
+ 786 0201 5A01     		.2byte	0x15a
+ 787 0203 00000000 		.4byte	.LFB42
+ 788 0207 14000000 		.4byte	.LFE42-.LFB42
+ 789 020b 01       		.uleb128 0x1
+ 790 020c 9C       		.byte	0x9c
+ 791 020d 10       		.uleb128 0x10
+ 792 020e 60020000 		.4byte	.LASF32
+ 793 0212 01       		.byte	0x1
+ 794 0213 7501     		.2byte	0x175
+ 795 0215 00000000 		.4byte	.LFB43
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 22
+
+
+ 796 0219 14000000 		.4byte	.LFE43-.LFB43
+ 797 021d 01       		.uleb128 0x1
+ 798 021e 9C       		.byte	0x9c
+ 799 021f 10       		.uleb128 0x10
+ 800 0220 CF000000 		.4byte	.LASF33
+ 801 0224 01       		.byte	0x1
+ 802 0225 8E01     		.2byte	0x18e
+ 803 0227 00000000 		.4byte	.LFB44
+ 804 022b 14000000 		.4byte	.LFE44-.LFB44
+ 805 022f 01       		.uleb128 0x1
+ 806 0230 9C       		.byte	0x9c
+ 807 0231 12       		.uleb128 0x12
+ 808 0232 A9000000 		.4byte	0xa9
+ 809 0236 41020000 		.4byte	0x241
+ 810 023a 13       		.uleb128 0x13
+ 811 023b C3000000 		.4byte	0xc3
+ 812 023f 2F       		.byte	0x2f
+ 813 0240 00       		.byte	0
+ 814 0241 14       		.uleb128 0x14
+ 815 0242 1C000000 		.4byte	.LASF38
+ 816 0246 01       		.byte	0x1
+ 817 0247 21       		.byte	0x21
+ 818 0248 31020000 		.4byte	0x231
+ 819 024c 00       		.byte	0
+ 820              		.section	.debug_abbrev,"",%progbits
+ 821              	.Ldebug_abbrev0:
+ 822 0000 01       		.uleb128 0x1
+ 823 0001 11       		.uleb128 0x11
+ 824 0002 01       		.byte	0x1
+ 825 0003 25       		.uleb128 0x25
+ 826 0004 0E       		.uleb128 0xe
+ 827 0005 13       		.uleb128 0x13
+ 828 0006 0B       		.uleb128 0xb
+ 829 0007 03       		.uleb128 0x3
+ 830 0008 0E       		.uleb128 0xe
+ 831 0009 1B       		.uleb128 0x1b
+ 832 000a 0E       		.uleb128 0xe
+ 833 000b 55       		.uleb128 0x55
+ 834 000c 17       		.uleb128 0x17
+ 835 000d 11       		.uleb128 0x11
+ 836 000e 01       		.uleb128 0x1
+ 837 000f 10       		.uleb128 0x10
+ 838 0010 17       		.uleb128 0x17
+ 839 0011 00       		.byte	0
+ 840 0012 00       		.byte	0
+ 841 0013 02       		.uleb128 0x2
+ 842 0014 24       		.uleb128 0x24
+ 843 0015 00       		.byte	0
+ 844 0016 0B       		.uleb128 0xb
+ 845 0017 0B       		.uleb128 0xb
+ 846 0018 3E       		.uleb128 0x3e
+ 847 0019 0B       		.uleb128 0xb
+ 848 001a 03       		.uleb128 0x3
+ 849 001b 0E       		.uleb128 0xe
+ 850 001c 00       		.byte	0
+ 851 001d 00       		.byte	0
+ 852 001e 03       		.uleb128 0x3
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 23
+
+
+ 853 001f 24       		.uleb128 0x24
+ 854 0020 00       		.byte	0
+ 855 0021 0B       		.uleb128 0xb
+ 856 0022 0B       		.uleb128 0xb
+ 857 0023 3E       		.uleb128 0x3e
+ 858 0024 0B       		.uleb128 0xb
+ 859 0025 03       		.uleb128 0x3
+ 860 0026 08       		.uleb128 0x8
+ 861 0027 00       		.byte	0
+ 862 0028 00       		.byte	0
+ 863 0029 04       		.uleb128 0x4
+ 864 002a 16       		.uleb128 0x16
+ 865 002b 00       		.byte	0
+ 866 002c 03       		.uleb128 0x3
+ 867 002d 0E       		.uleb128 0xe
+ 868 002e 3A       		.uleb128 0x3a
+ 869 002f 0B       		.uleb128 0xb
+ 870 0030 3B       		.uleb128 0x3b
+ 871 0031 05       		.uleb128 0x5
+ 872 0032 49       		.uleb128 0x49
+ 873 0033 13       		.uleb128 0x13
+ 874 0034 00       		.byte	0
+ 875 0035 00       		.byte	0
+ 876 0036 05       		.uleb128 0x5
+ 877 0037 35       		.uleb128 0x35
+ 878 0038 00       		.byte	0
+ 879 0039 49       		.uleb128 0x49
+ 880 003a 13       		.uleb128 0x13
+ 881 003b 00       		.byte	0
+ 882 003c 00       		.byte	0
+ 883 003d 06       		.uleb128 0x6
+ 884 003e 0F       		.uleb128 0xf
+ 885 003f 00       		.byte	0
+ 886 0040 0B       		.uleb128 0xb
+ 887 0041 0B       		.uleb128 0xb
+ 888 0042 49       		.uleb128 0x49
+ 889 0043 13       		.uleb128 0x13
+ 890 0044 00       		.byte	0
+ 891 0045 00       		.byte	0
+ 892 0046 07       		.uleb128 0x7
+ 893 0047 15       		.uleb128 0x15
+ 894 0048 00       		.byte	0
+ 895 0049 27       		.uleb128 0x27
+ 896 004a 19       		.uleb128 0x19
+ 897 004b 00       		.byte	0
+ 898 004c 00       		.byte	0
+ 899 004d 08       		.uleb128 0x8
+ 900 004e 2E       		.uleb128 0x2e
+ 901 004f 00       		.byte	0
+ 902 0050 3F       		.uleb128 0x3f
+ 903 0051 19       		.uleb128 0x19
+ 904 0052 03       		.uleb128 0x3
+ 905 0053 0E       		.uleb128 0xe
+ 906 0054 3A       		.uleb128 0x3a
+ 907 0055 0B       		.uleb128 0xb
+ 908 0056 3B       		.uleb128 0x3b
+ 909 0057 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 24
+
+
+ 910 0058 27       		.uleb128 0x27
+ 911 0059 19       		.uleb128 0x19
+ 912 005a 11       		.uleb128 0x11
+ 913 005b 01       		.uleb128 0x1
+ 914 005c 12       		.uleb128 0x12
+ 915 005d 06       		.uleb128 0x6
+ 916 005e 40       		.uleb128 0x40
+ 917 005f 18       		.uleb128 0x18
+ 918 0060 9642     		.uleb128 0x2116
+ 919 0062 19       		.uleb128 0x19
+ 920 0063 00       		.byte	0
+ 921 0064 00       		.byte	0
+ 922 0065 09       		.uleb128 0x9
+ 923 0066 2E       		.uleb128 0x2e
+ 924 0067 01       		.byte	0x1
+ 925 0068 3F       		.uleb128 0x3f
+ 926 0069 19       		.uleb128 0x19
+ 927 006a 03       		.uleb128 0x3
+ 928 006b 0E       		.uleb128 0xe
+ 929 006c 3A       		.uleb128 0x3a
+ 930 006d 0B       		.uleb128 0xb
+ 931 006e 3B       		.uleb128 0x3b
+ 932 006f 0B       		.uleb128 0xb
+ 933 0070 27       		.uleb128 0x27
+ 934 0071 19       		.uleb128 0x19
+ 935 0072 11       		.uleb128 0x11
+ 936 0073 01       		.uleb128 0x1
+ 937 0074 12       		.uleb128 0x12
+ 938 0075 06       		.uleb128 0x6
+ 939 0076 40       		.uleb128 0x40
+ 940 0077 18       		.uleb128 0x18
+ 941 0078 9642     		.uleb128 0x2116
+ 942 007a 19       		.uleb128 0x19
+ 943 007b 01       		.uleb128 0x1
+ 944 007c 13       		.uleb128 0x13
+ 945 007d 00       		.byte	0
+ 946 007e 00       		.byte	0
+ 947 007f 0A       		.uleb128 0xa
+ 948 0080 05       		.uleb128 0x5
+ 949 0081 00       		.byte	0
+ 950 0082 03       		.uleb128 0x3
+ 951 0083 0E       		.uleb128 0xe
+ 952 0084 3A       		.uleb128 0x3a
+ 953 0085 0B       		.uleb128 0xb
+ 954 0086 3B       		.uleb128 0x3b
+ 955 0087 0B       		.uleb128 0xb
+ 956 0088 49       		.uleb128 0x49
+ 957 0089 13       		.uleb128 0x13
+ 958 008a 02       		.uleb128 0x2
+ 959 008b 18       		.uleb128 0x18
+ 960 008c 00       		.byte	0
+ 961 008d 00       		.byte	0
+ 962 008e 0B       		.uleb128 0xb
+ 963 008f 2E       		.uleb128 0x2e
+ 964 0090 01       		.byte	0x1
+ 965 0091 3F       		.uleb128 0x3f
+ 966 0092 19       		.uleb128 0x19
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 25
+
+
+ 967 0093 03       		.uleb128 0x3
+ 968 0094 0E       		.uleb128 0xe
+ 969 0095 3A       		.uleb128 0x3a
+ 970 0096 0B       		.uleb128 0xb
+ 971 0097 3B       		.uleb128 0x3b
+ 972 0098 0B       		.uleb128 0xb
+ 973 0099 27       		.uleb128 0x27
+ 974 009a 19       		.uleb128 0x19
+ 975 009b 11       		.uleb128 0x11
+ 976 009c 01       		.uleb128 0x1
+ 977 009d 12       		.uleb128 0x12
+ 978 009e 06       		.uleb128 0x6
+ 979 009f 40       		.uleb128 0x40
+ 980 00a0 18       		.uleb128 0x18
+ 981 00a1 9742     		.uleb128 0x2117
+ 982 00a3 19       		.uleb128 0x19
+ 983 00a4 01       		.uleb128 0x1
+ 984 00a5 13       		.uleb128 0x13
+ 985 00a6 00       		.byte	0
+ 986 00a7 00       		.byte	0
+ 987 00a8 0C       		.uleb128 0xc
+ 988 00a9 2E       		.uleb128 0x2e
+ 989 00aa 00       		.byte	0
+ 990 00ab 3F       		.uleb128 0x3f
+ 991 00ac 19       		.uleb128 0x19
+ 992 00ad 03       		.uleb128 0x3
+ 993 00ae 0E       		.uleb128 0xe
+ 994 00af 3A       		.uleb128 0x3a
+ 995 00b0 0B       		.uleb128 0xb
+ 996 00b1 3B       		.uleb128 0x3b
+ 997 00b2 0B       		.uleb128 0xb
+ 998 00b3 27       		.uleb128 0x27
+ 999 00b4 19       		.uleb128 0x19
+ 1000 00b5 49       		.uleb128 0x49
+ 1001 00b6 13       		.uleb128 0x13
+ 1002 00b7 11       		.uleb128 0x11
+ 1003 00b8 01       		.uleb128 0x1
+ 1004 00b9 12       		.uleb128 0x12
+ 1005 00ba 06       		.uleb128 0x6
+ 1006 00bb 40       		.uleb128 0x40
+ 1007 00bc 18       		.uleb128 0x18
+ 1008 00bd 9742     		.uleb128 0x2117
+ 1009 00bf 19       		.uleb128 0x19
+ 1010 00c0 00       		.byte	0
+ 1011 00c1 00       		.byte	0
+ 1012 00c2 0D       		.uleb128 0xd
+ 1013 00c3 34       		.uleb128 0x34
+ 1014 00c4 00       		.byte	0
+ 1015 00c5 03       		.uleb128 0x3
+ 1016 00c6 0E       		.uleb128 0xe
+ 1017 00c7 3A       		.uleb128 0x3a
+ 1018 00c8 0B       		.uleb128 0xb
+ 1019 00c9 3B       		.uleb128 0x3b
+ 1020 00ca 0B       		.uleb128 0xb
+ 1021 00cb 49       		.uleb128 0x49
+ 1022 00cc 13       		.uleb128 0x13
+ 1023 00cd 02       		.uleb128 0x2
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 26
+
+
+ 1024 00ce 18       		.uleb128 0x18
+ 1025 00cf 00       		.byte	0
+ 1026 00d0 00       		.byte	0
+ 1027 00d1 0E       		.uleb128 0xe
+ 1028 00d2 2E       		.uleb128 0x2e
+ 1029 00d3 01       		.byte	0x1
+ 1030 00d4 3F       		.uleb128 0x3f
+ 1031 00d5 19       		.uleb128 0x19
+ 1032 00d6 03       		.uleb128 0x3
+ 1033 00d7 0E       		.uleb128 0xe
+ 1034 00d8 3A       		.uleb128 0x3a
+ 1035 00d9 0B       		.uleb128 0xb
+ 1036 00da 3B       		.uleb128 0x3b
+ 1037 00db 05       		.uleb128 0x5
+ 1038 00dc 27       		.uleb128 0x27
+ 1039 00dd 19       		.uleb128 0x19
+ 1040 00de 49       		.uleb128 0x49
+ 1041 00df 13       		.uleb128 0x13
+ 1042 00e0 11       		.uleb128 0x11
+ 1043 00e1 01       		.uleb128 0x1
+ 1044 00e2 12       		.uleb128 0x12
+ 1045 00e3 06       		.uleb128 0x6
+ 1046 00e4 40       		.uleb128 0x40
+ 1047 00e5 18       		.uleb128 0x18
+ 1048 00e6 9742     		.uleb128 0x2117
+ 1049 00e8 19       		.uleb128 0x19
+ 1050 00e9 01       		.uleb128 0x1
+ 1051 00ea 13       		.uleb128 0x13
+ 1052 00eb 00       		.byte	0
+ 1053 00ec 00       		.byte	0
+ 1054 00ed 0F       		.uleb128 0xf
+ 1055 00ee 34       		.uleb128 0x34
+ 1056 00ef 00       		.byte	0
+ 1057 00f0 03       		.uleb128 0x3
+ 1058 00f1 0E       		.uleb128 0xe
+ 1059 00f2 3A       		.uleb128 0x3a
+ 1060 00f3 0B       		.uleb128 0xb
+ 1061 00f4 3B       		.uleb128 0x3b
+ 1062 00f5 05       		.uleb128 0x5
+ 1063 00f6 49       		.uleb128 0x49
+ 1064 00f7 13       		.uleb128 0x13
+ 1065 00f8 02       		.uleb128 0x2
+ 1066 00f9 18       		.uleb128 0x18
+ 1067 00fa 00       		.byte	0
+ 1068 00fb 00       		.byte	0
+ 1069 00fc 10       		.uleb128 0x10
+ 1070 00fd 2E       		.uleb128 0x2e
+ 1071 00fe 00       		.byte	0
+ 1072 00ff 3F       		.uleb128 0x3f
+ 1073 0100 19       		.uleb128 0x19
+ 1074 0101 03       		.uleb128 0x3
+ 1075 0102 0E       		.uleb128 0xe
+ 1076 0103 3A       		.uleb128 0x3a
+ 1077 0104 0B       		.uleb128 0xb
+ 1078 0105 3B       		.uleb128 0x3b
+ 1079 0106 05       		.uleb128 0x5
+ 1080 0107 27       		.uleb128 0x27
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 27
+
+
+ 1081 0108 19       		.uleb128 0x19
+ 1082 0109 11       		.uleb128 0x11
+ 1083 010a 01       		.uleb128 0x1
+ 1084 010b 12       		.uleb128 0x12
+ 1085 010c 06       		.uleb128 0x6
+ 1086 010d 40       		.uleb128 0x40
+ 1087 010e 18       		.uleb128 0x18
+ 1088 010f 9742     		.uleb128 0x2117
+ 1089 0111 19       		.uleb128 0x19
+ 1090 0112 00       		.byte	0
+ 1091 0113 00       		.byte	0
+ 1092 0114 11       		.uleb128 0x11
+ 1093 0115 2E       		.uleb128 0x2e
+ 1094 0116 00       		.byte	0
+ 1095 0117 3F       		.uleb128 0x3f
+ 1096 0118 19       		.uleb128 0x19
+ 1097 0119 03       		.uleb128 0x3
+ 1098 011a 0E       		.uleb128 0xe
+ 1099 011b 3A       		.uleb128 0x3a
+ 1100 011c 0B       		.uleb128 0xb
+ 1101 011d 3B       		.uleb128 0x3b
+ 1102 011e 05       		.uleb128 0x5
+ 1103 011f 27       		.uleb128 0x27
+ 1104 0120 19       		.uleb128 0x19
+ 1105 0121 49       		.uleb128 0x49
+ 1106 0122 13       		.uleb128 0x13
+ 1107 0123 11       		.uleb128 0x11
+ 1108 0124 01       		.uleb128 0x1
+ 1109 0125 12       		.uleb128 0x12
+ 1110 0126 06       		.uleb128 0x6
+ 1111 0127 40       		.uleb128 0x40
+ 1112 0128 18       		.uleb128 0x18
+ 1113 0129 9742     		.uleb128 0x2117
+ 1114 012b 19       		.uleb128 0x19
+ 1115 012c 00       		.byte	0
+ 1116 012d 00       		.byte	0
+ 1117 012e 12       		.uleb128 0x12
+ 1118 012f 01       		.uleb128 0x1
+ 1119 0130 01       		.byte	0x1
+ 1120 0131 49       		.uleb128 0x49
+ 1121 0132 13       		.uleb128 0x13
+ 1122 0133 01       		.uleb128 0x1
+ 1123 0134 13       		.uleb128 0x13
+ 1124 0135 00       		.byte	0
+ 1125 0136 00       		.byte	0
+ 1126 0137 13       		.uleb128 0x13
+ 1127 0138 21       		.uleb128 0x21
+ 1128 0139 00       		.byte	0
+ 1129 013a 49       		.uleb128 0x49
+ 1130 013b 13       		.uleb128 0x13
+ 1131 013c 2F       		.uleb128 0x2f
+ 1132 013d 0B       		.uleb128 0xb
+ 1133 013e 00       		.byte	0
+ 1134 013f 00       		.byte	0
+ 1135 0140 14       		.uleb128 0x14
+ 1136 0141 34       		.uleb128 0x34
+ 1137 0142 00       		.byte	0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 28
+
+
+ 1138 0143 03       		.uleb128 0x3
+ 1139 0144 0E       		.uleb128 0xe
+ 1140 0145 3A       		.uleb128 0x3a
+ 1141 0146 0B       		.uleb128 0xb
+ 1142 0147 3B       		.uleb128 0x3b
+ 1143 0148 0B       		.uleb128 0xb
+ 1144 0149 49       		.uleb128 0x49
+ 1145 014a 13       		.uleb128 0x13
+ 1146 014b 3F       		.uleb128 0x3f
+ 1147 014c 19       		.uleb128 0x19
+ 1148 014d 3C       		.uleb128 0x3c
+ 1149 014e 19       		.uleb128 0x19
+ 1150 014f 00       		.byte	0
+ 1151 0150 00       		.byte	0
+ 1152 0151 00       		.byte	0
+ 1153              		.section	.debug_aranges,"",%progbits
+ 1154 0000 7C000000 		.4byte	0x7c
+ 1155 0004 0200     		.2byte	0x2
+ 1156 0006 00000000 		.4byte	.Ldebug_info0
+ 1157 000a 04       		.byte	0x4
+ 1158 000b 00       		.byte	0
+ 1159 000c 0000     		.2byte	0
+ 1160 000e 0000     		.2byte	0
+ 1161 0010 00000000 		.4byte	.LFB32
+ 1162 0014 24000000 		.4byte	.LFE32-.LFB32
+ 1163 0018 00000000 		.4byte	.LFB33
+ 1164 001c 26000000 		.4byte	.LFE33-.LFB33
+ 1165 0020 00000000 		.4byte	.LFB34
+ 1166 0024 1C000000 		.4byte	.LFE34-.LFB34
+ 1167 0028 00000000 		.4byte	.LFB35
+ 1168 002c 0E000000 		.4byte	.LFE35-.LFB35
+ 1169 0030 00000000 		.4byte	.LFB36
+ 1170 0034 1C000000 		.4byte	.LFE36-.LFB36
+ 1171 0038 00000000 		.4byte	.LFB37
+ 1172 003c 14000000 		.4byte	.LFE37-.LFB37
+ 1173 0040 00000000 		.4byte	.LFB38
+ 1174 0044 50000000 		.4byte	.LFE38-.LFB38
+ 1175 0048 00000000 		.4byte	.LFB39
+ 1176 004c 2C000000 		.4byte	.LFE39-.LFB39
+ 1177 0050 00000000 		.4byte	.LFB40
+ 1178 0054 14000000 		.4byte	.LFE40-.LFB40
+ 1179 0058 00000000 		.4byte	.LFB41
+ 1180 005c 20000000 		.4byte	.LFE41-.LFB41
+ 1181 0060 00000000 		.4byte	.LFB42
+ 1182 0064 14000000 		.4byte	.LFE42-.LFB42
+ 1183 0068 00000000 		.4byte	.LFB43
+ 1184 006c 14000000 		.4byte	.LFE43-.LFB43
+ 1185 0070 00000000 		.4byte	.LFB44
+ 1186 0074 14000000 		.4byte	.LFE44-.LFB44
+ 1187 0078 00000000 		.4byte	0
+ 1188 007c 00000000 		.4byte	0
+ 1189              		.section	.debug_ranges,"",%progbits
+ 1190              	.Ldebug_ranges0:
+ 1191 0000 00000000 		.4byte	.LFB32
+ 1192 0004 24000000 		.4byte	.LFE32
+ 1193 0008 00000000 		.4byte	.LFB33
+ 1194 000c 26000000 		.4byte	.LFE33
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 29
+
+
+ 1195 0010 00000000 		.4byte	.LFB34
+ 1196 0014 1C000000 		.4byte	.LFE34
+ 1197 0018 00000000 		.4byte	.LFB35
+ 1198 001c 0E000000 		.4byte	.LFE35
+ 1199 0020 00000000 		.4byte	.LFB36
+ 1200 0024 1C000000 		.4byte	.LFE36
+ 1201 0028 00000000 		.4byte	.LFB37
+ 1202 002c 14000000 		.4byte	.LFE37
+ 1203 0030 00000000 		.4byte	.LFB38
+ 1204 0034 50000000 		.4byte	.LFE38
+ 1205 0038 00000000 		.4byte	.LFB39
+ 1206 003c 2C000000 		.4byte	.LFE39
+ 1207 0040 00000000 		.4byte	.LFB40
+ 1208 0044 14000000 		.4byte	.LFE40
+ 1209 0048 00000000 		.4byte	.LFB41
+ 1210 004c 20000000 		.4byte	.LFE41
+ 1211 0050 00000000 		.4byte	.LFB42
+ 1212 0054 14000000 		.4byte	.LFE42
+ 1213 0058 00000000 		.4byte	.LFB43
+ 1214 005c 14000000 		.4byte	.LFE43
+ 1215 0060 00000000 		.4byte	.LFB44
+ 1216 0064 14000000 		.4byte	.LFE44
+ 1217 0068 00000000 		.4byte	0
+ 1218 006c 00000000 		.4byte	0
+ 1219              		.section	.debug_line,"",%progbits
+ 1220              	.Ldebug_line0:
+ 1221 0000 59010000 		.section	.debug_str,"MS",%progbits,1
+ 1221      02004C00 
+ 1221      00000201 
+ 1221      FB0E0D00 
+ 1221      01010101 
+ 1222              	.LASF18:
+ 1223 0000 4953525F 		.ascii	"ISR_Toggle_Sink_Start\000"
+ 1223      546F6767 
+ 1223      6C655F53 
+ 1223      696E6B5F 
+ 1223      53746172 
+ 1224              	.LASF14:
+ 1225 0016 72656733 		.ascii	"reg32\000"
+ 1225      3200
+ 1226              	.LASF38:
+ 1227 001c 43795261 		.ascii	"CyRamVectors\000"
+ 1227      6D566563 
+ 1227      746F7273 
+ 1227      00
+ 1228              	.LASF22:
+ 1229 0029 4953525F 		.ascii	"ISR_Toggle_Sink_SetVector\000"
+ 1229      546F6767 
+ 1229      6C655F53 
+ 1229      696E6B5F 
+ 1229      53657456 
+ 1230              	.LASF36:
+ 1231 0043 433A5C55 		.ascii	"C:\\Users\\Lars\\Documents\\PSoC Creator\\Workspace"
+ 1231      73657273 
+ 1231      5C4C6172 
+ 1231      735C446F 
+ 1231      63756D65 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 30
+
+
+ 1232 0071 30315C50 		.ascii	"01\\P4_SingleDiode.cydsn\000"
+ 1232      345F5369 
+ 1232      6E676C65 
+ 1232      44696F64 
+ 1232      652E6379 
+ 1233              	.LASF35:
+ 1234 0089 47656E65 		.ascii	"Generated_Source\\PSoC4\\ISR_Toggle_Sink.c\000"
+ 1234      72617465 
+ 1234      645F536F 
+ 1234      75726365 
+ 1234      5C50536F 
+ 1235              	.LASF28:
+ 1236 00b2 4953525F 		.ascii	"ISR_Toggle_Sink_Enable\000"
+ 1236      546F6767 
+ 1236      6C655F53 
+ 1236      696E6B5F 
+ 1236      456E6162 
+ 1237              	.LASF11:
+ 1238 00c9 666C6F61 		.ascii	"float\000"
+ 1238      7400
+ 1239              	.LASF33:
+ 1240 00cf 4953525F 		.ascii	"ISR_Toggle_Sink_ClearPending\000"
+ 1240      546F6767 
+ 1240      6C655F53 
+ 1240      696E6B5F 
+ 1240      436C6561 
+ 1241              	.LASF1:
+ 1242 00ec 756E7369 		.ascii	"unsigned char\000"
+ 1242      676E6564 
+ 1242      20636861 
+ 1242      7200
+ 1243              	.LASF21:
+ 1244 00fa 4953525F 		.ascii	"ISR_Toggle_Sink_StartEx\000"
+ 1244      546F6767 
+ 1244      6C655F53 
+ 1244      696E6B5F 
+ 1244      53746172 
+ 1245              	.LASF19:
+ 1246 0112 4953525F 		.ascii	"ISR_Toggle_Sink_Stop\000"
+ 1246      546F6767 
+ 1246      6C655F53 
+ 1246      696E6B5F 
+ 1246      53746F70 
+ 1247              	.LASF26:
+ 1248 0127 696E7465 		.ascii	"interruptState\000"
+ 1248      72727570 
+ 1248      74537461 
+ 1248      746500
+ 1249              	.LASF5:
+ 1250 0136 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1250      20756E73 
+ 1250      69676E65 
+ 1250      6420696E 
+ 1250      7400
+ 1251              	.LASF31:
+ 1252 0148 4953525F 		.ascii	"ISR_Toggle_Sink_Disable\000"
+ 1252      546F6767 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 31
+
+
+ 1252      6C655F53 
+ 1252      696E6B5F 
+ 1252      44697361 
+ 1253              	.LASF3:
+ 1254 0160 73686F72 		.ascii	"short unsigned int\000"
+ 1254      7420756E 
+ 1254      7369676E 
+ 1254      65642069 
+ 1254      6E7400
+ 1255              	.LASF34:
+ 1256 0173 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1256      43313120 
+ 1256      352E342E 
+ 1256      31203230 
+ 1256      31363036 
+ 1257 01a6 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1257      20726576 
+ 1257      6973696F 
+ 1257      6E203233 
+ 1257      37373135 
+ 1258 01d9 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1258      66756E63 
+ 1258      74696F6E 
+ 1258      2D736563 
+ 1258      74696F6E 
+ 1259              	.LASF25:
+ 1260 0201 7072696F 		.ascii	"priority\000"
+ 1260      72697479 
+ 1260      00
+ 1261              	.LASF37:
+ 1262 020a 4953525F 		.ascii	"ISR_Toggle_Sink_GetPriority\000"
+ 1262      546F6767 
+ 1262      6C655F53 
+ 1262      696E6B5F 
+ 1262      47657450 
+ 1263              	.LASF12:
+ 1264 0226 646F7562 		.ascii	"double\000"
+ 1264      6C6500
+ 1265              	.LASF10:
+ 1266 022d 75696E74 		.ascii	"uint32\000"
+ 1266      333200
+ 1267              	.LASF8:
+ 1268 0234 756E7369 		.ascii	"unsigned int\000"
+ 1268      676E6564 
+ 1268      20696E74 
+ 1268      00
+ 1269              	.LASF23:
+ 1270 0241 61646472 		.ascii	"address\000"
+ 1270      65737300 
+ 1271              	.LASF7:
+ 1272 0249 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1272      206C6F6E 
+ 1272      6720756E 
+ 1272      7369676E 
+ 1272      65642069 
+ 1273              	.LASF32:
+ 1274 0260 4953525F 		.ascii	"ISR_Toggle_Sink_SetPending\000"
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 32
+
+
+ 1274      546F6767 
+ 1274      6C655F53 
+ 1274      696E6B5F 
+ 1274      53657450 
+ 1275              	.LASF15:
+ 1276 027b 63796973 		.ascii	"cyisraddress\000"
+ 1276      72616464 
+ 1276      72657373 
+ 1276      00
+ 1277              	.LASF17:
+ 1278 0288 73697A65 		.ascii	"sizetype\000"
+ 1278      74797065 
+ 1278      00
+ 1279              	.LASF6:
+ 1280 0291 6C6F6E67 		.ascii	"long long int\000"
+ 1280      206C6F6E 
+ 1280      6720696E 
+ 1280      7400
+ 1281              	.LASF24:
+ 1282 029f 4953525F 		.ascii	"ISR_Toggle_Sink_SetPriority\000"
+ 1282      546F6767 
+ 1282      6C655F53 
+ 1282      696E6B5F 
+ 1282      53657450 
+ 1283              	.LASF13:
+ 1284 02bb 63686172 		.ascii	"char\000"
+ 1284      00
+ 1285              	.LASF30:
+ 1286 02c0 4953525F 		.ascii	"ISR_Toggle_Sink_GetState\000"
+ 1286      546F6767 
+ 1286      6C655F53 
+ 1286      696E6B5F 
+ 1286      47657453 
+ 1287              	.LASF2:
+ 1288 02d9 73686F72 		.ascii	"short int\000"
+ 1288      7420696E 
+ 1288      7400
+ 1289              	.LASF29:
+ 1290 02e3 4953525F 		.ascii	"ISR_Toggle_Sink_GetVector\000"
+ 1290      546F6767 
+ 1290      6C655F53 
+ 1290      696E6B5F 
+ 1290      47657456 
+ 1291              	.LASF9:
+ 1292 02fd 75696E74 		.ascii	"uint8\000"
+ 1292      3800
+ 1293              	.LASF20:
+ 1294 0303 4953525F 		.ascii	"ISR_Toggle_Sink_Interrupt\000"
+ 1294      546F6767 
+ 1294      6C655F53 
+ 1294      696E6B5F 
+ 1294      496E7465 
+ 1295              	.LASF27:
+ 1296 031d 7072696F 		.ascii	"priorityOffset\000"
+ 1296      72697479 
+ 1296      4F666673 
+ 1296      657400
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccmd66Wd.s 			page 33
+
+
+ 1297              	.LASF4:
+ 1298 032c 6C6F6E67 		.ascii	"long int\000"
+ 1298      20696E74 
+ 1298      00
+ 1299              	.LASF16:
+ 1300 0335 6C6F6E67 		.ascii	"long double\000"
+ 1300      20646F75 
+ 1300      626C6500 
+ 1301              	.LASF0:
+ 1302 0341 7369676E 		.ascii	"signed char\000"
+ 1302      65642063 
+ 1302      68617200 
+ 1303              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

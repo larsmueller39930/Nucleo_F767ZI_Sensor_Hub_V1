@@ -1,0 +1,1139 @@
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"myspi.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	SPI_Temp_Reg,4,4
+  20              		.comm	SPI_Status_Reg,1,1
+  21              		.comm	SPI_RXflag,1,1
+  22              		.comm	SPI_TXflag,1,1
+  23              		.comm	spiRxBuffer,128,4
+  24              		.comm	spiTxBuffer,128,4
+  25              		.section	.text.initializeSPIInterface,"ax",%progbits
+  26              		.align	2
+  27              		.global	initializeSPIInterface
+  28              		.code	16
+  29              		.thumb_func
+  30              		.type	initializeSPIInterface, %function
+  31              	initializeSPIInterface:
+  32              	.LFB32:
+  33              		.file 1 "myspi.c"
+   1:myspi.c       **** /*******************************************************************************
+   2:myspi.c       **** * File Name: myspi.c
+   3:myspi.c       **** * Version 1.0
+   4:myspi.c       **** *
+   5:myspi.c       **** * Description:
+   6:myspi.c       **** *
+   7:myspi.c       **** * Note: none
+   8:myspi.c       **** *
+   9:myspi.c       **** ********************************************************************************/
+  10:myspi.c       **** 
+  11:myspi.c       **** #include "myspi.h"
+  12:myspi.c       **** 
+  13:myspi.c       **** volatile int32 SPI_Temp_Reg;
+  14:myspi.c       **** volatile int8 SPI_Status_Reg;
+  15:myspi.c       **** 
+  16:myspi.c       **** uint8 SPI_RXflag;
+  17:myspi.c       **** uint8 SPI_TXflag;
+  18:myspi.c       **** uint8 spiRxBuffer[128];
+  19:myspi.c       **** uint8 spiTxBuffer[128];
+  20:myspi.c       **** 
+  21:myspi.c       **** /********************************************************************************
+  22:myspi.c       **** *   Function Definitions
+  23:myspi.c       **** ********************************************************************************/
+  24:myspi.c       **** 
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 2
+
+
+  25:myspi.c       **** /********************************************************************************** 
+  26:myspi.c       **** * Function Name: initializeSPIInterface
+  27:myspi.c       **** ***********************************************************************************
+  28:myspi.c       **** *
+  29:myspi.c       **** * Summary:
+  30:myspi.c       **** *  Initialize the SPI interface for communication with master 
+  31:myspi.c       **** 
+  32:myspi.c       **** * Parameters: none 
+  33:myspi.c       **** *
+  34:myspi.c       **** * Return: none
+  35:myspi.c       **** * 
+  36:myspi.c       **** *************************************************************************************/
+  37:myspi.c       **** void initializeSPIInterface(void)
+  38:myspi.c       **** {    
+  34              		.loc 1 38 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38 0000 80B5     		push	{r7, lr}
+  39              		.cfi_def_cfa_offset 8
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 00AF     		add	r7, sp, #0
+  43              		.cfi_def_cfa_register 7
+  39:myspi.c       ****     uint8 status;
+  40:myspi.c       ****     uint8 nBytes;
+  41:myspi.c       ****     
+  42:myspi.c       ****     SPIS_Start(); //Starts the SPI peripheral and enables the RX and TX Interrupts
+  44              		.loc 1 42 0
+  45 0004 FFF7FEFF 		bl	SPIS_Start
+  43:myspi.c       ****     SPI_RXflag = 0;
+  46              		.loc 1 43 0
+  47 0008 094B     		ldr	r3, .L2
+  48 000a 0022     		movs	r2, #0
+  49 000c 1A70     		strb	r2, [r3]
+  44:myspi.c       ****     SPI_TXflag = 0;
+  50              		.loc 1 44 0
+  51 000e 094B     		ldr	r3, .L2+4
+  52 0010 0022     		movs	r2, #0
+  53 0012 1A70     		strb	r2, [r3]
+  45:myspi.c       ****     SPIS_EnableInt();
+  54              		.loc 1 45 0
+  55 0014 0B20     		movs	r0, #11
+  56 0016 FFF7FEFF 		bl	CyIntEnable
+  46:myspi.c       ****     SPIS_SetRxInterruptMode(SPIS_INTR_RX_NOT_EMPTY);
+  57              		.loc 1 46 0
+  58 001a 074B     		ldr	r3, .L2+8
+  59 001c 0422     		movs	r2, #4
+  60 001e 1A60     		str	r2, [r3]
+  47:myspi.c       ****     SPIS_SpiUartClearTxBuffer(); 
+  61              		.loc 1 47 0
+  62 0020 FFF7FEFF 		bl	SPIS_SpiUartClearTxBuffer
+  48:myspi.c       ****     SPIS_SpiUartClearRxBuffer(); 
+  63              		.loc 1 48 0
+  64 0024 FFF7FEFF 		bl	SPIS_SpiUartClearRxBuffer
+  49:myspi.c       ****  
+  50:myspi.c       **** }
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 3
+
+
+  65              		.loc 1 50 0
+  66 0028 C046     		nop
+  67 002a BD46     		mov	sp, r7
+  68              		@ sp needed
+  69 002c 80BD     		pop	{r7, pc}
+  70              	.L3:
+  71 002e C046     		.align	2
+  72              	.L2:
+  73 0030 00000000 		.word	SPI_RXflag
+  74 0034 00000000 		.word	SPI_TXflag
+  75 0038 C80F0740 		.word	1074204616
+  76              		.cfi_endproc
+  77              	.LFE32:
+  78              		.size	initializeSPIInterface, .-initializeSPIInterface
+  79              		.section	.text.setSPITempReg,"ax",%progbits
+  80              		.align	2
+  81              		.global	setSPITempReg
+  82              		.code	16
+  83              		.thumb_func
+  84              		.type	setSPITempReg, %function
+  85              	setSPITempReg:
+  86              	.LFB33:
+  51:myspi.c       **** 
+  52:myspi.c       **** /********************************************************************************** 
+  53:myspi.c       **** * Function Name: setSPITempReg
+  54:myspi.c       **** ***********************************************************************************
+  55:myspi.c       **** *
+  56:myspi.c       **** * Summary:
+  57:myspi.c       **** *  Puts the conversion result of the adc in the temperature register
+  58:myspi.c       **** 
+  59:myspi.c       **** * Parameters:  
+  60:myspi.c       **** *  intrHigh: high byte before radix point
+  61:myspi.c       **** *  intrLow:  low byte before radix point
+  62:myspi.c       **** *  fracHigh: high byte after radix point
+  63:myspi.c       **** *  fracLow:  low byte before radix point
+  64:myspi.c       **** *
+  65:myspi.c       **** * Return: none
+  66:myspi.c       **** * 
+  67:myspi.c       **** *************************************************************************************/
+  68:myspi.c       **** void setSPITempReg(uint8 intrHigh, uint8 intrLow, uint8 fracHigh, uint8 fracLow)
+  69:myspi.c       **** {
+  87              		.loc 1 69 0
+  88              		.cfi_startproc
+  89              		@ args = 0, pretend = 0, frame = 8
+  90              		@ frame_needed = 1, uses_anonymous_args = 0
+  91 0000 B0B5     		push	{r4, r5, r7, lr}
+  92              		.cfi_def_cfa_offset 16
+  93              		.cfi_offset 4, -16
+  94              		.cfi_offset 5, -12
+  95              		.cfi_offset 7, -8
+  96              		.cfi_offset 14, -4
+  97 0002 82B0     		sub	sp, sp, #8
+  98              		.cfi_def_cfa_offset 24
+  99 0004 00AF     		add	r7, sp, #0
+ 100              		.cfi_def_cfa_register 7
+ 101 0006 0500     		movs	r5, r0
+ 102 0008 0C00     		movs	r4, r1
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 4
+
+
+ 103 000a 1000     		movs	r0, r2
+ 104 000c 1900     		movs	r1, r3
+ 105 000e FB1D     		adds	r3, r7, #7
+ 106 0010 2A1C     		adds	r2, r5, #0
+ 107 0012 1A70     		strb	r2, [r3]
+ 108 0014 BB1D     		adds	r3, r7, #6
+ 109 0016 221C     		adds	r2, r4, #0
+ 110 0018 1A70     		strb	r2, [r3]
+ 111 001a 7B1D     		adds	r3, r7, #5
+ 112 001c 021C     		adds	r2, r0, #0
+ 113 001e 1A70     		strb	r2, [r3]
+ 114 0020 3B1D     		adds	r3, r7, #4
+ 115 0022 0A1C     		adds	r2, r1, #0
+ 116 0024 1A70     		strb	r2, [r3]
+  70:myspi.c       ****     SPI_Temp_Reg = (intrHigh << 24u | intrLow << 16u | fracHigh << 8u | fracLow << 0u);
+ 117              		.loc 1 70 0
+ 118 0026 FB1D     		adds	r3, r7, #7
+ 119 0028 1B78     		ldrb	r3, [r3]
+ 120 002a 1A06     		lsls	r2, r3, #24
+ 121 002c BB1D     		adds	r3, r7, #6
+ 122 002e 1B78     		ldrb	r3, [r3]
+ 123 0030 1B04     		lsls	r3, r3, #16
+ 124 0032 1A43     		orrs	r2, r3
+ 125 0034 7B1D     		adds	r3, r7, #5
+ 126 0036 1B78     		ldrb	r3, [r3]
+ 127 0038 1B02     		lsls	r3, r3, #8
+ 128 003a 1A43     		orrs	r2, r3
+ 129 003c 3B1D     		adds	r3, r7, #4
+ 130 003e 1B78     		ldrb	r3, [r3]
+ 131 0040 1A43     		orrs	r2, r3
+ 132 0042 034B     		ldr	r3, .L5
+ 133 0044 1A60     		str	r2, [r3]
+  71:myspi.c       **** }
+ 134              		.loc 1 71 0
+ 135 0046 C046     		nop
+ 136 0048 BD46     		mov	sp, r7
+ 137 004a 02B0     		add	sp, sp, #8
+ 138              		@ sp needed
+ 139 004c B0BD     		pop	{r4, r5, r7, pc}
+ 140              	.L6:
+ 141 004e C046     		.align	2
+ 142              	.L5:
+ 143 0050 00000000 		.word	SPI_Temp_Reg
+ 144              		.cfi_endproc
+ 145              	.LFE33:
+ 146              		.size	setSPITempReg, .-setSPITempReg
+ 147              		.section	.text.SPIS_SPI_UART_ISR_ExitCallback,"ax",%progbits
+ 148              		.align	2
+ 149              		.global	SPIS_SPI_UART_ISR_ExitCallback
+ 150              		.code	16
+ 151              		.thumb_func
+ 152              		.type	SPIS_SPI_UART_ISR_ExitCallback, %function
+ 153              	SPIS_SPI_UART_ISR_ExitCallback:
+ 154              	.LFB34:
+  72:myspi.c       **** 
+  73:myspi.c       **** /********************************************************************************** 
+  74:myspi.c       **** * Function Name: SPIS_SPI_UART_ISR_ExitCallback
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 5
+
+
+  75:myspi.c       **** ***********************************************************************************
+  76:myspi.c       **** *
+  77:myspi.c       **** * Summary:
+  78:myspi.c       **** *  Callback function when a byte was received or transmitted over the SPI interface
+  79:myspi.c       **** 
+  80:myspi.c       **** * Parameters: none 
+  81:myspi.c       **** *
+  82:myspi.c       **** * Return: none
+  83:myspi.c       **** * 
+  84:myspi.c       **** *************************************************************************************/
+  85:myspi.c       **** void SPIS_SPI_UART_ISR_ExitCallback(void)
+  86:myspi.c       **** {
+ 155              		.loc 1 86 0
+ 156              		.cfi_startproc
+ 157              		@ args = 0, pretend = 0, frame = 8
+ 158              		@ frame_needed = 1, uses_anonymous_args = 0
+ 159 0000 80B5     		push	{r7, lr}
+ 160              		.cfi_def_cfa_offset 8
+ 161              		.cfi_offset 7, -8
+ 162              		.cfi_offset 14, -4
+ 163 0002 82B0     		sub	sp, sp, #8
+ 164              		.cfi_def_cfa_offset 16
+ 165 0004 00AF     		add	r7, sp, #0
+ 166              		.cfi_def_cfa_register 7
+  87:myspi.c       ****     uint8 status;
+  88:myspi.c       ****     uint8 nBytes;
+  89:myspi.c       ****     
+  90:myspi.c       ****     //RX ISR
+  91:myspi.c       ****     status = SPIS_GetInterruptCause();
+ 167              		.loc 1 91 0
+ 168 0006 354B     		ldr	r3, .L11
+ 169 0008 1A68     		ldr	r2, [r3]
+ 170 000a FB1D     		adds	r3, r7, #7
+ 171 000c 1A70     		strb	r2, [r3]
+  92:myspi.c       ****     if(status == SPIS_INTR_CAUSE_RX)
+ 172              		.loc 1 92 0
+ 173 000e FB1D     		adds	r3, r7, #7
+ 174 0010 1B78     		ldrb	r3, [r3]
+ 175 0012 082B     		cmp	r3, #8
+ 176 0014 5BD1     		bne	.L8
+  93:myspi.c       ****     {
+  94:myspi.c       ****         spiRxBuffer[0] = SPIS_SpiUartReadRxData();
+ 177              		.loc 1 94 0
+ 178 0016 FFF7FEFF 		bl	SPIS_SpiUartReadRxData
+ 179 001a 0300     		movs	r3, r0
+ 180 001c DAB2     		uxtb	r2, r3
+ 181 001e 304B     		ldr	r3, .L11+4
+ 182 0020 1A70     		strb	r2, [r3]
+  95:myspi.c       ****        
+  96:myspi.c       ****         nBytes = SPIS_SpiUartGetRxBufferSize();
+ 183              		.loc 1 96 0
+ 184 0022 FFF7FEFF 		bl	SPIS_SpiUartGetRxBufferSize
+ 185 0026 0200     		movs	r2, r0
+ 186 0028 BB1D     		adds	r3, r7, #6
+ 187 002a 1A70     		strb	r2, [r3]
+  97:myspi.c       ****         status = SPIS_GetSlaveInterruptSourceMasked();
+ 188              		.loc 1 97 0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 6
+
+
+ 189 002c 2D4B     		ldr	r3, .L11+8
+ 190 002e 1A68     		ldr	r2, [r3]
+ 191 0030 FB1D     		adds	r3, r7, #7
+ 192 0032 1A70     		strb	r2, [r3]
+  98:myspi.c       ****         status = SPIS_GetRxInterruptMode();
+ 193              		.loc 1 98 0
+ 194 0034 2C4B     		ldr	r3, .L11+12
+ 195 0036 1A68     		ldr	r2, [r3]
+ 196 0038 FB1D     		adds	r3, r7, #7
+ 197 003a 1A70     		strb	r2, [r3]
+  99:myspi.c       ****         
+ 100:myspi.c       ****         if(spiRxBuffer[0] == REG_ADDRESS_TEMP )
+ 198              		.loc 1 100 0
+ 199 003c 284B     		ldr	r3, .L11+4
+ 200 003e 1B78     		ldrb	r3, [r3]
+ 201 0040 A12B     		cmp	r3, #161
+ 202 0042 2ED1     		bne	.L9
+ 101:myspi.c       ****         {       
+ 102:myspi.c       ****             SPIS_SpiUartClearTxBuffer(); 
+ 203              		.loc 1 102 0
+ 204 0044 FFF7FEFF 		bl	SPIS_SpiUartClearTxBuffer
+ 103:myspi.c       **** 
+ 104:myspi.c       ****             spiTxBuffer[0]   = (SPI_Temp_Reg & (0xFF<<24u)) >> 24u; 
+ 205              		.loc 1 104 0
+ 206 0048 284B     		ldr	r3, .L11+16
+ 207 004a 1B68     		ldr	r3, [r3]
+ 208 004c 1B0E     		lsrs	r3, r3, #24
+ 209 004e 1B06     		lsls	r3, r3, #24
+ 210 0050 1B16     		asrs	r3, r3, #24
+ 211 0052 DAB2     		uxtb	r2, r3
+ 212 0054 264B     		ldr	r3, .L11+20
+ 213 0056 1A70     		strb	r2, [r3]
+ 105:myspi.c       ****             spiTxBuffer[1]   = (SPI_Temp_Reg & (0xFF<<16u)) >> 16u; 
+ 214              		.loc 1 105 0
+ 215 0058 244B     		ldr	r3, .L11+16
+ 216 005a 1A68     		ldr	r2, [r3]
+ 217 005c FF23     		movs	r3, #255
+ 218 005e 1B04     		lsls	r3, r3, #16
+ 219 0060 1340     		ands	r3, r2
+ 220 0062 1B14     		asrs	r3, r3, #16
+ 221 0064 DAB2     		uxtb	r2, r3
+ 222 0066 224B     		ldr	r3, .L11+20
+ 223 0068 5A70     		strb	r2, [r3, #1]
+ 106:myspi.c       ****             spiTxBuffer[2]   = (SPI_Temp_Reg & (0xFF<<8u)) >> 8u; 
+ 224              		.loc 1 106 0
+ 225 006a 204B     		ldr	r3, .L11+16
+ 226 006c 1A68     		ldr	r2, [r3]
+ 227 006e FF23     		movs	r3, #255
+ 228 0070 1B02     		lsls	r3, r3, #8
+ 229 0072 1340     		ands	r3, r2
+ 230 0074 1B12     		asrs	r3, r3, #8
+ 231 0076 DAB2     		uxtb	r2, r3
+ 232 0078 1D4B     		ldr	r3, .L11+20
+ 233 007a 9A70     		strb	r2, [r3, #2]
+ 107:myspi.c       ****             spiTxBuffer[3]   = (SPI_Temp_Reg & (0xFF<<0u));
+ 234              		.loc 1 107 0
+ 235 007c 1B4B     		ldr	r3, .L11+16
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 7
+
+
+ 236 007e 1B68     		ldr	r3, [r3]
+ 237 0080 DAB2     		uxtb	r2, r3
+ 238 0082 1B4B     		ldr	r3, .L11+20
+ 239 0084 DA70     		strb	r2, [r3, #3]
+ 108:myspi.c       **** 
+ 109:myspi.c       ****             SPIS_SpiUartPutArray((uint8*)spiTxBuffer, 4);     
+ 240              		.loc 1 109 0
+ 241 0086 1A4B     		ldr	r3, .L11+20
+ 242 0088 0421     		movs	r1, #4
+ 243 008a 1800     		movs	r0, r3
+ 244 008c FFF7FEFF 		bl	SPIS_SpiUartPutArray
+ 110:myspi.c       ****            __SPI_CLEAR_STATUS_BIT(STATUS_CONVERSION_DONE);
+ 245              		.loc 1 110 0
+ 246 0090 184B     		ldr	r3, .L11+24
+ 247 0092 1B78     		ldrb	r3, [r3]
+ 248 0094 5BB2     		sxtb	r3, r3
+ 249 0096 0122     		movs	r2, #1
+ 250 0098 9343     		bics	r3, r2
+ 251 009a 5AB2     		sxtb	r2, r3
+ 252 009c 154B     		ldr	r3, .L11+24
+ 253 009e 1A70     		strb	r2, [r3]
+ 254 00a0 10E0     		b	.L10
+ 255              	.L9:
+ 111:myspi.c       ****         }   
+ 112:myspi.c       ****         else if(spiRxBuffer[0] == REG_ADDRESS_STATUS )
+ 256              		.loc 1 112 0
+ 257 00a2 0F4B     		ldr	r3, .L11+4
+ 258 00a4 1B78     		ldrb	r3, [r3]
+ 259 00a6 A02B     		cmp	r3, #160
+ 260 00a8 0CD1     		bne	.L10
+ 113:myspi.c       ****         {
+ 114:myspi.c       ****             SPIS_SpiUartClearTxBuffer(); 
+ 261              		.loc 1 114 0
+ 262 00aa FFF7FEFF 		bl	SPIS_SpiUartClearTxBuffer
+ 115:myspi.c       ****             
+ 116:myspi.c       ****           
+ 117:myspi.c       ****             spiTxBuffer[0] = SPI_Status_Reg;
+ 263              		.loc 1 117 0
+ 264 00ae 114B     		ldr	r3, .L11+24
+ 265 00b0 1B78     		ldrb	r3, [r3]
+ 266 00b2 5BB2     		sxtb	r3, r3
+ 267 00b4 DAB2     		uxtb	r2, r3
+ 268 00b6 0E4B     		ldr	r3, .L11+20
+ 269 00b8 1A70     		strb	r2, [r3]
+ 118:myspi.c       ****             
+ 119:myspi.c       ****             SPIS_SpiUartPutArray((uint8*)spiTxBuffer, 1);     
+ 270              		.loc 1 119 0
+ 271 00ba 0D4B     		ldr	r3, .L11+20
+ 272 00bc 0121     		movs	r1, #1
+ 273 00be 1800     		movs	r0, r3
+ 274 00c0 FFF7FEFF 		bl	SPIS_SpiUartPutArray
+ 275              	.L10:
+ 120:myspi.c       ****         }
+ 121:myspi.c       ****         
+ 122:myspi.c       ****         SPIS_SpiUartClearRxBuffer(); 
+ 276              		.loc 1 122 0
+ 277 00c4 FFF7FEFF 		bl	SPIS_SpiUartClearRxBuffer
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 8
+
+
+ 123:myspi.c       ****         SPIS_ClearRxInterruptSource(SPIS_INTR_RX_NOT_EMPTY); 
+ 278              		.loc 1 123 0
+ 279 00c8 0B4B     		ldr	r3, .L11+28
+ 280 00ca 0422     		movs	r2, #4
+ 281 00cc 1A60     		str	r2, [r3]
+ 282              	.L8:
+ 124:myspi.c       ****     }
+ 125:myspi.c       ****   
+ 126:myspi.c       ****     
+ 127:myspi.c       ****     status = 0;
+ 283              		.loc 1 127 0
+ 284 00ce FB1D     		adds	r3, r7, #7
+ 285 00d0 0022     		movs	r2, #0
+ 286 00d2 1A70     		strb	r2, [r3]
+ 128:myspi.c       **** }
+ 287              		.loc 1 128 0
+ 288 00d4 C046     		nop
+ 289 00d6 BD46     		mov	sp, r7
+ 290 00d8 02B0     		add	sp, sp, #8
+ 291              		@ sp needed
+ 292 00da 80BD     		pop	{r7, pc}
+ 293              	.L12:
+ 294              		.align	2
+ 295              	.L11:
+ 296 00dc 000E0740 		.word	1074204160
+ 297 00e0 00000000 		.word	spiRxBuffer
+ 298 00e4 4C0F0740 		.word	1074204492
+ 299 00e8 C80F0740 		.word	1074204616
+ 300 00ec 00000000 		.word	SPI_Temp_Reg
+ 301 00f0 00000000 		.word	spiTxBuffer
+ 302 00f4 00000000 		.word	SPI_Status_Reg
+ 303 00f8 C00F0740 		.word	1074204608
+ 304              		.cfi_endproc
+ 305              	.LFE34:
+ 306              		.size	SPIS_SPI_UART_ISR_ExitCallback, .-SPIS_SPI_UART_ISR_ExitCallback
+ 307              		.text
+ 308              	.Letext0:
+ 309              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 310              		.section	.debug_info,"",%progbits
+ 311              	.Ldebug_info0:
+ 312 0000 F8010000 		.4byte	0x1f8
+ 313 0004 0400     		.2byte	0x4
+ 314 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 315 000a 04       		.byte	0x4
+ 316 000b 01       		.uleb128 0x1
+ 317 000c E1000000 		.4byte	.LASF34
+ 318 0010 0C       		.byte	0xc
+ 319 0011 A1000000 		.4byte	.LASF35
+ 320 0015 25000000 		.4byte	.LASF36
+ 321 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 322 001d 00000000 		.4byte	0
+ 323 0021 00000000 		.4byte	.Ldebug_line0
+ 324 0025 02       		.uleb128 0x2
+ 325 0026 01       		.byte	0x1
+ 326 0027 06       		.byte	0x6
+ 327 0028 58020000 		.4byte	.LASF0
+ 328 002c 02       		.uleb128 0x2
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 9
+
+
+ 329 002d 01       		.byte	0x1
+ 330 002e 08       		.byte	0x8
+ 331 002f AF000000 		.4byte	.LASF1
+ 332 0033 02       		.uleb128 0x2
+ 333 0034 02       		.byte	0x2
+ 334 0035 05       		.byte	0x5
+ 335 0036 2E020000 		.4byte	.LASF2
+ 336 003a 02       		.uleb128 0x2
+ 337 003b 02       		.byte	0x2
+ 338 003c 07       		.byte	0x7
+ 339 003d 87000000 		.4byte	.LASF3
+ 340 0041 02       		.uleb128 0x2
+ 341 0042 04       		.byte	0x4
+ 342 0043 05       		.byte	0x5
+ 343 0044 3E020000 		.4byte	.LASF4
+ 344 0048 02       		.uleb128 0x2
+ 345 0049 04       		.byte	0x4
+ 346 004a 07       		.byte	0x7
+ 347 004b C9000000 		.4byte	.LASF5
+ 348 004f 02       		.uleb128 0x2
+ 349 0050 08       		.byte	0x8
+ 350 0051 05       		.byte	0x5
+ 351 0052 01020000 		.4byte	.LASF6
+ 352 0056 02       		.uleb128 0x2
+ 353 0057 08       		.byte	0x8
+ 354 0058 07       		.byte	0x7
+ 355 0059 B2010000 		.4byte	.LASF7
+ 356 005d 03       		.uleb128 0x3
+ 357 005e 04       		.byte	0x4
+ 358 005f 05       		.byte	0x5
+ 359 0060 696E7400 		.ascii	"int\000"
+ 360 0064 02       		.uleb128 0x2
+ 361 0065 04       		.byte	0x4
+ 362 0066 07       		.byte	0x7
+ 363 0067 A5010000 		.4byte	.LASF8
+ 364 006b 04       		.uleb128 0x4
+ 365 006c 38020000 		.4byte	.LASF9
+ 366 0070 02       		.byte	0x2
+ 367 0071 E401     		.2byte	0x1e4
+ 368 0073 2C000000 		.4byte	0x2c
+ 369 0077 04       		.uleb128 0x4
+ 370 0078 96010000 		.4byte	.LASF10
+ 371 007c 02       		.byte	0x2
+ 372 007d E601     		.2byte	0x1e6
+ 373 007f 48000000 		.4byte	0x48
+ 374 0083 04       		.uleb128 0x4
+ 375 0084 91010000 		.4byte	.LASF11
+ 376 0088 02       		.byte	0x2
+ 377 0089 E701     		.2byte	0x1e7
+ 378 008b 25000000 		.4byte	0x25
+ 379 008f 04       		.uleb128 0x4
+ 380 0090 DB000000 		.4byte	.LASF12
+ 381 0094 02       		.byte	0x2
+ 382 0095 E901     		.2byte	0x1e9
+ 383 0097 41000000 		.4byte	0x41
+ 384 009b 02       		.uleb128 0x2
+ 385 009c 04       		.byte	0x4
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 10
+
+
+ 386 009d 04       		.byte	0x4
+ 387 009e A9000000 		.4byte	.LASF13
+ 388 00a2 02       		.uleb128 0x2
+ 389 00a3 08       		.byte	0x8
+ 390 00a4 04       		.byte	0x4
+ 391 00a5 6F010000 		.4byte	.LASF14
+ 392 00a9 02       		.uleb128 0x2
+ 393 00aa 01       		.byte	0x1
+ 394 00ab 08       		.byte	0x8
+ 395 00ac 47020000 		.4byte	.LASF15
+ 396 00b0 04       		.uleb128 0x4
+ 397 00b1 1F000000 		.4byte	.LASF16
+ 398 00b5 02       		.byte	0x2
+ 399 00b6 9002     		.2byte	0x290
+ 400 00b8 BC000000 		.4byte	0xbc
+ 401 00bc 05       		.uleb128 0x5
+ 402 00bd 77000000 		.4byte	0x77
+ 403 00c1 02       		.uleb128 0x2
+ 404 00c2 08       		.byte	0x8
+ 405 00c3 04       		.byte	0x4
+ 406 00c4 4C020000 		.4byte	.LASF17
+ 407 00c8 02       		.uleb128 0x2
+ 408 00c9 04       		.byte	0x4
+ 409 00ca 07       		.byte	0x7
+ 410 00cb EF010000 		.4byte	.LASF18
+ 411 00cf 06       		.uleb128 0x6
+ 412 00d0 17020000 		.4byte	.LASF21
+ 413 00d4 01       		.byte	0x1
+ 414 00d5 25       		.byte	0x25
+ 415 00d6 00000000 		.4byte	.LFB32
+ 416 00da 3C000000 		.4byte	.LFE32-.LFB32
+ 417 00de 01       		.uleb128 0x1
+ 418 00df 9C       		.byte	0x9c
+ 419 00e0 FB000000 		.4byte	0xfb
+ 420 00e4 07       		.uleb128 0x7
+ 421 00e5 9A000000 		.4byte	.LASF19
+ 422 00e9 01       		.byte	0x1
+ 423 00ea 27       		.byte	0x27
+ 424 00eb 6B000000 		.4byte	0x6b
+ 425 00ef 07       		.uleb128 0x7
+ 426 00f0 80000000 		.4byte	.LASF20
+ 427 00f4 01       		.byte	0x1
+ 428 00f5 28       		.byte	0x28
+ 429 00f6 6B000000 		.4byte	0x6b
+ 430 00fa 00       		.byte	0
+ 431 00fb 08       		.uleb128 0x8
+ 432 00fc 83010000 		.4byte	.LASF22
+ 433 0100 01       		.byte	0x1
+ 434 0101 44       		.byte	0x44
+ 435 0102 00000000 		.4byte	.LFB33
+ 436 0106 54000000 		.4byte	.LFE33-.LFB33
+ 437 010a 01       		.uleb128 0x1
+ 438 010b 9C       		.byte	0x9c
+ 439 010c 49010000 		.4byte	0x149
+ 440 0110 09       		.uleb128 0x9
+ 441 0111 F8010000 		.4byte	.LASF23
+ 442 0115 01       		.byte	0x1
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 11
+
+
+ 443 0116 44       		.byte	0x44
+ 444 0117 6B000000 		.4byte	0x6b
+ 445 011b 02       		.uleb128 0x2
+ 446 011c 91       		.byte	0x91
+ 447 011d 6F       		.sleb128 -17
+ 448 011e 09       		.uleb128 0x9
+ 449 011f 9D010000 		.4byte	.LASF24
+ 450 0123 01       		.byte	0x1
+ 451 0124 44       		.byte	0x44
+ 452 0125 6B000000 		.4byte	0x6b
+ 453 0129 02       		.uleb128 0x2
+ 454 012a 91       		.byte	0x91
+ 455 012b 6E       		.sleb128 -18
+ 456 012c 09       		.uleb128 0x9
+ 457 012d 64020000 		.4byte	.LASF25
+ 458 0131 01       		.byte	0x1
+ 459 0132 44       		.byte	0x44
+ 460 0133 6B000000 		.4byte	0x6b
+ 461 0137 02       		.uleb128 0x2
+ 462 0138 91       		.byte	0x91
+ 463 0139 6D       		.sleb128 -19
+ 464 013a 09       		.uleb128 0x9
+ 465 013b 0F020000 		.4byte	.LASF26
+ 466 013f 01       		.byte	0x1
+ 467 0140 44       		.byte	0x44
+ 468 0141 6B000000 		.4byte	0x6b
+ 469 0145 02       		.uleb128 0x2
+ 470 0146 91       		.byte	0x91
+ 471 0147 6C       		.sleb128 -20
+ 472 0148 00       		.byte	0
+ 473 0149 06       		.uleb128 0x6
+ 474 014a 00000000 		.4byte	.LASF27
+ 475 014e 01       		.byte	0x1
+ 476 014f 55       		.byte	0x55
+ 477 0150 00000000 		.4byte	.LFB34
+ 478 0154 FC000000 		.4byte	.LFE34-.LFB34
+ 479 0158 01       		.uleb128 0x1
+ 480 0159 9C       		.byte	0x9c
+ 481 015a 7B010000 		.4byte	0x17b
+ 482 015e 0A       		.uleb128 0xa
+ 483 015f 9A000000 		.4byte	.LASF19
+ 484 0163 01       		.byte	0x1
+ 485 0164 57       		.byte	0x57
+ 486 0165 6B000000 		.4byte	0x6b
+ 487 0169 02       		.uleb128 0x2
+ 488 016a 91       		.byte	0x91
+ 489 016b 77       		.sleb128 -9
+ 490 016c 0A       		.uleb128 0xa
+ 491 016d 80000000 		.4byte	.LASF20
+ 492 0171 01       		.byte	0x1
+ 493 0172 58       		.byte	0x58
+ 494 0173 6B000000 		.4byte	0x6b
+ 495 0177 02       		.uleb128 0x2
+ 496 0178 91       		.byte	0x91
+ 497 0179 76       		.sleb128 -10
+ 498 017a 00       		.byte	0
+ 499 017b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 12
+
+
+ 500 017c 76010000 		.4byte	.LASF28
+ 501 0180 01       		.byte	0x1
+ 502 0181 0D       		.byte	0xd
+ 503 0182 8C010000 		.4byte	0x18c
+ 504 0186 05       		.uleb128 0x5
+ 505 0187 03       		.byte	0x3
+ 506 0188 00000000 		.4byte	SPI_Temp_Reg
+ 507 018c 05       		.uleb128 0x5
+ 508 018d 8F000000 		.4byte	0x8f
+ 509 0191 0B       		.uleb128 0xb
+ 510 0192 C9010000 		.4byte	.LASF29
+ 511 0196 01       		.byte	0x1
+ 512 0197 0E       		.byte	0xe
+ 513 0198 A2010000 		.4byte	0x1a2
+ 514 019c 05       		.uleb128 0x5
+ 515 019d 03       		.byte	0x3
+ 516 019e 00000000 		.4byte	SPI_Status_Reg
+ 517 01a2 05       		.uleb128 0x5
+ 518 01a3 83000000 		.4byte	0x83
+ 519 01a7 0B       		.uleb128 0xb
+ 520 01a8 75000000 		.4byte	.LASF30
+ 521 01ac 01       		.byte	0x1
+ 522 01ad 10       		.byte	0x10
+ 523 01ae 6B000000 		.4byte	0x6b
+ 524 01b2 05       		.uleb128 0x5
+ 525 01b3 03       		.byte	0x3
+ 526 01b4 00000000 		.4byte	SPI_RXflag
+ 527 01b8 0B       		.uleb128 0xb
+ 528 01b9 D8010000 		.4byte	.LASF31
+ 529 01bd 01       		.byte	0x1
+ 530 01be 11       		.byte	0x11
+ 531 01bf 6B000000 		.4byte	0x6b
+ 532 01c3 05       		.uleb128 0x5
+ 533 01c4 03       		.byte	0x3
+ 534 01c5 00000000 		.4byte	SPI_TXflag
+ 535 01c9 0C       		.uleb128 0xc
+ 536 01ca 6B000000 		.4byte	0x6b
+ 537 01ce D9010000 		.4byte	0x1d9
+ 538 01d2 0D       		.uleb128 0xd
+ 539 01d3 C8000000 		.4byte	0xc8
+ 540 01d7 7F       		.byte	0x7f
+ 541 01d8 00       		.byte	0
+ 542 01d9 0B       		.uleb128 0xb
+ 543 01da E3010000 		.4byte	.LASF32
+ 544 01de 01       		.byte	0x1
+ 545 01df 12       		.byte	0x12
+ 546 01e0 C9010000 		.4byte	0x1c9
+ 547 01e4 05       		.uleb128 0x5
+ 548 01e5 03       		.byte	0x3
+ 549 01e6 00000000 		.4byte	spiRxBuffer
+ 550 01ea 0B       		.uleb128 0xb
+ 551 01eb BD000000 		.4byte	.LASF33
+ 552 01ef 01       		.byte	0x1
+ 553 01f0 13       		.byte	0x13
+ 554 01f1 C9010000 		.4byte	0x1c9
+ 555 01f5 05       		.uleb128 0x5
+ 556 01f6 03       		.byte	0x3
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 13
+
+
+ 557 01f7 00000000 		.4byte	spiTxBuffer
+ 558 01fb 00       		.byte	0
+ 559              		.section	.debug_abbrev,"",%progbits
+ 560              	.Ldebug_abbrev0:
+ 561 0000 01       		.uleb128 0x1
+ 562 0001 11       		.uleb128 0x11
+ 563 0002 01       		.byte	0x1
+ 564 0003 25       		.uleb128 0x25
+ 565 0004 0E       		.uleb128 0xe
+ 566 0005 13       		.uleb128 0x13
+ 567 0006 0B       		.uleb128 0xb
+ 568 0007 03       		.uleb128 0x3
+ 569 0008 0E       		.uleb128 0xe
+ 570 0009 1B       		.uleb128 0x1b
+ 571 000a 0E       		.uleb128 0xe
+ 572 000b 55       		.uleb128 0x55
+ 573 000c 17       		.uleb128 0x17
+ 574 000d 11       		.uleb128 0x11
+ 575 000e 01       		.uleb128 0x1
+ 576 000f 10       		.uleb128 0x10
+ 577 0010 17       		.uleb128 0x17
+ 578 0011 00       		.byte	0
+ 579 0012 00       		.byte	0
+ 580 0013 02       		.uleb128 0x2
+ 581 0014 24       		.uleb128 0x24
+ 582 0015 00       		.byte	0
+ 583 0016 0B       		.uleb128 0xb
+ 584 0017 0B       		.uleb128 0xb
+ 585 0018 3E       		.uleb128 0x3e
+ 586 0019 0B       		.uleb128 0xb
+ 587 001a 03       		.uleb128 0x3
+ 588 001b 0E       		.uleb128 0xe
+ 589 001c 00       		.byte	0
+ 590 001d 00       		.byte	0
+ 591 001e 03       		.uleb128 0x3
+ 592 001f 24       		.uleb128 0x24
+ 593 0020 00       		.byte	0
+ 594 0021 0B       		.uleb128 0xb
+ 595 0022 0B       		.uleb128 0xb
+ 596 0023 3E       		.uleb128 0x3e
+ 597 0024 0B       		.uleb128 0xb
+ 598 0025 03       		.uleb128 0x3
+ 599 0026 08       		.uleb128 0x8
+ 600 0027 00       		.byte	0
+ 601 0028 00       		.byte	0
+ 602 0029 04       		.uleb128 0x4
+ 603 002a 16       		.uleb128 0x16
+ 604 002b 00       		.byte	0
+ 605 002c 03       		.uleb128 0x3
+ 606 002d 0E       		.uleb128 0xe
+ 607 002e 3A       		.uleb128 0x3a
+ 608 002f 0B       		.uleb128 0xb
+ 609 0030 3B       		.uleb128 0x3b
+ 610 0031 05       		.uleb128 0x5
+ 611 0032 49       		.uleb128 0x49
+ 612 0033 13       		.uleb128 0x13
+ 613 0034 00       		.byte	0
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 14
+
+
+ 614 0035 00       		.byte	0
+ 615 0036 05       		.uleb128 0x5
+ 616 0037 35       		.uleb128 0x35
+ 617 0038 00       		.byte	0
+ 618 0039 49       		.uleb128 0x49
+ 619 003a 13       		.uleb128 0x13
+ 620 003b 00       		.byte	0
+ 621 003c 00       		.byte	0
+ 622 003d 06       		.uleb128 0x6
+ 623 003e 2E       		.uleb128 0x2e
+ 624 003f 01       		.byte	0x1
+ 625 0040 3F       		.uleb128 0x3f
+ 626 0041 19       		.uleb128 0x19
+ 627 0042 03       		.uleb128 0x3
+ 628 0043 0E       		.uleb128 0xe
+ 629 0044 3A       		.uleb128 0x3a
+ 630 0045 0B       		.uleb128 0xb
+ 631 0046 3B       		.uleb128 0x3b
+ 632 0047 0B       		.uleb128 0xb
+ 633 0048 27       		.uleb128 0x27
+ 634 0049 19       		.uleb128 0x19
+ 635 004a 11       		.uleb128 0x11
+ 636 004b 01       		.uleb128 0x1
+ 637 004c 12       		.uleb128 0x12
+ 638 004d 06       		.uleb128 0x6
+ 639 004e 40       		.uleb128 0x40
+ 640 004f 18       		.uleb128 0x18
+ 641 0050 9642     		.uleb128 0x2116
+ 642 0052 19       		.uleb128 0x19
+ 643 0053 01       		.uleb128 0x1
+ 644 0054 13       		.uleb128 0x13
+ 645 0055 00       		.byte	0
+ 646 0056 00       		.byte	0
+ 647 0057 07       		.uleb128 0x7
+ 648 0058 34       		.uleb128 0x34
+ 649 0059 00       		.byte	0
+ 650 005a 03       		.uleb128 0x3
+ 651 005b 0E       		.uleb128 0xe
+ 652 005c 3A       		.uleb128 0x3a
+ 653 005d 0B       		.uleb128 0xb
+ 654 005e 3B       		.uleb128 0x3b
+ 655 005f 0B       		.uleb128 0xb
+ 656 0060 49       		.uleb128 0x49
+ 657 0061 13       		.uleb128 0x13
+ 658 0062 00       		.byte	0
+ 659 0063 00       		.byte	0
+ 660 0064 08       		.uleb128 0x8
+ 661 0065 2E       		.uleb128 0x2e
+ 662 0066 01       		.byte	0x1
+ 663 0067 3F       		.uleb128 0x3f
+ 664 0068 19       		.uleb128 0x19
+ 665 0069 03       		.uleb128 0x3
+ 666 006a 0E       		.uleb128 0xe
+ 667 006b 3A       		.uleb128 0x3a
+ 668 006c 0B       		.uleb128 0xb
+ 669 006d 3B       		.uleb128 0x3b
+ 670 006e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 15
+
+
+ 671 006f 27       		.uleb128 0x27
+ 672 0070 19       		.uleb128 0x19
+ 673 0071 11       		.uleb128 0x11
+ 674 0072 01       		.uleb128 0x1
+ 675 0073 12       		.uleb128 0x12
+ 676 0074 06       		.uleb128 0x6
+ 677 0075 40       		.uleb128 0x40
+ 678 0076 18       		.uleb128 0x18
+ 679 0077 9742     		.uleb128 0x2117
+ 680 0079 19       		.uleb128 0x19
+ 681 007a 01       		.uleb128 0x1
+ 682 007b 13       		.uleb128 0x13
+ 683 007c 00       		.byte	0
+ 684 007d 00       		.byte	0
+ 685 007e 09       		.uleb128 0x9
+ 686 007f 05       		.uleb128 0x5
+ 687 0080 00       		.byte	0
+ 688 0081 03       		.uleb128 0x3
+ 689 0082 0E       		.uleb128 0xe
+ 690 0083 3A       		.uleb128 0x3a
+ 691 0084 0B       		.uleb128 0xb
+ 692 0085 3B       		.uleb128 0x3b
+ 693 0086 0B       		.uleb128 0xb
+ 694 0087 49       		.uleb128 0x49
+ 695 0088 13       		.uleb128 0x13
+ 696 0089 02       		.uleb128 0x2
+ 697 008a 18       		.uleb128 0x18
+ 698 008b 00       		.byte	0
+ 699 008c 00       		.byte	0
+ 700 008d 0A       		.uleb128 0xa
+ 701 008e 34       		.uleb128 0x34
+ 702 008f 00       		.byte	0
+ 703 0090 03       		.uleb128 0x3
+ 704 0091 0E       		.uleb128 0xe
+ 705 0092 3A       		.uleb128 0x3a
+ 706 0093 0B       		.uleb128 0xb
+ 707 0094 3B       		.uleb128 0x3b
+ 708 0095 0B       		.uleb128 0xb
+ 709 0096 49       		.uleb128 0x49
+ 710 0097 13       		.uleb128 0x13
+ 711 0098 02       		.uleb128 0x2
+ 712 0099 18       		.uleb128 0x18
+ 713 009a 00       		.byte	0
+ 714 009b 00       		.byte	0
+ 715 009c 0B       		.uleb128 0xb
+ 716 009d 34       		.uleb128 0x34
+ 717 009e 00       		.byte	0
+ 718 009f 03       		.uleb128 0x3
+ 719 00a0 0E       		.uleb128 0xe
+ 720 00a1 3A       		.uleb128 0x3a
+ 721 00a2 0B       		.uleb128 0xb
+ 722 00a3 3B       		.uleb128 0x3b
+ 723 00a4 0B       		.uleb128 0xb
+ 724 00a5 49       		.uleb128 0x49
+ 725 00a6 13       		.uleb128 0x13
+ 726 00a7 3F       		.uleb128 0x3f
+ 727 00a8 19       		.uleb128 0x19
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 16
+
+
+ 728 00a9 02       		.uleb128 0x2
+ 729 00aa 18       		.uleb128 0x18
+ 730 00ab 00       		.byte	0
+ 731 00ac 00       		.byte	0
+ 732 00ad 0C       		.uleb128 0xc
+ 733 00ae 01       		.uleb128 0x1
+ 734 00af 01       		.byte	0x1
+ 735 00b0 49       		.uleb128 0x49
+ 736 00b1 13       		.uleb128 0x13
+ 737 00b2 01       		.uleb128 0x1
+ 738 00b3 13       		.uleb128 0x13
+ 739 00b4 00       		.byte	0
+ 740 00b5 00       		.byte	0
+ 741 00b6 0D       		.uleb128 0xd
+ 742 00b7 21       		.uleb128 0x21
+ 743 00b8 00       		.byte	0
+ 744 00b9 49       		.uleb128 0x49
+ 745 00ba 13       		.uleb128 0x13
+ 746 00bb 2F       		.uleb128 0x2f
+ 747 00bc 0B       		.uleb128 0xb
+ 748 00bd 00       		.byte	0
+ 749 00be 00       		.byte	0
+ 750 00bf 00       		.byte	0
+ 751              		.section	.debug_aranges,"",%progbits
+ 752 0000 2C000000 		.4byte	0x2c
+ 753 0004 0200     		.2byte	0x2
+ 754 0006 00000000 		.4byte	.Ldebug_info0
+ 755 000a 04       		.byte	0x4
+ 756 000b 00       		.byte	0
+ 757 000c 0000     		.2byte	0
+ 758 000e 0000     		.2byte	0
+ 759 0010 00000000 		.4byte	.LFB32
+ 760 0014 3C000000 		.4byte	.LFE32-.LFB32
+ 761 0018 00000000 		.4byte	.LFB33
+ 762 001c 54000000 		.4byte	.LFE33-.LFB33
+ 763 0020 00000000 		.4byte	.LFB34
+ 764 0024 FC000000 		.4byte	.LFE34-.LFB34
+ 765 0028 00000000 		.4byte	0
+ 766 002c 00000000 		.4byte	0
+ 767              		.section	.debug_ranges,"",%progbits
+ 768              	.Ldebug_ranges0:
+ 769 0000 00000000 		.4byte	.LFB32
+ 770 0004 3C000000 		.4byte	.LFE32
+ 771 0008 00000000 		.4byte	.LFB33
+ 772 000c 54000000 		.4byte	.LFE33
+ 773 0010 00000000 		.4byte	.LFB34
+ 774 0014 FC000000 		.4byte	.LFE34
+ 775 0018 00000000 		.4byte	0
+ 776 001c 00000000 		.4byte	0
+ 777              		.section	.debug_line,"",%progbits
+ 778              	.Ldebug_line0:
+ 779 0000 98000000 		.section	.debug_str,"MS",%progbits,1
+ 779      02004200 
+ 779      00000201 
+ 779      FB0E0D00 
+ 779      01010101 
+ 780              	.LASF27:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 17
+
+
+ 781 0000 53504953 		.ascii	"SPIS_SPI_UART_ISR_ExitCallback\000"
+ 781      5F535049 
+ 781      5F554152 
+ 781      545F4953 
+ 781      525F4578 
+ 782              	.LASF16:
+ 783 001f 72656733 		.ascii	"reg32\000"
+ 783      3200
+ 784              	.LASF36:
+ 785 0025 433A5C55 		.ascii	"C:\\Users\\Lars\\Documents\\PSoC Creator\\Workspace"
+ 785      73657273 
+ 785      5C4C6172 
+ 785      735C446F 
+ 785      63756D65 
+ 786 0053 30315C50 		.ascii	"01\\PSOC4_ForwardVoltageTSEP.cydsn\000"
+ 786      534F4334 
+ 786      5F466F72 
+ 786      77617264 
+ 786      566F6C74 
+ 787              	.LASF30:
+ 788 0075 5350495F 		.ascii	"SPI_RXflag\000"
+ 788      5258666C 
+ 788      616700
+ 789              	.LASF20:
+ 790 0080 6E427974 		.ascii	"nBytes\000"
+ 790      657300
+ 791              	.LASF3:
+ 792 0087 73686F72 		.ascii	"short unsigned int\000"
+ 792      7420756E 
+ 792      7369676E 
+ 792      65642069 
+ 792      6E7400
+ 793              	.LASF19:
+ 794 009a 73746174 		.ascii	"status\000"
+ 794      757300
+ 795              	.LASF35:
+ 796 00a1 6D797370 		.ascii	"myspi.c\000"
+ 796      692E6300 
+ 797              	.LASF13:
+ 798 00a9 666C6F61 		.ascii	"float\000"
+ 798      7400
+ 799              	.LASF1:
+ 800 00af 756E7369 		.ascii	"unsigned char\000"
+ 800      676E6564 
+ 800      20636861 
+ 800      7200
+ 801              	.LASF33:
+ 802 00bd 73706954 		.ascii	"spiTxBuffer\000"
+ 802      78427566 
+ 802      66657200 
+ 803              	.LASF5:
+ 804 00c9 6C6F6E67 		.ascii	"long unsigned int\000"
+ 804      20756E73 
+ 804      69676E65 
+ 804      6420696E 
+ 804      7400
+ 805              	.LASF12:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 18
+
+
+ 806 00db 696E7433 		.ascii	"int32\000"
+ 806      3200
+ 807              	.LASF34:
+ 808 00e1 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 808      43313120 
+ 808      352E342E 
+ 808      31203230 
+ 808      31363036 
+ 809 0114 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 809      20726576 
+ 809      6973696F 
+ 809      6E203233 
+ 809      37373135 
+ 810 0147 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 810      66756E63 
+ 810      74696F6E 
+ 810      2D736563 
+ 810      74696F6E 
+ 811              	.LASF14:
+ 812 016f 646F7562 		.ascii	"double\000"
+ 812      6C6500
+ 813              	.LASF28:
+ 814 0176 5350495F 		.ascii	"SPI_Temp_Reg\000"
+ 814      54656D70 
+ 814      5F526567 
+ 814      00
+ 815              	.LASF22:
+ 816 0183 73657453 		.ascii	"setSPITempReg\000"
+ 816      50495465 
+ 816      6D705265 
+ 816      6700
+ 817              	.LASF11:
+ 818 0191 696E7438 		.ascii	"int8\000"
+ 818      00
+ 819              	.LASF10:
+ 820 0196 75696E74 		.ascii	"uint32\000"
+ 820      333200
+ 821              	.LASF24:
+ 822 019d 696E7472 		.ascii	"intrLow\000"
+ 822      4C6F7700 
+ 823              	.LASF8:
+ 824 01a5 756E7369 		.ascii	"unsigned int\000"
+ 824      676E6564 
+ 824      20696E74 
+ 824      00
+ 825              	.LASF7:
+ 826 01b2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 826      206C6F6E 
+ 826      6720756E 
+ 826      7369676E 
+ 826      65642069 
+ 827              	.LASF29:
+ 828 01c9 5350495F 		.ascii	"SPI_Status_Reg\000"
+ 828      53746174 
+ 828      75735F52 
+ 828      656700
+ 829              	.LASF31:
+ARM GAS  C:\Users\Lars\AppData\Local\Temp\ccsA7HY5.s 			page 19
+
+
+ 830 01d8 5350495F 		.ascii	"SPI_TXflag\000"
+ 830      5458666C 
+ 830      616700
+ 831              	.LASF32:
+ 832 01e3 73706952 		.ascii	"spiRxBuffer\000"
+ 832      78427566 
+ 832      66657200 
+ 833              	.LASF18:
+ 834 01ef 73697A65 		.ascii	"sizetype\000"
+ 834      74797065 
+ 834      00
+ 835              	.LASF23:
+ 836 01f8 696E7472 		.ascii	"intrHigh\000"
+ 836      48696768 
+ 836      00
+ 837              	.LASF6:
+ 838 0201 6C6F6E67 		.ascii	"long long int\000"
+ 838      206C6F6E 
+ 838      6720696E 
+ 838      7400
+ 839              	.LASF26:
+ 840 020f 66726163 		.ascii	"fracLow\000"
+ 840      4C6F7700 
+ 841              	.LASF21:
+ 842 0217 696E6974 		.ascii	"initializeSPIInterface\000"
+ 842      69616C69 
+ 842      7A655350 
+ 842      49496E74 
+ 842      65726661 
+ 843              	.LASF2:
+ 844 022e 73686F72 		.ascii	"short int\000"
+ 844      7420696E 
+ 844      7400
+ 845              	.LASF9:
+ 846 0238 75696E74 		.ascii	"uint8\000"
+ 846      3800
+ 847              	.LASF4:
+ 848 023e 6C6F6E67 		.ascii	"long int\000"
+ 848      20696E74 
+ 848      00
+ 849              	.LASF15:
+ 850 0247 63686172 		.ascii	"char\000"
+ 850      00
+ 851              	.LASF17:
+ 852 024c 6C6F6E67 		.ascii	"long double\000"
+ 852      20646F75 
+ 852      626C6500 
+ 853              	.LASF0:
+ 854 0258 7369676E 		.ascii	"signed char\000"
+ 854      65642063 
+ 854      68617200 
+ 855              	.LASF25:
+ 856 0264 66726163 		.ascii	"fracHigh\000"
+ 856      48696768 
+ 856      00
+ 857              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
